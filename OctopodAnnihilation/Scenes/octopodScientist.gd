@@ -7,8 +7,13 @@ const speed = 75
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
 @onready var animations = $AnimationPlayer
-@export var projectile: PackedScene
 var direction = "Down"
+
+@export var testProjectile: PackedScene
+var currentTestProjectile
+var testProjectileList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var doShoot = false
+@export var projectile: PackedScene
 
 func _ready() -> void:
 	nav_agent.target_desired_distance = stopDistance
@@ -50,6 +55,25 @@ func updateAnimation():
 	else:
 		animations.play("walk" + direction)
 
+func testLineOfSight():
+	currentTestProjectile = RandomNumberGenerator.new().randf()
+	testProjectileList.append(currentTestProjectile)
+	var b = testProjectile.instantiate()
+	owner.add_child(b)
+	b.transform = $Arm/Muzzle.global_transform
+	b.createID(currentTestProjectile)
+	testProjectileList.pop_front()
+	#	print("curr", currentTestProjectile)
+
+func toggleShoot(ID, target):
+	#print(ID, "|", testProjectileList[0])
+	if testProjectileList.has(ID):
+		if target == "Player":
+			doShoot = true
+		else:
+			doShoot = false
+	print(doShoot)
+
 func shoot():
 	var b = projectile.instantiate()
 	owner.add_child(b)
@@ -58,18 +82,34 @@ func shoot():
 func _physics_process(_delta: float) -> void:
 	if nav_agent.is_navigation_finished() == false:
 		var dir = to_local(nav_agent.get_next_path_position()).normalized()
-		var distance = player.position - position
+		
+		#makes enemy slow approach upon reaching certain distance
 		var mod = 1
+		"var distance = player.position - position
 		if distance.length() <= stopDistance:
 			mod = 0
 		elif distance.length() < (2*stopDistance) and distance.length() > stopDistance:
-			mod = (distance.length() - stopDistance) / stopDistance 
-		velocity = dir * speed * mod
+			mod = (distance.length() - stopDistance) / stopDistance"
+		
+		if doShoot == false:
+			velocity = dir * speed * mod
+		else:
+			velocity = dir * 0
 		move_and_slide()
 	
 	updateAnimation()
-	shoot()
+	
+	#var space_state = get_world_2d().direct_space_state
+	#var query = PhysicsRayQueryParameters2D.create(player.position, $Arm/Muzzle.position, collision_mask, [self])
+	#var result = space_state.intersect_ray(query)
+	#print(result)
+	
+	testLineOfSight()
+	if doShoot == true:
+		shoot()
 
+
+#functions not associated with _physics_process:
 func makepath() -> void:
 	nav_agent.target_position = player.global_position
 

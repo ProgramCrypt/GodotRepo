@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bq7vglxhqc5hb"]
+[gd_scene load_steps=17 format=3 uid="uid://bq7vglxhqc5hb"]
 
 [ext_resource type="Script" path="res://Scenes/octopodScientist.gd" id="1_0n0xr"]
 [ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="1_33aes"]
 [ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="2_2lich"]
+[ext_resource type="PackedScene" uid="uid://bisejy6ucivib" path="res://Scenes/testProjectile.tscn" id="2_5jhia"]
 [ext_resource type="PackedScene" uid="uid://6c8x0q0piseh" path="res://Scenes/projectileLaser.tscn" id="2_7vonv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1isxn"]
-size = Vector2(27, 36)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
+radius = 12.5
+height = 36.0
 
 [sub_resource type="Animation" id="Animation_dqbt1"]
 resource_name = "faceUp"
@@ -164,18 +166,23 @@ _data = {
 "walkUp": SubResource("Animation_b0dy8")
 }
 
-[node name="octopodScientist" type="CharacterBody2D"]
-collision_mask = 3
+[node name="octopodScientist" type="CharacterBody2D" groups=["projectileEnemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_0n0xr")
+testProjectile = ExtResource("2_5jhia")
 projectile = ExtResource("2_7vonv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
 position = Vector2(0.5, 11)
-shape = SubResource("RectangleShape2D_1isxn")
+shape = SubResource("CapsuleShape2D_e6kdg")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 5.0
+debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
