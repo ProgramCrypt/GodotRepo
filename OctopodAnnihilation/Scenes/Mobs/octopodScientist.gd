@@ -63,16 +63,13 @@ func testLineOfSight():
 	b.transform = $Arm/Muzzle.global_transform
 	b.createID(currentTestProjectile)
 	testProjectileList.pop_front()
-	#	print("curr", currentTestProjectile)
 
 func toggleShoot(ID, target):
-	#print(ID, "|", testProjectileList[0])
 	if testProjectileList.has(ID):
 		if target == "Player":
 			doShoot = true
 		else:
 			doShoot = false
-	print(doShoot)
 
 func shoot():
 	var b = projectile.instantiate()

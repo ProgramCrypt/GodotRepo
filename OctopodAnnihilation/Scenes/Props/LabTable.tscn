@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://1xnstf7rn8c"]
+
+[ext_resource type="Texture2D" uid="uid://xk81bkye7uwe" path="res://Sprites/Props/LabProps.png" id="1_k1a88"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htpbq"]
+size = Vector2(50, 51)
+
+[node name="LabTable" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k1a88")
+hframes = 8
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17.5)
+shape = SubResource("RectangleShape2D_htpbq")

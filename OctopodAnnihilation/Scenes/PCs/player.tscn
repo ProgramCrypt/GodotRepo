@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://ccswn86ak6nuq"]
 
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_f26gr"]
-[ext_resource type="PackedScene" uid="uid://bqyi3aebv35hk" path="res://Scenes/projectile.tscn" id="2_jcvpm"]
+[ext_resource type="Script" path="res://Scenes/PCs/player.gd" id="1_f26gr"]
+[ext_resource type="PackedScene" uid="uid://bqyi3aebv35hk" path="res://Scenes/Weapons/projectile.tscn" id="2_jcvpm"]
 [ext_resource type="Texture2D" uid="uid://c1sr8101aws3e" path="res://Sprites/PCs/spritesheet_gunArm.png" id="3_0dm0r"]
 [ext_resource type="Texture2D" uid="uid://dyjoq0gb0bqm3" path="res://Sprites/PCs/spritesheet_mainCharacter_full.png" id="3_jf73b"]
 [ext_resource type="Texture2D" uid="uid://01qm5vi5gpn" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="5_nutdu"]
