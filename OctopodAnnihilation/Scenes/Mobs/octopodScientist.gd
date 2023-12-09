@@ -13,7 +13,10 @@ var direction = "Down"
 var currentTestProjectile
 var testProjectileList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var doShoot = false
+var doShootToggle = false
+var laser = null
 @export var projectile: PackedScene
+#var shootTimer = 
 
 func _ready() -> void:
 	nav_agent.target_desired_distance = stopDistance
@@ -66,44 +69,48 @@ func testLineOfSight():
 
 func toggleShoot(ID, target):
 	if testProjectileList.has(ID):
-		if target == "Player":
+		if target == "player":
 			doShoot = true
 		else:
 			doShoot = false
 
-func shoot():
-	var b = projectile.instantiate()
-	owner.add_child(b)
-	b.transform = $Arm/Muzzle.global_transform
+func shoot(check):
+	if doShootToggle != check:
+		if check == true:
+			laser = projectile.instantiate()
+			$Arm/Muzzle.add_child(laser)
+			#laser.transform = $Arm/Muzzle.transform
+		else:
+			laser.queue_free()
+	doShootToggle = check
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if nav_agent.is_navigation_finished() == false:
 		var dir = to_local(nav_agent.get_next_path_position()).normalized()
 		
 		#makes enemy slow approach upon reaching certain distance
-		var mod = 1
-		"var distance = player.position - position
+		"var mod = 1
+		var distance = player.position - position
 		if distance.length() <= stopDistance:
 			mod = 0
 		elif distance.length() < (2*stopDistance) and distance.length() > stopDistance:
 			mod = (distance.length() - stopDistance) / stopDistance"
 		
 		if doShoot == false:
-			velocity = dir * speed * mod
+			velocity = dir * speed#* mod
 		else:
 			velocity = dir * 0
 		move_and_slide()
 	
 	updateAnimation()
 	
-	#var space_state = get_world_2d().direct_space_state
-	#var query = PhysicsRayQueryParameters2D.create(player.position, $Arm/Muzzle.position, collision_mask, [self])
-	#var result = space_state.intersect_ray(query)
-	#print(result)
+	"var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(player.position, $Arm/Muzzle.position, collision_mask, [self])
+	var result = space_state.intersect_ray(query)
+	print(result)"
 	
 	testLineOfSight()
-	if doShoot == true:
-		shoot()
+	shoot(doShoot)
 
 
 #functions not associated with _physics_process:

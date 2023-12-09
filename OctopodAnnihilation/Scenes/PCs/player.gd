@@ -10,7 +10,7 @@ var direction = "Down"
 func _ready():
 	pass # Replace with function body.
 
-func handleInput():
+func handleInput(_delta):
 	var moveDirection = Input.get_vector("left", "right", "up", "down")
 	velocity = moveDirection * speed
 	
@@ -67,7 +67,7 @@ func shoot():
 	b.transform = $Arm/Muzzle.global_transform
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
-	handleInput()
+func _physics_process(delta):
+	handleInput(delta)
 	move_and_slide()
 	updateAnimation()

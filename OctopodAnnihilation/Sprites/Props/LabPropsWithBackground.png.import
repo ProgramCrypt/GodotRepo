@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jbu1jwsxgsoh"
-path="res://.godot/imported/MapTiles_Lab3.png-d0a75e50f22e41c51487cb471baa195a.ctex"
+uid="uid://c7h6mjo3gw48s"
+path="res://.godot/imported/LabPropsWithBackground.png-07539ec6b00ae1c2f1819fe8a80a9a17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MapTiles/MapTiles_Lab3.png"
-dest_files=["res://.godot/imported/MapTiles_Lab3.png-d0a75e50f22e41c51487cb471baa195a.ctex"]
+source_file="res://Sprites/Props/LabPropsWithBackground.png"
+dest_files=["res://.godot/imported/LabPropsWithBackground.png-07539ec6b00ae1c2f1819fe8a80a9a17.ctex"]
 
 [params]
 

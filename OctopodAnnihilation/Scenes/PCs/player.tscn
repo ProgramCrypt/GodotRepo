@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://01qm5vi5gpn" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="5_nutdu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_taqf8"]
-size = Vector2(28, 41)
+size = Vector2(24, 41)
 
 [sub_resource type="Animation" id="Animation_8123n"]
 length = 0.001
@@ -309,7 +309,7 @@ _data = {
 "walkUpArmed": SubResource("Animation_y15ct")
 }
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_f26gr")
 projectile = ExtResource("2_jcvpm")

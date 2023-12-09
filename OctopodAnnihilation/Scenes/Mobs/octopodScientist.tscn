@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="1_33aes"]
 [ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="2_2lich"]
 [ext_resource type="PackedScene" uid="uid://bisejy6ucivib" path="res://Scenes/Weapons/testProjectile.tscn" id="2_5jhia"]
-[ext_resource type="PackedScene" uid="uid://6c8x0q0piseh" path="res://Scenes/Weapons/projectileLaser.tscn" id="2_7vonv"]
+[ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_1tjsp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
 radius = 12.5
@@ -171,7 +171,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_0n0xr")
 testProjectile = ExtResource("2_5jhia")
-projectile = ExtResource("2_7vonv")
+projectile = ExtResource("3_1tjsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -207,6 +207,6 @@ vframes = 8
 frame = 1
 
 [node name="Muzzle" type="Marker2D" parent="Arm"]
-position = Vector2(-33, -9)
+position = Vector2(-30, -9)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
