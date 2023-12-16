@@ -48,12 +48,12 @@ func defineType(type, cell):
 		damagedAtlas = Vector2i(5, 5)
 
 func _on_area_entered(area):
-	print('trigg')
+	#print('trigg')
 	if area.is_in_group("projectile"):
 		health -= 1
-		print('hit')
+		#print('hit')
 
-func _physics_process(_delta):
+func _process(_delta):
 	if health == 0:
 		get_parent().changeTile(cellLoc, damagedAtlas)
 		if damagedType != "":

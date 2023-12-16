@@ -17,6 +17,8 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=1200
+window/size/viewport_height=800
 window/stretch/mode="canvas_items"
 
 [input]
@@ -50,3 +52,4 @@ attack={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.0196078, 0.0588235, 0.0627451, 1)

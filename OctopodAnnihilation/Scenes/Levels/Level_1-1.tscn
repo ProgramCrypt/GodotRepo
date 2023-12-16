@@ -1,34 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6wakgckuw41q"]
+[gd_scene load_steps=12 format=3 uid="uid://b6wakgckuw41q"]
 
 [ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_0cwwg"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level_1-1.gd" id="1_fdy0e"]
+[ext_resource type="Script" path="res://Scenes/Levels/Camera2D.gd" id="1_sq2ms"]
+[ext_resource type="PackedScene" uid="uid://cx8pnds27ajgu" path="res://Scenes/Regions/Labs/spawnRoom.tscn" id="2_037mf"]
 [ext_resource type="PackedScene" uid="uid://ccswn86ak6nuq" path="res://Scenes/PCs/player.tscn" id="2_pe7sg"]
-[ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="3_gcdbb"]
+[ext_resource type="PackedScene" uid="uid://dflggvgbc08ej" path="res://Scenes/Regions/Labs/vatRoom.tscn" id="3_u6qip"]
+[ext_resource type="PackedScene" uid="uid://c7j1obnqtegw2" path="res://Scenes/Regions/Labs/derelictVatRoom.tscn" id="4_o6esn"]
+[ext_resource type="PackedScene" uid="uid://bpooegugjaab" path="res://Scenes/Regions/Labs/octoVatRoom.tscn" id="5_ukll2"]
+[ext_resource type="PackedScene" uid="uid://c2l7xqnvkdi63" path="res://Scenes/Regions/Labs/derelictOctoVatRoom.tscn" id="6_pka1u"]
+[ext_resource type="PackedScene" uid="uid://0aexj4m26h0q" path="res://Scenes/Regions/Labs/serverRoom.tscn" id="7_hwmau"]
+[ext_resource type="PackedScene" uid="uid://d286ko5e37cag" path="res://Scenes/Regions/Labs/serverRoom1.tscn" id="8_15yjl"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_fdy0e")
+spawnRoom = ExtResource("2_037mf")
+vatRoom = ExtResource("3_u6qip")
+derelictVatRoom = ExtResource("4_o6esn")
+octoVatRoom = ExtResource("5_ukll2")
+derelictOctoVatRoom = ExtResource("6_pka1u")
+serverRoom = ExtResource("7_hwmau")
+serverRoom1 = ExtResource("8_15yjl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(565, 350)
 rotation = 3.14159
 scale = Vector2(71.7733, -143.641)
-zoom = Vector2(0.9, 0.9)
+zoom = Vector2(0.1, 0.1)
+script = ExtResource("1_sq2ms")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_0cwwg")
 format = 2
 layer_0/name = "lowerLevel"
 layer_0/z_index = -5
-layer_0/tile_data = PackedInt32Array(262151, 327680, 0, 262150, 65536, 0, 262149, 196608, 0, 262148, 65536, 0, 262147, 131072, 0, 1, 65536, 0, 2, 131072, 0, 3, 196608, 0, 4, 65536, 0, 5, 327680, 0, 6, 65536, 0, 7, 393216, 0, 8, 65536, 0, 9, 65536, 0, 131075, 1, 0, 65539, 65536, 1, 65543, 65536, 1, 131080, 65536, 1, 131081, 65536, 1, 196617, 65536, 1, 262152, 1, 0, 327682, 65536, 1, 262145, 65536, 1, 196610, 65536, 1, 131073, 131072, 1, 65538, 131072, 1, 65540, 131072, 1, 131076, 131072, 1, 65542, 131072, 1, 131078, 131072, 1, 65544, 131072, 1, 65545, 393216, 1, 262153, 131072, 1, 327689, 131072, 1, 327688, 131072, 1, 327686, 131072, 1, 327684, 131072, 1, 327683, 131072, 1, 196609, 131072, 1, 262146, 196608, 1, 65541, 196608, 1, 327685, 196608, 1, 196616, 196608, 1, 65537, 262144, 1, 327687, 262144, 1, 131074, 327680, 1, 131079, 327680, 1, 327681, 393216, 1, 131072, 327680, 3, 196608, 65536, 1)
 layer_1/name = "upperLevel"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 5
-layer_1/tile_data = PackedInt32Array(131075, 65536, 2, 131076, 65536, 2, 131078, 65536, 2, 131079, 65536, 2, 65541, 131072, 2, 0, 0, 0, 10, 458752, 0, 65536, 0, 1, 262144, 0, 1, 327680, 0, 2, 327690, 458752, 2, 262154, 458752, 1, 196618, 458752, 1, 131082, 458752, 1, 65546, 458752, 1, 393216, 65536, 3, 393217, 65536, 3, 393218, 65536, 3, 393219, 65536, 3, 393220, 65536, 3, 393221, 65536, 3, 393222, 65536, 3, 393223, 65536, 3, 393224, 65536, 3, 393225, 65536, 3, 393226, 65536, 3, 327681, 65536, 2, 327682, 65536, 2, 327683, 65536, 2, 327684, 65536, 2, 327685, 65536, 2, 327686, 65536, 2, 327687, 65536, 2, 327688, 65536, 2, 327689, 65536, 2, 196611, 65536, 3, 196612, 65536, 3, 196613, 65536, 3, 196614, 65536, 3, 196615, 65536, 3, 131077, 196608, 3, 196608, 327680, 2)
+layer_1/tile_data = PackedInt32Array()
 
 [node name="player" parent="." instance=ExtResource("2_pe7sg")]
 position = Vector2(899, 278)
-
-[node name="octopodScientist" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_gcdbb")]
-position = Vector2(201, 398)
-player = NodePath("../player")
