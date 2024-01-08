@@ -11,6 +11,7 @@ script = SubResource("GDScript_twgnb")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_1iafx")
+cell_quadrant_size = 8
 format = 2
 layer_0/name = "lowerLevel"
 layer_0/z_index = -5

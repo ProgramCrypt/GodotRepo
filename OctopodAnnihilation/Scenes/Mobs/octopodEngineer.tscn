@@ -1,10 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bq7vglxhqc5hb"]
+[gd_scene load_steps=15 format=3 uid="uid://dslk4ereghgqr"]
 
-[ext_resource type="Script" path="res://Scenes/Mobs/octopodScientist.gd" id="1_ta5aa"]
-[ext_resource type="PackedScene" uid="uid://bisejy6ucivib" path="res://Scenes/Weapons/testProjectile.tscn" id="2_4vmwc"]
-[ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_bawdv"]
-[ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="4_tnkic"]
-[ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="5_tufkw"]
+[ext_resource type="Script" path="res://Scenes&Scripts/Mobs/octopodEngineer.gd" id="1_qdfx5"]
+[ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="2_an0df"]
+[ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="3_bn7a1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
 radius = 12.5
@@ -166,12 +164,10 @@ _data = {
 "walkUp": SubResource("Animation_b0dy8")
 }
 
-[node name="octopodScientist" type="CharacterBody2D" groups=["projectileEnemies"]]
+[node name="octopodEngineer" type="CharacterBody2D" groups=["projectileEnemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_ta5aa")
-testProjectile = ExtResource("2_4vmwc")
-projectile = ExtResource("3_bawdv")
+script = ExtResource("1_qdfx5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -188,7 +184,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_tnkic")
+texture = ExtResource("2_an0df")
 hframes = 9
 vframes = 4
 
@@ -199,11 +195,11 @@ libraries = {
 
 [node name="Arm" type="Sprite2D" parent="."]
 position = Vector2(0, 11)
-texture = ExtResource("5_tufkw")
+texture = ExtResource("3_bn7a1")
 offset = Vector2(-16, -11)
 hframes = 4
 vframes = 8
-frame = 1
+frame = 3
 
 [node name="Muzzle" type="Marker2D" parent="Arm"]
 position = Vector2(-30, -9)

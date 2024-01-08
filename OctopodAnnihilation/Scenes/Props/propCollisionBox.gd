@@ -56,5 +56,7 @@ func _on_area_entered(area):
 func _process(_delta):
 	if health == 0:
 		get_parent().changeTile(cellLoc, damagedAtlas)
+		health = -1
 		if damagedType != "":
 			defineType(damagedType, cellLoc)
+		

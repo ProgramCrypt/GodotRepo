@@ -38,7 +38,7 @@ func _ready():
 		
 		if walker not in hasRoom:
 			var room = roomArray[randi() % roomArray.size()]
-			print(room)
+			room = roomArray[0]
 			r = room.instantiate()
 			add_child(r)
 			r.position = walker
@@ -46,3 +46,4 @@ func _ready():
 			totalRooms -= 1
 	
 	get_tree().get_nodes_in_group('player')[0].position = Vector2i((gridLen/2),(gridLen/2)+100)
+	get_tree().get_nodes_in_group('projectileEnemies')[0].position = Vector2i((gridLen/2),(gridLen/2))

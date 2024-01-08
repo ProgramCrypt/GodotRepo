@@ -54,6 +54,8 @@ func _ready():
 				vatBox.defineType("blueVat2", cell)
 			if propType == Vector2i(2, 5):
 				vatBox.defineType("emptyVat2", cell)
+				
+	
 
 func changeTile(cell, newTile):
 	set_cell(1, cell, 1, newTile) #this line is the cause of the lag
