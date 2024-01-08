@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6wakgckuw41q"]
+[gd_scene load_steps=13 format=3 uid="uid://b6wakgckuw41q"]
 
+[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_0cwwg"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level_1-1.gd" id="1_fdy0e"]
 [ext_resource type="Script" path="res://Scenes/Levels/Camera2D.gd" id="1_sq2ms"]
 [ext_resource type="PackedScene" uid="uid://cx8pnds27ajgu" path="res://Scenes/Regions/Labs/spawnRoom.tscn" id="2_037mf"]
@@ -10,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c2l7xqnvkdi63" path="res://Scenes/Regions/Labs/derelictOctoVatRoom.tscn" id="6_pka1u"]
 [ext_resource type="PackedScene" uid="uid://0aexj4m26h0q" path="res://Scenes/Regions/Labs/serverRoom.tscn" id="7_hwmau"]
 [ext_resource type="PackedScene" uid="uid://d286ko5e37cag" path="res://Scenes/Regions/Labs/serverRoom1.tscn" id="8_15yjl"]
-[ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="11_1rakx"]
+[ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="12_62nf8"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fdy0e")
@@ -21,17 +22,30 @@ octoVatRoom = ExtResource("5_ukll2")
 derelictOctoVatRoom = ExtResource("6_pka1u")
 serverRoom = ExtResource("7_hwmau")
 serverRoom1 = ExtResource("8_15yjl")
-totalRooms = 20
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(565, 350)
 rotation = 3.14159
 scale = Vector2(71.7733, -143.641)
+zoom = Vector2(0.8, 0.8)
 script = ExtResource("1_sq2ms")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_0cwwg")
+format = 2
+layer_0/name = "lowerLevel"
+layer_0/z_index = -5
+layer_1/name = "upperLevel"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 5
+layer_1/tile_data = PackedInt32Array()
 
 [node name="player" parent="." instance=ExtResource("2_pe7sg")]
 position = Vector2(899, 278)
 
-[node name="octopodScientist" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_1rakx")]
-position = Vector2(366, 384)
+[node name="octopodScientist" parent="." node_paths=PackedStringArray("player") instance=ExtResource("12_62nf8")]
+position = Vector2(397, 383)
 player = NodePath("../player")

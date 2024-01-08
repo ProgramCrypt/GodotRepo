@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2l7xqnvkdi63"]
 
-[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_l1r3f"]
-[ext_resource type="Script" path="res://Scenes&Scripts/Regions/Labs/derelictOctoVatRoomTileMap.gd" id="2_ak0yj"]
-[ext_resource type="PackedScene" uid="uid://bf23yptrxcvkt" path="res://Scenes&Scripts/Props/propCollisionBox.tscn" id="3_hosgm"]
+[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_uw4eu"]
+[ext_resource type="Script" path="res://Scenes/Regions/Labs/derelictOctoVatRoomTileMap.gd" id="2_m8hdj"]
+[ext_resource type="PackedScene" uid="uid://bf23yptrxcvkt" path="res://Scenes/Props/propCollisionBox.tscn" id="3_aqyyy"]
 
 [sub_resource type="GDScript" id="GDScript_twgnb"]
 
@@ -10,7 +10,7 @@
 script = SubResource("GDScript_twgnb")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("1_l1r3f")
+tile_set = ExtResource("1_uw4eu")
 format = 2
 layer_0/name = "lowerLevel"
 layer_0/z_index = -5
@@ -29,5 +29,5 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 5
 layer_2/tile_data = PackedInt32Array(14, 458752, 0, 0, 0, 0, 65536, 0, 1, 131072, 0, 1, 196608, 0, 1, 262144, 0, 1, 327680, 0, 1, 524288, 0, 1, 589824, 0, 1, 655360, 0, 1, 720896, 0, 1, 786432, 0, 1, 851968, 0, 2, 851982, 458752, 2, 786446, 458752, 1, 720910, 458752, 1, 655374, 458752, 1, 589838, 458752, 1, 524302, 458752, 1, 327694, 458752, 1, 262158, 458752, 1, 196622, 458752, 1, 131086, 458752, 1, 65550, 458752, 1, 917504, 65536, 3, 917505, 65536, 3, 917506, 65536, 3, 917507, 65536, 3, 917508, 65536, 3, 917509, 65536, 3, 917510, 0, 1, 917512, 458752, 1, 917513, 65536, 3, 917514, 65536, 3, 917515, 65536, 3, 917516, 65536, 3, 917517, 65536, 3, 917518, 65536, 3, 851969, 65536, 2, 851970, 65536, 2, 851971, 65536, 2, 851972, 65536, 2, 851973, 65536, 2, 851977, 65536, 2, 851978, 65536, 2, 851979, 65536, 2, 851980, 65536, 2, 851981, 65536, 2, 851976, 262144, 2, 458766, 262144, 2, 851974, 327680, 2, 458752, 327680, 2, 589828, 458752, 1, 589834, 0, 1, 589829, 65536, 3, 589830, 65536, 3, 589831, 65536, 3, 589832, 65536, 3, 589833, 65536, 3, 524292, 262144, 2, 524298, 327680, 2, 524297, 65536, 2, 524296, 65536, 2, 524295, 65536, 2, 524294, 65536, 2, 524293, 65536, 2, 262154, 0, 1, 262148, 458752, 1, 262149, 65536, 3, 262150, 65536, 3, 262151, 65536, 3, 262152, 65536, 3, 262153, 65536, 3, 196612, 262144, 2, 196618, 327680, 2, 196617, 65536, 2, 196616, 65536, 2, 196615, 65536, 2, 196614, 65536, 2, 196613, 65536, 2)
-script = ExtResource("2_ak0yj")
-propCollisionBox = ExtResource("3_hosgm")
+script = ExtResource("2_m8hdj")
+propCollisionBox = ExtResource("3_aqyyy")

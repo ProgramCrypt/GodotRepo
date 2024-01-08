@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dslk4ereghgqr"]
 
-[ext_resource type="Script" path="res://Scenes&Scripts/Mobs/octopodEngineer.gd" id="1_qdfx5"]
+[ext_resource type="Script" path="res://Scenes/Mobs/octopodEngineer.gd" id="1_qdfx5"]
 [ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="2_an0df"]
 [ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="3_bn7a1"]
 

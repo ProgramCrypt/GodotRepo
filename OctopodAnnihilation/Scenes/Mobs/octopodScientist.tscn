@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://bq7vglxhqc5hb"]
 
-[ext_resource type="Script" path="res://Scenes/Mobs/octopodScientist.gd" id="1_ta5aa"]
-[ext_resource type="PackedScene" uid="uid://bisejy6ucivib" path="res://Scenes/Weapons/testProjectile.tscn" id="2_4vmwc"]
-[ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_bawdv"]
-[ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="4_tnkic"]
-[ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="5_tufkw"]
+[ext_resource type="Script" path="res://Scenes/Mobs/octopodScientist.gd" id="1_0n0xr"]
+[ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="1_33aes"]
+[ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="2_2lich"]
+[ext_resource type="PackedScene" uid="uid://bisejy6ucivib" path="res://Scenes/Weapons/testProjectile.tscn" id="2_5jhia"]
+[ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_1tjsp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
 radius = 12.5
@@ -169,9 +169,9 @@ _data = {
 [node name="octopodScientist" type="CharacterBody2D" groups=["projectileEnemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_ta5aa")
-testProjectile = ExtResource("2_4vmwc")
-projectile = ExtResource("3_bawdv")
+script = ExtResource("1_0n0xr")
+testProjectile = ExtResource("2_5jhia")
+projectile = ExtResource("3_1tjsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -188,7 +188,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_tnkic")
+texture = ExtResource("1_33aes")
 hframes = 9
 vframes = 4
 
@@ -199,7 +199,7 @@ libraries = {
 
 [node name="Arm" type="Sprite2D" parent="."]
 position = Vector2(0, 11)
-texture = ExtResource("5_tufkw")
+texture = ExtResource("2_2lich")
 offset = Vector2(-16, -11)
 hframes = 4
 vframes = 8
