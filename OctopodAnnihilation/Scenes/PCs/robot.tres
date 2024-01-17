@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="StartingStats" load_steps=2 format=3 uid="uid://da4fqsd014b3q"]
+
+[ext_resource type="Script" path="res://Scenes/PCs/StartingScripts.gd" id="1_75smb"]
+
+[resource]
+script = ExtResource("1_75smb")
+character_name = "Robot"
+maxHealth = 20
+currentHealth = 20
+maxEnergy = 25
+currentEnergy = 25
+speed = 20
+strength = 15
+rateOfFire = 20
+gunAccuracy = 20
+ballisticResistance = 0
+laserResistance = 0
+plasmaResistance = 0
+bleedingResistance = 100
+fireResistance = 20
+explosionResistance = 0
+slowResistance = 0
+stunResistance = 0

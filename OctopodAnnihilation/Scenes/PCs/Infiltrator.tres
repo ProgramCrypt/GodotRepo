@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="StartingStats" load_steps=2 format=3 uid="uid://c4fkakcu5kye3"]
+
+[ext_resource type="Script" path="res://Scenes/PCs/StartingScripts.gd" id="1_v0oy6"]
+
+[resource]
+script = ExtResource("1_v0oy6")
+character_name = "Infiltrator"
+maxHealth = 14
+currentHealth = 14
+maxEnergy = 30
+currentEnergy = 30
+speed = 30
+strength = 15
+rateOfFire = 25
+gunAccuracy = 20
+ballisticResistance = 0
+laserResistance = 0
+plasmaResistance = 0
+bleedingResistance = 0
+fireResistance = 0
+explosionResistance = 0
+slowResistance = 50
+stunResistance = 50

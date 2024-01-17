@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="StartingStats" load_steps=2 format=3 uid="uid://du1rgtw63p6ar"]
+
+[ext_resource type="Script" path="res://Scenes/PCs/StartingScripts.gd" id="1_842hr"]
+
+[resource]
+script = ExtResource("1_842hr")
+character_name = "SuperSoldier"
+maxHealth = 20
+currentHealth = 20
+maxEnergy = 20
+currentEnergy = 20
+speed = 20
+strength = 20
+rateOfFire = 20
+gunAccuracy = 20
+ballisticResistance = 0
+laserResistance = 0
+plasmaResistance = 0
+bleedingResistance = 0
+fireResistance = 0
+explosionResistance = 0
+slowResistance = 0
+stunResistance = 0
