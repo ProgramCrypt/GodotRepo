@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnf33ayq3wb62"]
+
+[ext_resource type="Texture2D" uid="uid://b883fgh10yx5w" path="res://textures/coast_sand_rocks_02_diff_4k.jpg" id="1_lgxpk"]
+[ext_resource type="Texture2D" uid="uid://2saai2h38glh" path="res://textures/coast_sand_rocks_02_disp_4k.png" id="2_7npe7"]
+[ext_resource type="Texture2D" uid="uid://b7ytgw8wup2ll" path="res://textures/coast_sand_rocks_02_disp_4k_recolored.png" id="3_lm8oo"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_d7r1n"]
+albedo_texture = ExtResource("1_lgxpk")
+orm_texture = ExtResource("3_lm8oo")
+normal_texture = ExtResource("2_7npe7")
+uv1_scale = Vector3(50, 50, 50)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cbmyf"]
+material = SubResource("ORMMaterial3D_d7r1n")
+size = Vector2(300, 300)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_igf0v"]
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.478048, -0.760659, 0.439167, 2.78059e-08, 0.5, 0.866025, -0.878334, -0.414002, 0.239024, 0, 9.99651, 0)
+shadow_enabled = true
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="ground" type="MeshInstance3D" parent="Map"]
+mesh = SubResource("PlaneMesh_cbmyf")
+
+[node name="player" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05381, 0)
+mesh = SubResource("CapsuleMesh_igf0v")

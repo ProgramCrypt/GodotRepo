@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="mobStartingStats" load_steps=2 format=3 uid="uid://cm7nenpe0b5ty"]
+
+[ext_resource type="Script" path="res://Scenes/Mobs/mobStartingScript.gd" id="1_d6g3o"]
+
+[resource]
+script = ExtResource("1_d6g3o")
+character_name = ""
+maxHealth = 0
+currentHealth = 0
+speed = 0
+strength = 0
+rateOfFire = 0
+gunAccuracy = 0
+ballisticResistance = 0
+laserResistance = 0
+plasmaResistance = 0
+bleedingResistance = 0
+fireResistance = 0
+explosionResistance = 0
+slowResistance = 0
+stunResistance = 0
