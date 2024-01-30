@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="StartingStats" load_steps=2 format=3 uid="uid://du1rgtw63p6ar"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://du1rgtw63p6ar"]
 
-[ext_resource type="Script" path="res://Scenes/PCs/StartingScripts.gd" id="1_842hr"]
+[ext_resource type="Script" path="res://Scenes/PCs/playerStats.gd" id="1_842hr"]
 
 [resource]
 script = ExtResource("1_842hr")

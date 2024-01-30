@@ -1,11 +1,13 @@
 extends Resource
 
-class_name mobStartingStats
+class_name PlayerStats
 
 @export var character_name : String=''
 
 @export var maxHealth : int
 @export var currentHealth : int
+@export var maxEnergy : int
+@export var currentEnergy : int
 @export var speed : int
 @export var strength : int
 @export var rateOfFire : int

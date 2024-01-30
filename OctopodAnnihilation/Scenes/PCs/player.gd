@@ -6,9 +6,15 @@ extends CharacterBody2D
 var hasWeapon = true
 var direction = "Down"
 
+#@onready var stats = $stats
+@onready var playerStats = get_node("/root/ActivePlayerStats")
+
+@export var playerType : Resource
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	playerStats.initialize(playerType)
+	print("typeReady ", playerStats.currentHealth)
 
 func handleInput(_delta):
 	var moveDirection = Input.get_vector("left", "right", "up", "down")

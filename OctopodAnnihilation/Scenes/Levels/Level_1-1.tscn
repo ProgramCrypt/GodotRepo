@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6wakgckuw41q"]
+[gd_scene load_steps=16 format=3 uid="uid://b6wakgckuw41q"]
 
 [ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_0cwwg"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level_1-1.gd" id="1_fdy0e"]
@@ -12,6 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://0aexj4m26h0q" path="res://Scenes/Regions/Labs/serverRoom.tscn" id="7_hwmau"]
 [ext_resource type="PackedScene" uid="uid://d286ko5e37cag" path="res://Scenes/Regions/Labs/serverRoom1.tscn" id="8_15yjl"]
 [ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="12_62nf8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxu8w"]
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hriro"]
+bg_color = Color(0.701961, 0.392157, 0.301961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg5vp"]
+bg_color = Color(0.164706, 0.623529, 0.74902, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fdy0e")
@@ -49,3 +58,35 @@ position = Vector2(899, 278)
 [node name="octopodScientist" parent="." node_paths=PackedStringArray("player") instance=ExtResource("12_62nf8")]
 position = Vector2(397, 383)
 player = NodePath("../player")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="healthLabel" type="Label" parent="HUD"]
+z_index = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Health: 0"
+
+[node name="energyLabel" type="Label" parent="HUD"]
+z_index = 1
+offset_top = 29.0
+offset_right = 70.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Energy: 0"
+
+[node name="healthBar" type="ProgressBar" parent="HUD"]
+offset_right = 178.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nxu8w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hriro")
+show_percentage = false
+
+[node name="energyBar" type="ProgressBar" parent="HUD"]
+offset_top = 29.0
+offset_right = 178.0
+offset_bottom = 56.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nxu8w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dg5vp")
+show_percentage = false

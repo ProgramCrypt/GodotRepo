@@ -20,6 +20,8 @@ var laser = null
 #var shootTimer = 
 
 func _ready() -> void:
+	
+	
 	nav_agent.target_desired_distance = stopDistance
 #	makepath()
 
