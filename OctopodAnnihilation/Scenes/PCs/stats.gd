@@ -1,26 +1,26 @@
 extends Node2D
 
-signal healthChanged(newHealth)
+signal healthChanged()
 signal healthDepleted()
 
 var modifiers = {}
 
-var maxHealth : int
-var currentHealth : int
-var maxEnergy : int
-var currentEnergy : int
-var speed : int
-var strength : int
-var rateOfFire : int
-var gunAccuracy : int
-var ballisticResistance : int
-var laserResistance : int
-var plasmaResistance : int
-var bleedingResistance : int
-var fireResistance : int
-var explosionResistance : int
-var slowResistance : int
-var stunResistance : int
+var maxHealth : float
+var currentHealth : float
+var maxEnergy : float
+var currentEnergy : float
+var speed : float
+var strength : float
+var rateOfFire : float
+var gunAccuracy : float
+var ballisticResistance : float
+var laserResistance : float
+var plasmaResistance : float
+var bleedingResistance : float
+var fireResistance : float
+var explosionResistance : float
+var slowResistance : float
+var stunResistance : float
 
 func initialize(stats : PlayerStats):
 	maxHealth = stats.maxHealth
@@ -47,16 +47,16 @@ func setMaxEnergy(value):
 	maxEnergy = max(0, value)
 
 func takeDamage(hit):
-	currentHealth -= hit.damage
+	currentHealth -= hit
 	currentHealth = max(0, currentHealth)
-	emit_signal("healthChanged", currentHealth)
+	emit_signal("healthChanged")
 	if currentHealth == 0:
 		emit_signal("healthDepleted")
 
 func heal(amount):
 	currentHealth += amount
 	currentHealth = min(currentHealth, maxHealth)
-	emit_signal("healthChanged", currentHealth)
+	emit_signal("healthChanged")
 
 func setStatValue(stat, value):
 	stat = value
@@ -65,5 +65,8 @@ func modifyStatValue(stat, modifier):
 	if stat in ["speed", "strength", "rateOfFire", "gunAccuracy"]:
 		stat += modifier
 		stat = max(0, stat)
+	elif stat in ["ballisticResistance", "laserResistance", "plasmaResistance", "fireResistance", "explosionResistance", "slowResistance", "stunResistance"]:
+		stat += modifier
+		stat = min(100, stat)
 	else:
 		stat += modifier

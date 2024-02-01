@@ -1,8 +1,26 @@
 extends CharacterBody2D
 
-const speed = 75
+@export var enemyType : Resource
+
+var modifiers = {}
+
+var maxHealth : int
+var currentHealth : int
+var speed : int
+var strength : int
+var rateOfFire : int
+var gunAccuracy : int
+var ballisticResistance : int
+var laserResistance : int
+var plasmaResistance : int
+var bleedingResistance : int
+var fireResistance : int
+var explosionResistance : int
+var slowResistance : int
+var stunResistance : int
+
 @export var stopDistance: int = 150
-@export var agroDistance: int = 800
+@export var agroDistance: int = 1000
 
 @export var player: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
@@ -10,20 +28,23 @@ const speed = 75
 @onready var animations = $AnimationPlayer
 var direction = "Down"
 
-@export var testProjectile: PackedScene
-var currentTestProjectile
-var testProjectileList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+#@export var testProjectile: PackedScene
+#var currentTestProjectile
+#var testProjectileList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var doShoot = false
 var doShootToggle = false
 var laser = null
 @export var projectile: PackedScene
-#var shootTimer = 
+var timer = 1.0
+
+@onready var playerStats = get_node("/root/ActivePlayerStats")
+@onready var statModification = get_node("/root/StatModification")
 
 func _ready() -> void:
-	
-	
 	nav_agent.target_desired_distance = stopDistance
-#	makepath()
+	
+	initialize(enemyType)
+	speed = speed * 8
 
 func updateAnimation():
 	get_node("Arm").look_at(player.position)
@@ -61,21 +82,21 @@ func updateAnimation():
 	else:
 		animations.play("walk" + direction)
 
-func testLineOfSight():
-	currentTestProjectile = RandomNumberGenerator.new().randf()
-	testProjectileList.append(currentTestProjectile)
-	var b = testProjectile.instantiate()
-	owner.add_child(b)
-	b.transform = $Arm/Muzzle.global_transform
-	b.createID(currentTestProjectile)
-	testProjectileList.pop_front()
-
-func toggleShoot(ID, target):
-	if testProjectileList.has(ID):
-		if target == "player":
-			doShoot = true
-		else:
-			doShoot = false
+func initialize(stats : mobStats):
+	maxHealth = stats.maxHealth
+	currentHealth = stats.currentHealth
+	speed = stats.speed
+	strength = stats.strength
+	rateOfFire = stats.rateOfFire
+	gunAccuracy = stats.gunAccuracy
+	ballisticResistance = stats.ballisticResistance
+	laserResistance = stats.laserResistance
+	plasmaResistance = stats.plasmaResistance
+	bleedingResistance = stats.bleedingResistance
+	fireResistance = stats.fireResistance
+	explosionResistance = stats.explosionResistance
+	slowResistance = stats.slowResistance
+	stunResistance = stats.stunResistance
 
 func shoot(check):
 	if doShootToggle != check:
@@ -86,6 +107,17 @@ func shoot(check):
 		else:
 			laser.queue_free()
 	doShootToggle = check
+
+func takeDamage(hit):
+	currentHealth -= hit
+	currentHealth = max(0, currentHealth)
+	if currentHealth == 0:
+		queue_free()
+
+func heal(amount):
+	currentHealth += amount
+	currentHealth = min(currentHealth, maxHealth)
+	emit_signal("healthChanged")
 
 func _physics_process(delta: float) -> void:
 	if nav_agent.is_navigation_finished() == false:
@@ -108,12 +140,18 @@ func _physics_process(delta: float) -> void:
 	
 	updateAnimation()
 	
-	"var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(player.position, $Arm/Muzzle.position, collision_mask, [self])
-	var result = space_state.intersect_ray(query)
-	print(result)"
-	
-	testLineOfSight()
+	#testLineOfSight()
+	if $Arm/Muzzle/RayCast2D.get_collider() != null:
+		if $Arm/Muzzle/RayCast2D.get_collider().is_in_group("player") == true:
+			doShoot = true
+			var damage = statModification.laserDamage(timer) * delta
+			playerStats.takeDamage(damage)
+			timer += delta
+		else:
+			doShoot = false
+			timer = 1.0
+	else:
+		doShoot = false
 	shoot(doShoot)
 
 

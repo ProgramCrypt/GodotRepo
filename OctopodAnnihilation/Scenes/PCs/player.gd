@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: int = 150
+var speed: int
 @onready var animations = $AnimationPlayer
 @export var projectile: PackedScene
 var hasWeapon = true
@@ -14,7 +14,7 @@ var direction = "Down"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerStats.initialize(playerType)
-	print("typeReady ", playerStats.currentHealth)
+	speed = playerStats.speed * 8
 
 func handleInput(_delta):
 	var moveDirection = Input.get_vector("left", "right", "up", "down")
@@ -71,9 +71,12 @@ func shoot():
 	var b = projectile.instantiate()
 	owner.add_child(b)
 	b.transform = $Arm/Muzzle.global_transform
+	b.setShooter(get_groups())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	handleInput(delta)
 	move_and_slide()
 	updateAnimation()
+
+

@@ -1,10 +1,6 @@
 extends Node2D
 
 @onready var playerStats = get_node("/root/ActivePlayerStats")
-var maxHealth = 1
-var health = 1
-var maxEnergy = 1
-var energy = 1
 
 @export var spawnRoom: PackedScene
 @export var vatRoom: PackedScene
@@ -21,11 +17,7 @@ var gridLen = 15 * 100 #15 tiles by 100 pixels
 var cardinals = [0, 1, 2, 3]
 
 func _ready():
-	print("LvlReady ", playerStats.currentHealth)
-	maxHealth = playerStats.maxHealth
-	health = playerStats.currentHealth
-	maxEnergy = playerStats.maxEnergy
-	energy = playerStats.currentEnergy
+	playerStats.healthChanged.connect(setHealth)
 	
 	setHealth()
 	setMaxHealth()
@@ -68,15 +60,15 @@ func _ready():
 	get_tree().get_nodes_in_group('projectileEnemies')[0].position = Vector2i((gridLen/2),(gridLen/2))
 
 func setHealth() -> void:
-	$HUD/healthLabel.text = "Health: " + str(health) + "/" + str(maxHealth)
-	$HUD/healthBar.value = health
+	$HUD/healthLabel.text = "Health: " + str(int(ceil(playerStats.currentHealth))) + "/" + str(int(ceil(playerStats.maxHealth)))
+	$HUD/healthBar.value = playerStats.currentHealth
 
 func setMaxHealth() -> void:
-	$HUD/healthBar.max_value = maxHealth
+	$HUD/healthBar.max_value = playerStats.maxHealth
 
 func setEnergy() -> void:
-	$HUD/energyLabel.text = "Energy: " + str(energy) + "/" + str(maxEnergy)
-	$HUD/energyBar.value = energy
+	$HUD/energyLabel.text = "Energy: " + str(playerStats.currentEnergy) + "/" + str(playerStats.maxEnergy)
+	$HUD/energyBar.value = playerStats.currentEnergy
 
 func setMaxEnergy() -> void:
-	$HUD/energyBar.max_value = maxEnergy
+	$HUD/energyBar.max_value = playerStats.maxEnergy

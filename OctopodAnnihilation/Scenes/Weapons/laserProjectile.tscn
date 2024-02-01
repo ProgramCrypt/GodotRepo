@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://yttep5s3spnd"]
+[gd_scene load_steps=3 format=3 uid="uid://yttep5s3spnd"]
 
 [ext_resource type="Script" path="res://Scenes/Weapons/laserProjectile.gd" id="1_oexd4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nay7u"]
 
 [node name="laserProjectile" type="RayCast2D"]
 target_position = Vector2(-1000, 0)
@@ -10,3 +12,9 @@ script = ExtResource("1_oexd4")
 points = PackedVector2Array(0, 0, -300, 0)
 width = 2.0
 default_color = Color(1, 0.45098, 0.45098, 1)
+
+[node name="Area2D" type="Area2D" parent="Line2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/Area2D"]
+scale = Vector2(-2.163, 0.1)
+shape = SubResource("RectangleShape2D_nay7u")

@@ -351,7 +351,3 @@ texture = ExtResource("5_nutdu")
 hframes = 4
 vframes = 4
 frame = 4
-
-[node name="type" type="Node2D" parent="."]
-
-[node name="stats" type="Node2D" parent="type"]

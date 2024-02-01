@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Mobs/octopodScientist.gd" id="1_0n0xr"]
 [ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="1_33aes"]
 [ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="2_2lich"]
-[ext_resource type="PackedScene" uid="uid://bisejy6ucivib" path="res://Scenes/Weapons/testProjectile.tscn" id="2_5jhia"]
+[ext_resource type="Resource" uid="uid://cm7nenpe0b5ty" path="res://Scenes/Mobs/octopodScientist.tres" id="2_5t7uf"]
 [ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_1tjsp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
@@ -166,11 +166,11 @@ _data = {
 "walkUp": SubResource("Animation_b0dy8")
 }
 
-[node name="octopodScientist" type="CharacterBody2D" groups=["projectileEnemies"]]
+[node name="octopodScientist" type="CharacterBody2D" groups=["mobs", "projectileEnemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_0n0xr")
-testProjectile = ExtResource("2_5jhia")
+enemyType = ExtResource("2_5t7uf")
 projectile = ExtResource("3_1tjsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -207,5 +207,10 @@ frame = 1
 
 [node name="Muzzle" type="Marker2D" parent="Arm"]
 position = Vector2(-30, -9)
+
+[node name="RayCast2D" type="RayCast2D" parent="Arm/Muzzle"]
+rotation = 1.5708
+target_position = Vector2(0, 700)
+hit_from_inside = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
