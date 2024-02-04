@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ProjectileWeaponStatList" load_steps=2 format=3 uid="uid://fyticmxl8ybr"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/projectileWeaponStatList.gd" id="1_jcn6u"]
+
+[resource]
+script = ExtResource("1_jcn6u")
+damageType = 0
+damage = 3.0
+range = 5.0
+fireRate = 0.3
+projectileSpeed = 800.0
+projectileSize = 1.0
+penetration = 1.0
+projectilesPerShot = 1
+effectsOnHit = []

@@ -48,7 +48,6 @@ func _ready():
 		
 		if walker not in hasRoom:
 			var room = roomArray[randi() % roomArray.size()]
-			room = roomArray[0]
 			r = room.instantiate()
 			add_child(r)
 			r.position = walker
