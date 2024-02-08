@@ -59,14 +59,81 @@ func heal(amount):
 	emit_signal("healthChanged")
 
 func setStatValue(stat, value):
-	stat = value
+	if stat == "maxHealth":
+		maxHealth = value
+	if stat == "currentHealth":
+		currentHealth = value
+	if stat == "maxEnergy":
+		maxEnergy = value
+	if stat == "currentEnergy":
+		currentEnergy = value
+	if stat == "speed":
+		speed = value
+	if stat == "strength":
+		strength = value
+	if stat == "rateOfFire":
+		rateOfFire = value
+	if stat == "gunAccuracy":
+		gunAccuracy = value
+	if stat == "ballisticResistance":
+		ballisticResistance = value
+	if stat == "laserResistance":
+		laserResistance = value
+	if stat == "plasmaResistance":
+		plasmaResistance = value
+	if stat == "fireResistance":
+		fireResistance = value
+	if stat == "bleedingResistance":
+		bleedingResistance = value
+	if stat == "explosionResistance":
+		explosionResistance = value
+	if stat == "slowResistance":
+		slowResistance = value
+	if stat == "stunResistance":
+		stunResistance = value
 
 func modifyStatValue(stat, modifier):
-	if stat in ["speed", "strength", "rateOfFire", "gunAccuracy"]:
-		stat += modifier
+	if stat == "maxHealth":
+		maxHealth += modifier
+	if stat == "currentHealth":
+		currentHealth += modifier
+	if stat == "maxEnergy":
+		maxEnergy += modifier
+	if stat == "currentEnergy":
+		currentEnergy += modifier
+	if stat == "speed":
+		speed += modifier
 		stat = max(0, stat)
-	elif stat in ["ballisticResistance", "laserResistance", "plasmaResistance", "fireResistance", "explosionResistance", "slowResistance", "stunResistance"]:
-		stat += modifier
+	if stat == "strength":
+		strength += modifier
+		stat = max(0, stat)
+	if stat == "rateOfFire":
+		rateOfFire += modifier
+		stat = max(0, stat)
+	if stat == "gunAccuracy":
+		gunAccuracy += modifier
+		stat = max(0, stat)
+	if stat == "ballisticResistance":
+		ballisticResistance += modifier
 		stat = min(100, stat)
-	else:
-		stat += modifier
+	if stat == "laserResistance":
+		laserResistance += modifier
+		stat = min(100, stat)
+	if stat == "plasmaResistance":
+		plasmaResistance += modifier
+		stat = min(100, stat)
+	if stat == "fireResistance":
+		fireResistance += modifier
+		stat = min(100, stat)
+	if stat == "bleedingResistance":
+		bleedingResistance += modifier
+		stat = min(100, stat)
+	if stat == "explosionResistance":
+		explosionResistance += modifier
+		stat = min(100, stat)
+	if stat == "slowResistance":
+		slowResistance += modifier
+		stat = min(100, stat)
+	if stat == "stunResistance":
+		stunResistance += modifier
+		stat = min(100, stat)

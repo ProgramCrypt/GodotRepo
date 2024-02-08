@@ -6,10 +6,10 @@
 script = ExtResource("1_k1xe8")
 damageType = 2
 damage = 5.0
-range = 4.0
+projectileRange = 5.0
 fireRate = 1.0
-projectileSpeed = 400.0
-projectileSize = 1.0
+speed = 400.0
+size = 1.0
 penetration = 2.0
 projectilesPerShot = 1
 effectsOnHit = []

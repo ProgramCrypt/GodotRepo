@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqyi3aebv35hk"]
 
-[ext_resource type="Script" path="res://Scenes/Weapons/projectile.gd" id="1_5eogo"]
-[ext_resource type="Texture2D" uid="uid://01qm5vi5gpn" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="1_pxnkv"]
+[ext_resource type="Script" path="res://Scenes/Weapons/ballisticProjectile.gd" id="1_7l1s2"]
+[ext_resource type="Texture2D" uid="uid://01qm5vi5gpn" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="2_xa7j8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygd3i"]
 size = Vector2(4, 2)
 
 [node name="projectile" type="Area2D" groups=["projectile"]]
-script = ExtResource("1_5eogo")
+script = ExtResource("1_7l1s2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("1_pxnkv")
+texture = ExtResource("2_xa7j8")
 hframes = 4
 vframes = 4
 frame = 8

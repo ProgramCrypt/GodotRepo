@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cowxw1tti6gi"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/plasmaProjectile.gd" id="1_mrsgd"]
+[ext_resource type="Texture2D" uid="uid://01qm5vi5gpn" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="2_xovcw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygd3i"]
+size = Vector2(4, 2)
+
+[node name="projectile" type="Area2D" groups=["projectile"]]
+script = ExtResource("1_mrsgd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_xovcw")
+hframes = 4
+vframes = 4
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_ygd3i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://bq7vglxhqc5hb"]
+[gd_scene load_steps=19 format=3 uid="uid://bq7vglxhqc5hb"]
 
 [ext_resource type="Script" path="res://Scenes/Mobs/octopodScientist.gd" id="1_0n0xr"]
 [ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="1_33aes"]
 [ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="2_2lich"]
 [ext_resource type="Resource" uid="uid://cm7nenpe0b5ty" path="res://Scenes/Mobs/octopodScientist.tres" id="2_5t7uf"]
 [ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_1tjsp"]
+[ext_resource type="Resource" uid="uid://sstsdwc83suy" path="res://Scenes/Weapons/laser.tres" id="4_gaaql"]
+[ext_resource type="Script" path="res://Scenes/Mobs/octopodScientistWeaponArm.gd" id="6_hfibc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
 radius = 12.5
@@ -166,12 +168,13 @@ _data = {
 "walkUp": SubResource("Animation_b0dy8")
 }
 
-[node name="octopodScientist" type="CharacterBody2D" groups=["mobs", "projectileEnemies"]]
+[node name="octopodScientist" type="CharacterBody2D" groups=["enemy", "mobs", "projectileEnemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_0n0xr")
 enemyType = ExtResource("2_5t7uf")
 projectile = ExtResource("3_1tjsp")
+weaponType = ExtResource("4_gaaql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -204,6 +207,7 @@ offset = Vector2(-16, -11)
 hframes = 4
 vframes = 8
 frame = 1
+script = ExtResource("6_hfibc")
 
 [node name="Muzzle" type="Marker2D" parent="Arm"]
 position = Vector2(-30, -9)

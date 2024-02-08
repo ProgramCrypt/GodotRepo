@@ -1,4 +1,4 @@
-extends Node
+extends Sprite2D
 
 var damageType : int #0=ballistic, 1=laser, 2=plasma
 var damage : float #value of health lost. cannot go below 1

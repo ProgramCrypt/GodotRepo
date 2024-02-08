@@ -4,16 +4,19 @@ var baseBallisticDamage = 3
 var baseLaserDamage = 0.1
 var basePlasmaDamage = 5
 
-func ballisticDamage(baseDamage = baseBallisticDamage, damageModifier = 0, ballisticResistance = 0):
-	var damage = (baseDamage + damageModifier) * (1-(ballisticResistance/100))
+#damageModifiers = {"ballisticResistance": 0, damageMultiplier": 0}
+func ballisticDamage(damageModifiers, baseDamage = baseBallisticDamage):
+	var damage = (baseDamage * damageModifiers["damageMultiplier"]) * (1-(damageModifiers["ballisticResistance"]/100))
 	return damage
 
-func laserDamage(timer, baseDamage = baseLaserDamage, damageModifier = 0, laserResistance = 0):
-	var damage = (baseDamage + damageModifier) * (1-(laserResistance/100)) * timer**2
+#damageModifiers = {"laserResistance": 0, damageModifier": 0}
+func laserDamage(damageModifiers, timer, baseDamage = baseLaserDamage):
+	var damage = (baseDamage * damageModifiers["damageMultiplier"]) * (1-(damageModifiers["laserResistance"]/100)) * timer**2
 	return damage
 
-func plasmaDamage(baseDamage = basePlasmaDamage, damageModifier = 0, plasmaResistance = 0):
-	var damage = (baseDamage + damageModifier) * (1-(plasmaResistance/100))
+#damageModifiers = {"plasmaResistance": 0, damageModifier": 0}
+func plasmaDamage(damageModifiers, baseDamage = basePlasmaDamage):
+	var damage = (baseDamage * damageModifiers["damageMultiplier"]) * (1-(damageModifiers["plasmaResistance"]/100))
 	return damage
 
 func heal(value, modifier):

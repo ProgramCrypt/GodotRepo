@@ -6,10 +6,10 @@
 script = ExtResource("1_jcn6u")
 damageType = 0
 damage = 3.0
-range = 5.0
+projectileRange = 6.0
 fireRate = 0.3
-projectileSpeed = 800.0
-projectileSize = 1.0
+speed = 800.0
+size = 0.0
 penetration = 1.0
 projectilesPerShot = 1
 effectsOnHit = []

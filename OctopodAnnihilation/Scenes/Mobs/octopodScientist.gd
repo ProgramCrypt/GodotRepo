@@ -40,11 +40,15 @@ var timer = 1.0
 @onready var playerStats = get_node("/root/ActivePlayerStats")
 @onready var statModification = get_node("/root/StatModification")
 
+@export var weaponType : Resource
+
 func _ready() -> void:
 	nav_agent.target_desired_distance = stopDistance
 	
 	initialize(enemyType)
 	speed = speed * 8
+	
+	$Arm.initialize(weaponType)
 
 func updateAnimation():
 	get_node("Arm").look_at(player.position)
@@ -103,10 +107,13 @@ func shoot(check):
 		if check == true:
 			laser = projectile.instantiate()
 			$Arm/Muzzle.add_child(laser)
-			#laser.transform = $Arm/Muzzle.transform
+			laser.setShooter(get_groups(), {"baseDamage": statModification.baseLaserDamage, "damageMultiplier": 1, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
 		else:
 			laser.queue_free()
 	doShootToggle = check
+
+func getResistances():
+	return {"ballisticResistance": ballisticResistance,"laserResistance": laserResistance,"plasmaResistance": plasmaResistance,"bleedingResistance": bleedingResistance,"fireResistance": fireResistance,"explosionResistance": explosionResistance,"slowResistance": slowResistance,"stunResistance": stunResistance}
 
 func takeDamage(hit):
 	currentHealth -= hit
@@ -119,7 +126,7 @@ func heal(amount):
 	currentHealth = min(currentHealth, maxHealth)
 	emit_signal("healthChanged")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if nav_agent.is_navigation_finished() == false:
 		var dir = to_local(nav_agent.get_next_path_position()).normalized()
 		
@@ -144,12 +151,12 @@ func _physics_process(delta: float) -> void:
 	if $Arm/Muzzle/RayCast2D.get_collider() != null:
 		if $Arm/Muzzle/RayCast2D.get_collider().is_in_group("player") == true:
 			doShoot = true
-			var damage = statModification.laserDamage(timer) * delta
-			playerStats.takeDamage(damage)
-			timer += delta
+			#var damage = statModification.laserDamage(timer) * delta
+			#playerStats.takeDamage(damage)
+			#timer += delta
 		else:
 			doShoot = false
-			timer = 1.0
+			#timer = 1.0
 	else:
 		doShoot = false
 	shoot(doShoot)

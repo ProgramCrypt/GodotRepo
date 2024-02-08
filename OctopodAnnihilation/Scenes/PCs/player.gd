@@ -1,20 +1,32 @@
 extends CharacterBody2D
 
+@onready var playerStats = get_node("/root/ActivePlayerStats")
+@onready var statModification = get_node("/root/StatModification")
+
 var speed: int
 @onready var animations = $AnimationPlayer
-@export var projectile: PackedScene
+@export var ballisticProjectile: PackedScene
+@export var laserProjectile: PackedScene
+@export var plasmaProjectile: PackedScene
 var hasWeapon = true
 var direction = "Down"
 
-#@onready var stats = $stats
-@onready var playerStats = get_node("/root/ActivePlayerStats")
+@onready var baseBallisticDamage = StatModification.baseBallisticDamage
+@onready var baseLaserDamage = StatModification.baseLaserDamage
+@onready var basePlasmaDamage = StatModification.basePlasmaDamage
+var damageMultiplier = 1
 
 @export var playerType : Resource
+@export var weaponType1 : Resource
+#@export var weaponType2 : Resource
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerStats.initialize(playerType)
 	speed = playerStats.speed * 8
+	
+	$Arm.initialize(weaponType1)
+	#$Arm.initialize(weaponType2)
 
 func handleInput(_delta):
 	var moveDirection = Input.get_vector("left", "right", "up", "down")
@@ -68,10 +80,21 @@ func updateAnimation():
 			animations.play("walk" + direction + "Armed")
 
 func shoot():
-	var b = projectile.instantiate()
-	owner.add_child(b)
-	b.transform = $Arm/Muzzle.global_transform
-	b.setShooter(get_groups())
+	if $Arm.damageType == 0:
+		var projectile = ballisticProjectile.instantiate()
+		owner.add_child(projectile)
+		projectile.transform = $Arm/Muzzle.global_transform
+		projectile.setShooter(get_groups(),{"baseDamage": baseBallisticDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
+	if $Arm.damageType == 1:
+		var projectile = laserProjectile.instantiate()
+		owner.add_child(projectile)
+		projectile.transform = $Arm/Muzzle.global_transform
+		projectile.setShooter(get_groups(),{"baseDamage": baseBallisticDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
+	if $Arm.damageType == 2:
+		var projectile = plasmaProjectile.instantiate()
+		owner.add_child(projectile)
+		projectile.transform = $Arm/Muzzle.global_transform
+		projectile.setShooter(get_groups(),{"baseDamage": baseBallisticDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
