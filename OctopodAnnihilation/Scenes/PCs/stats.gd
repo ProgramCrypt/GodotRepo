@@ -2,6 +2,11 @@ extends Node2D
 
 signal healthChanged()
 signal healthDepleted()
+signal energyChanged()
+signal energyDepleted()
+
+@export var energyRegenRate = 5 #points per second
+var energyDepletionTimer : float
 
 var modifiers = {}
 
@@ -40,6 +45,13 @@ func initialize(stats : PlayerStats):
 	slowResistance = stats.slowResistance
 	stunResistance = stats.stunResistance
 
+func _physics_process(delta):
+	if energyDepletionTimer == 0:
+		regenEnergy(energyRegenRate * delta)
+	else:
+		energyDepletionTimer -= delta
+		energyDepletionTimer = max(energyDepletionTimer, 0)
+
 func setMaxHealth(value):
 	maxHealth = max(0, value)
 
@@ -57,6 +69,19 @@ func heal(amount):
 	currentHealth += amount
 	currentHealth = min(currentHealth, maxHealth)
 	emit_signal("healthChanged")
+
+func useEnergy(amount):
+	currentEnergy -= amount
+	currentEnergy = max(currentEnergy, 0)
+	if currentEnergy == 0:
+		energyDepletionTimer = 1.0
+		emit_signal("energyDepleted")
+	emit_signal("energyChanged")
+
+func regenEnergy(amount):
+	currentEnergy += amount
+	currentEnergy = min(currentEnergy, maxEnergy)
+	emit_signal("energyChanged")
 
 func setStatValue(stat, value):
 	if stat == "maxHealth":

@@ -19,26 +19,35 @@ func setShooter(shooterGroups, shooterProjectileProperties):
 
 func _physics_process(delta):
 	#create laser visual
-	var laserVec = get_collision_point() - global_position
-	laserVec = Vector2(0 - laserVec.length(), 0)
-	$Line2D.set_point_position(1, laserVec)
+	if get_collider() != null:
+		var laserVec = get_collision_point() - global_position
+		laserVec = Vector2(0 - laserVec.length(), 0)
+		$Line2D.set_point_position(1, laserVec)
+	else:
+		$Line2D.set_point_position(1, Vector2(-1500, 0))
 	
 	#damage to mob
 	if shooter == "player" or shooter == "npc":
-		if get_collider().is_in_group("enemy") == true:
-			var laserResistance = get_collider().getResistances()["laserResistance"]
-			var damage = statModification.laserDamage({"laserResistance": laserResistance, "damageMultiplier": projectileProperties["damageMultiplier"]}, timer, projectileProperties["baseDamage"]) * delta
-			get_collider().takeDamage(damage)
-			timer += delta
+		if get_collider() != null:
+			if get_collider().is_in_group("enemy") == true:
+				var laserResistance = get_collider().getResistances()["laserResistance"]
+				var damage = statModification.laserDamage({"laserResistance": laserResistance, "damageMultiplier": projectileProperties["damageMultiplier"]}, timer, projectileProperties["baseDamage"]) * delta
+				get_collider().takeDamage(damage)
+				timer += delta
+			else:
+				timer = 1.0
 		else:
 			timer = 1.0
 	
 	#damage to player
 	if shooter == "enemy":
-		if get_collider().is_in_group("player") == true:
-			var laserResistance = playerStats.laserResistance
-			var damage = statModification.laserDamage({"laserResistance": laserResistance, "damageMultiplier": projectileProperties["damageMultiplier"]}, timer, projectileProperties["baseDamage"]) * delta
-			playerStats.takeDamage(damage)
-			timer += delta
+		if get_collider() != null:
+			if get_collider().is_in_group("player") == true:
+				var laserResistance = playerStats.laserResistance
+				var damage = statModification.laserDamage({"laserResistance": laserResistance, "damageMultiplier": projectileProperties["damageMultiplier"]}, timer, projectileProperties["baseDamage"]) * delta
+				playerStats.takeDamage(damage)
+				timer += delta
+			else:
+				timer = 1.0
 		else:
 			timer = 1.0

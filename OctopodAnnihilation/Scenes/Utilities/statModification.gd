@@ -1,7 +1,7 @@
 extends Node
 
 var baseBallisticDamage = 3
-var baseLaserDamage = 0.1
+var baseLaserDamage = 0.2
 var basePlasmaDamage = 5
 
 #damageModifiers = {"ballisticResistance": 0, damageMultiplier": 0}
@@ -24,12 +24,13 @@ func heal(value, modifier):
 	return healAmount
 
 func modifyStatValue(stat, modifier):
+	var newStat = stat
 	if stat in ["speed", "strength", "rateOfFire", "gunAccuracy"]:
-		stat += modifier
-		stat = max(0, stat)
+		newStat += modifier
+		newStat = max(0, newStat)
 	elif stat in ["ballisticResistance", "laserResistance", "plasmaResistance", "fireResistance", "explosionResistance", "slowResistance", "stunResistance"]:
-		stat += modifier
-		stat = min(100, stat)
+		newStat += modifier
+		newStat = min(100, newStat)
 	else:
-		stat += modifier
-	return stat
+		newStat += modifier
+	return newStat

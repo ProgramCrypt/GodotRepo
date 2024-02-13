@@ -2,6 +2,7 @@ extends Sprite2D
 
 var damageType : int #0=ballistic, 1=laser, 2=plasma
 var damage : float #value of health lost. cannot go below 1
+var energyUse : float #value of energy used per shot or per second for lasers
 var projectileRange : float #number of tiles. cannot go below 1
 var fireRate : float #time between shots / warm up time for shot
 var speed : float #pixels per second
@@ -13,6 +14,7 @@ var effectsOnHit : Array
 func initialize(stats : ProjectileWeaponStatList):
 	damageType = stats.damageType
 	damage = stats.damage
+	energyUse = stats.energyUse
 	projectileRange = stats.projectileRange
 	fireRate = stats.fireRate
 	speed = stats.speed
@@ -20,6 +22,18 @@ func initialize(stats : ProjectileWeaponStatList):
 	penetration = stats.penetration
 	projectilesPerShot = stats.projectilesPerShot
 	effectsOnHit = stats.effectsOnHit
+
+func changeWeapon(statDict):
+	damageType = statDict["damageType"]
+	damage = statDict["damage"]
+	energyUse = statDict["energyUse"]
+	projectileRange = statDict["projectileRange"]
+	fireRate = statDict["fireRate"]
+	speed = statDict["speed"]
+	size = statDict["size"]
+	penetration = statDict["penetration"]
+	projectilesPerShot = statDict["projectilesPerShot"]
+	effectsOnHit = statDict["effectsOnHit"]
 
 func setStatValue(stat, value):
 	if stat == "damage":
@@ -38,7 +52,6 @@ func setStatValue(stat, value):
 		projectilesPerShot = value
 	if stat == "effectsOnHit":
 		effectsOnHit = value
-	
 
 func modifyStatValue(stat, modifier):
 	if stat == "damage":

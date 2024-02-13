@@ -18,6 +18,7 @@ var cardinals = [0, 1, 2, 3]
 
 func _ready():
 	playerStats.healthChanged.connect(setHealth)
+	playerStats.energyChanged.connect(setEnergy)
 	
 	setHealth()
 	setMaxHealth()
@@ -59,14 +60,14 @@ func _ready():
 	get_tree().get_nodes_in_group('projectileEnemies')[0].position = Vector2i((gridLen/2),(gridLen/2))
 
 func setHealth() -> void:
-	$HUD/healthLabel.text = "Health: " + str(int(ceil(playerStats.currentHealth))) + "/" + str(int(ceil(playerStats.maxHealth)))
+	$HUD/healthLabel.text = "Health: " + str(int(ceil(playerStats.currentHealth))) + "/" + str(playerStats.maxHealth)
 	$HUD/healthBar.value = playerStats.currentHealth
 
 func setMaxHealth() -> void:
 	$HUD/healthBar.max_value = playerStats.maxHealth
 
 func setEnergy() -> void:
-	$HUD/energyLabel.text = "Energy: " + str(playerStats.currentEnergy) + "/" + str(playerStats.maxEnergy)
+	$HUD/energyLabel.text = "Energy: " + str(int(ceil(playerStats.currentEnergy))) + "/" + str(playerStats.maxEnergy)
 	$HUD/energyBar.value = playerStats.currentEnergy
 
 func setMaxEnergy() -> void:

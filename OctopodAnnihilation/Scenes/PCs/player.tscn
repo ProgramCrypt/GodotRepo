@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ccswn86ak6nuq"]
+[gd_scene load_steps=31 format=3 uid="uid://ccswn86ak6nuq"]
 
 [ext_resource type="Script" path="res://Scenes/PCs/player.gd" id="1_f26gr"]
 [ext_resource type="PackedScene" uid="uid://bqyi3aebv35hk" path="res://Scenes/Weapons/ballisticProjectile.tscn" id="2_8twxq"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_p5qpu"]
 [ext_resource type="PackedScene" uid="uid://cowxw1tti6gi" path="res://Scenes/Weapons/plasmaProjectile.tscn" id="4_vyftj"]
 [ext_resource type="Texture2D" uid="uid://01qm5vi5gpn" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="5_nutdu"]
-[ext_resource type="Resource" uid="uid://fyticmxl8ybr" path="res://Scenes/Weapons/ballistic.tres" id="6_c8f3t"]
+[ext_resource type="Resource" uid="uid://sstsdwc83suy" path="res://Scenes/Weapons/laser.tres" id="6_74lkx"]
+[ext_resource type="Resource" uid="uid://fyticmxl8ybr" path="res://Scenes/Weapons/ballistic.tres" id="6_w5ahr"]
 [ext_resource type="Resource" uid="uid://du1rgtw63p6ar" path="res://Scenes/PCs/superSoldier.tres" id="7_agu2r"]
 [ext_resource type="Script" path="res://Scenes/PCs/playerWeaponArm.gd" id="8_cakgn"]
 
@@ -322,7 +323,8 @@ ballisticProjectile = ExtResource("2_8twxq")
 laserProjectile = ExtResource("3_p5qpu")
 plasmaProjectile = ExtResource("4_vyftj")
 playerType = ExtResource("7_agu2r")
-weaponType1 = ExtResource("6_c8f3t")
+startingWeapon1 = ExtResource("6_w5ahr")
+startingWeapon2 = ExtResource("6_74lkx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)

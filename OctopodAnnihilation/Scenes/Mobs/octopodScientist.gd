@@ -4,20 +4,20 @@ extends CharacterBody2D
 
 var modifiers = {}
 
-var maxHealth : int
-var currentHealth : int
-var speed : int
-var strength : int
-var rateOfFire : int
-var gunAccuracy : int
-var ballisticResistance : int
-var laserResistance : int
-var plasmaResistance : int
-var bleedingResistance : int
-var fireResistance : int
-var explosionResistance : int
-var slowResistance : int
-var stunResistance : int
+var maxHealth : float
+var currentHealth : float
+var speed : float
+var strength : float
+var rateOfFire : float
+var gunAccuracy : float
+var ballisticResistance : float
+var laserResistance : float
+var plasmaResistance : float
+var bleedingResistance : float
+var fireResistance : float
+var explosionResistance : float
+var slowResistance : float
+var stunResistance : float
 
 @export var stopDistance: int = 150
 @export var agroDistance: int = 1000
@@ -27,15 +27,15 @@ var stunResistance : int
 
 @onready var animations = $AnimationPlayer
 var direction = "Down"
+var armSpeed = 5
+var armSign = 1
 
-#@export var testProjectile: PackedScene
-#var currentTestProjectile
-#var testProjectileList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var doShoot = false
 var doShootToggle = false
 var laser = null
 @export var projectile: PackedScene
-var timer = 1.0
+var warmup = 0.0
+var warmupTime = 0.3
 
 @onready var playerStats = get_node("/root/ActivePlayerStats")
 @onready var statModification = get_node("/root/StatModification")
@@ -50,36 +50,49 @@ func _ready() -> void:
 	
 	$Arm.initialize(weaponType)
 
-func updateAnimation():
-	get_node("Arm").look_at(player.position)
-	get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()+180)
+func updateAnimation(delta):
+	#handle arm rotation
+	var relativePlayerPos = player.position - position
+	var playerAngle = atan(relativePlayerPos.y/relativePlayerPos.x)
+	if (armSign * playerAngle) < 0:
+		$Arm.set_rotation(-$Arm.get_rotation())
+	$Arm.set_rotation($Arm.get_rotation()+((playerAngle-$Arm.get_rotation())*armSpeed*delta))
+	armSign = playerAngle
 	
 	var lookVector = player.position - position
 	lookVector /= sqrt(lookVector.x*lookVector.x + lookVector.y*lookVector.y)
 	if lookVector.x >= -0.70 and lookVector.x <= 0.70 and lookVector.y < 0:
 		direction = "Up"
-		get_node("Arm").position.x = 0
-		get_node("Arm").scale.y = 1
-		get_node("Arm").set_z_index(0)
-		get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()-3)
+		get_node("Arm").set_z_index(-1)
+		if relativePlayerPos.x < 0:
+			get_node("Arm").scale.x = 1
+		if relativePlayerPos.x > 0:
+			get_node("Arm").scale.x = -1
+		
 	elif lookVector.x >= -0.70 and lookVector.x <= 0.70 and lookVector.y > 0:
 		direction = "Down"
-		get_node("Arm").position.x = 0
-		get_node("Arm").scale.y = -1
 		get_node("Arm").set_z_index(0)
-		get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()+3)
+		if relativePlayerPos.x < 0:
+			get_node("Arm").scale.x = 1
+		if relativePlayerPos.x > 0:
+			get_node("Arm").scale.x = -1
+		
 	elif lookVector.x < -0.70:
 		direction = "Left"
-		get_node("Arm").position.x = 0
-		get_node("Arm").scale.y = 1
 		get_node("Arm").set_z_index(0)
-		get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()-3)
+		if relativePlayerPos.x < 0:
+			get_node("Arm").scale.x = 1
+		if relativePlayerPos.x > 0:
+			get_node("Arm").scale.x = -1
+		
 	elif lookVector.x > 0.70:
 		direction = "Right"
-		get_node("Arm").position.x = 0
-		get_node("Arm").scale.y = -1
-		get_node("Arm").set_z_index(0)
-		get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()+3)
+		get_node("Arm").set_z_index(-1)
+		if relativePlayerPos.x < 0:
+			get_node("Arm").scale.x = 1
+		if relativePlayerPos.x > 0:
+			get_node("Arm").scale.x = -1
+	
 	
 	if velocity.length() == 0:
 		animations.play("face" + direction)
@@ -118,6 +131,7 @@ func getResistances():
 func takeDamage(hit):
 	currentHealth -= hit
 	currentHealth = max(0, currentHealth)
+	print(hit, " ", currentHealth)
 	if currentHealth == 0:
 		queue_free()
 
@@ -126,17 +140,17 @@ func heal(amount):
 	currentHealth = min(currentHealth, maxHealth)
 	emit_signal("healthChanged")
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if nav_agent.is_navigation_finished() == false:
 		var dir = to_local(nav_agent.get_next_path_position()).normalized()
 		
 		#makes enemy slow approach upon reaching certain distance
-		"var mod = 1
+		var mod = 1
 		var distance = player.position - position
 		if distance.length() <= stopDistance:
 			mod = 0
 		elif distance.length() < (2*stopDistance) and distance.length() > stopDistance:
-			mod = (distance.length() - stopDistance) / stopDistance"
+			mod = (distance.length() - stopDistance) / stopDistance
 		
 		var playerDistance = (player.position - position).length()
 		if doShoot == false and playerDistance <= agroDistance:
@@ -145,18 +159,17 @@ func _physics_process(_delta: float) -> void:
 			velocity = dir * 0
 		move_and_slide()
 	
-	updateAnimation()
+	updateAnimation(delta)
 	
-	#testLineOfSight()
 	if $Arm/Muzzle/RayCast2D.get_collider() != null:
 		if $Arm/Muzzle/RayCast2D.get_collider().is_in_group("player") == true:
-			doShoot = true
-			#var damage = statModification.laserDamage(timer) * delta
-			#playerStats.takeDamage(damage)
-			#timer += delta
+			warmup += delta
 		else:
-			doShoot = false
-			#timer = 1.0
+			warmup = 0.0
+	else:
+		warmup = 0.0
+	if warmup >= warmupTime:
+		doShoot = true
 	else:
 		doShoot = false
 	shoot(doShoot)

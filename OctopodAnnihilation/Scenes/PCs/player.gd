@@ -9,6 +9,7 @@ var speed: int
 @export var laserProjectile: PackedScene
 @export var plasmaProjectile: PackedScene
 var hasWeapon = true
+var laserActive = false
 var direction = "Down"
 
 @onready var baseBallisticDamage = StatModification.baseBallisticDamage
@@ -17,22 +18,46 @@ var direction = "Down"
 var damageMultiplier = 1
 
 @export var playerType : Resource
-@export var weaponType1 : Resource
-#@export var weaponType2 : Resource
+@export var startingWeapon1 : Resource
+@export var startingWeapon2 : Resource
+var weapon1 = {}
+var weapon2 = {}
+var activeWeapon = "weapon1"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerStats.initialize(playerType)
 	speed = playerStats.speed * 8
 	
-	$Arm.initialize(weaponType1)
-	#$Arm.initialize(weaponType2)
+	$Arm.initialize(startingWeapon1)
+	saveWeapon(startingWeapon1, weapon1)
+	saveWeapon(startingWeapon2, weapon2)
+
 
 func handleInput(_delta):
 	var moveDirection = Input.get_vector("left", "right", "up", "down")
 	velocity = moveDirection * speed
 	
-	if Input.is_action_just_pressed("attack"): shoot()
+	if Input.is_action_just_pressed("attack"):
+		if playerStats.currentEnergy != 0:
+			shoot()
+	
+	if Input.is_action_just_released("attack"):
+		if laserActive == true:
+			$Arm/Muzzle/laserProjectile.queue_free()
+			laserActive = false
+	
+	if Input.is_action_just_released("scroll"):
+		if activeWeapon == "weapon1":
+			print("changeTo2")
+			$Arm.changeWeapon(weapon2)
+			activeWeapon = "weapon2"
+		elif activeWeapon == "weapon2":
+			print("changeTo1")
+			$Arm.changeWeapon(weapon1)
+			activeWeapon = "weapon1"
+
 
 func updateAnimation():
 	if hasWeapon == false:
@@ -79,27 +104,47 @@ func updateAnimation():
 		else:
 			animations.play("walk" + direction + "Armed")
 
+
+func saveWeapon(stats : ProjectileWeaponStatList, weaponDict):
+	weaponDict["damageType"] = stats.damageType
+	weaponDict["damage"] = stats.damage
+	weaponDict["energyUse"] = stats.energyUse
+	weaponDict["projectileRange"] = stats.projectileRange
+	weaponDict["fireRate"] = stats.fireRate
+	weaponDict["speed"] = stats.speed
+	weaponDict["size"] = stats.size
+	weaponDict["penetration"] = stats.penetration
+	weaponDict["projectilesPerShot"] = stats.projectilesPerShot
+	weaponDict["effectsOnHit"] = stats.effectsOnHit
+
+
 func shoot():
 	if $Arm.damageType == 0:
+		playerStats.useEnergy($Arm.energyUse)
 		var projectile = ballisticProjectile.instantiate()
 		owner.add_child(projectile)
 		projectile.transform = $Arm/Muzzle.global_transform
 		projectile.setShooter(get_groups(),{"baseDamage": baseBallisticDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
 	if $Arm.damageType == 1:
 		var projectile = laserProjectile.instantiate()
-		owner.add_child(projectile)
-		projectile.transform = $Arm/Muzzle.global_transform
-		projectile.setShooter(get_groups(),{"baseDamage": baseBallisticDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
+		$Arm/Muzzle.add_child(projectile)
+		projectile.setShooter(get_groups(),{"baseDamage": baseLaserDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
+		laserActive = true
 	if $Arm.damageType == 2:
+		playerStats.useEnergy($Arm.energyUse)
 		var projectile = plasmaProjectile.instantiate()
 		owner.add_child(projectile)
 		projectile.transform = $Arm/Muzzle.global_transform
-		projectile.setShooter(get_groups(),{"baseDamage": baseBallisticDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
+		projectile.setShooter(get_groups(),{"baseDamage": basePlasmaDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	handleInput(delta)
 	move_and_slide()
 	updateAnimation()
+	
+	if laserActive == true:
+		playerStats.useEnergy($Arm.energyUse * delta)
 
 

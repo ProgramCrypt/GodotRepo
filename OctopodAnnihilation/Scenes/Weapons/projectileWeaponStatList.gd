@@ -4,6 +4,7 @@ class_name ProjectileWeaponStatList
 
 @export var damageType : int #0=ballistic, 1=laser, 2=plasma
 @export var damage : float #value of health lost. cannot go below 1
+@export var energyUse : float #value of energy used per shot or per second for lasers
 @export var projectileRange : float #number of tiles. cannot go below 1
 @export var fireRate : float #time between shots / warm up time for shot
 @export var speed : float #pixels per second
