@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://m7mi7h7avpu1"]
+
+[ext_resource type="Script" path="res://Scenes/Utilities/scrap.gd" id="1_73p38"]
+[ext_resource type="Texture2D" uid="uid://dxuckukhug4rb" path="res://Sprites/Utilities/spritesheet_utilities.png" id="1_wqonn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cu0h3"]
+size = Vector2(16, 16)
+
+[node name="scrap" type="Area2D"]
+z_index = -1
+script = ExtResource("1_73p38")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wqonn")
+hframes = 5
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cu0h3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,17 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7j1obnqtegw2"]
+[gd_scene load_steps=5 format=3 uid="uid://bisme83xydtnu"]
 
-[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_aldmr"]
-[ext_resource type="Script" path="res://Scenes/Regions/Labs/derelictVatRoomTileMap.gd" id="2_wxwcd"]
-[ext_resource type="PackedScene" uid="uid://bf23yptrxcvkt" path="res://Scenes/Props/propCollisionBox.tscn" id="3_ve0w1"]
-[ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="4_qfpyt"]
+[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_a0v0c"]
+[ext_resource type="Script" path="res://Scenes/Regions/OctopodLabs/octoLabsRoomScript.gd" id="2_hsie5"]
+[ext_resource type="PackedScene" uid="uid://bf23yptrxcvkt" path="res://Scenes/Props/propCollisionBox.tscn" id="3_02s8c"]
+[ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="4_twqhx"]
 
-[sub_resource type="GDScript" id="GDScript_twgnb"]
-
-[node name="derelictVatRoom" type="Node2D"]
-script = SubResource("GDScript_twgnb")
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("1_aldmr")
+[node name="derelictVatRoom" type="TileMap"]
+tile_set = ExtResource("1_a0v0c")
 format = 2
 layer_0/name = "lowerLevel"
 layer_0/z_index = -5
@@ -21,7 +16,7 @@ layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
-layer_1/z_index = -4
+layer_1/z_index = -2
 layer_1/tile_data = PackedInt32Array(458759, 196609, 5, 589829, 196609, 4, 327689, 327681, 4, 327685, 327681, 5, 589833, 65537, 6, 589826, 458753, 1, 131081, 393217, 7, 458764, 458753, 0, 786439, 327681, 6, 327682, 196609, 0, 786441, 196609, 1, 131077, 262145, 0, 589836, 262145, 1, 786437, 131073, 6, 458754, 262145, 7, 131078, 196609, 7, 393228, 262145, 7, 65549, 1, 6, 851969, 1, 6, 131073, 65537, 7, 65538, 1, 7, 851980, 1, 7, 786445, 65537, 6, 786434, 65537, 6, 131083, 65537, 6, 196621, 65537, 7, 196611, 1, 7, 655361, 65537, 6, 131080, 458753, 6, 786438, 458753, 7)
 layer_2/name = "upperLevel"
 layer_2/enabled = true
@@ -37,6 +32,13 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = -10
 layer_3/tile_data = PackedInt32Array(589831, 65539, 0, 458757, 65539, 0, 327687, 65539, 0, 458761, 65539, 0)
-script = ExtResource("2_wxwcd")
-propCollisionBox = ExtResource("3_ve0w1")
-octopodScientist = ExtResource("4_qfpyt")
+layer_4/name = "passageFill"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = -10
+layer_4/tile_data = PackedInt32Array(458752, 0, 1, 393216, 0, 1, 458766, 458752, 1, 393230, 458752, 1, 7, 131072, 0, 917511, 65536, 3, 851975, 65536, 2, 917510, 65536, 3, 917512, 65536, 3, 851974, 65536, 2, 851976, 65536, 2)
+script = ExtResource("2_hsie5")
+propCollisionBox = ExtResource("3_02s8c")
+octopodScientist = ExtResource("4_twqhx")

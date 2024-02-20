@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bq7vglxhqc5hb"]
+[gd_scene load_steps=20 format=3 uid="uid://bq7vglxhqc5hb"]
 
 [ext_resource type="Script" path="res://Scenes/Mobs/octopodScientist.gd" id="1_0n0xr"]
 [ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="1_33aes"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://cm7nenpe0b5ty" path="res://Scenes/Mobs/octopodScientist.tres" id="2_5t7uf"]
 [ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_1tjsp"]
 [ext_resource type="Resource" uid="uid://sstsdwc83suy" path="res://Scenes/Weapons/laser.tres" id="4_gaaql"]
+[ext_resource type="PackedScene" uid="uid://m7mi7h7avpu1" path="res://Scenes/Utilities/scrap.tscn" id="5_t8lwj"]
 [ext_resource type="Script" path="res://Scenes/Mobs/octopodScientistWeaponArm.gd" id="6_hfibc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
@@ -175,6 +176,7 @@ script = ExtResource("1_0n0xr")
 enemyType = ExtResource("2_5t7uf")
 projectile = ExtResource("3_1tjsp")
 weaponType = ExtResource("4_gaaql")
+scrap = ExtResource("5_t8lwj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

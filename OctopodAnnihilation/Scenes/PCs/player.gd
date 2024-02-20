@@ -17,22 +17,11 @@ var direction = "Down"
 @onready var basePlasmaDamage = StatModification.basePlasmaDamage
 var damageMultiplier = 1
 
-@export var playerType : Resource
-@export var startingWeapon1 : Resource
-@export var startingWeapon2 : Resource
-var weapon1 = {}
-var weapon2 = {}
 var activeWeapon = "weapon1"
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	playerStats.initialize(playerType)
 	speed = playerStats.speed * 8
-	
-	$Arm.initialize(startingWeapon1)
-	saveWeapon(startingWeapon1, weapon1)
-	saveWeapon(startingWeapon2, weapon2)
 
 
 func handleInput(_delta):
@@ -44,18 +33,16 @@ func handleInput(_delta):
 			shoot()
 	
 	if Input.is_action_just_released("attack"):
-		if laserActive == true:
+		if laserActive == true: 
 			$Arm/Muzzle/laserProjectile.queue_free()
 			laserActive = false
 	
 	if Input.is_action_just_released("scroll"):
 		if activeWeapon == "weapon1":
-			print("changeTo2")
-			$Arm.changeWeapon(weapon2)
+			$Arm.changeWeapon(playerStats.weapon2)
 			activeWeapon = "weapon2"
 		elif activeWeapon == "weapon2":
-			print("changeTo1")
-			$Arm.changeWeapon(weapon1)
+			$Arm.changeWeapon(playerStats.weapon1)
 			activeWeapon = "weapon1"
 
 
@@ -103,19 +90,6 @@ func updateAnimation():
 			animations.play("face" + direction + "Armed")
 		else:
 			animations.play("walk" + direction + "Armed")
-
-
-func saveWeapon(stats : ProjectileWeaponStatList, weaponDict):
-	weaponDict["damageType"] = stats.damageType
-	weaponDict["damage"] = stats.damage
-	weaponDict["energyUse"] = stats.energyUse
-	weaponDict["projectileRange"] = stats.projectileRange
-	weaponDict["fireRate"] = stats.fireRate
-	weaponDict["speed"] = stats.speed
-	weaponDict["size"] = stats.size
-	weaponDict["penetration"] = stats.penetration
-	weaponDict["projectilesPerShot"] = stats.projectilesPerShot
-	weaponDict["effectsOnHit"] = stats.effectsOnHit
 
 
 func shoot():

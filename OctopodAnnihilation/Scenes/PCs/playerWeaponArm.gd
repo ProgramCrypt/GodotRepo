@@ -1,5 +1,7 @@
 extends Sprite2D
 
+@onready var playerStats = get_node("/root/ActivePlayerStats")
+
 var damageType : int #0=ballistic, 1=laser, 2=plasma
 var damage : float #value of health lost. cannot go below 1
 var energyUse : float #value of energy used per shot or per second for lasers
@@ -10,6 +12,10 @@ var size : float #percentage set to 1 by default
 var penetration : float #number of possible enemies hit. cannot go below 1
 var projectilesPerShot : int #cannot go below 1
 var effectsOnHit : Array
+
+
+func _ready():
+	changeWeapon(playerStats.weapon1)
 
 func initialize(stats : ProjectileWeaponStatList):
 	damageType = stats.damageType
@@ -54,6 +60,28 @@ func setStatValue(stat, value):
 		effectsOnHit = value
 
 func modifyStatValue(stat, modifier):
+	if stat == "damage":
+		damage += modifier
+		damage = max(0, damage)
+	if stat == "projectileRange":
+		projectileRange += modifier
+		projectileRange = max(1, projectileRange)
+	if stat == "fireRate":
+		fireRate += modifier
+	if stat == "speed":
+		speed += modifier
+	if stat == "size":
+		size += modifier
+	if stat == "penetration":
+		penetration += modifier
+		penetration = max(1, penetration)
+	if stat == "projectilesPerShot":
+		projectilesPerShot += modifier
+		projectilesPerShot = max(1, projectilesPerShot)
+	if stat == "effectsOnHit":
+		effectsOnHit.append(modifier)
+
+func applyUpgrade(stat, modifier):
 	if stat == "damage":
 		damage += modifier
 		damage = max(0, damage)

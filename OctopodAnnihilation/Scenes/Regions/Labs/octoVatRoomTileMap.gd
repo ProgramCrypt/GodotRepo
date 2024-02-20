@@ -1,6 +1,7 @@
 extends TileMap
 
 @export var propCollisionBox: PackedScene
+@export var octopodScientist: PackedScene
 
 var tables = []
 var servers = []
@@ -54,6 +55,15 @@ func _ready():
 				vatBox.defineType("blueVat2", cell)
 			if propType == Vector2i(2, 5):
 				vatBox.defineType("emptyVat2", cell)
+	
+	
+	for cell in get_used_cells(3):
+		var spawnerType = get_cell_atlas_coords(3, cell)
+		
+		if spawnerType == Vector2i(1, 0):
+			var enemy = octopodScientist.instantiate()
+			add_child(enemy)
+			enemy.position = map_to_local(cell)
 
 func changeTile(cell, newTile):
 	set_cell(1, cell, 1, newTile)

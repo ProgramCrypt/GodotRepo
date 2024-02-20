@@ -4,6 +4,14 @@ signal healthChanged()
 signal healthDepleted()
 signal energyChanged()
 signal energyDepleted()
+signal scrapChanged()
+signal playerWeaponsSet(weapon)
+
+@export var playerType : Resource
+@export var startingWeapon1 : Resource
+@export var startingWeapon2 : Resource
+var weapon1 = {}
+var weapon2 = {}
 
 @export var energyRegenRate = 5 #points per second
 var energyDepletionTimer : float
@@ -27,6 +35,16 @@ var explosionResistance : float
 var slowResistance : float
 var stunResistance : float
 
+var currentScrap : int
+
+
+func _ready():
+	initialize(playerType)
+	
+	saveWeapon(startingWeapon1, weapon1)
+	saveWeapon(startingWeapon2, weapon2)
+	#emit_signal("playerWeaponsSet", weapon1)
+
 func initialize(stats : PlayerStats):
 	maxHealth = stats.maxHealth
 	currentHealth = stats.currentHealth
@@ -44,6 +62,8 @@ func initialize(stats : PlayerStats):
 	explosionResistance = stats.explosionResistance
 	slowResistance = stats.slowResistance
 	stunResistance = stats.stunResistance
+	
+	currentScrap = 0
 
 func _physics_process(delta):
 	if energyDepletionTimer == 0:
@@ -83,6 +103,18 @@ func regenEnergy(amount):
 	currentEnergy = min(currentEnergy, maxEnergy)
 	emit_signal("energyChanged")
 
+func saveWeapon(stats : ProjectileWeaponStatList, weaponDict):
+	weaponDict["damageType"] = stats.damageType
+	weaponDict["damage"] = stats.damage
+	weaponDict["energyUse"] = stats.energyUse
+	weaponDict["projectileRange"] = stats.projectileRange
+	weaponDict["fireRate"] = stats.fireRate
+	weaponDict["speed"] = stats.speed
+	weaponDict["size"] = stats.size
+	weaponDict["penetration"] = stats.penetration
+	weaponDict["projectilesPerShot"] = stats.projectilesPerShot
+	weaponDict["effectsOnHit"] = stats.effectsOnHit
+
 func setStatValue(stat, value):
 	if stat == "maxHealth":
 		maxHealth = value
@@ -116,6 +148,8 @@ func setStatValue(stat, value):
 		slowResistance = value
 	if stat == "stunResistance":
 		stunResistance = value
+	if stat == "currentScrap":
+		currentScrap = value
 
 func modifyStatValue(stat, modifier):
 	if stat == "maxHealth":
@@ -128,37 +162,41 @@ func modifyStatValue(stat, modifier):
 		currentEnergy += modifier
 	if stat == "speed":
 		speed += modifier
-		stat = max(0, stat)
+		speed = max(0, speed)
 	if stat == "strength":
 		strength += modifier
-		stat = max(0, stat)
+		strength = max(0, strength)
 	if stat == "rateOfFire":
 		rateOfFire += modifier
-		stat = max(0, stat)
+		rateOfFire = max(0, rateOfFire)
 	if stat == "gunAccuracy":
 		gunAccuracy += modifier
-		stat = max(0, stat)
+		gunAccuracy = max(0, gunAccuracy)
 	if stat == "ballisticResistance":
 		ballisticResistance += modifier
-		stat = min(100, stat)
+		ballisticResistance = min(100, ballisticResistance)
 	if stat == "laserResistance":
 		laserResistance += modifier
-		stat = min(100, stat)
+		laserResistance = min(100, laserResistance)
 	if stat == "plasmaResistance":
 		plasmaResistance += modifier
-		stat = min(100, stat)
+		plasmaResistance = min(100, plasmaResistance)
 	if stat == "fireResistance":
 		fireResistance += modifier
-		stat = min(100, stat)
+		fireResistance = min(100, fireResistance)
 	if stat == "bleedingResistance":
 		bleedingResistance += modifier
-		stat = min(100, stat)
+		bleedingResistance = min(100, bleedingResistance)
 	if stat == "explosionResistance":
 		explosionResistance += modifier
-		stat = min(100, stat)
+		explosionResistance = min(100, explosionResistance)
 	if stat == "slowResistance":
 		slowResistance += modifier
-		stat = min(100, stat)
+		slowResistance = min(100, slowResistance)
 	if stat == "stunResistance":
 		stunResistance += modifier
-		stat = min(100, stat)
+		stunResistance = min(100, stunResistance)
+	if stat == "currentScrap":
+		currentScrap += modifier
+		currentScrap = max(0, currentScrap)
+		emit_signal("scrapChanged")

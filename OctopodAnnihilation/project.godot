@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ActivePlayerStats="*res://Scenes/PCs/stats.gd"
 StatModification="*res://Scenes/Utilities/statModification.gd"
 ProjectileWeaponStats="*res://Scenes/Weapons/projectileWeaponStats.gd"
+SceneManager="*res://Scenes/Utilities/sceneManager.tscn"
+ActivePlayerStats="*res://Scenes/PCs/playerStats.tscn"
 
 [display]
 

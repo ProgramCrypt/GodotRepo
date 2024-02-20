@@ -1,17 +1,17 @@
 [gd_scene load_steps=16 format=3 uid="uid://b6wakgckuw41q"]
 
-[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_0cwwg"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level_1-1.gd" id="1_fdy0e"]
 [ext_resource type="Script" path="res://Scenes/Levels/Camera2D.gd" id="1_sq2ms"]
-[ext_resource type="PackedScene" uid="uid://cx8pnds27ajgu" path="res://Scenes/Regions/Labs/spawnRoom.tscn" id="2_037mf"]
+[ext_resource type="PackedScene" uid="uid://cctjbeo8abnym" path="res://Scenes/Utilities/exitPortal.tscn" id="2_7pb71"]
 [ext_resource type="PackedScene" uid="uid://ccswn86ak6nuq" path="res://Scenes/PCs/player.tscn" id="2_pe7sg"]
-[ext_resource type="PackedScene" uid="uid://dflggvgbc08ej" path="res://Scenes/Regions/Labs/vatRoom.tscn" id="3_u6qip"]
-[ext_resource type="PackedScene" uid="uid://c7j1obnqtegw2" path="res://Scenes/Regions/Labs/derelictVatRoom.tscn" id="4_o6esn"]
-[ext_resource type="PackedScene" uid="uid://bpooegugjaab" path="res://Scenes/Regions/Labs/octoVatRoom.tscn" id="5_ukll2"]
-[ext_resource type="PackedScene" uid="uid://c2l7xqnvkdi63" path="res://Scenes/Regions/Labs/derelictOctoVatRoom.tscn" id="6_pka1u"]
-[ext_resource type="PackedScene" uid="uid://0aexj4m26h0q" path="res://Scenes/Regions/Labs/serverRoom.tscn" id="7_hwmau"]
-[ext_resource type="PackedScene" uid="uid://d286ko5e37cag" path="res://Scenes/Regions/Labs/serverRoom1.tscn" id="8_15yjl"]
-[ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="12_62nf8"]
+[ext_resource type="PackedScene" uid="uid://d1gbsl1p0sknf" path="res://Scenes/Regions/OctopodLabs/spawnRoom.tscn" id="2_rhmof"]
+[ext_resource type="PackedScene" uid="uid://b2s3lr4woj4xt" path="res://Scenes/Regions/OctopodLabs/vatRoom.tscn" id="3_l30t0"]
+[ext_resource type="PackedScene" uid="uid://bisme83xydtnu" path="res://Scenes/Regions/OctopodLabs/derelictVatRoom.tscn" id="4_s534a"]
+[ext_resource type="PackedScene" uid="uid://dsx3iwqxmg3ed" path="res://Scenes/Regions/OctopodLabs/octoVatRoom.tscn" id="5_eyddh"]
+[ext_resource type="PackedScene" uid="uid://dwr171cgvg22u" path="res://Scenes/Regions/OctopodLabs/derelictOctoVatRoom.tscn" id="6_0mefb"]
+[ext_resource type="PackedScene" uid="uid://drua3g16wla0a" path="res://Scenes/Regions/OctopodLabs/serverRoom.tscn" id="7_u7eod"]
+[ext_resource type="PackedScene" uid="uid://dqiaslsffj84c" path="res://Scenes/Regions/OctopodLabs/serverRoom1.tscn" id="8_13587"]
+[ext_resource type="Texture2D" uid="uid://dxuckukhug4rb" path="res://Sprites/Utilities/spritesheet_utilities.png" id="12_mmmfs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxu8w"]
 bg_color = Color(0.301961, 0.301961, 0.301961, 1)
@@ -24,40 +24,23 @@ bg_color = Color(0.164706, 0.623529, 0.74902, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fdy0e")
-spawnRoom = ExtResource("2_037mf")
-vatRoom = ExtResource("3_u6qip")
-derelictVatRoom = ExtResource("4_o6esn")
-octoVatRoom = ExtResource("5_ukll2")
-derelictOctoVatRoom = ExtResource("6_pka1u")
-serverRoom = ExtResource("7_hwmau")
-serverRoom1 = ExtResource("8_15yjl")
+exitPortal = ExtResource("2_7pb71")
+spawnRoom = ExtResource("2_rhmof")
+vatRoom = ExtResource("3_l30t0")
+derelictVatRoom = ExtResource("4_s534a")
+octoVatRoom = ExtResource("5_eyddh")
+derelictOctoVatRoom = ExtResource("6_0mefb")
+serverRoom = ExtResource("7_u7eod")
+serverRoom1 = ExtResource("8_13587")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(565, 350)
 rotation = 3.14159
 scale = Vector2(71.7733, -143.641)
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.4, 0.4)
 script = ExtResource("1_sq2ms")
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("1_0cwwg")
-format = 2
-layer_0/name = "lowerLevel"
-layer_0/z_index = -5
-layer_1/name = "upperLevel"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 5
-layer_1/tile_data = PackedInt32Array()
-
 [node name="player" parent="." instance=ExtResource("2_pe7sg")]
-position = Vector2(899, 278)
-
-[node name="octopodScientist" parent="." node_paths=PackedStringArray("player") instance=ExtResource("12_62nf8")]
-position = Vector2(397, 383)
-player = NodePath("../player")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -90,3 +73,27 @@ offset_bottom = 56.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nxu8w")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dg5vp")
 show_percentage = false
+
+[node name="scrapIcon" type="Sprite2D" parent="HUD"]
+position = Vector2(1150, 1150)
+scale = Vector2(4, 4)
+texture = ExtResource("12_mmmfs")
+hframes = 5
+vframes = 5
+
+[node name="scrapLabel" type="Label" parent="HUD"]
+offset_left = 1130.0
+offset_top = 1110.0
+offset_right = 1170.0
+offset_bottom = 1136.0
+text = "100"
+horizontal_alignment = 1
+
+[node name="upgradeSelection" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Button" type="Button" parent="upgradeSelection"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="upgradeSelection"]
