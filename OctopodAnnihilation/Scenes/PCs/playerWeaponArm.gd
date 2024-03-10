@@ -7,10 +7,10 @@ var damage : float #value of health lost. cannot go below 1
 var energyUse : float #value of energy used per shot or per second for lasers
 var projectileRange : float #number of tiles. cannot go below 1
 var fireRate : float #time between shots / warm up time for shot
-var speed : float #pixels per second
-var size : float #percentage set to 1 by default
+var accuracy : float #angle in degrees that projectiles can be fired
+var projectileSpeed : float #pixels per second
+var projectileSize : float #percentage set to 1 by default
 var penetration : float #number of possible enemies hit. cannot go below 1
-var projectilesPerShot : int #cannot go below 1
 var effectsOnHit : Array
 
 
@@ -23,10 +23,10 @@ func initialize(stats : ProjectileWeaponStatList):
 	energyUse = stats.energyUse
 	projectileRange = stats.projectileRange
 	fireRate = stats.fireRate
-	speed = stats.speed
-	size = stats.size
+	accuracy = stats.accuracy
+	projectileSpeed = stats.projectileSpeed
+	projectileSize = stats.projectileSize
 	penetration = stats.penetration
-	projectilesPerShot = stats.projectilesPerShot
 	effectsOnHit = stats.effectsOnHit
 
 func changeWeapon(statDict):
@@ -35,27 +35,29 @@ func changeWeapon(statDict):
 	energyUse = statDict["energyUse"]
 	projectileRange = statDict["projectileRange"]
 	fireRate = statDict["fireRate"]
-	speed = statDict["speed"]
-	size = statDict["size"]
+	accuracy = statDict["accuracy"]
+	projectileSpeed = statDict["projectileSpeed"]
+	projectileSize = statDict["projectileSize"]
 	penetration = statDict["penetration"]
-	projectilesPerShot = statDict["projectilesPerShot"]
 	effectsOnHit = statDict["effectsOnHit"]
 
 func setStatValue(stat, value):
 	if stat == "damage":
 		damage = value
+	if stat == "energyUse":
+		energyUse = value
 	if stat == "projectileRange":
 		projectileRange = value
 	if stat == "fireRate":
 		fireRate = value
-	if stat == "speed":
-		speed = value
-	if stat == "size":
-		size = value
+	if stat == "accuracy":
+		accuracy = value
+	if stat == "projectileSpeed":
+		projectileSpeed = value
+	if stat == "projectileSize":
+		projectileSize = value
 	if stat == "penetration":
 		penetration = value
-	if stat == "projectilesPerShot":
-		projectilesPerShot = value
 	if stat == "effectsOnHit":
 		effectsOnHit = value
 
@@ -63,21 +65,24 @@ func modifyStatValue(stat, modifier):
 	if stat == "damage":
 		damage += modifier
 		damage = max(0, damage)
+	if stat == "energyUse":
+		energyUse += modifier
+		energyUse = max(0.1, energyUse)
 	if stat == "projectileRange":
 		projectileRange += modifier
 		projectileRange = max(1, projectileRange)
 	if stat == "fireRate":
 		fireRate += modifier
-	if stat == "speed":
-		speed += modifier
-	if stat == "size":
-		size += modifier
+	if stat == "accuracy":
+		accuracy += modifier
+		accuracy = max(0, accuracy)
+	if stat == "projectileSpeed":
+		projectileSpeed += modifier
+	if stat == "projectileSize":
+		projectileSize += modifier
 	if stat == "penetration":
 		penetration += modifier
 		penetration = max(1, penetration)
-	if stat == "projectilesPerShot":
-		projectilesPerShot += modifier
-		projectilesPerShot = max(1, projectilesPerShot)
 	if stat == "effectsOnHit":
 		effectsOnHit.append(modifier)
 
@@ -85,20 +90,23 @@ func applyUpgrade(stat, modifier):
 	if stat == "damage":
 		damage += modifier
 		damage = max(0, damage)
+	if stat == "energyUse":
+		energyUse += modifier
+		energyUse = max(0.1, energyUse)
 	if stat == "projectileRange":
 		projectileRange += modifier
 		projectileRange = max(1, projectileRange)
 	if stat == "fireRate":
 		fireRate += modifier
-	if stat == "speed":
-		speed += modifier
-	if stat == "size":
-		size += modifier
+	if stat == "accuracy":
+		accuracy += modifier
+		accuracy = max(0, accuracy)
+	if stat == "projectileSpeed":
+		projectileSpeed += modifier
+	if stat == "projectileSize":
+		projectileSize += modifier
 	if stat == "penetration":
 		penetration += modifier
 		penetration = max(1, penetration)
-	if stat == "projectilesPerShot":
-		projectilesPerShot += modifier
-		projectilesPerShot = max(1, projectilesPerShot)
 	if stat == "effectsOnHit":
 		effectsOnHit.append(modifier)

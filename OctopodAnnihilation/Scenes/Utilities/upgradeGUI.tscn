@@ -1,0 +1,144 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds0jxqwvj408j"]
+
+[ext_resource type="Script" path="res://Scenes/Utilities/upgradeGUI.gd" id="1_kbnti"]
+
+[node name="upgradeGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kbnti")
+
+[node name="window" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.321569, 0.321569, 0.321569, 1)
+
+[node name="menuLabel" type="Label" parent="window"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 700.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 60
+text = "Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="weaponUpgrade1" type="Button" parent="window"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 200.0
+offset_right = 350.0
+offset_bottom = 240.0
+pivot_offset = Vector2(100, 20)
+
+[node name="Label" type="Label" parent="window/weaponUpgrade1"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="weaponUpgrade2" type="Button" parent="window"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 300.0
+offset_right = 350.0
+offset_bottom = 340.0
+pivot_offset = Vector2(100, 20)
+
+[node name="Label" type="Label" parent="window/weaponUpgrade2"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="weaponUpgrade3" type="Button" parent="window"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 400.0
+offset_right = 350.0
+offset_bottom = 440.0
+pivot_offset = Vector2(100, 20)
+
+[node name="Label" type="Label" parent="window/weaponUpgrade3"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="playerUpgrade1" type="Button" parent="window"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 200.0
+offset_right = 650.0
+offset_bottom = 240.0
+pivot_offset = Vector2(100, 20)
+
+[node name="Label" type="Label" parent="window/playerUpgrade1"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="playerUpgrade2" type="Button" parent="window"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 300.0
+offset_right = 650.0
+offset_bottom = 340.0
+pivot_offset = Vector2(100, 20)
+
+[node name="Label" type="Label" parent="window/playerUpgrade2"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="playerUpgrade3" type="Button" parent="window"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 400.0
+offset_right = 650.0
+offset_bottom = 440.0
+pivot_offset = Vector2(100, 20)
+
+[node name="Label" type="Label" parent="window/playerUpgrade3"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="playerUpgrade4" type="Button" parent="window"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 500.0
+offset_right = 500.0
+offset_bottom = 540.0
+pivot_offset = Vector2(100, 20)
+
+[node name="Label" type="Label" parent="window/playerUpgrade4"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+text = "CONTINUE"
+horizontal_alignment = 1
+vertical_alignment = 1

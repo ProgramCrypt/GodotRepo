@@ -21,7 +21,7 @@ func setShooter(shooterGroups, shooterProjectileProperties):
 		shooter = "npc"
 	else:
 		shooter = "enemy"
-	speed = projectileProperties["speed"]
+	speed = projectileProperties["projectileSpeed"]
 
 func _on_body_entered(body):
 	#damage to mob

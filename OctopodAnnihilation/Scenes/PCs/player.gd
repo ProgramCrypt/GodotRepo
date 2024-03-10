@@ -98,18 +98,18 @@ func shoot():
 		var projectile = ballisticProjectile.instantiate()
 		owner.add_child(projectile)
 		projectile.transform = $Arm/Muzzle.global_transform
-		projectile.setShooter(get_groups(),{"baseDamage": baseBallisticDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
+		projectile.setShooter(get_groups(),{"baseDamage": baseBallisticDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
 	if $Arm.damageType == 1:
 		var projectile = laserProjectile.instantiate()
 		$Arm/Muzzle.add_child(projectile)
-		projectile.setShooter(get_groups(),{"baseDamage": baseLaserDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
+		projectile.setShooter(get_groups(),{"baseDamage": baseLaserDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
 		laserActive = true
 	if $Arm.damageType == 2:
 		playerStats.useEnergy($Arm.energyUse)
 		var projectile = plasmaProjectile.instantiate()
 		owner.add_child(projectile)
 		projectile.transform = $Arm/Muzzle.global_transform
-		projectile.setShooter(get_groups(),{"baseDamage": basePlasmaDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "speed": $Arm.speed, "penetration": $Arm.penetration, "projectileMultiplier": $Arm.projectilesPerShot, "effectsOnHit": $Arm.effectsOnHit})
+		projectile.setShooter(get_groups(),{"baseDamage": basePlasmaDamage, "damageMultiplier": damageMultiplier, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

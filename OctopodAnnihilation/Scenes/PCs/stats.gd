@@ -18,6 +18,7 @@ var energyDepletionTimer : float
 
 var modifiers = {}
 
+#player stats
 var maxHealth : float
 var currentHealth : float
 var maxEnergy : float
@@ -109,10 +110,10 @@ func saveWeapon(stats : ProjectileWeaponStatList, weaponDict):
 	weaponDict["energyUse"] = stats.energyUse
 	weaponDict["projectileRange"] = stats.projectileRange
 	weaponDict["fireRate"] = stats.fireRate
-	weaponDict["speed"] = stats.speed
-	weaponDict["size"] = stats.size
+	weaponDict["accuracy"] = stats.accuracy
+	weaponDict["projectileSpeed"] = stats.projectileSpeed
+	weaponDict["projectileSize"] = stats.projectileSize
 	weaponDict["penetration"] = stats.penetration
-	weaponDict["projectilesPerShot"] = stats.projectilesPerShot
 	weaponDict["effectsOnHit"] = stats.effectsOnHit
 
 func setStatValue(stat, value):

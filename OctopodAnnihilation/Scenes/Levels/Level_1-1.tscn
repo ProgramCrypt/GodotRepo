@@ -88,12 +88,3 @@ offset_right = 1170.0
 offset_bottom = 1136.0
 text = "100"
 horizontal_alignment = 1
-
-[node name="upgradeSelection" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Button" type="Button" parent="upgradeSelection"]
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="CanvasModulate" type="CanvasModulate" parent="upgradeSelection"]
