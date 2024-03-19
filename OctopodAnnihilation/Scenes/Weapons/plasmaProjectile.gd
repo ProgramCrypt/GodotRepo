@@ -8,9 +8,26 @@ var shooter = null
 var projectileProperties
 
 var speed = 0
+var distanceTraveled = 0
+
+@onready var anim = $AnimatedSprite2D
+var animTimer = 0
+var dissipate = false
+
+func _ready():
+	anim.play("default")
 
 func _physics_process(delta):
 	position -= transform.x * speed * delta
+	distanceTraveled += speed * delta
+	if distanceTraveled > projectileProperties["projectileRange"]:
+		if dissipate == false:
+			anim.play("dissipate")
+			dissipate = true
+		animTimer += delta
+		#print(animTimer)
+		if animTimer >= 0.5:
+			queue_free()
 
 #shooterProjectileProperties = {"baseDamage": var, "damageMultiplier": var, "range": var, "speed": var, "penetration": var, "projectileMultiplier": var, "effectsOnHit": Array}
 func setShooter(shooterGroups, shooterProjectileProperties):
@@ -22,6 +39,8 @@ func setShooter(shooterGroups, shooterProjectileProperties):
 	else:
 		shooter = "enemy"
 	speed = projectileProperties["projectileSpeed"]
+	$AnimatedSprite2D.scale = Vector2(projectileProperties["projectileSize"], projectileProperties["projectileSize"])
+	$CollisionShape2D.scale = Vector2(projectileProperties["projectileSize"], projectileProperties["projectileSize"])
 
 func _on_body_entered(body):
 	#damage to mob
@@ -31,7 +50,7 @@ func _on_body_entered(body):
 		else:
 			if body.is_in_group("enemy") == true:
 				var plasmaResistance = body.getResistances()["plasmaResistance"]
-				var damage = statModification.plasmaDamage({"plasmaResistance": plasmaResistance, "damageMultiplier": projectileProperties["damageMultiplier"]}, projectileProperties["baseDamage"])
+				var damage = statModification.plasmaDamage(projectileProperties["damage"], plasmaResistance)
 				body.takeDamage(damage)
 			queue_free()
 	
@@ -42,6 +61,6 @@ func _on_body_entered(body):
 		else:
 			if body.is_in_group("player") == true:
 				var plasmaResistance = playerStats.plasmaResistance
-				var damage = statModification.plasmaDamage({"plasmaResistance": plasmaResistance, "damageMultiplier": projectileProperties["damageMultiplier"]}, projectileProperties["baseDamage"])
+				var damage = statModification.plasmaDamage(projectileProperties["damage"], plasmaResistance)
 				playerStats.takeDamage(damage)
 			queue_free()

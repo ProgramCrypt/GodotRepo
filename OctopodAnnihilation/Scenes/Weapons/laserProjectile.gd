@@ -7,7 +7,7 @@ var shooter = null
 var projectileProperties
 var timer = 1.0
 
-#shooterProjectileProperties = {"baseDamage": var, "damageMultiplier": var, "range": var, "speed": var, "penetration": var, "projectileMultiplier": var, "effectsOnHit": Array}
+#shooterProjectileProperties = {"damage": var, "range": var, "speed": var, "penetration": var, "effectsOnHit": Array}
 func setShooter(shooterGroups, shooterProjectileProperties):
 	projectileProperties = shooterProjectileProperties
 	if "player" in shooterGroups:
@@ -16,6 +16,20 @@ func setShooter(shooterGroups, shooterProjectileProperties):
 		shooter = "npc"
 	else:
 		shooter = "enemy"
+	
+	if projectileProperties["damage"] <= 0.15:
+		$Line2D.set_default_color(Color(1, 0.2, 0.2, 1)) #red
+	elif projectileProperties["damage"] <= 0.25:
+		$Line2D.set_default_color(Color(1, 1, 0.3, 1)) #yellow
+	elif projectileProperties["damage"] <= 0.35:
+		$Line2D.set_default_color(Color(0.2, 1, 0.2, 1)) #green
+	elif projectileProperties["damage"] <= 0.45:
+		$Line2D.set_default_color(Color(0, 0.9, 1, 1)) #blue
+	elif projectileProperties["damage"] <= 0.55:
+		$Line2D.set_default_color(Color(0.7, 0.4, 1, 1)) #violet
+	elif projectileProperties["damage"] >= 0.55:
+		$Line2D.set_default_color(Color(0.7, 0.5, 1, 1)) #UV
+
 
 func _physics_process(delta):
 	#create laser visual
@@ -31,7 +45,7 @@ func _physics_process(delta):
 		if get_collider() != null:
 			if get_collider().is_in_group("enemy") == true:
 				var laserResistance = get_collider().getResistances()["laserResistance"]
-				var damage = statModification.laserDamage({"laserResistance": laserResistance, "damageMultiplier": projectileProperties["damageMultiplier"]}, timer, projectileProperties["baseDamage"]) * delta
+				var damage = statModification.laserDamage(timer, projectileProperties["damage"], laserResistance) * delta
 				get_collider().takeDamage(damage)
 				timer += delta
 			else:
@@ -44,7 +58,7 @@ func _physics_process(delta):
 		if get_collider() != null:
 			if get_collider().is_in_group("player") == true:
 				var laserResistance = playerStats.laserResistance
-				var damage = statModification.laserDamage({"laserResistance": laserResistance, "damageMultiplier": projectileProperties["damageMultiplier"]}, timer, projectileProperties["baseDamage"]) * delta
+				var damage = statModification.laserDamage(timer, projectileProperties["damage"], laserResistance) * delta
 				playerStats.takeDamage(damage)
 				timer += delta
 			else:

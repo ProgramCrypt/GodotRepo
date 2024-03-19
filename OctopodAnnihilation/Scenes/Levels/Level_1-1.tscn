@@ -25,6 +25,7 @@ bg_color = Color(0.164706, 0.623529, 0.74902, 1)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fdy0e")
 exitPortal = ExtResource("2_7pb71")
+totalRooms = 1
 spawnRoom = ExtResource("2_rhmof")
 vatRoom = ExtResource("3_l30t0")
 derelictVatRoom = ExtResource("4_s534a")
@@ -37,12 +38,12 @@ serverRoom1 = ExtResource("8_13587")
 position = Vector2(565, 350)
 rotation = 3.14159
 scale = Vector2(71.7733, -143.641)
-zoom = Vector2(0.4, 0.4)
 script = ExtResource("1_sq2ms")
 
 [node name="player" parent="." instance=ExtResource("2_pe7sg")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="healthLabel" type="Label" parent="HUD"]
 z_index = 1

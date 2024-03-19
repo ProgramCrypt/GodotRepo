@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cctjbeo8abnym"]
+[gd_scene load_steps=4 format=3 uid="uid://cctjbeo8abnym"]
 
 [ext_resource type="Script" path="res://Scenes/Utilities/exitPortal.gd" id="1_rf421"]
+[ext_resource type="PackedScene" uid="uid://ds0jxqwvj408j" path="res://Scenes/Utilities/upgradeGUI.tscn" id="2_i41l6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_033cb"]
 size = Vector2(100, 100)
 
 [node name="exitPortal" type="Area2D"]
 script = ExtResource("1_rf421")
+upgradeGUI = ExtResource("2_i41l6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_033cb")

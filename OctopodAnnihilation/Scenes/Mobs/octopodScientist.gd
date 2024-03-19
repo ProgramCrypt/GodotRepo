@@ -59,7 +59,7 @@ func _ready() -> void:
 
 func updateAnimation(delta):
 	if (player.global_position - global_position).length() <= agroDistance:
-		#handle arm rotation
+		#handle arm rotation (convoluted garbage)
 		var relativePlayerPos = player.global_position - global_position
 		var playerAngle = atan(relativePlayerPos.y/relativePlayerPos.x)
 		if (armSign * playerAngle) < 0:
@@ -129,7 +129,7 @@ func shoot(check):
 		if check == true:
 			laser = projectile.instantiate()
 			$Arm/Muzzle.add_child(laser)
-			laser.setShooter(get_groups(), {"baseDamage": statModification.baseLaserDamage, "damageMultiplier": 1, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
+			laser.setShooter(get_groups(), {"damage": $Arm.damage, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
 		else:
 			laser.queue_free()
 	doShootToggle = check

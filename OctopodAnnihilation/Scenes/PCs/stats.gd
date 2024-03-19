@@ -13,6 +13,10 @@ signal playerWeaponsSet(weapon)
 var weapon1 = {}
 var weapon2 = {}
 
+#[[upgrade1Level, upgrade2Level, ...], upgrade1Dict, upgrade2Dict, ...]
+var appliedWeapon1Upgrades = [[]]
+var appliedWeapon2Upgrades =[[]]
+
 @export var energyRegenRate = 5 #points per second
 var energyDepletionTimer : float
 
@@ -37,6 +41,9 @@ var slowResistance : float
 var stunResistance : float
 
 var currentScrap : int
+
+#[[upgrade1Level, upgrade2Level, ...], upgrade1Dict, upgrade2Dict, ...]
+var appliedArmorUpgrades = [[]]
 
 
 func _ready():
@@ -64,7 +71,7 @@ func initialize(stats : PlayerStats):
 	slowResistance = stats.slowResistance
 	stunResistance = stats.stunResistance
 	
-	currentScrap = 0
+	currentScrap = 400
 
 func _physics_process(delta):
 	if energyDepletionTimer == 0:
@@ -115,6 +122,14 @@ func saveWeapon(stats : ProjectileWeaponStatList, weaponDict):
 	weaponDict["projectileSize"] = stats.projectileSize
 	weaponDict["penetration"] = stats.penetration
 	weaponDict["effectsOnHit"] = stats.effectsOnHit
+
+func modifyWeapon(weapon, stat, modifier):
+	if weapon == "weapon1":
+		weapon1[stat] += modifier
+		#print(weapon1)
+	if weapon == "weapon2":
+		weapon2[stat] += modifier
+		#print(weapon2)
 
 func setStatValue(stat, value):
 	if stat == "maxHealth":

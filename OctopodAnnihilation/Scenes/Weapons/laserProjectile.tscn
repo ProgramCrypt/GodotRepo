@@ -11,7 +11,7 @@ script = ExtResource("1_oexd4")
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, -300, 0)
 width = 2.0
-default_color = Color(1, 0.45098, 0.45098, 1)
+default_color = Color(0.670588, 0.423529, 1, 1)
 
 [node name="Area2D" type="Area2D" parent="Line2D"]
 

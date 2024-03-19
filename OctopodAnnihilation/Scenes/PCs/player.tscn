@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dyjoq0gb0bqm3" path="res://Sprites/PCs/spritesheet_mainCharacter_full.png" id="3_jf73b"]
 [ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_p5qpu"]
 [ext_resource type="PackedScene" uid="uid://cowxw1tti6gi" path="res://Scenes/Weapons/plasmaProjectile.tscn" id="4_vyftj"]
-[ext_resource type="Texture2D" uid="uid://01qm5vi5gpn" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="5_nutdu"]
+[ext_resource type="Texture2D" uid="uid://bbawmf1ft4n33" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="5_nutdu"]
 [ext_resource type="Script" path="res://Scenes/PCs/playerWeaponArm.gd" id="8_cakgn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_taqf8"]
@@ -355,3 +355,7 @@ texture = ExtResource("5_nutdu")
 hframes = 4
 vframes = 4
 frame = 4
+
+[node name="laserChargeTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="laserChargeTimer" to="." method="_on_laser_charge_timer_timeout"]
