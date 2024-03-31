@@ -24,7 +24,8 @@ var armorUpgrades = [
 	{"levels": 3, "name": ["Onboard Medical\nUnit Mk. I", "Onboard Medical\nUnit Mk. II", "Onboard Medical\nUnit Mk. III"], "stat": "maxHealth", "modifier": [5, 5, 5], "cost": [60, 75, 90], "description": "Increased Max Health"},
 	{"levels": 3, "name": ["Li-Ion Batteries", "Li-Sulfur Batteries", "Radioisotope Thermoelectric\nGenerator"], "stat": "maxEnergy", "modifier": [5, 5, 5], "cost": [65, 80, 95], "description": "Increased Max Energy"},
 	{"levels": 6, "name": ["Leg Hydraulics\nMk. I", "Leg Hydraulics\nMk. II", "Leg Hydraulics\nMk. III", "Leg Hydraulics\nMk. IV", "Leg Hydraulics\nMk. V", "Leg Hydraulics\nMk. VI"], "stat": "speed", "modifier": [3, 3, 3, 3, 3, 3], "cost": [40, 50, 60, 70, 80, 90], "description": "Increased Speed"},
-	{"levels": 6, "name": ["Arm Hydraulics\nMk. I", "Arm Hydraulics\nMk. II", "Arm Hydraulics\nMk. III", "Arm Hydraulics\nMk. IV", "Arm Hydraulics\nMk. V", "Arm Hydraulics\nMk. VI"], "stat": "strength", "modifier": [3, 3, 3, 3, 3, 3], "cost": [45, 55, 65, 75, 85, 95], "description": "Increased Strength"}]
+	#{"levels": 6, "name": ["Arm Hydraulics\nMk. I", "Arm Hydraulics\nMk. II", "Arm Hydraulics\nMk. III", "Arm Hydraulics\nMk. IV", "Arm Hydraulics\nMk. V", "Arm Hydraulics\nMk. VI"], "stat": "strength", "modifier": [3, 3, 3, 3, 3, 3], "cost": [45, 55, 65, 75, 85, 95], "description": "Increased Strength"}
+	]
 	
 	
 func pickUpgrades(currentUpgrades):

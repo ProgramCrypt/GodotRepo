@@ -18,6 +18,8 @@ var cardinals = [0, 1, 2, 3]
 @export var serverRoom: PackedScene
 @export var serverRoom1: PackedScene
 
+var playerStartingPos = Vector2((gridLen/2),(gridLen/2)+100)
+
 func _ready():
 	playerStats.healthChanged.connect(setHealth)
 	playerStats.energyChanged.connect(setEnergy)
@@ -29,12 +31,18 @@ func _ready():
 	setMaxEnergy()
 	setScrap()
 	
+	#miniMap setup
+	$HUD/Control.clip_contents = true
+	$HUD/Control/miniMap.setRoom(Vector2i(0, 0), "spawn")
+	
 	#Map generation
 	var r = spawnRoom.instantiate()
 	add_child(r)
 	r.position = walker
 	
 	var roomArray = [vatRoom, derelictVatRoom, octoVatRoom, derelictOctoVatRoom, serverRoom, serverRoom1]
+	var normalRooms = [vatRoom, octoVatRoom, serverRoom, serverRoom1]
+	var derelictRooms = [derelictVatRoom, derelictOctoVatRoom]
 	var instantiatedRooms = [r]
 	
 	while totalRooms > 0:
@@ -56,7 +64,15 @@ func _ready():
 			hasRoom.append(walker)
 			instantiatedRooms.append(r)
 			totalRooms -= 1
+			
+			#miniMap
+			var cell = Vector2i(walker.x/gridLen, walker.y/gridLen)
+			if room in normalRooms:
+				$HUD/Control/miniMap.setRoom(cell, "normal")
+			if room in derelictRooms:
+				$HUD/Control/miniMap.setRoom(cell, "derelict")
 	
+	#fill unconnected passageways
 	var fill = []
 	for room in hasRoom:
 		var directions = []
@@ -92,9 +108,17 @@ func _ready():
 		var index = hasRoom.find(room[0],0)
 		instantiatedRooms[index].fillPassageways(room[1])
 	
+	print(Vector2i(exitRoom[0].x/gridLen, exitRoom[0].y/gridLen))
+	$HUD/Control/miniMap.setRoom(Vector2i(exitRoom[0].x/gridLen, exitRoom[0].y/gridLen), "exit")
+	
 	#Set player location
-	get_tree().get_nodes_in_group('player')[0].position = Vector2i((gridLen/2),(gridLen/2)+100)
+	get_tree().get_nodes_in_group('player')[0].position = playerStartingPos
 	#get_tree().get_nodes_in_group('projectileEnemies')[0].position = Vector2i((gridLen/2),(gridLen/2))
+
+
+func _process(delta):
+	$HUD/Control/miniMap.position = ((-$player.position - playerStartingPos)/60) + Vector2(112.5, 115) #60 is ratio of map to miniMap size (1500/25). Vector2(112.5, 115) is miniMap position offset within Control node
+
 
 func setHealth() -> void:
 	$HUD/healthLabel.text = "Health: " + str(int(ceil(playerStats.currentHealth))) + "/" + str(playerStats.maxHealth)

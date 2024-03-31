@@ -25,37 +25,57 @@ var ballisticUpgrades = [
 	{"levels": 2, "name": ["Reflex Sight", "Telescopic Sight"], "stat": "accuracy", "modifier": [-2, -2], "cost": [40, 55], "description": "Increased Accuracy"},
 	{"levels": 2, "name": ["Improved Propellant", "Advanced Propellant"], "stat": "projectileSpeed", "modifier": [200, 200], "cost": [50, 60], "description": "Increased Projectile Speed"},
 	{"levels": 2, "name": ["Armor Piercing", "Advanced Armor\nPiercing"], "stat": "penetration", "modifier": [1, 1], "cost": [60, 80], "description": "Increased Penetration"},
-	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-0.5, -0.5], "cost": [50, 70], "description": "Decreased Energy Use"}]
+	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-0.5, -0.5], "cost": [50, 70], "description": "Decreased Energy Use"}
+	]
 	
 	
 var laserUpgrades = [
 	{"levels": 5, "name": ["Yellow Laser", "Green Laser", "Blue Laser", "Violet Laser", "UV Laser"], "stat": "damage", "modifier": [0.1, 0.1, 0.1, 0.1, 0.1], "cost": [40, 50, 60, 70, 80], "description": "Increased Damage"},
 	{"levels": 2, "name": ["Improved Capacitor\nCharging", "Exceptional Capacitor\nCharging"], "stat": "fireRate", "modifier": [-0.1, -0.1], "cost": [50, 60], "description": "Decreased Warm-Up Time"},
 	{"levels": 4, "name": ["Beam Expander", "Wide Beam\nExpander", "Advanced Beam\nExpander", "Maximal Beam\nExpander"], "stat": "projectileSize", "modifier": [1, 1, 1, 1], "cost": [45, 60, 75, 90], "description": "Widened Beam"},
-	{"levels": 3, "name": ["Neutron Beam", "X-Ray Beam", "Gamma Ray Beam"], "stat": "penetration", "modifier": [1, 1, 1], "cost": [50, 65, 80], "description": "Increased Penetration"},
-	{"levels": 6, "name": ["Heat Recycling", "Gold Circuitry", "Silver Circuitry", "Graphene Circuitry", "Cryo-Circuitry", "Superconductor\nCircuitry"], "stat": "energyUse", "modifier": [-1, -1, -0.5, -0.5, -0.5, -0.5], "cost": [40, 50, 60, 70, 80, 90], "description": "Decreased Energy Use"}]
-
-
-var plasmaUpgrades = [
-	#{"levels": 5, "name": ["10,000 Degrees", "20,000 Degrees", "30,000 Degrees", "40,000 Degrees", "50,000 Degrees"], "stat": "damage", "modifier": [3, 3, 3, 4, 4], "cost": [45, 55, 65, 75, 85], "description": "Increased Damage"},
-	{"levels": 4, "name": ["Short Barrel", "Long Barrel", "Electromagnetic\nTightening", "Advanced Electromagnetic\nTightening"], "stat": "projectileRange", "modifier": [100, 100, 100, 100], "cost": [35, 45, 60, 75], "description": "Increased Range"},
-	#{"levels": 4, "name": ["Improved Gas\nInjection", "Exceptional Gas\nInjection", "Heat Pipes", "Evaporative Cooling"], "stat": "fireRate", "modifier": [-0.2, -0.2, -0.2, -0.2], "cost": [45, 60, 75, 90], "description": "Increased Fire Rate"},
-	#{"levels": 3, "name": ["Iron Sight", "Reflex Sight", "Telescopic Sight"], "stat": "accuracy", "modifier": [-2, -1, -1], "cost": [40, 45, 50], "description": "Increased Accuracy"},
-	{"levels": 3, "name": ["Tightened Funnel", "Improved Electrodes", "Advanced Electrodes"], "stat": "projectileSpeed", "modifier": [100, 100, 100], "cost": [50, 60, 70], "description": "Increased Projectile Speed"},
-	{"levels": 4, "name": ["Enlarged Plasma\nChamber", "Reinforced Plasma\nChamber", "High-Compression\nPlasma Chamber", "Maximal-Compression\nPlasma Chamber"], "stat": "projectileSize", "modifier": [0.8, 0.8, 0.8, 0.8], "cost": [40, 50, 60, 70], "description": "Increased Projectile Size"},
-	#{"levels": 4, "name": ["Helium-Based\nPlasma", "Nitrogen-Based\nPlasma", "Oxygen-Based\nPlasma", "Argon-Based\nPlasma"], "stat": "penetration", "modifier": [1, 1, 1, 1], "cost": [40, 55, 70, 90], "description": "Increased Penetration"},
-	#{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [55, 75], "description": "Decreased Energy Use"}
+	#{"levels": 3, "name": ["Neutron Beam", "X-Ray Beam", "Gamma Ray Beam"], "stat": "penetration", "modifier": [1, 1, 1], "cost": [50, 65, 80], "description": "Increased Penetration"},
+	{"levels": 6, "name": ["Heat Recycling", "Gold Circuitry", "Silver Circuitry", "Graphene Circuitry", "Cryo-Circuitry", "Superconductor\nCircuitry"], "stat": "energyUse", "modifier": [-1, -1, -0.5, -0.5, -0.5, -0.5], "cost": [40, 50, 60, 70, 80, 90], "description": "Decreased Energy Use"}
 	]
 
 
-func pickUpgrades(type, currentUpgrades):
+var plasmaUpgrades = [
+	{"levels": 5, "name": ["10,000 Degrees", "20,000 Degrees", "30,000 Degrees", "40,000 Degrees", "50,000 Degrees"], "stat": "damage", "modifier": [3, 3, 3, 4, 4], "cost": [45, 55, 65, 75, 85], "description": "Increased Damage"},
+	{"levels": 4, "name": ["Short Barrel", "Long Barrel", "Electromagnetic\nTightening", "Advanced Electromagnetic\nTightening"], "stat": "projectileRange", "modifier": [100, 100, 100, 100], "cost": [35, 45, 60, 75], "description": "Increased Range"},
+	{"levels": 4, "name": ["Improved Gas\nInjection", "Exceptional Gas\nInjection", "Heat Pipes", "Evaporative Cooling"], "stat": "fireRate", "modifier": [-0.2, -0.2, -0.2, -0.2], "cost": [45, 60, 75, 90], "description": "Increased Fire Rate"},
+	{"levels": 3, "name": ["Iron Sight", "Reflex Sight", "Telescopic Sight"], "stat": "accuracy", "modifier": [-2, -1, -1], "cost": [40, 45, 50], "description": "Increased Accuracy"},
+	{"levels": 3, "name": ["Tightened Funnel", "Improved Electrodes", "Advanced Electrodes"], "stat": "projectileSpeed", "modifier": [100, 100, 100], "cost": [50, 60, 70], "description": "Increased Projectile Speed"},
+	{"levels": 4, "name": ["Enlarged Plasma\nChamber", "Reinforced Plasma\nChamber", "High-Compression\nPlasma Chamber", "Maximal-Compression\nPlasma Chamber"], "stat": "projectileSize", "modifier": [0.8, 0.8, 0.8, 0.8], "cost": [40, 50, 60, 70], "description": "Increased Projectile Size"},
+	{"levels": 4, "name": ["Helium-Based\nPlasma", "Nitrogen-Based\nPlasma", "Oxygen-Based\nPlasma", "Argon-Based\nPlasma"], "stat": "penetration", "modifier": [1, 1, 1, 1], "cost": [40, 55, 70, 90], "description": "Increased Penetration"},
+	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [55, 75], "description": "Decreased Energy Use"}
+	]
+
+var hammerUpgrades = [
+	{"levels": 5, "name": ["5,000 Volts", "10,000 Volts", "20,000 Volts", "30,000 Volts", "40,000 Volts"], "stat": "damage", "modifier": [3, 3, 2, 2, 2], "cost": [40, 50, 60, 70, 80], "description": "Increased Damage"},
+	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [60, 70], "description": "Decreased Energy Use"},
+	{"levels": 3, "name": ["Improved Balancing", "Extended Reach", "Extended Tesla Coil"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [40, 50, 60], "description": "Increased Range"}
+	]
+
+var shieldUpgrades = [
+	{"levels": 5, "name": ["10,000 Degrees", "20,000 Degrees", "30,000 Degrees", "40,000 Degrees", "50,000 Degrees"], "stat": "damage", "modifier": [3, 3, 3, 3, 2], "cost": [40, 50, 60, 70, 80], "description": "Increased Damage"},
+	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [60, 70], "description": "Decreased Energy Use"},
+	{"levels": 3, "name": ["Neodymium Reinforcement", "Improved Electromagnet", "Advanced Electromagnet"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [50, 60, 70], "description": "Increased Range"}
+	]
+
+
+func pickUpgrades(weaponType, damageType, currentUpgrades):
 	var upgradeList
-	if type == 0:
-		upgradeList = ballisticUpgrades
-	if type == 1:
-		upgradeList = laserUpgrades
-	if type == 2:
-		upgradeList = plasmaUpgrades
+	if weaponType == 'projectile':
+		if damageType == 0:
+			upgradeList = ballisticUpgrades
+		if damageType == 1:
+			upgradeList = laserUpgrades
+		if damageType == 2:
+			upgradeList = plasmaUpgrades
+	elif weaponType == 'melee':
+		if damageType == 0:
+			upgradeList = hammerUpgrades
+		if damageType == 1:
+			upgradeList = shieldUpgrades
 	
 	var selectedUpgrades = []
 	while len(upgradeList) > 0:

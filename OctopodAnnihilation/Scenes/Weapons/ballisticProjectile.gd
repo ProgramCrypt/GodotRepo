@@ -9,6 +9,7 @@ var projectileProperties = {"damage": 0, "projectileRange": 0, "projectileSpeed"
 
 var speed = 0
 var distanceTraveled = 0
+var bodiesPassedThrough = 0
 
 @onready var anim = $AnimatedSprite2D
 
@@ -22,7 +23,6 @@ func _physics_process(delta):
 		projectileProperties["damage"] -= (distanceTraveled - projectileProperties["projectileRange"]) * 0.01 * delta
 		if projectileProperties["damage"] <= 0:
 			queue_free()
-	print(projectileProperties["damage"])
 
 #shooterProjectileProperties = {"damage": var, "range": var, "speed": var, "penetration": var, "projectileMultiplier": var, "effectsOnHit": Array}
 func setShooter(shooterGroups, shooterProjectileProperties):
@@ -38,14 +38,19 @@ func setShooter(shooterGroups, shooterProjectileProperties):
 func _on_body_entered(body):
 	#damage to mob
 	if shooter == "player" or shooter == "npc":
-		if body.is_in_group("player"):
+		if body.is_in_group("player") == true or body.is_in_group("npc") == true:
 			pass
 		else:
 			if body.is_in_group("enemy") == true:
 				var ballisticResistance = body.getResistances()["ballisticResistance"]
 				var damage = statModification.ballisticDamage(projectileProperties["damage"], ballisticResistance)
 				body.takeDamage(damage)
-			queue_free()
+			bodiesPassedThrough += 1
+			if body.is_in_group("enemy") == true:
+				if bodiesPassedThrough >= projectileProperties["penetration"]:
+					queue_free()
+			else:
+				queue_free()
 	
 	#damage to player
 	if shooter == "enemy":
@@ -56,4 +61,9 @@ func _on_body_entered(body):
 				var ballisticResistance = playerStats.ballisticResistance
 				var damage = statModification.ballisticDamage(projectileProperties["damage"], ballisticResistance)
 				playerStats.takeDamage(damage)
-			queue_free()
+			bodiesPassedThrough += 1
+			if body.is_in_group("player") == true:
+				if bodiesPassedThrough >= projectileProperties["penetration"]:
+					queue_free()
+			else:
+				queue_free()

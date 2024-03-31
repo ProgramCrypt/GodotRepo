@@ -1,12 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://ccswn86ak6nuq"]
+[gd_scene load_steps=29 format=3 uid="uid://ccswn86ak6nuq"]
 
 [ext_resource type="Script" path="res://Scenes/PCs/player.gd" id="1_f26gr"]
 [ext_resource type="PackedScene" uid="uid://bqyi3aebv35hk" path="res://Scenes/Weapons/ballisticProjectile.tscn" id="2_8twxq"]
-[ext_resource type="Texture2D" uid="uid://c1sr8101aws3e" path="res://Sprites/PCs/spritesheet_gunArm.png" id="3_0dm0r"]
 [ext_resource type="Texture2D" uid="uid://dyjoq0gb0bqm3" path="res://Sprites/PCs/spritesheet_mainCharacter_full.png" id="3_jf73b"]
 [ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_p5qpu"]
 [ext_resource type="PackedScene" uid="uid://cowxw1tti6gi" path="res://Scenes/Weapons/plasmaProjectile.tscn" id="4_vyftj"]
+[ext_resource type="PackedScene" uid="uid://dg74b5xs8xb4p" path="res://Scenes/Weapons/meleeSwing.tscn" id="5_gn15i"]
 [ext_resource type="Texture2D" uid="uid://bbawmf1ft4n33" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="5_nutdu"]
+[ext_resource type="Texture2D" uid="uid://b482jyflu7qgb" path="res://Sprites/Weapons/spritesheet_guns.png" id="6_0574w"]
 [ext_resource type="Script" path="res://Scenes/PCs/playerWeaponArm.gd" id="8_cakgn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_taqf8"]
@@ -319,6 +320,7 @@ script = ExtResource("1_f26gr")
 ballisticProjectile = ExtResource("2_8twxq")
 laserProjectile = ExtResource("3_p5qpu")
 plasmaProjectile = ExtResource("4_vyftj")
+meleeSwing = ExtResource("5_gn15i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
@@ -338,15 +340,15 @@ libraries = {
 [node name="Arm" type="Sprite2D" parent="."]
 position = Vector2(11, 5)
 rotation = -1.5708
-texture = ExtResource("3_0dm0r")
-offset = Vector2(-12, -8)
+texture = ExtResource("6_0574w")
+offset = Vector2(-12, -15)
 hframes = 4
-vframes = 8
-frame = 1
+vframes = 4
+frame = 5
 script = ExtResource("8_cakgn")
 
 [node name="Muzzle" type="Marker2D" parent="Arm"]
-position = Vector2(-32, -7)
+position = Vector2(-40, -3)
 
 [node name="muzTest" type="Sprite2D" parent="Arm"]
 visible = false

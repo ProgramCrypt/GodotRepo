@@ -2,6 +2,7 @@ extends Sprite2D
 
 @onready var playerStats = get_node("/root/ActivePlayerStats")
 
+var weaponType : String #"projectile" or "melee"
 var damageType : int #0=ballistic, 1=laser, 2=plasma
 var damage : float #value of health lost. cannot go below 1
 var energyUse : float #value of energy used per shot or per second for lasers
@@ -13,11 +14,16 @@ var projectileSize : float #percentage set to 1 by default
 var penetration : float #number of possible enemies hit. cannot go below 1
 var effectsOnHit : Array
 
+var swingRange : float #number of pixels outward swing prjects
+var swingAngle : float #number of degrees of width of swing
+var swingRate : float #time between swings
+var swingSpeed : float #time that a swing takes
 
 func _ready():
 	changeWeapon(playerStats.weapon1)
 
 func initialize(stats : ProjectileWeaponStatList):
+	weaponType = stats.weaponType
 	damageType = stats.damageType
 	damage = stats.damage
 	energyUse = stats.energyUse
@@ -30,16 +36,36 @@ func initialize(stats : ProjectileWeaponStatList):
 	effectsOnHit = stats.effectsOnHit
 
 func changeWeapon(statDict):
+	weaponType = statDict["weaponType"]
 	damageType = statDict["damageType"]
 	damage = statDict["damage"]
 	energyUse = statDict["energyUse"]
-	projectileRange = statDict["projectileRange"]
-	fireRate = statDict["fireRate"]
-	accuracy = statDict["accuracy"]
-	projectileSpeed = statDict["projectileSpeed"]
-	projectileSize = statDict["projectileSize"]
-	penetration = statDict["penetration"]
 	effectsOnHit = statDict["effectsOnHit"]
+	if statDict["weaponType"] == "projectile":
+		projectileRange = statDict["projectileRange"]
+		fireRate = statDict["fireRate"]
+		accuracy = statDict["accuracy"]
+		projectileSpeed = statDict["projectileSpeed"]
+		projectileSize = statDict["projectileSize"]
+		penetration = statDict["penetration"]
+		if statDict["damageType"] == 0:
+			frame = 1
+			$Muzzle.position = Vector2(-32, -7)
+		if statDict["damageType"] == 1:
+			frame = 3
+			$Muzzle.position = Vector2(-26, -5)
+		if statDict["damageType"] == 2:
+			frame = 5
+			$Muzzle.position = Vector2(-40, -3)
+	if statDict["weaponType"] == "melee":
+		swingRange = statDict["swingRange"]
+		swingAngle = statDict["swingAngle"]
+		swingRate = statDict["swingRate"]
+		swingSpeed = statDict["swingSpeed"]
+		if statDict["damageType"] == 0:
+			frame = 7
+		if statDict["damageType"] == 1:
+			frame = 9
 
 func setStatValue(stat, value):
 	if stat == "damage":

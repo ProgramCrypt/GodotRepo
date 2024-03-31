@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MeleeWeaponStatList" load_steps=2 format=3 uid="uid://tb4nhhbcrs0h"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/meleeWeaponStatList.gd" id="1_dws6p"]
+
+[resource]
+script = ExtResource("1_dws6p")
+weaponType = "melee"
+damageType = 0
+damage = 10.0
+energyUse = 5.0
+swingRange = 45.0
+swingAngle = 45.0
+swingRate = 0.8
+swingSpeed = 0.2
+effectsOnHit = []

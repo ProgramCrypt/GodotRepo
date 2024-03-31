@@ -2,6 +2,7 @@ extends Resource
 
 class_name ProjectileWeaponStatList
 
+@export var weaponType = "projectile"
 @export var damageType : int #0=ballistic, 1=laser, 2=plasma
 @export var damage : float #value of health lost. cannot go below 1
 @export var energyUse : float #value of energy used per shot or per second for lasers

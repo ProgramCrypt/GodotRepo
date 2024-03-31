@@ -9,6 +9,7 @@ var projectileProperties
 
 var speed = 0
 var distanceTraveled = 0
+var bodiesPassedThrough = 0
 
 @onready var anim = $AnimatedSprite2D
 var animTimer = 0
@@ -45,14 +46,19 @@ func setShooter(shooterGroups, shooterProjectileProperties):
 func _on_body_entered(body):
 	#damage to mob
 	if shooter == "player" or shooter == "npc":
-		if body.is_in_group("player"):
+		if body.is_in_group("player") == true or body.is_in_group("npc") == true:
 			pass
 		else:
 			if body.is_in_group("enemy") == true:
 				var plasmaResistance = body.getResistances()["plasmaResistance"]
 				var damage = statModification.plasmaDamage(projectileProperties["damage"], plasmaResistance)
 				body.takeDamage(damage)
-			queue_free()
+			bodiesPassedThrough += 1
+			if body.is_in_group("enemy") == true:
+				if bodiesPassedThrough >= projectileProperties["penetration"]:
+					queue_free()
+			else:
+				queue_free()
 	
 	#damage to player
 	if shooter == "enemy":
@@ -63,4 +69,9 @@ func _on_body_entered(body):
 				var plasmaResistance = playerStats.plasmaResistance
 				var damage = statModification.plasmaDamage(projectileProperties["damage"], plasmaResistance)
 				playerStats.takeDamage(damage)
-			queue_free()
+			bodiesPassedThrough += 1
+			if body.is_in_group("player") == true:
+				if bodiesPassedThrough >= projectileProperties["penetration"]:
+					queue_free()
+			else:
+				queue_free()

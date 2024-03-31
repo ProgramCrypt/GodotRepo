@@ -4,7 +4,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nay7u"]
 
-[node name="laserProjectile" type="RayCast2D"]
+[node name="laserProjectile" type="RayCast2D" groups=["laserProjectile"]]
 target_position = Vector2(-1000, 0)
 script = ExtResource("1_oexd4")
 

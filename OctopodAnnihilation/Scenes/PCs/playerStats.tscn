@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://Scenes/PCs/stats.gd" id="1_ghe4p"]
 [ext_resource type="Resource" uid="uid://du1rgtw63p6ar" path="res://Scenes/PCs/superSoldier.tres" id="2_t38vs"]
-[ext_resource type="Resource" uid="uid://fyticmxl8ybr" path="res://Scenes/Weapons/ballistic.tres" id="3_vyig2"]
+[ext_resource type="Resource" uid="uid://tb4nhhbcrs0h" path="res://Scenes/Weapons/hammer.tres" id="4_erumi"]
 [ext_resource type="Resource" uid="uid://bq8e3m014dgsp" path="res://Scenes/Weapons/plasma.tres" id="4_g8b3a"]
 
 [node name="playerStats" type="Node2D"]
 script = ExtResource("1_ghe4p")
 playerType = ExtResource("2_t38vs")
-startingWeapon1 = ExtResource("3_vyig2")
-startingWeapon2 = ExtResource("4_g8b3a")
+startingWeapon1 = ExtResource("4_g8b3a")
+startingWeapon2 = ExtResource("4_erumi")

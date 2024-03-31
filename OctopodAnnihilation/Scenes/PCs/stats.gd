@@ -111,17 +111,24 @@ func regenEnergy(amount):
 	currentEnergy = min(currentEnergy, maxEnergy)
 	emit_signal("energyChanged")
 
-func saveWeapon(stats : ProjectileWeaponStatList, weaponDict):
+func saveWeapon(stats, weaponDict):
+	weaponDict["weaponType"] = stats.weaponType
 	weaponDict["damageType"] = stats.damageType
 	weaponDict["damage"] = stats.damage
 	weaponDict["energyUse"] = stats.energyUse
-	weaponDict["projectileRange"] = stats.projectileRange
-	weaponDict["fireRate"] = stats.fireRate
-	weaponDict["accuracy"] = stats.accuracy
-	weaponDict["projectileSpeed"] = stats.projectileSpeed
-	weaponDict["projectileSize"] = stats.projectileSize
-	weaponDict["penetration"] = stats.penetration
 	weaponDict["effectsOnHit"] = stats.effectsOnHit
+	if weaponDict["weaponType"] == "projectile":
+		weaponDict["projectileRange"] = stats.projectileRange
+		weaponDict["fireRate"] = stats.fireRate
+		weaponDict["accuracy"] = stats.accuracy
+		weaponDict["projectileSpeed"] = stats.projectileSpeed
+		weaponDict["projectileSize"] = stats.projectileSize
+		weaponDict["penetration"] = stats.penetration
+	if weaponDict["weaponType"] == "melee":
+		weaponDict["swingRange"] = stats.swingRange
+		weaponDict["swingAngle"] = stats.swingAngle
+		weaponDict["swingRate"] = stats.swingRate
+		weaponDict["swingSpeed"] = stats.swingSpeed
 
 func modifyWeapon(weapon, stat, modifier):
 	if weapon == "weapon1":
