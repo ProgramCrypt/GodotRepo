@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqiaslsffj84c"]
+[gd_scene load_steps=10 format=3 uid="uid://dqiaslsffj84c"]
 
 [ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_uqvdx"]
 [ext_resource type="Script" path="res://Scenes/Regions/OctopodLabs/octoLabsRoomScript.gd" id="2_k4rml"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://pgfpr0pd30tt" path="res://Scenes/Mobs/chimeraLabGrunt.tscn" id="4_1btj6"]
 [ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="4_cv68e"]
 [ext_resource type="PackedScene" uid="uid://dslk4ereghgqr" path="res://Scenes/Mobs/octopodEngineer.tscn" id="5_pgsnb"]
+[ext_resource type="PackedScene" uid="uid://qgtwdysjrfp5" path="res://Scenes/Props/labServers/labServer.tscn" id="7_ggadx"]
+[ext_resource type="PackedScene" uid="uid://di6b3cxwyt7wg" path="res://Scenes/Props/labServers/labDamagedServer.tscn" id="8_4208q"]
+[ext_resource type="PackedScene" uid="uid://pwubictmd5cd" path="res://Scenes/Props/labTables/labTable3.tscn" id="9_nth8q"]
 
 [node name="serverRoom1" type="TileMap"]
 y_sort_enabled = true
@@ -20,7 +23,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = -2
-layer_1/tile_data = PackedInt32Array(196612, 65537, 2, 589828, 65537, 3, 720902, 1, 2, 589830, 1, 2, 327684, 1, 2, 196614, 1, 2, 327686, 1, 3, 720900, 1, 3, 720904, 1, 3, 589834, 65537, 2, 327690, 1, 3, 196616, 1, 3, 720906, 1, 2, 327688, 1, 2, 589832, 1, 3, 196618, 65537, 2, 196610, 1, 6, 589836, 1, 7, 786434, 65537, 6, 131084, 65537, 7, 131083, 1, 6, 851981, 1, 7, 851969, 1, 6, 65537, 1, 6, 458757, 196609, 1, 458761, 196609, 0, 458762, 131073, 6, 524292, 196609, 7, 458758, 262145, 6, 262148, 131073, 7, 655368, 262145, 6, 786442, 196609, 6, 262154, 262145, 7, 131080, 196609, 6, 655366, 131073, 6, 786436, 262145, 7)
+layer_1/tile_data = PackedInt32Array(196612, 196609, 2, 589828, 196609, 3, 720902, 196609, 2, 589830, 196609, 2, 327684, 196609, 2, 196614, 196609, 2, 327686, 196609, 3, 720900, 196609, 3, 720904, 196609, 3, 589834, 196609, 2, 327690, 196609, 3, 196616, 196609, 3, 720906, 196609, 2, 327688, 196609, 2, 589832, 196609, 3, 196618, 196609, 2, 196610, 1, 6, 589836, 1, 7, 786434, 65537, 6, 131084, 65537, 7, 131083, 1, 6, 851981, 1, 7, 851969, 1, 6, 65537, 1, 6, 458757, 196609, 3, 458761, 196609, 2, 458762, 131073, 6, 524292, 196609, 7, 458758, 262145, 6, 262148, 131073, 7, 655368, 262145, 6, 786442, 196609, 6, 262154, 262145, 7, 131080, 196609, 6, 655366, 131073, 6, 786436, 262145, 7)
 layer_2/name = "upperLevel"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -47,3 +50,57 @@ propCollisionBox = ExtResource("3_lr5jc")
 chimeraLabGrunt = ExtResource("4_1btj6")
 octopodScientist = ExtResource("4_cv68e")
 octopodEngineer = ExtResource("5_pgsnb")
+
+[node name="labServer" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(450, 1150)
+
+[node name="labServer2" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(650, 1150)
+
+[node name="labServer3" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(650, 950)
+
+[node name="labServer4" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(850, 1150)
+
+[node name="labServer5" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(850, 950)
+
+[node name="labServer6" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(1050, 1150)
+
+[node name="labServer7" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(450, 550)
+
+[node name="labServer8" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(650, 550)
+
+[node name="labServer9" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(650, 350)
+
+[node name="labServer10" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(850, 550)
+
+[node name="labServer11" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(850, 350)
+
+[node name="labServer12" parent="." instance=ExtResource("7_ggadx")]
+position = Vector2(1050, 550)
+
+[node name="labDamagedServer" parent="." instance=ExtResource("8_4208q")]
+position = Vector2(450, 950)
+
+[node name="labDamagedServer2" parent="." instance=ExtResource("8_4208q")]
+position = Vector2(1050, 950)
+
+[node name="labDamagedServer3" parent="." instance=ExtResource("8_4208q")]
+position = Vector2(450, 350)
+
+[node name="labDamagedServer4" parent="." instance=ExtResource("8_4208q")]
+position = Vector2(1050, 350)
+
+[node name="labTable" parent="." instance=ExtResource("9_nth8q")]
+position = Vector2(550, 750)
+
+[node name="labTable2" parent="." instance=ExtResource("9_nth8q")]
+position = Vector2(950, 750)

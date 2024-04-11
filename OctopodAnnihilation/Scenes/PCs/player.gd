@@ -145,7 +145,7 @@ func shoot():
 		projectile.transform = $Arm/Muzzle.global_transform
 		var fireAngle = randf_range(-$Arm.accuracy/2, $Arm.accuracy/2)
 		projectile.rotation_degrees += fireAngle
-		projectile.setShooter(get_groups(),{"damage": $Arm.damage, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
+		projectile.setShooter(get_groups(),{"damage": $Arm.damage, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "parentVelocity": velocity, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
 	if $Arm.damageType == 1:
 		for i in range(int($Arm.projectileSize)):
 			var projectile = laserProjectile.instantiate()
@@ -161,7 +161,7 @@ func shoot():
 		projectile.transform = $Arm/Muzzle.global_transform
 		var fireAngle = randf_range(-$Arm.accuracy/2, $Arm.accuracy/2)
 		projectile.rotation_degrees += fireAngle
-		projectile.setShooter(get_groups(),{"damage": $Arm.damage, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "projectileSize": $Arm.projectileSize, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
+		projectile.setShooter(get_groups(),{"damage": $Arm.damage, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "parentVelocity": velocity, "projectileSize": $Arm.projectileSize, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
 	
 	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "cloaking" and isActiveActive == true:
 		for enemy in get_tree().get_nodes_in_group("enemy"):

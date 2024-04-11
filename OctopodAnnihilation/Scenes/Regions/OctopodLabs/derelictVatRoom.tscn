@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bisme83xydtnu"]
+[gd_scene load_steps=12 format=3 uid="uid://bisme83xydtnu"]
 
 [ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_a0v0c"]
 [ext_resource type="Script" path="res://Scenes/Regions/OctopodLabs/octoLabsRoomScript.gd" id="2_hsie5"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://pgfpr0pd30tt" path="res://Scenes/Mobs/chimeraLabGrunt.tscn" id="4_ijfwm"]
 [ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="4_twqhx"]
 [ext_resource type="PackedScene" uid="uid://dslk4ereghgqr" path="res://Scenes/Mobs/octopodEngineer.tscn" id="5_6h5qn"]
+[ext_resource type="PackedScene" uid="uid://cixp8dylixal8" path="res://Scenes/Props/labVats/labDestroyedVat.tscn" id="7_lhtvf"]
+[ext_resource type="PackedScene" uid="uid://byghc6ynwihaf" path="res://Scenes/Props/labVats/labDestroyedEmptyVat.tscn" id="8_8pt4r"]
+[ext_resource type="PackedScene" uid="uid://bwj17s4uunyxy" path="res://Scenes/Props/labTables/labTable7.tscn" id="9_2rb37"]
+[ext_resource type="PackedScene" uid="uid://pwubictmd5cd" path="res://Scenes/Props/labTables/labTable3.tscn" id="10_236cc"]
+[ext_resource type="PackedScene" uid="uid://dqsbkl4oy5uxs" path="res://Scenes/Props/labTables/labTable4.tscn" id="11_g84l6"]
 
 [node name="derelictVatRoom" type="TileMap"]
 y_sort_enabled = true
@@ -20,7 +25,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = -2
-layer_1/tile_data = PackedInt32Array(458759, 196609, 5, 589829, 196609, 4, 327689, 327681, 4, 327685, 327681, 5, 589833, 65537, 6, 589826, 458753, 1, 131081, 393217, 7, 458764, 458753, 0, 786439, 327681, 6, 327682, 196609, 0, 786441, 196609, 1, 131077, 262145, 0, 589836, 262145, 1, 786437, 131073, 6, 458754, 262145, 7, 131078, 196609, 7, 393228, 262145, 7, 65549, 1, 6, 851969, 1, 6, 131073, 65537, 7, 65538, 1, 7, 851980, 1, 7, 786445, 65537, 6, 786434, 65537, 6, 131083, 65537, 6, 196621, 65537, 7, 196611, 1, 7, 655361, 65537, 6, 131080, 458753, 6, 786438, 458753, 7)
+layer_1/tile_data = PackedInt32Array(458759, 196609, 3, 589829, 196609, 2, 327689, 196609, 2, 327685, 196609, 3, 589833, 65537, 6, 589826, 196609, 3, 131081, 393217, 7, 458764, 196609, 2, 786439, 327681, 6, 327682, 196609, 2, 786441, 196609, 3, 131077, 196609, 2, 589836, 196609, 3, 786437, 131073, 6, 458754, 262145, 7, 131078, 196609, 7, 393228, 262145, 7, 65549, 1, 6, 851969, 1, 6, 131073, 65537, 7, 65538, 1, 7, 851980, 1, 7, 786445, 65537, 6, 786434, 65537, 6, 131083, 65537, 6, 196621, 65537, 7, 196611, 1, 7, 655361, 65537, 6, 131080, 458753, 6, 786438, 458753, 7)
 layer_2/name = "upperLevel"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -47,3 +52,33 @@ propCollisionBox = ExtResource("3_02s8c")
 chimeraLabGrunt = ExtResource("4_ijfwm")
 octopodScientist = ExtResource("4_twqhx")
 octopodEngineer = ExtResource("5_6h5qn")
+
+[node name="labDestroyedVat" parent="." instance=ExtResource("7_lhtvf")]
+position = Vector2(550, 950)
+
+[node name="labDestroyedVat2" parent="." instance=ExtResource("7_lhtvf")]
+position = Vector2(750, 750)
+
+[node name="labDestroyedVat3" parent="." instance=ExtResource("8_8pt4r")]
+position = Vector2(550, 550)
+
+[node name="labDestroyedVat4" parent="." instance=ExtResource("8_8pt4r")]
+position = Vector2(950, 550)
+
+[node name="labTable" parent="." instance=ExtResource("9_2rb37")]
+position = Vector2(250, 950)
+
+[node name="labTable2" parent="." instance=ExtResource("10_236cc")]
+position = Vector2(250, 550)
+
+[node name="labTable3" parent="." instance=ExtResource("10_236cc")]
+position = Vector2(950, 1250)
+
+[node name="labTable4" parent="." instance=ExtResource("9_2rb37")]
+position = Vector2(1250, 750)
+
+[node name="labTable5" parent="." instance=ExtResource("11_g84l6")]
+position = Vector2(550, 250)
+
+[node name="labTable6" parent="." instance=ExtResource("11_g84l6")]
+position = Vector2(1250, 950)

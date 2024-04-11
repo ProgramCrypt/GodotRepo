@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cllbucv4b0avx"]
+
+[ext_resource type="Texture2D" uid="uid://xk81bkye7uwe" path="res://Sprites/Props/LabProps.png" id="1_rssxv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htpbq"]
+size = Vector2(39, 35)
+
+[node name="labDestroyedOctopodVat" type="StaticBody2D"]
+collision_mask = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rssxv")
+hframes = 8
+vframes = 8
+frame = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 16)
+shape = SubResource("RectangleShape2D_htpbq")

@@ -7,6 +7,7 @@ extends Area2D
 var shooter = null
 var projectileProperties
 
+var parentVelocity = Vector2(0, 0)
 var speed = 0
 var distanceTraveled = 0
 var bodiesPassedThrough = 0
@@ -20,6 +21,7 @@ func _ready():
 
 func _physics_process(delta):
 	position -= transform.x * speed * delta
+	position += parentVelocity/2 * delta
 	distanceTraveled += speed * delta
 	if distanceTraveled > projectileProperties["projectileRange"]:
 		if dissipate == false:
@@ -40,6 +42,7 @@ func setShooter(shooterGroups, shooterProjectileProperties):
 	else:
 		shooter = "enemy"
 	speed = projectileProperties["projectileSpeed"]
+	parentVelocity = projectileProperties["parentVelocity"]
 	$AnimatedSprite2D.scale = Vector2(projectileProperties["projectileSize"], projectileProperties["projectileSize"])
 	$CollisionShape2D.scale = Vector2(projectileProperties["projectileSize"], projectileProperties["projectileSize"])
 

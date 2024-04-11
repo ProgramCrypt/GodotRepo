@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://qgtwdysjrfp5"]
+
+[ext_resource type="Texture2D" uid="uid://xk81bkye7uwe" path="res://Sprites/Props/LabProps.png" id="1_dajys"]
+[ext_resource type="Script" path="res://Scenes/Props/labServers/labServer.gd" id="1_e4sj5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htpbq"]
+size = Vector2(58, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bxx8"]
+size = Vector2(62, 84)
+
+[node name="labServer" type="StaticBody2D"]
+collision_mask = 7
+script = ExtResource("1_e4sj5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dajys")
+hframes = 8
+vframes = 8
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_htpbq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_2bxx8")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

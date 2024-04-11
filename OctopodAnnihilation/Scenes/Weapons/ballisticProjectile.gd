@@ -5,8 +5,9 @@ extends Area2D
 #@onready var projectileWeaponStats = get_node("/root/ProjectileWeaponStats")
 
 var shooter = null
-var projectileProperties = {"damage": 0, "projectileRange": 0, "projectileSpeed": 0, "penetration": 0, "effectsOnHit": 0}
+var projectileProperties = {"damage": 0, "projectileRange": 0, "projectileVelocity": 0, "penetration": 0, "effectsOnHit": 0}
 
+var parentVelocity = Vector2(0, 0)
 var speed = 0
 var distanceTraveled = 0
 var bodiesPassedThrough = 0
@@ -17,9 +18,8 @@ func _ready():
 	anim.play("default")
 
 func _physics_process(delta):
-	print(global_position, ' ', position)
 	position -= transform.x * speed * delta
-	distanceTraveled += speed * delta
+	position += parentVelocity/2 * delta
 	if distanceTraveled > projectileProperties["projectileRange"]:
 		projectileProperties["damage"] -= (distanceTraveled - projectileProperties["projectileRange"]) * 0.01 * delta
 		if projectileProperties["damage"] <= 0:
@@ -35,6 +35,7 @@ func setShooter(shooterGroups, shooterProjectileProperties):
 	else:
 		shooter = "enemy"
 	speed = projectileProperties["projectileSpeed"]
+	parentVelocity = projectileProperties["parentVelocity"]
 
 func _on_body_entered(body):
 	#damage to mob
