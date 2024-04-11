@@ -1,12 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4d1ic0xwemlf"]
+[gd_scene load_steps=15 format=3 uid="uid://c4d1ic0xwemlf"]
 
 [ext_resource type="Script" path="res://Scenes/PCs/stats.gd" id="1_ghe4p"]
 [ext_resource type="Resource" uid="uid://du1rgtw63p6ar" path="res://Scenes/PCs/superSoldier.tres" id="2_t38vs"]
+[ext_resource type="Resource" uid="uid://d1j16p0lfu417" path="res://Scenes/PCs/sniper.tres" id="3_pxpdf"]
+[ext_resource type="Resource" uid="uid://b3artjw52ibju" path="res://Scenes/PCs/tanker.tres" id="4_attj7"]
 [ext_resource type="Resource" uid="uid://tb4nhhbcrs0h" path="res://Scenes/Weapons/hammer.tres" id="4_erumi"]
 [ext_resource type="Resource" uid="uid://bq8e3m014dgsp" path="res://Scenes/Weapons/plasma.tres" id="4_g8b3a"]
+[ext_resource type="Resource" uid="uid://c4fkakcu5kye3" path="res://Scenes/PCs/Infiltrator.tres" id="5_0ofvp"]
+[ext_resource type="Resource" uid="uid://j1p11osj80ea" path="res://Scenes/PCs/cyborg.tres" id="6_2nyop"]
+[ext_resource type="Resource" uid="uid://bd4wf1hqgr50q" path="res://Scenes/PCs/mutant.tres" id="7_i3u7j"]
+[ext_resource type="Resource" uid="uid://da4fqsd014b3q" path="res://Scenes/PCs/robot.tres" id="8_juk66"]
+[ext_resource type="Resource" uid="uid://fyticmxl8ybr" path="res://Scenes/Weapons/ballistic.tres" id="9_ycdle"]
+[ext_resource type="Resource" uid="uid://sstsdwc83suy" path="res://Scenes/Weapons/laser.tres" id="10_bi2ao"]
+[ext_resource type="Resource" uid="uid://ulelw3swtk2b" path="res://Scenes/Weapons/shield.tres" id="13_yjllo"]
+[ext_resource type="PackedScene" uid="uid://b42uv1wwfad10" path="res://Scenes/Utilities/deathMenu.tscn" id="14_xeoue"]
 
 [node name="playerStats" type="Node2D"]
 script = ExtResource("1_ghe4p")
-playerType = ExtResource("2_t38vs")
-startingWeapon1 = ExtResource("4_g8b3a")
-startingWeapon2 = ExtResource("4_erumi")
+superSoldier = ExtResource("2_t38vs")
+sniper = ExtResource("3_pxpdf")
+tanker = ExtResource("4_attj7")
+infiltrator = ExtResource("5_0ofvp")
+cyborg = ExtResource("6_2nyop")
+mutant = ExtResource("7_i3u7j")
+robot = ExtResource("8_juk66")
+ballistic = ExtResource("9_ycdle")
+laser = ExtResource("10_bi2ao")
+plasma = ExtResource("4_g8b3a")
+hammer = ExtResource("4_erumi")
+shield = ExtResource("13_yjllo")
+deathMenu = ExtResource("14_xeoue")
+
+[node name="focusTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="focusTimer" to="." method="_on_focus_timer_timeout"]

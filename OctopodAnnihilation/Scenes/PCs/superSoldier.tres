@@ -21,3 +21,7 @@ fireResistance = 0
 explosionResistance = 0
 slowResistance = 0
 stunResistance = 0
+passiveAbility = "vitality"
+activeAbility = "adrenaline"
+activeAbilityCooldown = 40.0
+activeAbilityLength = 10.0

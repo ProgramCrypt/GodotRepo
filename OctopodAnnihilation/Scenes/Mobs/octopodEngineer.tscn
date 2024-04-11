@@ -1,8 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dslk4ereghgqr"]
+[gd_scene load_steps=20 format=3 uid="uid://dslk4ereghgqr"]
 
 [ext_resource type="Script" path="res://Scenes/Mobs/octopodEngineer.gd" id="1_qdfx5"]
 [ext_resource type="Texture2D" uid="uid://dx626need7kvw" path="res://Sprites/Enemies/spritesheet_octopoid.png" id="2_an0df"]
+[ext_resource type="Resource" uid="uid://dmp4keukdglx8" path="res://Scenes/Mobs/octopodEngineer.tres" id="2_obes3"]
 [ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="3_bn7a1"]
+[ext_resource type="PackedScene" uid="uid://dg74b5xs8xb4p" path="res://Scenes/Weapons/meleeSwing.tscn" id="3_j541l"]
+[ext_resource type="Script" path="res://Scenes/Mobs/octopodEngineerWeaponArm.gd" id="4_gfpe6"]
+[ext_resource type="PackedScene" uid="uid://d1el5i2mxtjdg" path="res://Scenes/Weapons/octopodGrenade.tscn" id="4_othmk"]
+[ext_resource type="PackedScene" uid="uid://m7mi7h7avpu1" path="res://Scenes/Utilities/scrap.tscn" id="5_ubhv8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
 radius = 12.5
@@ -164,10 +169,16 @@ _data = {
 "walkUp": SubResource("Animation_b0dy8")
 }
 
-[node name="octopodEngineer" type="CharacterBody2D" groups=["projectileEnemies"]]
+[node name="octopodEngineer" type="CharacterBody2D" groups=["enemy", "mobs", "projectileEnemies"]]
+y_sort_enabled = true
+collision_layer = 2
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_qdfx5")
+enemyType = ExtResource("2_obes3")
+meleeSwing = ExtResource("3_j541l")
+octopodGrenade = ExtResource("4_othmk")
+scrap = ExtResource("5_ubhv8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -200,8 +211,16 @@ offset = Vector2(-16, -11)
 hframes = 4
 vframes = 8
 frame = 3
+script = ExtResource("4_gfpe6")
 
-[node name="Muzzle" type="Marker2D" parent="Arm"]
-position = Vector2(-30, -9)
+[node name="RayCast2D" type="RayCast2D" parent="Arm"]
+rotation = 1.5708
+target_position = Vector2(0, 500)
+
+[node name="launcher" type="Marker2D" parent="Arm"]
+position = Vector2(-20, 0)
+
+[node name="grenadeTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="grenadeTimer" to="." method="_on_grenade_timer_timeout"]

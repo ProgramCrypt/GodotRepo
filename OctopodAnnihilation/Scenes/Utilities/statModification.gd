@@ -20,6 +20,11 @@ func plasmaDamage(baseDamage = basePlasmaDamage, plasmaResistance = 0):
 	return damage
 
 
+func meleeDamage(baseDamage, ballisticResistance = 0, secondaryResistance = 0):
+	var damage = baseDamage * (1-(ballisticResistance/300)) * (1-(secondaryResistance/300))
+	return damage
+
+
 func heal(value, modifier):
 	var healAmount = value
 	return healAmount

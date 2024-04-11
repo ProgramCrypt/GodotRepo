@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StartingStats" load_steps=2 format=3 uid="uid://b3artjw52ibju"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://b3artjw52ibju"]
 
 [ext_resource type="Script" path="res://Scenes/PCs/playerStats.gd" id="1_16e1k"]
 
@@ -21,3 +21,7 @@ fireResistance = 20
 explosionResistance = 20
 slowResistance = 0
 stunResistance = 0
+passiveAbility = "rage"
+activeAbility = "seismicImpact"
+activeAbilityCooldown = 5.0
+activeAbilityLength = 2.0

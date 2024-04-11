@@ -22,14 +22,21 @@ var playerStartingPos = Vector2((gridLen/2),(gridLen/2)+100)
 
 func _ready():
 	playerStats.healthChanged.connect(setHealth)
+	playerStats.healthChanged.connect(setMaxHealth)
 	playerStats.energyChanged.connect(setEnergy)
+	playerStats.energyChanged.connect(setMaxEnergy)
 	playerStats.scrapChanged.connect(setScrap)
+	$player.activeAbilityCooldown.connect(setActiveCooldown)
+	$player.setActiveActive.connect(setActiveActive)
 	
 	setHealth()
 	setMaxHealth()
 	setEnergy()
 	setMaxEnergy()
 	setScrap()
+	setMaxActiveCooldown()
+	setActiveCooldown()
+	setActiveActive()
 	
 	#miniMap setup
 	$HUD/Control.clip_contents = true
@@ -108,7 +115,6 @@ func _ready():
 		var index = hasRoom.find(room[0],0)
 		instantiatedRooms[index].fillPassageways(room[1])
 	
-	print(Vector2i(exitRoom[0].x/gridLen, exitRoom[0].y/gridLen))
 	$HUD/Control/miniMap.setRoom(Vector2i(exitRoom[0].x/gridLen, exitRoom[0].y/gridLen), "exit")
 	
 	#Set player location
@@ -136,3 +142,12 @@ func setMaxEnergy() -> void:
 
 func setScrap() -> void:
 	$HUD/scrapLabel.text = str(playerStats.currentScrap)
+
+func setMaxActiveCooldown() -> void:
+	$HUD/activeCooldownBar.max_value = playerStats.playerTypeDict[playerStats.playerType].activeAbilityCooldown
+
+func setActiveCooldown() -> void:
+	$HUD/activeCooldownBar.value = $player/activeAbilityCooldownTimer.time_left
+
+func setActiveActive() -> void:
+	$HUD/activeCooldownPanel.visible = $player.isActiveActive

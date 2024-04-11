@@ -1,14 +1,19 @@
 extends CharacterBody2D
 
+signal activeAbilityCooldown()
+signal setActiveActive()
+
 @onready var playerStats = get_node("/root/ActivePlayerStats")
 @onready var statModification = get_node("/root/StatModification")
 
-var speed: int
+@export var pauseMenu : PackedScene
+
 @onready var animations = $AnimationPlayer
 @export var ballisticProjectile: PackedScene
 @export var laserProjectile: PackedScene
 @export var plasmaProjectile: PackedScene
 @export var meleeSwing: PackedScene
+@export var effectArea: PackedScene
 var hasWeapon = true
 var laserActive = false
 var direction = "Down"
@@ -16,6 +21,8 @@ var activeWeapon = "weapon1"
 var attackTimer = 0
 var isSwinging = false
 var totalSwingDistance = 0
+var isActiveActive = false
+var isActiveCooldownActive = false
 
 @onready var baseBallisticDamage = StatModification.baseBallisticDamage
 @onready var baseLaserDamage = StatModification.baseLaserDamage
@@ -23,13 +30,14 @@ var totalSwingDistance = 0
 
 
 func _ready():
-	speed = playerStats.speed * 8
 	$laserChargeTimer.one_shot = true
+	$activeAbilityTimer.one_shot = true
+	$activeAbilityCooldownTimer.one_shot = true
 
 
 func handleInput(_delta):
 	var moveDirection = Input.get_vector("left", "right", "up", "down")
-	velocity = moveDirection * speed
+	velocity = moveDirection * playerStats.speed * 8
 	
 	if Input.is_action_just_pressed("attack"):
 		if playerStats.currentEnergy != 0:
@@ -39,11 +47,17 @@ func handleInput(_delta):
 				else:
 					if attackTimer <= 0:
 						shoot()
-						attackTimer = $Arm.fireRate
+						if playerStats.playerTypeDict[playerStats.playerType].passiveAbility == "rage":
+							attackTimer = max($Arm.fireRate * (playerStats.currentHealth/playerStats.maxHealth), $Arm.fireRate * 0.3)
+						else:
+							attackTimer = $Arm.fireRate
 			if $Arm.weaponType == "melee":
 				if attackTimer <= 0:
 					swing()
-					attackTimer = $Arm.swingRate
+					if playerStats.playerTypeDict[playerStats.playerType].passiveAbility == "rage":
+						attackTimer = max($Arm.fireRate * (playerStats.currentHealth/playerStats.maxHealth), $Arm.fireRate * 0.3)
+					else:
+						attackTimer = $Arm.fireRate
 	
 	if Input.is_action_just_released("attack"):
 		if $laserChargeTimer.time_left > 0:
@@ -53,6 +67,10 @@ func handleInput(_delta):
 				if child.is_in_group("laserProjectile"):
 					child.queue_free()
 			laserActive = false
+	
+	if Input.is_action_just_pressed("activeAbility"):
+		if isActiveActive == false and $activeAbilityCooldownTimer.time_left <= 0:
+			useActiveAbility(playerStats.playerTypeDict[playerStats.playerType].activeAbility)
 	
 	if Input.is_action_just_released("scroll"):
 		if laserActive == true:
@@ -65,6 +83,11 @@ func handleInput(_delta):
 		elif activeWeapon == "weapon2":
 			$Arm.changeWeapon(playerStats.weapon1)
 			activeWeapon = "weapon1"
+	
+	if Input.is_action_just_pressed("escape"):
+		var menu = pauseMenu.instantiate()
+		get_tree().root.add_child(menu)
+		get_tree().paused = true
 
 
 func updateAnimation():
@@ -139,18 +162,72 @@ func shoot():
 		var fireAngle = randf_range(-$Arm.accuracy/2, $Arm.accuracy/2)
 		projectile.rotation_degrees += fireAngle
 		projectile.setShooter(get_groups(),{"damage": $Arm.damage, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed, "projectileSize": $Arm.projectileSize, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
+	
+	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "cloaking" and isActiveActive == true:
+		for enemy in get_tree().get_nodes_in_group("enemy"):
+			enemy.playerCloaked(false)
+		$activeAbilityTimer.start(0.05)
 
 
 func swing():
 	isSwinging = true
 	playerStats.useEnergy($Arm.energyUse)
-	var swing = meleeSwing.instantiate()
-	add_child(swing)
-	swing.position = Vector2(0, 6)
-	swing.setProperties(get_groups(), {"damage": $Arm.damage, "swingRange": $Arm.swingRange, "swingDirection": (rotation+get_angle_to(get_global_mouse_position())), "swingAngle": $Arm.swingAngle, "swingSpeed": $Arm.swingSpeed, "effectsOnHit": $Arm.effectsOnHit})	
+	var swingArea = meleeSwing.instantiate()
+	add_child(swingArea)
+	swingArea.position = Vector2(0, 6)
+	swingArea.setProperties(get_groups(), {"damageType": $Arm.damageType, "damage": $Arm.damage, "swingRange": $Arm.swingRange, "swingDirection": (rotation+get_angle_to(get_global_mouse_position())), "swingAngle": $Arm.swingAngle, "swingSpeed": $Arm.swingSpeed, "effectsOnHit": $Arm.effectsOnHit})	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func useActiveAbility(activeAbility):
+	if activeAbility == "adrenaline":
+		playerStats.modifyStatValue("maxHealth", 10)
+		playerStats.modifyStatValue("currentHealth", 10)
+		playerStats.modifyStatValue("maxEnergy", 10)
+		playerStats.modifyStatValue("currentEnergy", 10)
+		playerStats.speed += 5
+		playerStats.strength += 5
+		playerStats.rateOfFire += 10
+		playerStats.gunAccuracy += 10
+		playerStats.ballisticResistance += 20
+		playerStats.laserResistance += 20
+		playerStats.plasmaResistance += 20
+		playerStats.bleedingResistance += 20
+		playerStats.fireResistance += 20
+		playerStats.explosionResistance += 20
+		playerStats.slowResistance += 50
+		playerStats.stunResistance += 50
+		
+	elif activeAbility == "cloaking":
+		for enemy in get_tree().get_nodes_in_group("enemy"):
+			enemy.playerCloaked(true)
+		modulate.a = 0.5
+	
+	elif activeAbility == "seismicImpact":
+		var stun = effectArea.instantiate()
+		add_child(stun)
+		stun.setProperties("player", "stun", playerStats.playerTypeDict[playerStats.playerType].activeAbilityLength, 200)
+		var bleeding = effectArea.instantiate()
+		add_child(bleeding)
+		bleeding.setProperties("player", "bleeding", playerStats.playerTypeDict[playerStats.playerType].activeAbilityLength, 200)
+	
+	elif activeAbility == "dash":
+		playerStats.speed += 70
+		playerStats.vulnerable = false
+	
+	elif activeAbility == "decoy":
+		pass
+	
+	elif activeAbility == "mitosis":
+		pass
+	
+	elif activeAbility == "mineLayer":
+		pass
+	
+	isActiveActive = true
+	emit_signal("setActiveActive")
+	$activeAbilityTimer.start(playerStats.playerTypeDict[playerStats.playerType].activeAbilityLength)
+
+
 func _physics_process(delta):
 	handleInput(delta)
 	move_and_slide()
@@ -175,8 +252,59 @@ func _physics_process(delta):
 		if totalSwingDistance >= ((90-$Arm.swingAngle/2) + $Arm.swingAngle):
 			totalSwingDistance = 0
 			isSwinging = false
+	
+	if isActiveCooldownActive == true:
+		emit_signal("activeAbilityCooldown")
 
 
 func _on_laser_charge_timer_timeout():
 	if $Arm.damageType == 1:
 		shoot()
+
+
+func _on_active_ability_timer_timeout():
+	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "adrenaline":
+		playerStats.modifyStatValue("maxHealth", -10)
+		playerStats.modifyStatValue("maxEnergy", -10)
+		playerStats.speed -= 5
+		playerStats.strength -= 5
+		playerStats.rateOfFire -= 10
+		playerStats.gunAccuracy -= 10
+		playerStats.ballisticResistance -= 20
+		playerStats.laserResistance -- 20
+		playerStats.plasmaResistance -= 20
+		playerStats.bleedingResistance -= 20
+		playerStats.fireResistance -= 20
+		playerStats.explosionResistance -= 20
+		playerStats.slowResistance -= 50
+		playerStats.stunResistance -= 50
+	
+	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "cloaking":
+		for enemy in get_tree().get_nodes_in_group("enemy"):
+			enemy.playerCloaked(false)
+		modulate.a = 1
+	
+	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "seismicImpact":
+		pass
+	
+	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "dash":
+		playerStats.speed -= 70
+		playerStats.vulnerable = true
+	
+	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "decoy":
+		pass
+	
+	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "mitosis":
+		pass
+	
+	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "mineLayer":
+		pass
+	
+	isActiveActive = false
+	emit_signal("setActiveActive")
+	$activeAbilityCooldownTimer.start(playerStats.playerTypeDict[playerStats.playerType].activeAbilityCooldown)
+	isActiveCooldownActive = true
+
+
+func _on_active_ability_cooldown_timer_timeout():
+	isActiveCooldownActive = true

@@ -1,0 +1,145 @@
+[gd_scene load_steps=5 format=3 uid="uid://qr5q2rtsd4nc"]
+
+[ext_resource type="Script" path="res://Scenes/Utilities/mainMenu.gd" id="1_oa2op"]
+[ext_resource type="FontFile" uid="uid://ben4lmr6atcfd" path="res://Utilities/Fonts/Montreal-Bold.ttf" id="1_oppbk"]
+[ext_resource type="Texture2D" uid="uid://sir12vk2c32c" path="res://Sprites/Enemies/octopod_frontFacing.png" id="2_oxj2o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5fc0"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="mainMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oa2op")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 1200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i5fc0")
+
+[node name="mainMenu" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_right = 1200.0
+offset_bottom = 1200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="mainMenu"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="title" type="Label" parent="mainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.811765, 0.678431, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("1_oppbk")
+theme_override_font_sizes/font_size = 70
+text = "OCTOPOD ANNIHILATION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="mainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="mainMenu/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="baseMenu" type="VBoxContainer" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="play" type="Button" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.74902, 0.74902, 0.74902, 1)
+theme_override_fonts/font = ExtResource("1_oppbk")
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[node name="options" type="Button" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.74902, 0.74902, 0.74902, 1)
+theme_override_fonts/font = ExtResource("1_oppbk")
+theme_override_font_sizes/font_size = 40
+text = "Options"
+
+[node name="exit" type="Button" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.74902, 0.74902, 0.74902, 1)
+theme_override_fonts/font = ExtResource("1_oppbk")
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[node name="playMenu" type="VBoxContainer" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="new" type="Button" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.74902, 0.74902, 0.74902, 1)
+theme_override_fonts/font = ExtResource("1_oppbk")
+theme_override_font_sizes/font_size = 40
+text = "New"
+
+[node name="continue" type="Button" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu"]
+process_mode = 3
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.74902, 0.74902, 0.74902, 1)
+theme_override_fonts/font = ExtResource("1_oppbk")
+theme_override_font_sizes/font_size = 40
+text = "Continue"
+
+[node name="back" type="Button" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.74902, 0.74902, 0.74902, 1)
+theme_override_fonts/font = ExtResource("1_oppbk")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[node name="version" type="Label" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Version: Alpha 1.0"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="mainMenu/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="TextureRect" type="TextureRect" parent="mainMenu/VBoxContainer/HBoxContainer2/MarginContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+texture = ExtResource("2_oxj2o")
+expand_mode = 5
+stretch_mode = 4
+
+[connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu/new" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu/back" to="." method="_on_back_pressed"]

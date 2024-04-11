@@ -1,13 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://ccswn86ak6nuq"]
+[gd_scene load_steps=31 format=3 uid="uid://ccswn86ak6nuq"]
 
 [ext_resource type="Script" path="res://Scenes/PCs/player.gd" id="1_f26gr"]
 [ext_resource type="PackedScene" uid="uid://bqyi3aebv35hk" path="res://Scenes/Weapons/ballisticProjectile.tscn" id="2_8twxq"]
+[ext_resource type="PackedScene" uid="uid://dpq72i8c1xsmu" path="res://Scenes/Utilities/pauseMenu.tscn" id="2_b8gvl"]
 [ext_resource type="Texture2D" uid="uid://dyjoq0gb0bqm3" path="res://Sprites/PCs/spritesheet_mainCharacter_full.png" id="3_jf73b"]
 [ext_resource type="PackedScene" uid="uid://yttep5s3spnd" path="res://Scenes/Weapons/laserProjectile.tscn" id="3_p5qpu"]
 [ext_resource type="PackedScene" uid="uid://cowxw1tti6gi" path="res://Scenes/Weapons/plasmaProjectile.tscn" id="4_vyftj"]
 [ext_resource type="PackedScene" uid="uid://dg74b5xs8xb4p" path="res://Scenes/Weapons/meleeSwing.tscn" id="5_gn15i"]
 [ext_resource type="Texture2D" uid="uid://bbawmf1ft4n33" path="res://Sprites/Weapons/spritesheet_projectiles.png" id="5_nutdu"]
 [ext_resource type="Texture2D" uid="uid://b482jyflu7qgb" path="res://Sprites/Weapons/spritesheet_guns.png" id="6_0574w"]
+[ext_resource type="PackedScene" uid="uid://dn8utwayxm227" path="res://Scenes/Weapons/effectArea.tscn" id="7_m7lif"]
 [ext_resource type="Script" path="res://Scenes/PCs/playerWeaponArm.gd" id="8_cakgn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_taqf8"]
@@ -317,16 +319,19 @@ _data = {
 y_sort_enabled = true
 collision_mask = 3
 script = ExtResource("1_f26gr")
+pauseMenu = ExtResource("2_b8gvl")
 ballisticProjectile = ExtResource("2_8twxq")
 laserProjectile = ExtResource("3_p5qpu")
 plasmaProjectile = ExtResource("4_vyftj")
 meleeSwing = ExtResource("5_gn15i")
+effectArea = ExtResource("7_m7lif")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_taqf8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = ExtResource("3_jf73b")
 hframes = 9
 vframes = 8
@@ -360,4 +365,10 @@ frame = 4
 
 [node name="laserChargeTimer" type="Timer" parent="."]
 
+[node name="activeAbilityTimer" type="Timer" parent="."]
+
+[node name="activeAbilityCooldownTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="laserChargeTimer" to="." method="_on_laser_charge_timer_timeout"]
+[connection signal="timeout" from="activeAbilityTimer" to="." method="_on_active_ability_timer_timeout"]
+[connection signal="timeout" from="activeAbilityCooldownTimer" to="." method="_on_active_ability_cooldown_timer_timeout"]

@@ -1,0 +1,297 @@
+[gd_scene load_steps=7 format=3 uid="uid://di7acltgdbdvq"]
+
+[ext_resource type="Script" path="res://Scenes/Utilities/characterSelection.gd" id="1_02noq"]
+[ext_resource type="FontFile" uid="uid://ben4lmr6atcfd" path="res://Utilities/Fonts/Montreal-Bold.ttf" id="1_bhwrj"]
+[ext_resource type="Texture2D" uid="uid://3qjy0riws7gt" path="res://Sprites/PCs/superSoldier.png" id="2_8ibtm"]
+[ext_resource type="Texture2D" uid="uid://byl82eif6ejwe" path="res://Sprites/PCs/superSoldier_darkened.png" id="4_qccfg"]
+[ext_resource type="Texture2D" uid="uid://ckk1sdj0mvkrx" path="res://Sprites/PCs/superSoldier_highlighted.png" id="5_jeegh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvdub"]
+bg_color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="characterSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_02noq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 1200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dvdub")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 1200.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 70
+text = "Characters"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="superSoldier" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/superSoldier"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 25
+text = "Super Soldier"
+horizontal_alignment = 1
+
+[node name="superSoldier" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/superSoldier"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture_normal = ExtResource("2_8ibtm")
+texture_pressed = ExtResource("4_qccfg")
+texture_hover = ExtResource("5_jeegh")
+stretch_mode = 5
+
+[node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/superSoldier"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
+text = "Passive: Vitality"
+horizontal_alignment = 1
+
+[node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/superSoldier"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
+text = "Active: Adrenaline"
+horizontal_alignment = 1
+
+[node name="sniper" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/sniper"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 25
+text = "Sniper"
+horizontal_alignment = 1
+
+[node name="sniper" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/sniper"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture_normal = ExtResource("2_8ibtm")
+texture_pressed = ExtResource("4_qccfg")
+texture_hover = ExtResource("5_jeegh")
+stretch_mode = 5
+
+[node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/sniper"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
+text = "Passive: Sniper's Vision"
+horizontal_alignment = 1
+
+[node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/sniper"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
+text = "Active: Cloaking"
+horizontal_alignment = 1
+
+[node name="tanker" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/tanker"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 25
+text = "Tanker"
+horizontal_alignment = 1
+
+[node name="tanker" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/tanker"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture_normal = ExtResource("2_8ibtm")
+texture_pressed = ExtResource("4_qccfg")
+texture_hover = ExtResource("5_jeegh")
+stretch_mode = 5
+
+[node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/tanker"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
+text = "Passive: Rage"
+horizontal_alignment = 1
+
+[node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/tanker"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
+text = "Active: Seismic Impact"
+horizontal_alignment = 1
+
+[node name="infiltrator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/infiltrator"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 25
+text = "Infiltrator"
+horizontal_alignment = 1
+
+[node name="infiltrator" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/infiltrator"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture_normal = ExtResource("2_8ibtm")
+texture_pressed = ExtResource("4_qccfg")
+texture_hover = ExtResource("5_jeegh")
+stretch_mode = 5
+
+[node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/infiltrator"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
+text = "Passive: Focus"
+horizontal_alignment = 1
+
+[node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/infiltrator"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
+text = "Active: Dash"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="cyborg" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 25
+text = "Cyborg"
+horizontal_alignment = 1
+
+[node name="cyborg" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture_normal = ExtResource("2_8ibtm")
+texture_pressed = ExtResource("4_qccfg")
+texture_hover = ExtResource("5_jeegh")
+stretch_mode = 5
+
+[node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
+text = "Passive: High Tech"
+horizontal_alignment = 1
+
+[node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
+text = "Active: Holographic Decoy"
+horizontal_alignment = 1
+
+[node name="mutant" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 25
+text = "Mutant"
+horizontal_alignment = 1
+
+[node name="mutant" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture_normal = ExtResource("2_8ibtm")
+texture_pressed = ExtResource("4_qccfg")
+texture_hover = ExtResource("5_jeegh")
+stretch_mode = 5
+
+[node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
+text = "Passive: Corrosive Skin"
+horizontal_alignment = 1
+
+[node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
+text = "Active: Mitosis"
+horizontal_alignment = 1
+
+[node name="robot" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 25
+text = "Robot"
+horizontal_alignment = 1
+
+[node name="robot" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
+process_mode = 3
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture_normal = ExtResource("2_8ibtm")
+texture_pressed = ExtResource("4_qccfg")
+texture_hover = ExtResource("5_jeegh")
+stretch_mode = 5
+
+[node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
+text = "Passive: Engineer"
+horizontal_alignment = 1
+
+[node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
+text = "Active: Minelayer"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="back" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/superSoldier/superSoldier" to="." method="_on_super_soldier_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/sniper/sniper" to="." method="_on_sniper_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/tanker/tanker" to="." method="_on_tanker_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/infiltrator/infiltrator" to="." method="_on_infiltrator_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/cyborg/cyborg" to="." method="_on_cyborg_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/mutant/mutant" to="." method="_on_mutant_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/robot/robot" to="." method="_on_robot_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/back" to="." method="_on_back_pressed"]

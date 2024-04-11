@@ -17,6 +17,7 @@ func _ready():
 	anim.play("default")
 
 func _physics_process(delta):
+	print(global_position, ' ', position)
 	position -= transform.x * speed * delta
 	distanceTraveled += speed * delta
 	if distanceTraveled > projectileProperties["projectileRange"]:

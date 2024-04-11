@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bisme83xydtnu"]
+[gd_scene load_steps=7 format=3 uid="uid://bisme83xydtnu"]
 
 [ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_a0v0c"]
 [ext_resource type="Script" path="res://Scenes/Regions/OctopodLabs/octoLabsRoomScript.gd" id="2_hsie5"]
 [ext_resource type="PackedScene" uid="uid://bf23yptrxcvkt" path="res://Scenes/Props/propCollisionBox.tscn" id="3_02s8c"]
+[ext_resource type="PackedScene" uid="uid://pgfpr0pd30tt" path="res://Scenes/Mobs/chimeraLabGrunt.tscn" id="4_ijfwm"]
 [ext_resource type="PackedScene" uid="uid://bq7vglxhqc5hb" path="res://Scenes/Mobs/octopodScientist.tscn" id="4_twqhx"]
+[ext_resource type="PackedScene" uid="uid://dslk4ereghgqr" path="res://Scenes/Mobs/octopodEngineer.tscn" id="5_6h5qn"]
 
 [node name="derelictVatRoom" type="TileMap"]
+y_sort_enabled = true
 tile_set = ExtResource("1_a0v0c")
 format = 2
 layer_0/name = "lowerLevel"
@@ -31,7 +34,7 @@ layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = -10
-layer_3/tile_data = PackedInt32Array(589831, 65539, 0, 458757, 65539, 0, 327687, 65539, 0, 458761, 65539, 0)
+layer_3/tile_data = PackedInt32Array(589831, 262147, 0, 327687, 262147, 0, 655364, 196611, 0, 262148, 196611, 0, 262154, 196611, 0, 655370, 196611, 0, 786434, 3, 0, 786444, 3, 0, 131084, 3, 0, 131074, 3, 0)
 layer_4/name = "passageFill"
 layer_4/enabled = true
 layer_4/modulate = Color(1, 1, 1, 1)
@@ -41,4 +44,6 @@ layer_4/z_index = -10
 layer_4/tile_data = PackedInt32Array(458752, 0, 1, 393216, 0, 1, 458766, 458752, 1, 393230, 458752, 1, 7, 131072, 0, 917511, 65536, 3, 851975, 65536, 2, 917510, 65536, 3, 917512, 65536, 3, 851974, 65536, 2, 851976, 65536, 2)
 script = ExtResource("2_hsie5")
 propCollisionBox = ExtResource("3_02s8c")
+chimeraLabGrunt = ExtResource("4_ijfwm")
 octopodScientist = ExtResource("4_twqhx")
+octopodEngineer = ExtResource("5_6h5qn")

@@ -1,7 +1,11 @@
 extends TileMap
 
+@onready var sceneManager = get_node("/root/SceneManager")
+
 @export var propCollisionBox: PackedScene
+@export var chimeraLabGrunt: PackedScene
 @export var octopodScientist: PackedScene
+@export var octopodEngineer: PackedScene
 
 var tables = []
 var servers = []
@@ -56,14 +60,61 @@ func _ready():
 			if propType == Vector2i(2, 5):
 				vatBox.defineType("emptyVat2", cell)
 	
-	
+	#Enemy Spawning
+	var roomDifficulty = randi_range(sceneManager.difficulty-1, sceneManager.difficulty+1)
+	var spawnerCells = []
 	for cell in get_used_cells(3):
-		var spawnerType = get_cell_atlas_coords(3, cell)
-		
-		if spawnerType == Vector2i(1, 0):
-			var enemy = octopodScientist.instantiate()
-			add_child(enemy)
-			enemy.position = map_to_local(cell)
+		spawnerCells.append(cell)
+	
+	var enemyArray = []
+	while roomDifficulty > 0:
+		if len(spawnerCells) > 0:
+			var cell = spawnerCells[randi() % spawnerCells.size()]
+			spawnerCells.pop_at(spawnerCells.find(cell))
+			var spawnerType = get_cell_atlas_coords(3, cell)
+			if spawnerType == Vector2i(0, 0):
+				var enemy = chimeraLabGrunt.instantiate()
+				add_child(enemy)
+				enemy.position = map_to_local(cell)
+				enemyArray.append(enemy)
+				roomDifficulty -= 1
+			if spawnerType == Vector2i(1, 0):
+				var enemy = octopodScientist.instantiate()
+				add_child(enemy)
+				enemy.position = map_to_local(cell)
+				enemyArray.append(enemy)
+				roomDifficulty -= 1
+			if spawnerType == Vector2i(2, 0):
+				var enemy = octopodEngineer.instantiate()
+				add_child(enemy)
+				enemy.position = map_to_local(cell)
+				enemyArray.append(enemy)
+				roomDifficulty -= 1
+			if spawnerType == Vector2i(3, 0):
+				var enemy
+				if randf() >= 0.5:
+					enemy = chimeraLabGrunt.instantiate()
+				else:
+					enemy = octopodScientist.instantiate()
+				add_child(enemy)
+				enemy.position = map_to_local(cell)
+				enemyArray.append(enemy)
+				roomDifficulty -= 1
+			if spawnerType == Vector2i(4, 0):
+				var enemy
+				if randf() >= 0.5:
+					enemy = octopodScientist.instantiate()
+				else:
+					enemy = octopodEngineer.instantiate()
+				add_child(enemy)
+				enemy.position = map_to_local(cell)
+				enemyArray.append(enemy)
+				roomDifficulty -= 1
+		else:
+			for enemy in enemyArray:
+				enemy.maxHealth += roomDifficulty
+				enemy.currentHealth += roomDifficulty
+			roomDifficulty = 0
 
 
 func changeTile(cell, newTile):
@@ -94,3 +145,9 @@ func fillPassageways(directions):
 				set_cell(2, cell, 0, tile)
 		else:
 			erase_cell(4, cell)
+
+
+func dropItem(item, transform):
+	var drop = item.instantiate()
+	get_parent().add_child(drop)
+	drop.global_transform = transform

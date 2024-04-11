@@ -6,6 +6,7 @@
 
 [node name="laserProjectile" type="RayCast2D" groups=["laserProjectile"]]
 target_position = Vector2(-1000, 0)
+collision_mask = 7
 script = ExtResource("1_oexd4")
 
 [node name="Line2D" type="Line2D" parent="."]

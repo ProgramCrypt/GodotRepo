@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StartingStats" load_steps=2 format=3 uid="uid://bd4wf1hqgr50q"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://bd4wf1hqgr50q"]
 
 [ext_resource type="Script" path="res://Scenes/PCs/playerStats.gd" id="1_njuqc"]
 
@@ -21,3 +21,6 @@ fireResistance = 0
 explosionResistance = 0
 slowResistance = 0
 stunResistance = 0
+passiveAbility = "corrosiveSkin"
+activeAbility = "mitosis"
+activeAbilityCooldown = 8.0

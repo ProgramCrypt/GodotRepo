@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StartingStats" load_steps=2 format=3 uid="uid://c4fkakcu5kye3"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://c4fkakcu5kye3"]
 
 [ext_resource type="Script" path="res://Scenes/PCs/playerStats.gd" id="1_v0oy6"]
 
@@ -21,3 +21,7 @@ fireResistance = 0
 explosionResistance = 0
 slowResistance = 50
 stunResistance = 50
+passiveAbility = "focus"
+activeAbility = "dash"
+activeAbilityCooldown = 5.0
+activeAbilityLength = 0.2

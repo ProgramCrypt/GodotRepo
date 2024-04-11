@@ -58,7 +58,7 @@ var hammerUpgrades = [
 var shieldUpgrades = [
 	{"levels": 5, "name": ["10,000 Degrees", "20,000 Degrees", "30,000 Degrees", "40,000 Degrees", "50,000 Degrees"], "stat": "damage", "modifier": [3, 3, 3, 3, 2], "cost": [40, 50, 60, 70, 80], "description": "Increased Damage"},
 	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [60, 70], "description": "Decreased Energy Use"},
-	{"levels": 3, "name": ["Neodymium Reinforcement", "Improved Electromagnet", "Advanced Electromagnet"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [50, 60, 70], "description": "Increased Range"}
+	{"levels": 3, "name": ["Neodymium\nReinforcement", "Improved\nElectromagnet", "Advanced\nElectromagnet"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [50, 60, 70], "description": "Increased Range"}
 	]
 
 

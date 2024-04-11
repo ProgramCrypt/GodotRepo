@@ -20,3 +20,7 @@ class_name PlayerStats
 @export var explosionResistance : int
 @export var slowResistance : int
 @export var stunResistance : int
+@export var passiveAbility : String=''
+@export var activeAbility : String=''
+@export var activeAbilityCooldown : float
+@export var activeAbilityLength : float

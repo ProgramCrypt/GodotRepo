@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpq72i8c1xsmu"]
+
+[ext_resource type="Script" path="res://Scenes/Utilities/pauseMenu.gd" id="1_hcsg7"]
+[ext_resource type="FontFile" uid="uid://ben4lmr6atcfd" path="res://Utilities/Fonts/Montreal-Bold.ttf" id="2_78ywp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwv8a"]
+bg_color = Color(0.321569, 0.321569, 0.321569, 1)
+
+[node name="pauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_hcsg7")
+
+[node name="dimming" type="Panel" parent="."]
+offset_right = 1200.0
+offset_bottom = 1200.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1200.0
+offset_bottom = 1200.0
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 350
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 350
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwv8a")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="paused" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_78ywp")
+theme_override_font_sizes/font_size = 50
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="resume" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="options" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="saveAndExit" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Save & Exit"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/saveAndExit" to="." method="_on_exit_pressed"]

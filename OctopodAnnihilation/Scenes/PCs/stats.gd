@@ -7,11 +7,25 @@ signal energyDepleted()
 signal scrapChanged()
 signal playerWeaponsSet(weapon)
 
-@export var playerType : Resource
-@export var startingWeapon1 : Resource
-@export var startingWeapon2 : Resource
+@export var superSoldier : Resource
+@export var sniper : Resource
+@export var tanker : Resource
+@export var infiltrator : Resource
+@export var cyborg : Resource
+@export var mutant : Resource
+@export var robot : Resource
+var playerTypeDict = {}
+var playerType
+
+@export var ballistic : Resource
+@export var laser : Resource
+@export var plasma : Resource
+@export var hammer : Resource
+@export var shield : Resource
 var weapon1 = {}
 var weapon2 = {}
+#var startingWeapon1 = {}
+#var startingWeapon2 = {}
 
 #[[upgrade1Level, upgrade2Level, ...], upgrade1Dict, upgrade2Dict, ...]
 var appliedWeapon1Upgrades = [[]]
@@ -19,8 +33,6 @@ var appliedWeapon2Upgrades =[[]]
 
 @export var energyRegenRate = 5 #points per second
 var energyDepletionTimer : float
-
-var modifiers = {}
 
 #player stats
 var maxHealth : float
@@ -45,13 +57,20 @@ var currentScrap : int
 #[[upgrade1Level, upgrade2Level, ...], upgrade1Dict, upgrade2Dict, ...]
 var appliedArmorUpgrades = [[]]
 
+var playerScore = 0
+
+var vulnerable = true
+
+@export var deathMenu : PackedScene
+
 
 func _ready():
-	initialize(playerType)
-	
+	playerTypeDict = {"superSoldier": superSoldier, "sniper": sniper, "tanker": tanker, "infiltrator": infiltrator, "cyborg": cyborg, "mutant": mutant, "robot": robot}
+	$focusTimer.one_shot = true
+	'initialize(playerTypeDict[playerType])
 	saveWeapon(startingWeapon1, weapon1)
 	saveWeapon(startingWeapon2, weapon2)
-	#emit_signal("playerWeaponsSet", weapon1)
+	#emit_signal("playerWeaponsSet", weapon1)'
 
 func initialize(stats : PlayerStats):
 	maxHealth = stats.maxHealth
@@ -87,13 +106,24 @@ func setMaxEnergy(value):
 	maxEnergy = max(0, value)
 
 func takeDamage(hit):
-	currentHealth -= hit
-	currentHealth = max(0, currentHealth)
-	emit_signal("healthChanged")
-	if currentHealth == 0:
-		emit_signal("healthDepleted")
+	if vulnerable == true:
+		currentHealth -= hit
+		currentHealth = max(0, currentHealth)
+		emit_signal("healthChanged")
+		if currentHealth == 0:
+			emit_signal("healthDepleted")
+			var menu = deathMenu.instantiate()
+			get_tree().root.add_child(menu)
+			get_tree().paused = true
+		elif playerTypeDict[playerType].passiveAbility == "focus" and hit > 1:
+			Engine.time_scale = 0.5
+			$focusTimer.start(0.4)
+		
 
 func heal(amount):
+	if playerTypeDict[playerType].passiveAbility == 'vitality':
+		amount *= 1.25
+		print(amount)
 	currentHealth += amount
 	currentHealth = min(currentHealth, maxHealth)
 	emit_signal("healthChanged")
@@ -141,12 +171,17 @@ func modifyWeapon(weapon, stat, modifier):
 func setStatValue(stat, value):
 	if stat == "maxHealth":
 		maxHealth = value
+		currentHealth = min(currentHealth, maxHealth)
+		emit_signal("healthChanged")
 	if stat == "currentHealth":
 		currentHealth = value
+		emit_signal("healthChanged")
 	if stat == "maxEnergy":
 		maxEnergy = value
+		emit_signal("energyChanged")
 	if stat == "currentEnergy":
 		currentEnergy = value
+		emit_signal("energyChanged")
 	if stat == "speed":
 		speed = value
 	if stat == "strength":
@@ -173,16 +208,22 @@ func setStatValue(stat, value):
 		stunResistance = value
 	if stat == "currentScrap":
 		currentScrap = value
+		emit_signal("scrapChanged")
 
 func modifyStatValue(stat, modifier):
 	if stat == "maxHealth":
 		maxHealth += modifier
+		currentHealth = min(currentHealth, maxHealth)
+		emit_signal("healthChanged")
 	if stat == "currentHealth":
 		currentHealth += modifier
+		emit_signal("healthChanged")
 	if stat == "maxEnergy":
 		maxEnergy += modifier
+		emit_signal("energyChanged")
 	if stat == "currentEnergy":
 		currentEnergy += modifier
+		emit_signal("energyChanged")
 	if stat == "speed":
 		speed += modifier
 		speed = max(0, speed)
@@ -223,3 +264,7 @@ func modifyStatValue(stat, modifier):
 		currentScrap += modifier
 		currentScrap = max(0, currentScrap)
 		emit_signal("scrapChanged")
+
+
+func _on_focus_timer_timeout():
+	Engine.time_scale = 1

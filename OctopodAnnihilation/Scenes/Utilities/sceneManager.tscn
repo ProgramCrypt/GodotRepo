@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtbnoqh6de24q"]
+[gd_scene load_steps=5 format=3 uid="uid://dtbnoqh6de24q"]
 
 [ext_resource type="Script" path="res://Scenes/Utilities/sceneManager.gd" id="1_hojph"]
+[ext_resource type="PackedScene" uid="uid://qr5q2rtsd4nc" path="res://Scenes/Utilities/mainMenu.tscn" id="2_rstwb"]
+[ext_resource type="PackedScene" uid="uid://di7acltgdbdvq" path="res://Scenes/Utilities/characterSelection.tscn" id="3_jod3k"]
+[ext_resource type="PackedScene" uid="uid://b6wakgckuw41q" path="res://Scenes/Levels/Level_1-1.tscn" id="3_wsauu"]
 
 [node name="sceneManager" type="Node2D"]
 script = ExtResource("1_hojph")
+mainMenu = ExtResource("2_rstwb")
+characterSelection = ExtResource("3_jod3k")
+level1_1 = ExtResource("3_wsauu")

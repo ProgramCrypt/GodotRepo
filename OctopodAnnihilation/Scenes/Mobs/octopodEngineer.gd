@@ -1,87 +1,233 @@
 extends CharacterBody2D
 
-const speed = 75
-@export var stopDistance: int = 40
-@export var meleeDistance: int = 64
-@export var agroDistance: int = 800
-var timer = 0
-var meleeCooldown = 1
+@export var enemyType : Resource
 
-@export var player: Node2D
+var modifiers = {}
+
+var maxHealth : float
+var currentHealth : float
+var speed : float
+var strength : float
+var rateOfFire : float
+var gunAccuracy : float
+var ballisticResistance : float
+var laserResistance : float
+var plasmaResistance : float
+var bleedingResistance : float
+var fireResistance : float
+var explosionResistance : float
+var slowResistance : float
+var stunResistance : float
+
+@export var stopDistance: int = 30
+@export var agroDistance: int = 800
+
+var player: Node2D
+
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
 @onready var animations = $AnimationPlayer
 var direction = "Down"
+var armSpeed = 5
+var armSign = 1
+var relativePlayerPos = Vector2(100, 100)
+var playerAngle
+
+@export var meleeSwing: PackedScene
+var isSwinging = false
+var totalSwingDistance = 0
+var swingTimer = 0
+@export var octopodGrenade : PackedScene
+
+var isPlayerCloaked = false
+var stunned = false
+
+@onready var playerStats = get_node("/root/ActivePlayerStats")
+@onready var statModification = get_node("/root/StatModification")
+
+#@export var weaponType : Resource
+
+@export var scrap: PackedScene
+
 
 func _ready() -> void:
 	nav_agent.target_desired_distance = stopDistance
-
-func updateAnimation():
-	get_node("Arm").look_at(player.position)
-	get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()+180)
 	
-	var lookVector = player.position - position
-	lookVector /= sqrt(lookVector.x*lookVector.x + lookVector.y*lookVector.y)
-	if lookVector.x >= -0.70 and lookVector.x <= 0.70 and lookVector.y < 0:
-		direction = "Up"
-		get_node("Arm").position.x = 0
-		get_node("Arm").scale.y = 1
-		get_node("Arm").set_z_index(0)
-		get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()-3)
-	elif lookVector.x >= -0.70 and lookVector.x <= 0.70 and lookVector.y > 0:
-		direction = "Down"
-		get_node("Arm").position.x = 0
-		get_node("Arm").scale.y = -1
-		get_node("Arm").set_z_index(0)
-		get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()+3)
-	elif lookVector.x < -0.70:
-		direction = "Left"
-		get_node("Arm").position.x = 0
-		get_node("Arm").scale.y = 1
-		get_node("Arm").set_z_index(0)
-		get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()-3)
-	elif lookVector.x > 0.70:
-		direction = "Right"
-		get_node("Arm").position.x = 0
-		get_node("Arm").scale.y = -1
-		get_node("Arm").set_z_index(0)
-		get_node("Arm").set_rotation_degrees(get_node("Arm").get_rotation_degrees()+3)
+	if get_tree().get_first_node_in_group("player") != null:
+		player = get_tree().get_first_node_in_group("player")
+	
+	initialize(enemyType)
+	speed = speed * 8
+	
+	$grenadeTimer.start(10)
+	
+	#$Arm.initialize(weaponType)
+
+
+func updateAnimation(delta):
+	if (player.global_position - global_position).length() <= agroDistance and isPlayerCloaked == false:
+		#handle arm rotation (convoluted garbage)
+		relativePlayerPos = player.global_position - global_position
+		playerAngle = atan(relativePlayerPos.y/relativePlayerPos.x)
+		if isSwinging == false:
+			if (armSign * playerAngle) < 0:
+				$Arm.set_rotation(-$Arm.get_rotation())
+			$Arm.set_rotation($Arm.get_rotation()+((playerAngle-$Arm.get_rotation())*armSpeed*delta))
+			armSign = playerAngle
+		
+		relativePlayerPos /= sqrt(relativePlayerPos.x*relativePlayerPos.x + relativePlayerPos.y*relativePlayerPos.y)
+		if relativePlayerPos.x >= -0.70 and relativePlayerPos.x <= 0.70 and relativePlayerPos.y < 0:
+			direction = "Up"
+			get_node("Arm").set_z_index(-1)
+			if relativePlayerPos.x < 0:
+				get_node("Arm").scale.x = 1
+			if relativePlayerPos.x > 0:
+				get_node("Arm").scale.x = -1
+			
+		elif relativePlayerPos.x >= -0.70 and relativePlayerPos.x <= 0.70 and relativePlayerPos.y > 0:
+			direction = "Down"
+			get_node("Arm").set_z_index(0)
+			if relativePlayerPos.x < 0:
+				get_node("Arm").scale.x = 1
+			if relativePlayerPos.x > 0:
+				get_node("Arm").scale.x = -1
+			
+		elif relativePlayerPos.x < -0.70:
+			direction = "Left"
+			get_node("Arm").set_z_index(0)
+			if relativePlayerPos.x < 0:
+				get_node("Arm").scale.x = 1
+			if relativePlayerPos.x > 0:
+				get_node("Arm").scale.x = -1
+			
+		elif relativePlayerPos.x > 0.70:
+			direction = "Right"
+			get_node("Arm").set_z_index(-1)
+			if relativePlayerPos.x < 0:
+				get_node("Arm").scale.x = 1
+			if relativePlayerPos.x > 0:
+				get_node("Arm").scale.x = -1
+	
 	
 	if velocity.length() == 0:
 		animations.play("face" + direction)
 	else:
 		animations.play("walk" + direction)
 
-func hit():
-	
-	pass
+
+func initialize(stats : mobStats):
+	maxHealth = stats.maxHealth
+	currentHealth = stats.currentHealth
+	speed = stats.speed
+	strength = stats.strength
+	rateOfFire = stats.rateOfFire
+	gunAccuracy = stats.gunAccuracy
+	ballisticResistance = stats.ballisticResistance
+	laserResistance = stats.laserResistance
+	plasmaResistance = stats.plasmaResistance
+	bleedingResistance = stats.bleedingResistance
+	fireResistance = stats.fireResistance
+	explosionResistance = stats.explosionResistance
+	slowResistance = stats.slowResistance
+	stunResistance = stats.stunResistance
+
+
+func getResistances():
+	return {"ballisticResistance": ballisticResistance,"laserResistance": laserResistance,"plasmaResistance": plasmaResistance,"bleedingResistance": bleedingResistance,"fireResistance": fireResistance,"explosionResistance": explosionResistance,"slowResistance": slowResistance,"stunResistance": stunResistance}
+
+
+func takeDamage(hit):
+	currentHealth -= hit
+	currentHealth = max(0, currentHealth)
+	if currentHealth == 0:
+		get_parent().call_deferred("dropItem", scrap, global_transform)
+		playerStats.playerScore += 50
+		queue_free()
+
+
+func heal(amount):
+	currentHealth += amount
+	currentHealth = min(currentHealth, maxHealth)
+	emit_signal("healthChanged")
+
+
+func swing():
+	isSwinging = true
+	var swingArea = meleeSwing.instantiate()
+	add_child(swingArea)
+	swingArea.position = Vector2(0, 6)
+	swingArea.setProperties(get_groups(), {"damageType": $Arm.damageType, "damage": $Arm.damage, "swingRange": $Arm.swingRange, "swingDirection": relativePlayerPos.angle(), "swingAngle": $Arm.swingAngle, "swingSpeed": $Arm.swingSpeed, "effectsOnHit": $Arm.effectsOnHit})	
+
+
+func throwGrenade():
+	if $Arm/RayCast2D.get_collider() != null:
+		if $Arm/RayCast2D.get_collider().is_in_group("player") == true:
+			if randf() <= 1:
+				var grenade = octopodGrenade.instantiate()
+				get_parent().get_parent().add_child(grenade)
+				grenade.global_position = $Arm/launcher.global_position
+				#get_parent().dropItem(octopodGrenade, $Arm.global_transform)
+				grenade.setVelocity(get_angle_to(player.global_position))
+
 
 func _physics_process(delta: float) -> void:
-	var playerDistance = (player.position - position).length()
-	
-	if nav_agent.is_navigation_finished() == false:
-		var dir = to_local(nav_agent.get_next_path_position()).normalized()
+	if stunned == false:
+		var playerDistance = (player.global_position - global_position).length()
+		if nav_agent.is_navigation_finished() == false:
+			var dir = to_local(nav_agent.get_next_path_position()).normalized()
+			
+			#makes enemy slow approach upon reaching certain distance
+			var mod = 1
+			var distance = player.global_position - global_position
+			if distance.length() <= stopDistance:
+				mod = 0
+			'elif distance.length() < (2*stopDistance) and distance.length() > stopDistance:
+				mod = (distance.length() - stopDistance) / stopDistance'
+			
+			if isSwinging == false and playerDistance <= agroDistance and isPlayerCloaked == false:
+				velocity = dir * speed * mod
+			else:
+				velocity = dir * 0
+			move_and_slide()
 		
-		#makes enemy slow approach upon reaching certain distance
-		"var mod = 1
-		var distance = player.position - position
-		if distance.length() <= stopDistance:
-			mod = 0
-		elif distance.length() < (2*stopDistance) and distance.length() > stopDistance:
-			mod = (distance.length() - stopDistance) / stopDistance"
+		updateAnimation(delta)
 		
-		#creates agro distance
-		if playerDistance <= agroDistance:
-			velocity = dir * speed#* mod
-		else:
-			velocity = dir * 0
-		move_and_slide()
-	
-	updateAnimation()
-	
-	#melee attack cooldown
-	timer += delta
-	if playerDistance <= meleeDistance:
-		if timer >= meleeCooldown:
-			hit()
-			timer = 0
+		if playerDistance <= $Arm.swingRange and isSwinging == false and swingTimer <= 0:
+			swing()
+			swingTimer = 2
+		
+		if swingTimer >= 0:
+			swingTimer -= delta
+		
+		if isSwinging == true:
+			if direction == "Up":
+				$Arm.rotation_degrees += -((90-$Arm.swingAngle/2) + $Arm.swingAngle) * delta / $Arm.swingSpeed
+			if direction == "Right":
+				$Arm.rotation_degrees += ((90-$Arm.swingAngle/2) + $Arm.swingAngle) * delta / $Arm.swingSpeed
+			if direction == "Down":
+				$Arm.rotation_degrees += -((90-$Arm.swingAngle/2) + $Arm.swingAngle) * delta / $Arm.swingSpeed
+			if direction == "Left":
+				$Arm.rotation_degrees += -((90-$Arm.swingAngle/2) + $Arm.swingAngle) * delta / $Arm.swingSpeed
+			totalSwingDistance += ((90-$Arm.swingAngle/2) + $Arm.swingAngle) * delta / $Arm.swingSpeed
+			if totalSwingDistance >= ((90-$Arm.swingAngle/2) + $Arm.swingAngle):
+				totalSwingDistance = 0
+				isSwinging = false
+
+
+#functions not associated with _physics_process:
+func makepath() -> void:
+	nav_agent.target_position = player.global_position
+
+
+func _on_timer_timeout():
+	if (player.global_position - global_position).length() <= agroDistance:
+		makepath()
+	pass
+
+
+func playerCloaked(state):
+	isPlayerCloaked = state
+
+
+func _on_grenade_timer_timeout():
+	throwGrenade()

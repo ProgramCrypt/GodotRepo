@@ -76,6 +76,8 @@ animations = [{
 radius = 6.0
 
 [node name="projectile" type="Area2D" groups=["projectile"]]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_mrsgd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

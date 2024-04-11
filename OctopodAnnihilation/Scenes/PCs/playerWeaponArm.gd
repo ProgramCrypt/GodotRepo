@@ -22,7 +22,7 @@ var swingSpeed : float #time that a swing takes
 func _ready():
 	changeWeapon(playerStats.weapon1)
 
-func initialize(stats : ProjectileWeaponStatList):
+'func initialize(stats : ProjectileWeaponStatList):
 	weaponType = stats.weaponType
 	damageType = stats.damageType
 	damage = stats.damage
@@ -33,7 +33,7 @@ func initialize(stats : ProjectileWeaponStatList):
 	projectileSpeed = stats.projectileSpeed
 	projectileSize = stats.projectileSize
 	penetration = stats.penetration
-	effectsOnHit = stats.effectsOnHit
+	effectsOnHit = stats.effectsOnHit'
 
 func changeWeapon(statDict):
 	weaponType = statDict["weaponType"]

@@ -187,6 +187,8 @@ func setPlayerUpgrades(upgradeList):
 
 
 func _on_continue_pressed():
+	if (playerStats.maxHealth-playerStats.currentHealth) > 0:
+		playerStats.heal(2)
 	sceneManager.restartScene()
 
 
@@ -197,7 +199,7 @@ func _on_weapon_1_upgrade_1_pressed():
 			playerStats.modifyWeapon("weapon1", weapon1Upgrades[0]["stat"], weapon1Upgrades[0]["modifier"][0])
 			playerStats.appliedWeapon1Upgrades[0].append(1)
 			playerStats.appliedWeapon1Upgrades.append(weapon1Upgrades[0])
-			increaseEnergyUse("weapon1", 1)
+			#increaseEnergyUse("weapon1", 1)
 			$window/weapon1Upgrade1.disabled = true
 			$window/weapon1Upgrade1.visible = false
 			$window/weapon1Upgrade2.disabled = true
@@ -211,7 +213,7 @@ func _on_weapon_1_upgrade_1_pressed():
 			playerStats.modifyStatValue("currentScrap", (0-weapon1Upgrades[0]["cost"][level]))
 			playerStats.modifyWeapon("weapon1", weapon1Upgrades[0]["stat"], weapon1Upgrades[0]["modifier"][level])
 			playerStats.appliedWeapon1Upgrades[0][index] += 1
-			increaseEnergyUse("weapon1", 1)
+			#increaseEnergyUse("weapon1", 1)
 			$window/weapon1Upgrade1.disabled = true
 			$window/weapon1Upgrade1.visible = false
 			$window/weapon1Upgrade2.disabled = true
@@ -227,7 +229,7 @@ func _on_weapon_1_upgrade_2_pressed():
 			playerStats.modifyWeapon("weapon1", weapon1Upgrades[1]["stat"], weapon1Upgrades[1]["modifier"][0])
 			playerStats.appliedWeapon1Upgrades[0].append(1)
 			playerStats.appliedWeapon1Upgrades.append(weapon1Upgrades[1])
-			increaseEnergyUse("weapon1", 1)
+			#increaseEnergyUse("weapon1", 1)
 			$window/weapon1Upgrade1.disabled = true
 			$window/weapon1Upgrade1.visible = false
 			$window/weapon1Upgrade2.disabled = true
@@ -241,7 +243,7 @@ func _on_weapon_1_upgrade_2_pressed():
 			playerStats.modifyStatValue("currentScrap", (0-weapon1Upgrades[1]["cost"][level]))
 			playerStats.modifyWeapon("weapon1", weapon1Upgrades[1]["stat"], weapon1Upgrades[1]["modifier"][level])
 			playerStats.appliedWeapon1Upgrades[0][index] += 1
-			increaseEnergyUse("weapon1", 1)
+			#increaseEnergyUse("weapon1", 1)
 			$window/weapon1Upgrade1.disabled = true
 			$window/weapon1Upgrade1.visible = false
 			$window/weapon1Upgrade2.disabled = true
@@ -257,7 +259,7 @@ func _on_weapon_1_upgrade_3_pressed():
 			playerStats.modifyWeapon("weapon1", weapon1Upgrades[2]["stat"], weapon1Upgrades[2]["modifier"][0])
 			playerStats.appliedWeapon1Upgrades[0].append(1)
 			playerStats.appliedWeapon1Upgrades.append(weapon1Upgrades[2])
-			increaseEnergyUse("weapon1", 1)
+			#increaseEnergyUse("weapon1", 1)
 			$window/weapon1Upgrade1.disabled = true
 			$window/weapon1Upgrade1.visible = false
 			$window/weapon1Upgrade2.disabled = true
@@ -271,7 +273,7 @@ func _on_weapon_1_upgrade_3_pressed():
 			playerStats.modifyStatValue("currentScrap", (0-weapon1Upgrades[2]["cost"][level]))
 			playerStats.modifyWeapon("weapon1", weapon1Upgrades[2]["stat"], weapon1Upgrades[2]["modifier"][level])
 			playerStats.appliedWeapon1Upgrades[0][index] += 1
-			increaseEnergyUse("weapon1", 1)
+			#increaseEnergyUse("weapon1", 1)
 			$window/weapon1Upgrade1.disabled = true
 			$window/weapon1Upgrade1.visible = false
 			$window/weapon1Upgrade2.disabled = true
@@ -287,7 +289,7 @@ func _on_weapon_2_upgrade_1_pressed():
 			playerStats.modifyWeapon("weapon2", weapon2Upgrades[0]["stat"], weapon2Upgrades[0]["modifier"][0])
 			playerStats.appliedWeapon2Upgrades[0].append(1)
 			playerStats.appliedWeapon2Upgrades.append(weapon2Upgrades[0])
-			increaseEnergyUse("weapon2", 1)
+			#increaseEnergyUse("weapon2", 1)
 			$window/weapon2Upgrade1.disabled = true
 			$window/weapon2Upgrade1.visible = false
 			$window/weapon2Upgrade2.disabled = true
@@ -301,7 +303,7 @@ func _on_weapon_2_upgrade_1_pressed():
 			playerStats.modifyStatValue("currentScrap", (0-weapon2Upgrades[0]["cost"][level]))
 			playerStats.modifyWeapon("weapon2", weapon2Upgrades[0]["stat"], weapon2Upgrades[0]["modifier"][level])
 			playerStats.appliedWeapon2Upgrades[0][index] += 1
-			increaseEnergyUse("weapon2", 1)
+			#increaseEnergyUse("weapon2", 1)
 			$window/weapon2Upgrade1.disabled = true
 			$window/weapon2Upgrade1.visible = false
 			$window/weapon2Upgrade2.disabled = true
@@ -317,7 +319,7 @@ func _on_weapon_2_upgrade_2_pressed():
 			playerStats.modifyWeapon("weapon2", weapon2Upgrades[1]["stat"], weapon2Upgrades[1]["modifier"][0])
 			playerStats.appliedWeapon2Upgrades[0].append(1)
 			playerStats.appliedWeapon2Upgrades.append(weapon2Upgrades[1])
-			increaseEnergyUse("weapon2", 1)
+			#increaseEnergyUse("weapon2", 1)
 			$window/weapon2Upgrade1.disabled = true
 			$window/weapon2Upgrade1.visible = false
 			$window/weapon2Upgrade2.disabled = true
@@ -331,7 +333,7 @@ func _on_weapon_2_upgrade_2_pressed():
 			playerStats.modifyStatValue("currentScrap", (0-weapon2Upgrades[1]["cost"][level]))
 			playerStats.modifyWeapon("weapon2", weapon2Upgrades[1]["stat"], weapon2Upgrades[1]["modifier"][level])
 			playerStats.appliedWeapon2Upgrades[0][index] += 1
-			increaseEnergyUse("weapon2", 1)
+			#increaseEnergyUse("weapon2", 1)
 			$window/weapon2Upgrade1.disabled = true
 			$window/weapon2Upgrade1.visible = false
 			$window/weapon2Upgrade2.disabled = true
@@ -347,7 +349,7 @@ func _on_weapon_2_upgrade_3_pressed():
 			playerStats.modifyWeapon("weapon2", weapon2Upgrades[2]["stat"], weapon2Upgrades[2]["modifier"][0])
 			playerStats.appliedWeapon2Upgrades[0].append(1)
 			playerStats.appliedWeapon2Upgrades.append(weapon2Upgrades[2])
-			increaseEnergyUse("weapon2", 1)
+			#increaseEnergyUse("weapon2", 1)
 			$window/weapon2Upgrade1.disabled = true
 			$window/weapon2Upgrade1.visible = false
 			$window/weapon2Upgrade2.disabled = true
@@ -361,7 +363,7 @@ func _on_weapon_2_upgrade_3_pressed():
 			playerStats.modifyStatValue("currentScrap", (0-weapon2Upgrades[2]["cost"][level]))
 			playerStats.modifyWeapon("weapon2", weapon2Upgrades[2]["stat"], weapon2Upgrades[2]["modifier"][level])
 			playerStats.appliedWeapon2Upgrades[0][index] += 1
-			increaseEnergyUse("weapon2", 1)
+			#increaseEnergyUse("weapon2", 1)
 			$window/weapon2Upgrade1.disabled = true
 			$window/weapon2Upgrade1.visible = false
 			$window/weapon2Upgrade2.disabled = true

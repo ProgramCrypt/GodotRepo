@@ -19,7 +19,7 @@ var explosionResistance : float
 var slowResistance : float
 var stunResistance : float
 
-@export var stopDistance: int = 150
+@export var stopDistance: int = 80
 @export var agroDistance: int = 800
 
 var player: Node2D
@@ -38,12 +38,16 @@ var laser = null
 var warmup = 0.0
 var warmupTime = 0.3
 
+var isPlayerCloaked = false
+var stunned = false
+
 @onready var playerStats = get_node("/root/ActivePlayerStats")
 @onready var statModification = get_node("/root/StatModification")
 
 @export var weaponType : Resource
 
 @export var scrap: PackedScene
+
 
 func _ready() -> void:
 	nav_agent.target_desired_distance = stopDistance
@@ -58,7 +62,7 @@ func _ready() -> void:
 
 
 func updateAnimation(delta):
-	if (player.global_position - global_position).length() <= agroDistance:
+	if (player.global_position - global_position).length() <= agroDistance and isPlayerCloaked == false:
 		#handle arm rotation (convoluted garbage)
 		var relativePlayerPos = player.global_position - global_position
 		var playerAngle = atan(relativePlayerPos.y/relativePlayerPos.x)
@@ -143,9 +147,8 @@ func takeDamage(hit):
 	currentHealth -= hit
 	currentHealth = max(0, currentHealth)
 	if currentHealth == 0:
-		var scrapDrop = scrap.instantiate()
-		get_tree().root.call_deferred("add_child", scrapDrop)
-		scrapDrop.global_position = global_position
+		get_parent().call_deferred("dropItem", scrap, global_transform)
+		playerStats.playerScore += 50
 		queue_free()
 
 
@@ -156,38 +159,39 @@ func heal(amount):
 
 
 func _physics_process(delta: float) -> void:
-	if nav_agent.is_navigation_finished() == false:
-		var dir = to_local(nav_agent.get_next_path_position()).normalized()
+	if stunned == false:
+		if nav_agent.is_navigation_finished() == false:
+			var dir = to_local(nav_agent.get_next_path_position()).normalized()
+			
+			#makes enemy slow approach upon reaching certain distance
+			var mod = 1
+			var distance = player.global_position - global_position
+			if distance.length() <= stopDistance:
+				mod = 0
+			'elif distance.length() < (2*stopDistance) and distance.length() > stopDistance:
+				mod = (distance.length() - stopDistance) / stopDistance'
+			
+			var playerDistance = (player.global_position - global_position).length()
+			if doShoot == false and playerDistance <= agroDistance and isPlayerCloaked == false:
+				velocity = dir * speed * mod
+			else:
+				velocity = dir * 0
+			move_and_slide()
 		
-		#makes enemy slow approach upon reaching certain distance
-		var mod = 1
-		var distance = player.global_position - global_position
-		if distance.length() <= stopDistance:
-			mod = 0
-		elif distance.length() < (2*stopDistance) and distance.length() > stopDistance:
-			mod = (distance.length() - stopDistance) / stopDistance
+		updateAnimation(delta)
 		
-		var playerDistance = (player.global_position - global_position).length()
-		if doShoot == false and playerDistance <= agroDistance:
-			velocity = dir * speed#* mod
-		else:
-			velocity = dir * 0
-		move_and_slide()
-	
-	updateAnimation(delta)
-	
-	if $Arm/Muzzle/RayCast2D.get_collider() != null:
-		if $Arm/Muzzle/RayCast2D.get_collider().is_in_group("player") == true:
-			warmup += delta
+		if $Arm/Muzzle/RayCast2D.get_collider() != null:
+			if $Arm/Muzzle/RayCast2D.get_collider().is_in_group("player") == true:
+				warmup += delta
+			else:
+				warmup = 0.0
 		else:
 			warmup = 0.0
-	else:
-		warmup = 0.0
-	if warmup >= warmupTime:
-		doShoot = true
-	else:
-		doShoot = false
-	shoot(doShoot)
+		if warmup >= warmupTime:
+			doShoot = true
+		else:
+			doShoot = false
+		shoot(doShoot)
 
 
 #functions not associated with _physics_process:
@@ -198,3 +202,7 @@ func makepath() -> void:
 func _on_timer_timeout():
 	if (player.global_position - global_position).length() <= agroDistance:
 		makepath()
+
+
+func playerCloaked(state):
+	isPlayerCloaked = state

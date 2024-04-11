@@ -21,3 +21,7 @@ fireResistance = 0
 explosionResistance = 0
 slowResistance = 0
 stunResistance = 0
+passiveAbility = "snipersVision"
+activeAbility = "cloaking"
+activeAbilityCooldown = 20.0
+activeAbilityLength = 4.0
