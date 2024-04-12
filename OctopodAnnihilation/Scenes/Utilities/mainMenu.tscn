@@ -19,8 +19,9 @@ script = ExtResource("1_oa2op")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
+offset_top = -1.0
 offset_right = 1200.0
-offset_bottom = 1200.0
+offset_bottom = 1199.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_i5fc0")
 
 [node name="mainMenu" type="MarginContainer" parent="."]
@@ -30,7 +31,7 @@ offset_bottom = 1200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
@@ -137,9 +138,24 @@ texture = ExtResource("2_oxj2o")
 expand_mode = 5
 stretch_mode = 4
 
+[node name="HBoxContainer" type="HBoxContainer" parent="mainMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="mainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 350
+theme_override_constants/margin_right = 350
+
+[node name="scoreboard" type="Button" parent="mainMenu/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_oppbk")
+theme_override_font_sizes/font_size = 30
+text = "Scoreboard"
+
 [connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu/new" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="mainMenu/VBoxContainer/MarginContainer/scoreboard" to="." method="_on_scoreboard_pressed"]

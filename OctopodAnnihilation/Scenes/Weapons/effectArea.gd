@@ -9,6 +9,11 @@ var effect = "stun"
 var apply = true
 var affected = []
 
+@export_range(1, 1000) var segments : int = 100
+@export var width : int = 2
+@export var color : Color = Color.ORANGE_RED
+@export var antialiasing : bool = false
+
 
 func setProperties(setInstantiator, setEffect, setDuration, setRadius):
 	instantiator = setInstantiator
@@ -66,6 +71,19 @@ func stun(body):
 
 func slow(body):
 	pass
+
+
+func _draw():
+	# Calculate the arc parameters.
+	var center = Vector2(0, 0)
+	var radius = $CollisionShape2D.shape.radius
+	var start_angle = -PI
+	var end_angle = PI
+	if end_angle < 0:  # end_angle is likely negative, normalize it.
+		end_angle += TAU
+	
+	# Finally, draw the arc.
+	draw_arc(center, radius, start_angle, end_angle, segments, color, width, antialiasing)
 
 
 func _on_application_timer_timeout():

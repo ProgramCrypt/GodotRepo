@@ -189,6 +189,8 @@ func setPlayerUpgrades(upgradeList):
 func _on_continue_pressed():
 	if (playerStats.maxHealth-playerStats.currentHealth) > 0:
 		playerStats.heal(2)
+	if get_tree().get_nodes_in_group('player')[0].isActiveActive == true:
+		playerStats.manualActiveAbilityTimeout()
 	sceneManager.restartScene()
 
 

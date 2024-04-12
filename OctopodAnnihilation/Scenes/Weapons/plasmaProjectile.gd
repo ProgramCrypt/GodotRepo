@@ -21,7 +21,7 @@ func _ready():
 
 func _physics_process(delta):
 	position -= transform.x * speed * delta
-	position += parentVelocity/2 * delta
+	#position += parentVelocity/2 * delta
 	distanceTraveled += speed * delta
 	if distanceTraveled > projectileProperties["projectileRange"]:
 		if dissipate == false:

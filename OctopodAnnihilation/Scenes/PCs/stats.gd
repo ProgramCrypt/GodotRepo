@@ -90,7 +90,7 @@ func initialize(stats : PlayerStats):
 	slowResistance = stats.slowResistance
 	stunResistance = stats.stunResistance
 	
-	currentScrap = 400
+	currentScrap = 0
 
 func _physics_process(delta):
 	if energyDepletionTimer == 0:
@@ -114,7 +114,6 @@ func takeDamage(hit):
 			emit_signal("healthDepleted")
 			var menu = deathMenu.instantiate()
 			get_tree().root.add_child(menu)
-			get_tree().paused = true
 		elif playerTypeDict[playerType].passiveAbility == "focus" and hit > 1:
 			Engine.time_scale = 0.5
 			$focusTimer.start(0.4)
@@ -264,6 +263,46 @@ func modifyStatValue(stat, modifier):
 		currentScrap += modifier
 		currentScrap = max(0, currentScrap)
 		emit_signal("scrapChanged")
+
+
+func manualActiveAbilityTimeout():
+	print("manual")
+	if playerTypeDict[playerType].activeAbility == "adrenaline":
+		modifyStatValue("maxHealth", -10)
+		modifyStatValue("maxEnergy", -10)
+		speed -= 5
+		strength -= 5
+		rateOfFire -= 10
+		gunAccuracy -= 10
+		ballisticResistance -= 20
+		laserResistance -- 20
+		plasmaResistance -= 20
+		bleedingResistance -= 20
+		fireResistance -= 20
+		explosionResistance -= 20
+		slowResistance -= 50
+		stunResistance -= 50
+		print("stat")
+	
+	if playerTypeDict[playerType].activeAbility == "cloaking":
+		pass
+	
+	if playerTypeDict[playerType].activeAbility == "seismicImpact":
+		pass
+	
+	if playerTypeDict[playerType].activeAbility == "dash":
+		speed -= 70
+		vulnerable = true
+	
+	if playerTypeDict[playerType].activeAbility == "decoy":
+		pass
+	
+	if playerTypeDict[playerType].activeAbility == "mitosis":
+		pass
+	
+	if playerTypeDict[playerType].activeAbility == "mineLayer":
+		pass
+	
 
 
 func _on_focus_timer_timeout():

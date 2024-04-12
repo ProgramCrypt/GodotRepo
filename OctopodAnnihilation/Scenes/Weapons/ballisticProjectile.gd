@@ -19,7 +19,7 @@ func _ready():
 
 func _physics_process(delta):
 	position -= transform.x * speed * delta
-	position += parentVelocity/2 * delta
+	#position += parentVelocity/2 * delta
 	if distanceTraveled > projectileProperties["projectileRange"]:
 		projectileProperties["damage"] -= (distanceTraveled - projectileProperties["projectileRange"]) * 0.01 * delta
 		if projectileProperties["damage"] <= 0:

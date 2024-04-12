@@ -35,3 +35,7 @@ func _on_new_pressed():
 func _on_back_pressed():
 	$mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu.visible = true
 	$mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu.visible = false
+
+
+func _on_scoreboard_pressed():
+	sceneManager.switchScene("scoreboard")

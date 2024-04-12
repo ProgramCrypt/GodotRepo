@@ -9,6 +9,14 @@ func _ready():
 	$Timer.one_shot = true
 	$Timer.start(0.5)
 	$MarginContainer/MarginContainer/VBoxContainer/score.text = "Score: " + str(playerStats.playerScore)
+	
+	var score = [playerStats.playerScore, playerStats.playerType]
+	var scoreList = sceneManager.loadScoreData()
+	scoreList.append(score)
+	scoreList.sort_custom(sortAscending)
+	print(scoreList)
+	scoreList.pop_back()
+	sceneManager.saveScores(scoreList)
 
 
 func _process(_delta):
@@ -27,6 +35,12 @@ func deleteSave():
 	DirAccess.remove_absolute("user://OctopodAnnihilationSaveFile.save")
 
 
+func sortAscending(a, b):
+	if a[0] < b[0]:
+		return false
+	return true
+
+
 func _on_retry_pressed():
 	if playerStats.playerType == "superSoldier":
 		playerStats.initialize(playerStats.superSoldier)
@@ -42,8 +56,8 @@ func _on_retry_pressed():
 		playerStats.initialize(playerStats.mutant)
 	if playerStats.playerType == "robot":
 		playerStats.initialize(playerStats.robot)
-	playerStats.saveWeapon(playerStats.plasma, playerStats.weapon1)
-	playerStats.saveWeapon(playerStats.shield, playerStats.weapon2)
+	#playerStats.saveWeapon(playerStats.plasma, playerStats.weapon1)
+	#playerStats.saveWeapon(playerStats.shield, playerStats.weapon2)
 	
 	deleteSave()
 	get_tree().paused = false

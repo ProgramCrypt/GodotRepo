@@ -3,9 +3,11 @@ extends Node2D
 @onready var playerStats = get_node("/root/ActivePlayerStats")
 
 var savePath = "user://OctopodAnnihilationSaveFile.save"
+var scoreSavePath = "user://OctopodAnnihilationScoreSaveFile.save"
 
 @export var mainMenu : PackedScene
 @export var characterSelection : PackedScene
+@export var scoreboard : PackedScene
 @export var level1_1 : PackedScene
 var scenes = {}
 
@@ -14,8 +16,15 @@ var level = "level1_1"
 
 
 func _ready():
-	scenes = {"mainMenu": mainMenu, "characterSelection": characterSelection, "level1_1": level1_1}
+	scenes = {"mainMenu": mainMenu, "characterSelection": characterSelection, "scoreboard": scoreboard, "level1_1": level1_1}
 	#switchScene("mainMenu")
+	
+	var scores = loadScoreData()
+	print(scores)
+	if scores == null:
+		saveScores([])
+	else:
+		saveScores(scores)
 
 
 func addScene(sceneAlias : String, scenePath : String) -> void:
@@ -71,6 +80,7 @@ func saveGame():
 	file.store_var(playerStats.stunResistance)
 	file.store_var(playerStats.currentScrap)
 	file.store_var(playerStats.appliedArmorUpgrades)
+	file.close()
 
 
 func loadGameData():
@@ -101,3 +111,30 @@ func loadGameData():
 		playerStats.stunResistance = file.get_var()
 		playerStats.currentScrap = file.get_var()
 		playerStats.appliedArmorUpgrades = file.get_var()
+		file.close()
+
+
+func saveScores(scores):
+	var file = FileAccess.open(scoreSavePath, FileAccess.WRITE)
+	if scores.size() < 10:
+		for i in range(10-scores.size()):
+			scores.append([0, "N/A"])
+	for score in scores:
+		file.store_var(score[0])
+		file.store_var(score[1])
+	file.close()
+
+
+func loadScoreData():
+	if FileAccess.file_exists(scoreSavePath):
+		var file = FileAccess.open(scoreSavePath, FileAccess.READ)
+		var scores = []
+		for i in range(10):
+			var score = []
+			score.append(file.get_var())
+			score.append(file.get_var())
+			scores.append(score)
+		return scores
+		file.close()
+	else:
+		return null

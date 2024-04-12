@@ -52,13 +52,15 @@ var plasmaUpgrades = [
 var hammerUpgrades = [
 	{"levels": 5, "name": ["5,000 Volts", "10,000 Volts", "20,000 Volts", "30,000 Volts", "40,000 Volts"], "stat": "damage", "modifier": [3, 3, 2, 2, 2], "cost": [40, 50, 60, 70, 80], "description": "Increased Damage"},
 	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [60, 70], "description": "Decreased Energy Use"},
-	{"levels": 3, "name": ["Improved Balancing", "Extended Reach", "Extended Tesla Coil"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [40, 50, 60], "description": "Increased Range"}
+	{"levels": 3, "name": ["Improved Balancing", "Extended Reach", "Extended Tesla Coil"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [40, 50, 60], "description": "Increased Range"},
+	{"levels": 1, "name": ["Extended Hammerhead"], "stat": "swingAngle", "modifier": [20], "cost": [60], "description": "Increased Swing Angle"}
 	]
 
 var shieldUpgrades = [
 	{"levels": 5, "name": ["10,000 Degrees", "20,000 Degrees", "30,000 Degrees", "40,000 Degrees", "50,000 Degrees"], "stat": "damage", "modifier": [3, 3, 3, 3, 2], "cost": [40, 50, 60, 70, 80], "description": "Increased Damage"},
 	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [60, 70], "description": "Decreased Energy Use"},
-	{"levels": 3, "name": ["Neodymium\nReinforcement", "Improved\nElectromagnet", "Advanced\nElectromagnet"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [50, 60, 70], "description": "Increased Range"}
+	{"levels": 3, "name": ["Neodymium\nReinforcement", "Improved\nElectromagnet", "Advanced\nElectromagnet"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [50, 60, 70], "description": "Increased Range"},
+	{"levels": 1, "name": ["Extended Capacitor\nDischarge"], "stat": "swingSpeed", "modifier": [0.4], "cost": [60], "description": "Increased Shielding Time"}
 	]
 
 

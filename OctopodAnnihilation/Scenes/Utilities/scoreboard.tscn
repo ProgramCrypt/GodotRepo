@@ -1,0 +1,296 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4cabrig3ue5t"]
+
+[ext_resource type="Script" path="res://Scenes/Utilities/scoreboard.gd" id="1_jqhky"]
+[ext_resource type="FontFile" uid="uid://ben4lmr6atcfd" path="res://Utilities/Fonts/Montreal-Bold.ttf" id="1_yofed"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0621x"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7pb8"]
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="scoreboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jqhky")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 1200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0621x")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 1200.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("1_yofed")
+theme_override_font_sizes/font_size = 70
+text = "Scoreboard"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(800, 800)
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="scoreboardBox2" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="scoreboardBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 250
+alignment = 1
+
+[node name="rank" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="score1" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1."
+
+[node name="score2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "2."
+
+[node name="score3" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "3."
+
+[node name="score4" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "4."
+
+[node name="score5" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "5."
+
+[node name="score6" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "6."
+
+[node name="score7" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "7."
+
+[node name="score8" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "8."
+
+[node name="score9" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "9."
+
+[node name="score10" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/rank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "10."
+
+[node name="scores" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="score1" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "11450"
+
+[node name="score2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "9650"
+
+[node name="score3" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "9650"
+
+[node name="score4" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "9650"
+
+[node name="score5" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "9650"
+
+[node name="score6" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "9650"
+
+[node name="score7" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "9650"
+
+[node name="score8" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "9650"
+
+[node name="score9" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "9650"
+
+[node name="score10" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/scores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="characters" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="character1" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Infiltrator"
+
+[node name="character2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Infiltrator"
+
+[node name="character3" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Infiltrator"
+
+[node name="character4" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Infiltrator"
+
+[node name="character5" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Infiltrator"
+
+[node name="character6" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Infiltrator"
+
+[node name="character7" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Infiltrator"
+
+[node name="character8" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Infiltrator"
+
+[node name="character9" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Infiltrator"
+
+[node name="character10" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/scoreboardBox/characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Sniper"
+
+[node name="dividerContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer"]
+layout_mode = 2
+theme_override_constants/separation = 51
+alignment = 1
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7pb8")
+
+[node name="Panel2" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7pb8")
+
+[node name="Panel3" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7pb8")
+
+[node name="Panel4" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7pb8")
+
+[node name="Panel5" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7pb8")
+
+[node name="Panel6" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7pb8")
+
+[node name="Panel7" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7pb8")
+
+[node name="Panel8" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7pb8")
+
+[node name="Panel9" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/dividerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7pb8")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 350
+theme_override_constants/margin_right = 350
+
+[node name="exit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yofed")
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/exit" to="." method="_on_exit_pressed"]
