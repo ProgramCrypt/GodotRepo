@@ -33,7 +33,7 @@ theme_override_constants/margin_right = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 24
 alignment = 1
 
 [node name="paused" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
@@ -43,28 +43,78 @@ theme_override_font_sizes/font_size = 50
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="mainMenu" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="resume" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="resume" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/mainMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Resume"
 
-[node name="options" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="options" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/mainMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Options"
 
-[node name="saveAndExit" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="saveAndExit" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/mainMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Save & Exit"
 
+[node name="optionsMenu" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 19
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/optionsMenu"]
+layout_mode = 2
+
+[node name="masterLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="masterSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="musicLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="musicSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="SFXLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="back" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/optionsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/saveAndExit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/mainMenu/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/mainMenu/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/mainMenu/saveAndExit" to="." method="_on_exit_pressed"]
+[connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/VBoxContainer/masterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/VBoxContainer/musicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/optionsMenu/back" to="." method="_on_back_pressed"]

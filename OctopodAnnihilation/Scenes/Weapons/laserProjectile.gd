@@ -5,7 +5,8 @@ extends RayCast2D
 
 var shooter = null
 var projectileProperties
-var timer = 1.0
+var damageTimer = 1.0
+var missTimer = 0
 
 #shooterProjectileProperties = {"damage": var, "range": var, "speed": var, "penetration": var, "effectsOnHit": Array}
 func setShooter(shooterGroups, shooterProjectileProperties):
@@ -45,23 +46,28 @@ func _physics_process(delta):
 		if get_collider() != null:
 			if get_collider().is_in_group("enemy") == true:
 				var laserResistance = get_collider().getResistances()["laserResistance"]
-				var damage = statModification.laserDamage(timer, projectileProperties["damage"], laserResistance) * delta
+				var damage = statModification.laserDamage(damageTimer, projectileProperties["damage"] * 1.5, laserResistance) * delta
 				get_collider().takeDamage(damage)
-				timer += delta
+				damageTimer += delta
+				missTimer = 0
 			else:
-				timer = 1.0
+				missTimer += delta
+				if missTimer >= 1:
+					damageTimer = 1.0
 		else:
-			timer = 1.0
+			missTimer += delta
+			if missTimer >= 1:
+				damageTimer = 1.0
 	
 	#damage to player
 	if shooter == "enemy":
 		if get_collider() != null:
 			if get_collider().is_in_group("player") == true:
 				var laserResistance = playerStats.laserResistance
-				var damage = statModification.laserDamage(timer, projectileProperties["damage"], laserResistance) * delta
+				var damage = statModification.laserDamage(damageTimer, projectileProperties["damage"], laserResistance) * delta
 				playerStats.takeDamage(damage)
-				timer += delta
+				damageTimer += delta
 			else:
-				timer = 1.0
+				damageTimer = 1.0
 		else:
-			timer = 1.0
+			damageTimer = 1.0

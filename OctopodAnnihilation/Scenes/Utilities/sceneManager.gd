@@ -1,11 +1,13 @@
 extends Node2D
 
 @onready var playerStats = get_node("/root/ActivePlayerStats")
+@onready var audioManager = get_node("/root/AudioManager")
 
 var savePath = "user://OctopodAnnihilationSaveFile.save"
 var scoreSavePath = "user://OctopodAnnihilationScoreSaveFile.save"
 
 @export var mainMenu : PackedScene
+@export var options : PackedScene
 @export var characterSelection : PackedScene
 @export var scoreboard : PackedScene
 @export var level1_1 : PackedScene
@@ -16,7 +18,7 @@ var level = "level1_1"
 
 
 func _ready():
-	scenes = {"mainMenu": mainMenu, "characterSelection": characterSelection, "scoreboard": scoreboard, "level1_1": level1_1}
+	scenes = {"mainMenu": mainMenu, "options": options, "characterSelection": characterSelection, "scoreboard": scoreboard, "level1_1": level1_1}
 	#switchScene("mainMenu")
 	
 	var scores = loadScoreData()
@@ -38,6 +40,9 @@ func removeScene(sceneAlias : String) -> void:
 func switchScene(sceneAlias : String) -> void:
 	#print("loading: " + str(scenes[sceneAlias]))
 	get_tree().change_scene_to_packed(scenes[sceneAlias])
+	audioManager.musicOff()
+	if sceneAlias == "level1_1":
+		$"/root/AudioManager/OST/labsTheme".play(0)
 
 
 func restartScene() -> void:

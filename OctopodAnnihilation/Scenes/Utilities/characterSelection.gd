@@ -4,8 +4,13 @@ extends Control
 @onready var playerStats = get_node("/root/ActivePlayerStats")
 
 
+func _ready():
+	playerStats.playerScore = 0
+
+
 func _on_back_pressed():
 	sceneManager.switchScene("mainMenu")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_super_soldier_pressed():
@@ -14,6 +19,7 @@ func _on_super_soldier_pressed():
 	playerStats.saveWeapon(playerStats.ballistic, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.hammer, playerStats.weapon2)
 	sceneManager.switchScene("level1_1")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_sniper_pressed():
@@ -22,6 +28,7 @@ func _on_sniper_pressed():
 	playerStats.saveWeapon(playerStats.ballistic, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.laser, playerStats.weapon2)
 	sceneManager.switchScene("level1_1")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_tanker_pressed():
@@ -30,6 +37,7 @@ func _on_tanker_pressed():
 	playerStats.saveWeapon(playerStats.plasma, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.hammer, playerStats.weapon2)
 	sceneManager.switchScene("level1_1")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_infiltrator_pressed():
@@ -38,6 +46,7 @@ func _on_infiltrator_pressed():
 	playerStats.saveWeapon(playerStats.plasma, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.shield, playerStats.weapon2)
 	sceneManager.switchScene("level1_1")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_cyborg_pressed():
@@ -46,6 +55,7 @@ func _on_cyborg_pressed():
 	playerStats.saveWeapon(playerStats.plasma, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.laser, playerStats.weapon2)
 	sceneManager.switchScene("level1_1")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_mutant_pressed():
@@ -54,6 +64,7 @@ func _on_mutant_pressed():
 	playerStats.saveWeapon(playerStats.ballistic, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.shield, playerStats.weapon2)
 	sceneManager.switchScene("level1_1")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_robot_pressed():
@@ -62,3 +73,4 @@ func _on_robot_pressed():
 	playerStats.saveWeapon(playerStats.laser, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.shield, playerStats.weapon2)
 	sceneManager.switchScene("level1_1")
+	$"/root/AudioManager/UI/selectButton".play(0)

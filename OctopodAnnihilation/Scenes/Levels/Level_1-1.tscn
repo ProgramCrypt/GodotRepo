@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6wakgckuw41q"]
+[gd_scene load_steps=22 format=3 uid="uid://b6wakgckuw41q"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level_1-1.gd" id="1_fdy0e"]
 [ext_resource type="Script" path="res://Scenes/Levels/Camera2D.gd" id="1_sq2ms"]
@@ -20,6 +20,9 @@ bg_color = Color(0.301961, 0.301961, 0.301961, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hriro"]
 bg_color = Color(0.701961, 0.392157, 0.301961, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3asbm"]
+bg_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg5vp"]
 bg_color = Color(0.164706, 0.623529, 0.74902, 1)
 
@@ -39,6 +42,7 @@ bg_color = Color(0.258824, 1, 0.247059, 1)
 y_sort_enabled = true
 script = ExtResource("1_fdy0e")
 exitPortal = ExtResource("2_7pb71")
+totalRooms = 8
 spawnRoom = ExtResource("2_rhmof")
 vatRoom = ExtResource("3_l30t0")
 derelictVatRoom = ExtResource("4_s534a")
@@ -51,6 +55,7 @@ serverRoom1 = ExtResource("8_13587")
 position = Vector2(565, 350)
 rotation = 3.14159
 scale = Vector2(71.7733, -143.641)
+zoom = Vector2(1.25, 1.25)
 script = ExtResource("1_sq2ms")
 
 [node name="player" parent="." instance=ExtResource("2_pe7sg")]
@@ -74,19 +79,271 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Energy: 0"
 
 [node name="healthBar" type="ProgressBar" parent="HUD"]
-offset_right = 178.0
+offset_right = 180.0
 offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nxu8w")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hriro")
 show_percentage = false
 
+[node name="dividers" type="MarginContainer" parent="HUD/healthBar"]
+visible = false
+layout_mode = 0
+offset_right = 178.0
+offset_bottom = 27.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/healthBar/dividers"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Panel" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel2" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel3" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel4" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel5" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel6" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel7" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel8" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel9" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel10" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel11" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel12" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel13" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel14" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel15" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel16" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel17" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel18" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel19" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
 [node name="energyBar" type="ProgressBar" parent="HUD"]
 offset_top = 29.0
-offset_right = 178.0
+offset_right = 180.0
 offset_bottom = 56.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nxu8w")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dg5vp")
 show_percentage = false
+
+[node name="dividers" type="MarginContainer" parent="HUD/energyBar"]
+visible = false
+layout_mode = 0
+offset_right = 178.0
+offset_bottom = 27.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/energyBar/dividers"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Panel" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel2" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel3" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel4" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel5" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel6" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel7" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel8" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel9" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel10" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel11" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel12" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel13" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel14" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel15" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel16" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel17" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel18" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
+
+[node name="Panel19" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3asbm")
 
 [node name="scrapIcon" type="Sprite2D" parent="HUD"]
 position = Vector2(1150, 1150)

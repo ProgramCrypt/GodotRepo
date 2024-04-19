@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@export var health = 15
+@export var health = 10
 
 
 func _on_area_2d_area_entered(area):

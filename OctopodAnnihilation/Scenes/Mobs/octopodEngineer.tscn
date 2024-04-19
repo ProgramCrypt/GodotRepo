@@ -220,6 +220,9 @@ target_position = Vector2(0, 500)
 [node name="launcher" type="Marker2D" parent="Arm"]
 position = Vector2(-20, 0)
 
+[node name="lineOfSight" type="RayCast2D" parent="."]
+target_position = Vector2(800, 0)
+
 [node name="grenadeTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

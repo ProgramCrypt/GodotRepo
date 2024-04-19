@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtbnoqh6de24q"]
+[gd_scene load_steps=7 format=3 uid="uid://dtbnoqh6de24q"]
 
 [ext_resource type="Script" path="res://Scenes/Utilities/sceneManager.gd" id="1_hojph"]
 [ext_resource type="PackedScene" uid="uid://qr5q2rtsd4nc" path="res://Scenes/Utilities/mainMenu.tscn" id="2_rstwb"]
 [ext_resource type="PackedScene" uid="uid://di7acltgdbdvq" path="res://Scenes/Utilities/characterSelection.tscn" id="3_jod3k"]
+[ext_resource type="PackedScene" uid="uid://do8qjsw1gfvfa" path="res://Scenes/Utilities/options.tscn" id="3_w623n"]
 [ext_resource type="PackedScene" uid="uid://b6wakgckuw41q" path="res://Scenes/Levels/Level_1-1.tscn" id="3_wsauu"]
 [ext_resource type="PackedScene" uid="uid://b4cabrig3ue5t" path="res://Scenes/Utilities/scoreboard.tscn" id="4_y1jmh"]
 
 [node name="sceneManager" type="Node2D"]
 script = ExtResource("1_hojph")
 mainMenu = ExtResource("2_rstwb")
+options = ExtResource("3_w623n")
 characterSelection = ExtResource("3_jod3k")
 scoreboard = ExtResource("4_y1jmh")
 level1_1 = ExtResource("3_wsauu")

@@ -1,0 +1,151 @@
+[gd_scene load_steps=22 format=3 uid="uid://cuxqlhiidy1c1"]
+
+[ext_resource type="Script" path="res://Scenes/Utilities/audioManager.gd" id="1_4vtx0"]
+[ext_resource type="AudioStream" uid="uid://fs8eti2jnpd1" path="res://Audio/WeaponSFX/Ballistic/fire1reverb.mp3" id="2_2041y"]
+[ext_resource type="AudioStream" uid="uid://bits2uyorpy4m" path="res://Audio/WeaponSFX/Ballistic/fire2reverb.mp3" id="3_fg35t"]
+[ext_resource type="AudioStream" uid="uid://mmhk7pi8wawd" path="res://Audio/WeaponSFX/Ballistic/fire3reverb.mp3" id="4_6awsp"]
+[ext_resource type="AudioStream" uid="uid://dt5ow2pknnl" path="res://Audio/WeaponSFX/Laser/active.wav" id="5_qv40y"]
+[ext_resource type="AudioStream" uid="uid://bdxjidvwes1sn" path="res://Audio/WeaponSFX/Laser/warmUp.wav" id="6_224mv"]
+[ext_resource type="AudioStream" uid="uid://cvpvwnmhopv0b" path="res://Audio/WeaponSFX/Plasma/fire1reverb.wav" id="7_c061c"]
+[ext_resource type="AudioStream" uid="uid://bs0xbd447fy17" path="res://Audio/WeaponSFX/Plasma/fire2reverb.wav" id="8_lam0v"]
+[ext_resource type="AudioStream" uid="uid://dbwntr2gv5xre" path="res://Audio/WeaponSFX/Plasma/fire3reverb.wav" id="9_vaaa2"]
+[ext_resource type="AudioStream" uid="uid://bw5grh6hbn3bc" path="res://Audio/WeaponSFX/Plasma/fire4reverb.wav" id="10_joaby"]
+[ext_resource type="AudioStream" uid="uid://dfbmfaulyt7jg" path="res://Audio/WeaponSFX/Plasma/fire5reverb.wav" id="11_kqf3e"]
+[ext_resource type="AudioStream" uid="uid://b4j4ojsx868ct" path="res://Audio/WeaponSFX/Plasma/fire6reverb.wav" id="12_n4egd"]
+[ext_resource type="AudioStream" uid="uid://cgi4m8in5f872" path="res://Audio/WeaponSFX/Plasma/fire7reverb.wav" id="13_atpmx"]
+[ext_resource type="AudioStream" uid="uid://b6hl1n0v1yc2b" path="res://Audio/WeaponSFX/Plasma/fire8reverb.wav" id="14_gvqy2"]
+[ext_resource type="AudioStream" uid="uid://b7dmddnwdgxpr" path="res://Audio/WeaponSFX/Hammer/swing1reverb.mp3" id="15_nxu1d"]
+[ext_resource type="AudioStream" uid="uid://cvv0t2gc8513b" path="res://Audio/WeaponSFX/Hammer/swing2reverb.mp3" id="16_7f1oh"]
+[ext_resource type="AudioStream" uid="uid://c4diqjub5e6jw" path="res://Audio/WeaponSFX/Hammer/swing3reverb.mp3" id="17_mf5qk"]
+[ext_resource type="AudioStream" uid="uid://cqq1gk5nklcms" path="res://Audio/WeaponSFX/Hammer/zap.wav" id="18_3j3or"]
+[ext_resource type="AudioStream" uid="uid://8t6j6267a0pi" path="res://Audio/WeaponSFX/Shield/buzz.wav" id="19_s1psr"]
+[ext_resource type="AudioStream" uid="uid://cv2aoesskrhjl" path="res://Audio/OST/labsTheme_firstDraft.wav" id="20_lxjrq"]
+[ext_resource type="AudioStream" uid="uid://cf7wibpcneuyt" path="res://Audio/UI/Select.wav" id="21_c4hsr"]
+
+[node name="Audio" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4vtx0")
+
+[node name="weapons" type="Node" parent="."]
+
+[node name="ballistic" type="Node" parent="weapons"]
+
+[node name="fire1" type="AudioStreamPlayer" parent="weapons/ballistic"]
+stream = ExtResource("2_2041y")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="fire2" type="AudioStreamPlayer" parent="weapons/ballistic"]
+stream = ExtResource("3_fg35t")
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="fire3" type="AudioStreamPlayer" parent="weapons/ballistic"]
+stream = ExtResource("4_6awsp")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="laser" type="Node" parent="weapons"]
+
+[node name="active" type="AudioStreamPlayer" parent="weapons/laser"]
+stream = ExtResource("5_qv40y")
+volume_db = -7.0
+bus = &"SFX"
+
+[node name="warmUp" type="AudioStreamPlayer" parent="weapons/laser"]
+stream = ExtResource("6_224mv")
+bus = &"SFX"
+
+[node name="plasma" type="Node" parent="weapons"]
+
+[node name="fire1" type="AudioStreamPlayer" parent="weapons/plasma"]
+stream = ExtResource("7_c061c")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="fire2" type="AudioStreamPlayer" parent="weapons/plasma"]
+stream = ExtResource("8_lam0v")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="fire3" type="AudioStreamPlayer" parent="weapons/plasma"]
+stream = ExtResource("9_vaaa2")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="fire4" type="AudioStreamPlayer" parent="weapons/plasma"]
+stream = ExtResource("10_joaby")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="fire5" type="AudioStreamPlayer" parent="weapons/plasma"]
+stream = ExtResource("11_kqf3e")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="fire6" type="AudioStreamPlayer" parent="weapons/plasma"]
+stream = ExtResource("12_n4egd")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="fire7" type="AudioStreamPlayer" parent="weapons/plasma"]
+stream = ExtResource("13_atpmx")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="fire8" type="AudioStreamPlayer" parent="weapons/plasma"]
+stream = ExtResource("14_gvqy2")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="hammer" type="Node" parent="weapons"]
+
+[node name="zap" type="AudioStreamPlayer" parent="weapons/hammer"]
+stream = ExtResource("18_3j3or")
+volume_db = -13.0
+bus = &"SFX"
+
+[node name="swing" type="Node" parent="weapons/hammer"]
+
+[node name="swing1" type="AudioStreamPlayer" parent="weapons/hammer/swing"]
+stream = ExtResource("15_nxu1d")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="swing2" type="AudioStreamPlayer" parent="weapons/hammer/swing"]
+stream = ExtResource("16_7f1oh")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="swing3" type="AudioStreamPlayer" parent="weapons/hammer/swing"]
+stream = ExtResource("17_mf5qk")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="shield" type="Node" parent="weapons"]
+
+[node name="buzz" type="AudioStreamPlayer" parent="weapons/shield"]
+stream = ExtResource("19_s1psr")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="OST" type="Node" parent="."]
+
+[node name="labsTheme" type="AudioStreamPlayer" parent="OST"]
+stream = ExtResource("20_lxjrq")
+volume_db = -6.0
+bus = &"Music"
+
+[node name="UI" type="Node" parent="."]
+
+[node name="selectButton" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("21_c4hsr")
+bus = &"SFX"
+
+[connection signal="finished" from="OST/labsTheme" to="." method="_on_labs_theme_finished"]

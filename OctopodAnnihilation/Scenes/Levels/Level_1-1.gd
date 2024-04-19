@@ -128,6 +128,7 @@ func _process(delta):
 
 func setHealth() -> void:
 	$HUD/healthLabel.text = "Health: " + str(int(ceil(playerStats.currentHealth))) + "/" + str(playerStats.maxHealth)
+	#$HUD/healthLabel.text = "Health: " + str((ceil(playerStats.currentHealth * 10) / 10)) + "/" + str(playerStats.maxHealth) #health value displays as float with 1 decimal place
 	$HUD/healthBar.value = playerStats.currentHealth
 
 func setMaxHealth() -> void:

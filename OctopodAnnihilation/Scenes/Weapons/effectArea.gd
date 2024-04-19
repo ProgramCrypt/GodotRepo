@@ -52,6 +52,7 @@ func fire(body):
 
 
 func explosion(body):
+	$explosion.play(0)
 	if instantiator == "player":
 		if "enemy" in body.get_groups():
 			body.takeDamage(15)

@@ -20,7 +20,7 @@ var slowResistance : float
 var stunResistance : float
 
 @export var stopDistance: int = 80
-@export var agroDistance: int = 800
+@export var agroDistance: int = 700
 
 var player: Node2D
 

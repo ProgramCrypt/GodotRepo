@@ -116,7 +116,7 @@ func takeDamage(hit):
 			get_tree().root.add_child(menu)
 		elif playerTypeDict[playerType].passiveAbility == "focus" and hit > 1:
 			Engine.time_scale = 0.5
-			$focusTimer.start(0.4)
+			$focusTimer.start(0.6)
 		
 
 func heal(amount):

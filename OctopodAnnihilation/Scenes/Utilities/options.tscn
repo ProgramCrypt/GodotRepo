@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://do8qjsw1gfvfa"]
+
+[ext_resource type="Script" path="res://Scenes/Utilities/options.gd" id="1_44gik"]
+[ext_resource type="FontFile" uid="uid://ben4lmr6atcfd" path="res://Utilities/Fonts/Montreal-Bold.ttf" id="1_dotnt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iw77p"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_44gik")
+
+[node name="Panel" type="Panel" parent="."]
+offset_top = -1.0
+offset_right = 1200.0
+offset_bottom = 1199.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iw77p")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 1200.0
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("1_dotnt")
+theme_override_font_sizes/font_size = 70
+text = "Options"
+horizontal_alignment = 1
+
+[node name="masterVolume" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/masterVolume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Master Volume"
+
+[node name="masterVolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/masterVolume"]
+custom_minimum_size = Vector2(350, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="musicVolume" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/musicVolume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+
+[node name="musicVolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/musicVolume"]
+custom_minimum_size = Vector2(350, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="SFXVolume" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SFXVolume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SFXVolume"]
+custom_minimum_size = Vector2(350, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dotnt")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/masterVolume/masterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/musicVolume/musicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXVolume/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

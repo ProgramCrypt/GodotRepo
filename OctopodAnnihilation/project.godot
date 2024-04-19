@@ -21,6 +21,7 @@ StatModification="*res://Scenes/Utilities/statModification.gd"
 ProjectileWeaponStats="*res://Scenes/Weapons/projectileWeaponStats.gd"
 SceneManager="*res://Scenes/Utilities/sceneManager.tscn"
 ActivePlayerStats="*res://Scenes/PCs/playerStats.tscn"
+AudioManager="*res://Scenes/Utilities/audioManager.tscn"
 
 [display]
 

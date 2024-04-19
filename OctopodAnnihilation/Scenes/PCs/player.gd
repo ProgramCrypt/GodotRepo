@@ -5,6 +5,7 @@ signal setActiveActive()
 
 @onready var playerStats = get_node("/root/ActivePlayerStats")
 @onready var statModification = get_node("/root/StatModification")
+@onready var audioManager = get_node("/root/AudioManager")
 
 @export var pauseMenu : PackedScene
 
@@ -37,13 +38,14 @@ func _ready():
 
 func handleInput(_delta):
 	var moveDirection = Input.get_vector("left", "right", "up", "down")
-	velocity = moveDirection * playerStats.speed * 9
+	velocity = moveDirection * playerStats.speed * 10
 	
 	if Input.is_action_just_pressed("attack"):
 		if playerStats.currentEnergy != 0:
 			if $Arm.weaponType == "projectile":
 				if $Arm.damageType == 1:
 					$laserChargeTimer.start($Arm.fireRate)
+					$"/root/AudioManager/weapons/laser/warmUp".play(0)
 				else:
 					if attackTimer <= 0:
 						shoot()
@@ -62,11 +64,13 @@ func handleInput(_delta):
 	if Input.is_action_just_released("attack"):
 		if $laserChargeTimer.time_left > 0:
 			$laserChargeTimer.stop()
+			$"/root/AudioManager/weapons/laser/warmUp".stop()
 		if laserActive == true: 
 			for child in $Arm/Muzzle.get_children():
 				if child.is_in_group("laserProjectile"):
 					child.queue_free()
 			laserActive = false
+			$"/root/AudioManager/weapons/laser/active".stop()
 	
 	if Input.is_action_just_pressed("activeAbility"):
 		if isActiveActive == false and $activeAbilityCooldownTimer.time_left <= 0:
@@ -149,6 +153,7 @@ func shoot():
 		projVector = -projVector
 		var addedSpeed = velocity.dot(projVector)/2
 		projectile.setShooter(get_groups(),{"damage": $Arm.damage, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed + addedSpeed, "parentVelocity": velocity, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
+		audioManager.ballisticFire()
 	if $Arm.damageType == 1:
 		for i in range(int($Arm.projectileSize)):
 			var projectile = laserProjectile.instantiate()
@@ -157,6 +162,8 @@ func shoot():
 			projectile.position.y += (i - offset) * 2
 			projectile.setShooter(get_groups(),{"damage": $Arm.damage, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
 		laserActive = true
+		$"/root/AudioManager/weapons/laser/warmUp".stop()
+		$"/root/AudioManager/weapons/laser/active".play(0)
 	if $Arm.damageType == 2:
 		playerStats.useEnergy($Arm.energyUse)
 		var projectile = plasmaProjectile.instantiate()
@@ -168,6 +175,7 @@ func shoot():
 		projVector = -projVector
 		var addedSpeed = velocity.dot(projVector)/2
 		projectile.setShooter(get_groups(),{"damage": $Arm.damage, "projectileRange": $Arm.projectileRange, "projectileSpeed": $Arm.projectileSpeed + addedSpeed, "parentVelocity": velocity, "projectileSize": $Arm.projectileSize, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})
+		$"/root/AudioManager/weapons/plasma/fire1".play(0)
 	
 	if playerStats.playerTypeDict[playerStats.playerType].activeAbility == "cloaking" and isActiveActive == true:
 		for enemy in get_tree().get_nodes_in_group("enemy"):
@@ -181,7 +189,12 @@ func swing():
 	var swingArea = meleeSwing.instantiate()
 	add_child(swingArea)
 	swingArea.position = Vector2(0, 6)
-	swingArea.setProperties(get_groups(), {"damageType": $Arm.damageType, "damage": $Arm.damage, "swingRange": $Arm.swingRange, "swingDirection": (rotation+get_angle_to(get_global_mouse_position())), "swingAngle": $Arm.swingAngle, "swingSpeed": $Arm.swingSpeed, "effectsOnHit": $Arm.effectsOnHit})	
+	swingArea.setProperties(get_groups(), {"damageType": $Arm.damageType, "damage": $Arm.damage, "swingRange": $Arm.swingRange, "swingDirection": (rotation+get_angle_to(get_global_mouse_position())), "swingAngle": $Arm.swingAngle, "swingSpeed": $Arm.swingSpeed, "effectsOnHit": $Arm.effectsOnHit})
+	if $Arm.damageType == 0:
+		audioManager.hammerSwing()
+		$"/root/AudioManager/weapons/hammer/zap".play(0)
+	if $Arm.damageType == 1:
+		audioManager.shieldSwing()
 
 
 func useActiveAbility(activeAbility):
@@ -277,7 +290,7 @@ func _on_active_ability_timer_timeout():
 		playerStats.rateOfFire -= 10
 		playerStats.gunAccuracy -= 10
 		playerStats.ballisticResistance -= 20
-		playerStats.laserResistance -- 20
+		playerStats.laserResistance -= 20
 		playerStats.plasmaResistance -= 20
 		playerStats.bleedingResistance -= 20
 		playerStats.fireResistance -= 20

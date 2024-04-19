@@ -9,7 +9,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
 radius = 8.0
-height = 50.0
+height = 43.0
 
 [sub_resource type="Animation" id="Animation_tc16y"]
 length = 0.001
@@ -209,5 +209,8 @@ hframes = 4
 vframes = 8
 frame = 3
 script = ExtResource("4_5c43m")
+
+[node name="lineOfSight" type="RayCast2D" parent="."]
+target_position = Vector2(800, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

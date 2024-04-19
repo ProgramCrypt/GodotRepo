@@ -188,9 +188,10 @@ func setPlayerUpgrades(upgradeList):
 
 func _on_continue_pressed():
 	if (playerStats.maxHealth-playerStats.currentHealth) > 0:
-		playerStats.heal(2)
+		playerStats.heal(10)
 	if get_tree().get_nodes_in_group('player')[0].isActiveActive == true:
 		playerStats.manualActiveAbilityTimeout()
+	$"/root/AudioManager/UI/selectButton".play(0)
 	sceneManager.restartScene()
 
 
@@ -222,6 +223,7 @@ func _on_weapon_1_upgrade_1_pressed():
 			$window/weapon1Upgrade2.visible = false
 			$window/weapon1Upgrade3.disabled = true
 			$window/weapon1Upgrade3.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_weapon_1_upgrade_2_pressed():
@@ -252,6 +254,7 @@ func _on_weapon_1_upgrade_2_pressed():
 			$window/weapon1Upgrade2.visible = false
 			$window/weapon1Upgrade3.disabled = true
 			$window/weapon1Upgrade3.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_weapon_1_upgrade_3_pressed():
@@ -282,6 +285,7 @@ func _on_weapon_1_upgrade_3_pressed():
 			$window/weapon1Upgrade2.visible = false
 			$window/weapon1Upgrade3.disabled = true
 			$window/weapon1Upgrade3.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_weapon_2_upgrade_1_pressed():
@@ -312,6 +316,7 @@ func _on_weapon_2_upgrade_1_pressed():
 			$window/weapon2Upgrade2.visible = false
 			$window/weapon2Upgrade3.disabled = true
 			$window/weapon2Upgrade3.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_weapon_2_upgrade_2_pressed():
@@ -342,6 +347,7 @@ func _on_weapon_2_upgrade_2_pressed():
 			$window/weapon2Upgrade2.visible = false
 			$window/weapon2Upgrade3.disabled = true
 			$window/weapon2Upgrade3.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_weapon_2_upgrade_3_pressed():
@@ -372,6 +378,7 @@ func _on_weapon_2_upgrade_3_pressed():
 			$window/weapon2Upgrade2.visible = false
 			$window/weapon2Upgrade3.disabled = true
 			$window/weapon2Upgrade3.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_player_upgrade_1_pressed():
@@ -400,6 +407,7 @@ func _on_player_upgrade_1_pressed():
 			$window/playerUpgrade2.visible = false
 			$window/playerUpgrade3.disabled = true
 			$window/playerUpgrade3.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_player_upgrade_2_pressed():
@@ -428,6 +436,7 @@ func _on_player_upgrade_2_pressed():
 			$window/playerUpgrade2.visible = false
 			$window/playerUpgrade3.disabled = true
 			$window/playerUpgrade3.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_player_upgrade_3_pressed():
@@ -456,6 +465,7 @@ func _on_player_upgrade_3_pressed():
 			$window/playerUpgrade2.visible = false
 			$window/playerUpgrade3.disabled = true
 			$window/playerUpgrade3.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func increaseEnergyUse(weapon, energy):

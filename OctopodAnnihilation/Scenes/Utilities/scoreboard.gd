@@ -52,6 +52,7 @@ func _ready():
 
 func _on_exit_pressed():
 	sceneManager.switchScene("mainMenu")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func sortAscending(a, b):

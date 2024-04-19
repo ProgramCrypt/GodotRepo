@@ -11,10 +11,12 @@ func _ready():
 func _on_play_pressed():
 	$mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu.visible = false
 	$mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu.visible = true
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_options_pressed():
-	pass # Replace with function body.
+	sceneManager.switchScene("options")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_exit_pressed():
@@ -26,16 +28,20 @@ func _on_continue_pressed():
 	if FileAccess.file_exists("user://OctopodAnnihilationSaveFile.save"):
 		sceneManager.loadGameData()
 		sceneManager.switchScene(sceneManager.level)
+		$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_new_pressed():
 	sceneManager.switchScene("characterSelection")
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_back_pressed():
 	$mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/baseMenu.visible = true
 	$mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu.visible = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 
 
 func _on_scoreboard_pressed():
 	sceneManager.switchScene("scoreboard")
+	$"/root/AudioManager/UI/selectButton".play(0)

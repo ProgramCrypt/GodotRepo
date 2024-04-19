@@ -20,7 +20,8 @@ var slowResistance : float
 var stunResistance : float
 
 @export var stopDistance: int = 40
-@export var agroDistance: int = 700
+@export var agroDistance: int = 300
+@export var lineOfSightAgroDistance: int = 700
 
 var player: Node2D
 
@@ -32,6 +33,7 @@ var armSpeed = 5
 var armSign = 1
 var relativePlayerPos = Vector2(100, 100)
 var playerAngle
+var knownPlayerPosition = null
 
 @export var meleeSwing: PackedScene
 var isSwinging = false
@@ -62,7 +64,7 @@ func _ready() -> void:
 
 
 func updateAnimation(delta):
-	if (player.global_position - global_position).length() <= agroDistance and isPlayerCloaked == false:
+	if (player.global_position - global_position).length() <= lineOfSightAgroDistance and isPlayerCloaked == false:
 		#handle arm rotation (convoluted garbage)
 		relativePlayerPos = player.global_position - global_position
 		playerAngle = atan(relativePlayerPos.y/relativePlayerPos.x)
@@ -76,8 +78,6 @@ func updateAnimation(delta):
 			relativePlayerPos /= sqrt(relativePlayerPos.x*relativePlayerPos.x + relativePlayerPos.y*relativePlayerPos.y)
 			if relativePlayerPos.x >= -0.70 and relativePlayerPos.x <= 0.70 and relativePlayerPos.y < 0:
 				direction = "Up"
-				$CollisionShape2D.shape.radius = 8
-				$CollisionShape2D.shape.height = 36
 				$CollisionShape2D.position = Vector2(1, 7)
 				$CollisionShape2D.rotation = 0
 				get_node("Arm").set_z_index(-1)
@@ -88,8 +88,6 @@ func updateAnimation(delta):
 				
 			elif relativePlayerPos.x >= -0.70 and relativePlayerPos.x <= 0.70 and relativePlayerPos.y > 0:
 				direction = "Down"
-				$CollisionShape2D.shape.radius = 8
-				$CollisionShape2D.shape.height = 36
 				$CollisionShape2D.position = Vector2(1, 7)
 				$CollisionShape2D.rotation = 0
 				get_node("Arm").set_z_index(0)
@@ -100,8 +98,6 @@ func updateAnimation(delta):
 				
 			elif relativePlayerPos.x < -0.70:
 				direction = "Left"
-				$CollisionShape2D.shape.radius = 8
-				$CollisionShape2D.shape.height = 50
 				$CollisionShape2D.position = Vector2(-4, 3)
 				$CollisionShape2D.rotation = 65
 				get_node("Arm").set_z_index(0)
@@ -112,8 +108,6 @@ func updateAnimation(delta):
 				
 			elif relativePlayerPos.x > 0.70:
 				direction = "Right"
-				$CollisionShape2D.shape.radius = 8
-				$CollisionShape2D.shape.height = 50
 				$CollisionShape2D.position = Vector2(4, 3)
 				$CollisionShape2D.rotation = -65
 				get_node("Arm").set_z_index(-1)
@@ -124,26 +118,18 @@ func updateAnimation(delta):
 		else:
 			if velocity.angle() <= PI/4 and velocity.angle() >= -PI/4:
 				direction = "Right"
-				$CollisionShape2D.shape.radius = 8
-				$CollisionShape2D.shape.height = 50
 				$CollisionShape2D.position = Vector2(4, 3)
 				$CollisionShape2D.rotation = -65
 			elif velocity.angle() < 3*PI/4 and velocity.angle() > PI/4:
 				direction = "Down"
-				$CollisionShape2D.shape.radius = 8
-				$CollisionShape2D.shape.height = 36
 				$CollisionShape2D.position = Vector2(1, 7)
 				$CollisionShape2D.rotation = 0
 			elif velocity.angle() <= -3*PI/4 or velocity.angle() >= 3*PI/4:
 				direction = "Left"
-				$CollisionShape2D.shape.radius = 8
-				$CollisionShape2D.shape.height = 50
 				$CollisionShape2D.position = Vector2(-4, 3)
 				$CollisionShape2D.rotation = 65
 			elif velocity.angle() < -PI/4 and velocity.angle() > -3*PI/4:
 				direction = "Up"
-				$CollisionShape2D.shape.radius = 8
-				$CollisionShape2D.shape.height = 36
 				$CollisionShape2D.position = Vector2(1, 7)
 				$CollisionShape2D.rotation = 0
 	
@@ -201,7 +187,7 @@ func swing():
 func _physics_process(delta: float) -> void:
 	if stunned == false:
 		var playerDistance = (player.global_position - global_position).length()
-		if nav_agent.is_navigation_finished() == false:
+		if nav_agent.is_navigation_finished() == false or knownPlayerPosition != null:
 			var dir = to_local(nav_agent.get_next_path_position()).normalized()
 			
 			#makes enemy slow approach upon reaching certain distance
@@ -213,7 +199,20 @@ func _physics_process(delta: float) -> void:
 				mod = (distance.length() - stopDistance) / stopDistance'
 			
 			if isSwinging == false and playerDistance <= agroDistance and isPlayerCloaked == false:
-				velocity = dir * speed * mod
+				knownPlayerPosition = player.global_position
+				if (knownPlayerPosition - global_position).length() >= 10:
+					velocity = dir * speed * mod
+				else:
+					velocity = dir * 0
+			elif isSwinging == false and playerDistance <= lineOfSightAgroDistance and isPlayerCloaked == false:
+				$lineOfSight.look_at(player.global_position)
+				if $lineOfSight.get_collider() != null:
+					if $lineOfSight.get_collider().is_in_group("player") == true:
+						knownPlayerPosition = player.global_position
+				if (knownPlayerPosition - global_position).length() >= 10:
+					velocity = dir * speed * mod
+				else:
+					velocity = dir * 0
 			else:
 				velocity = dir * 0
 			move_and_slide()
@@ -224,8 +223,10 @@ func _physics_process(delta: float) -> void:
 			swing()
 			swingTimer = 2
 		
-		if swingTimer >= 0:
+		if swingTimer >= 0 and playerDistance <= $Arm.swingRange:
 			swingTimer -= delta
+		elif playerDistance > 2 * $Arm.swingRange:
+			swingTimer = 0.1
 		
 		if isSwinging == true:
 			if direction == "Up":
@@ -244,11 +245,13 @@ func _physics_process(delta: float) -> void:
 
 #functions not associated with _physics_process:
 func makepath() -> void:
-	nav_agent.target_position = player.global_position
+	if knownPlayerPosition == null:
+		knownPlayerPosition = global_position
+	nav_agent.target_position = knownPlayerPosition
 
 
 func _on_timer_timeout():
-	if (player.global_position - global_position).length() <= agroDistance:
+	if (player.global_position - global_position).length() <= lineOfSightAgroDistance:
 		makepath()
 	pass
 
