@@ -164,6 +164,8 @@ func getResistances():
 func takeDamage(hit):
 	currentHealth -= hit
 	currentHealth = max(0, currentHealth)
+	var tween: Tween = create_tween()
+	tween.tween_property($Sprite2D, "modulate:v", 1, 0.1).from(15)
 	if currentHealth == 0:
 		get_parent().call_deferred("dropItem", scrap, global_transform)
 		playerStats.playerScore += 50

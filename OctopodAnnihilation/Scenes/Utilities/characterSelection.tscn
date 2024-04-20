@@ -73,16 +73,30 @@ texture_hover = ExtResource("5_jeegh")
 stretch_mode = 5
 
 [node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/superSoldier"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
 text = "Passive: Vitality"
 horizontal_alignment = 1
 
 [node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/superSoldier"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
 text = "Active: Adrenaline"
 horizontal_alignment = 1
+
+[node name="passiveRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/superSoldier"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=1fd9ed][center][hint=Heals more]Passive: Vitality[/hint][/center][/color][/font_size]"
+fit_content = true
+
+[node name="activeRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/superSoldier"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=11d65d][center][hint=Boosts all stats]Active: Adrenaline[/hint][/center][/color][/font_size]"
+fit_content = true
 
 [node name="sniper" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -104,16 +118,30 @@ texture_hover = ExtResource("5_jeegh")
 stretch_mode = 5
 
 [node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/sniper"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
 text = "Passive: Sniper's Vision"
 horizontal_alignment = 1
 
 [node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/sniper"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
 text = "Active: Cloaking"
 horizontal_alignment = 1
+
+[node name="passiveRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/sniper"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=1fd9ed][center][hint=Sees further]Passive: Sniper's Vision[/hint][/center][/color][/font_size]"
+fit_content = true
+
+[node name="activeRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/sniper"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=11d65d][center][hint=Invisibility]Active: Cloaking[/hint][/center][/color][/font_size]"
+fit_content = true
 
 [node name="tanker" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -135,16 +163,30 @@ texture_hover = ExtResource("5_jeegh")
 stretch_mode = 5
 
 [node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/tanker"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
 text = "Passive: Rage"
 horizontal_alignment = 1
 
 [node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/tanker"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
 text = "Active: Seismic Impact"
 horizontal_alignment = 1
+
+[node name="passiveRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/tanker"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=1fd9ed][center][hint=Increases fire rate with reduced health]Passive: Rage[/hint][/center][/color][/font_size]"
+fit_content = true
+
+[node name="activeRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/tanker"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=11d65d][center][hint=Stuns and damages nearby enemies]Active: Seismic Impact[/hint][/center][/color][/font_size]"
+fit_content = true
 
 [node name="infiltrator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -166,16 +208,30 @@ texture_hover = ExtResource("5_jeegh")
 stretch_mode = 5
 
 [node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/infiltrator"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
 text = "Passive: Focus"
 horizontal_alignment = 1
 
 [node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/infiltrator"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
 text = "Active: Dash"
 horizontal_alignment = 1
+
+[node name="passiveRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/infiltrator"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=1fd9ed][center][hint=Slows time upon taking damage]Passive: Focus[/hint][/center][/color][/font_size]"
+fit_content = true
+
+[node name="activeRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/infiltrator"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=11d65d][center][hint=Boosts speed]Active: Dash[/hint][/center][/color][/font_size]"
+fit_content = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -193,6 +249,13 @@ theme_override_font_sizes/font_size = 25
 text = "Cyborg"
 horizontal_alignment = 1
 
+[node name="inProgress" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 13
+text = "In Progress"
+horizontal_alignment = 1
+
 [node name="cyborg" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -202,16 +265,31 @@ texture_hover = ExtResource("5_jeegh")
 stretch_mode = 5
 
 [node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
 text = "Passive: High Tech"
 horizontal_alignment = 1
 
 [node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
 text = "Active: Holographic Decoy"
 horizontal_alignment = 1
+
+[node name="passiveRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=1fd9ed][center][hint=Advanced starting weaponry]Passive: High Tech[/hint][/center][/color][/font_size]"
+fit_content = true
+
+[node name="activeRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/cyborg"]
+custom_minimum_size = Vector2(201, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=11d65d][center][hint=Drops decoy that draws enemies]Active: Holographic Decoy[/hint][/center][/color][/font_size]"
+fit_content = true
 
 [node name="mutant" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
@@ -224,6 +302,13 @@ theme_override_font_sizes/font_size = 25
 text = "Mutant"
 horizontal_alignment = 1
 
+[node name="inProgress" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 13
+text = "In Progress"
+horizontal_alignment = 1
+
 [node name="mutant" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -233,16 +318,30 @@ texture_hover = ExtResource("5_jeegh")
 stretch_mode = 5
 
 [node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
 text = "Passive: Corrosive Skin"
 horizontal_alignment = 1
 
 [node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
 text = "Active: Mitosis"
 horizontal_alignment = 1
+
+[node name="passiveRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=1fd9ed][center][hint=Damages enemies on contact]Passive: Corrosive Skin[/hint][/center][/color][/font_size]"
+fit_content = true
+
+[node name="activeRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/mutant"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=11d65d][center][hint=Creates clone ally]Active: Mitosis[/hint][/center][/color][/font_size]"
+fit_content = true
 
 [node name="robot" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
@@ -255,6 +354,13 @@ theme_override_font_sizes/font_size = 25
 text = "Robot"
 horizontal_alignment = 1
 
+[node name="inProgress" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 13
+text = "In Progress"
+horizontal_alignment = 1
+
 [node name="robot" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
 process_mode = 3
 custom_minimum_size = Vector2(0, 200)
@@ -265,16 +371,42 @@ texture_hover = ExtResource("5_jeegh")
 stretch_mode = 5
 
 [node name="passive" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.121569, 0.85098, 0.929412, 1)
 text = "Passive: Engineer"
 horizontal_alignment = 1
 
 [node name="active" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0666667, 0.839216, 0.364706, 1)
 text = "Active: Minelayer"
 horizontal_alignment = 1
+
+[node name="passiveRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=1fd9ed][center][hint=Upgrades cost less]Passive: Engineer[/hint][/center][/color][/font_size]"
+fit_content = true
+
+[node name="activeRich" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/robot"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=16][color=11d65d][center][hint=Lays mine]Active: Minelayer[/hint][/center][/color][/font_size]"
+fit_content = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 350
+theme_override_constants/margin_right = 350
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_bhwrj")
+theme_override_font_sizes/font_size = 30
+text = "Encyclopedia"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

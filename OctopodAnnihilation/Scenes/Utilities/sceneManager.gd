@@ -8,6 +8,7 @@ var scoreSavePath = "user://OctopodAnnihilationScoreSaveFile.save"
 
 @export var mainMenu : PackedScene
 @export var options : PackedScene
+@export var versionChangelog : PackedScene
 @export var characterSelection : PackedScene
 @export var scoreboard : PackedScene
 @export var level1_1 : PackedScene
@@ -18,11 +19,10 @@ var level = "level1_1"
 
 
 func _ready():
-	scenes = {"mainMenu": mainMenu, "options": options, "characterSelection": characterSelection, "scoreboard": scoreboard, "level1_1": level1_1}
+	scenes = {"mainMenu": mainMenu, "options": options, "versionChangelog": versionChangelog, "characterSelection": characterSelection, "scoreboard": scoreboard, "level1_1": level1_1}
 	#switchScene("mainMenu")
 	
 	var scores = loadScoreData()
-	print(scores)
 	if scores == null:
 		saveScores([])
 	else:

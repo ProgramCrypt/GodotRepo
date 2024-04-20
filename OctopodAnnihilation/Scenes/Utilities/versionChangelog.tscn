@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://dehj7e76tts13"]
+
+[ext_resource type="Script" path="res://Scenes/Utilities/versionChangelog.gd" id="1_1f8mf"]
+[ext_resource type="FontFile" uid="uid://ben4lmr6atcfd" path="res://Utilities/Fonts/Montreal-Bold.ttf" id="1_ieh4p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_due5n"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="versionChangelog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1f8mf")
+
+[node name="Panel" type="Panel" parent="."]
+offset_top = -1.0
+offset_right = 1200.0
+offset_bottom = 1199.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_due5n")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 1200.0
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ieh4p")
+theme_override_font_sizes/font_size = 40
+text = "Version Changelog"
+horizontal_alignment = 1
+
+[node name="logContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/logContainer"]
+layout_mode = 2
+
+[node name="log" type="Label" parent="MarginContainer/VBoxContainer/logContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Version 1.1 alpha
+
+-Added changelog
+-Increased player speed
+-Improved enemy AI
+-Increased camera zoom
+-Changed sniper passive
+-Added melee warm-up time for enemies
+-Added some sound effects and music
+-Added options menu
+-Increased player healing between levels
+-Decreased upgrade costs
+-Added ability descriptions (accessed by hovering mouse over ability)
+-Energy-use increases with upgrades
+-Removed ballistic gun range upgrades
+-Decreased prop health
+-Added basic enemy damage-taken animation
+-Fixed super soldier active ability bug
+-Fixed scoreboard bug
+-Fixed weapon saving bug"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ieh4p")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]

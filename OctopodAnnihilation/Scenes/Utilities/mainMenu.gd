@@ -45,3 +45,8 @@ func _on_back_pressed():
 func _on_scoreboard_pressed():
 	sceneManager.switchScene("scoreboard")
 	$"/root/AudioManager/UI/selectButton".play(0)
+
+
+func _on_version_pressed():
+	sceneManager.switchScene("versionChangelog")
+	$"/root/AudioManager/UI/selectButton".play(0)

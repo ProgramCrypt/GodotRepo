@@ -120,10 +120,21 @@ theme_override_font_sizes/font_size = 40
 text = "Back"
 
 [node name="version" type="Label" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Version: Alpha 1.0"
+text = "Version: Alpha 1.1"
 horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_right = 75
+
+[node name="version" type="Button" parent="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Version: 1.1 alpha"
 
 [node name="MarginContainer" type="MarginContainer" parent="mainMenu/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -158,4 +169,5 @@ text = "Scoreboard"
 [connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu/new" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/playMenu/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="mainMenu/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer/version" to="." method="_on_version_pressed"]
 [connection signal="pressed" from="mainMenu/VBoxContainer/MarginContainer/scoreboard" to="." method="_on_scoreboard_pressed"]

@@ -16,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_44gik")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_top = -1.0
 offset_right = 1200.0
 offset_bottom = 1199.0

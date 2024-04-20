@@ -20,12 +20,12 @@ extends Node2D
 
 var ballisticUpgrades = [
 	{"levels": 5, "name": ["6mm Caliber", "8mm Caliber", "10mm Caliber", "12mm Caliber", "14mm Caliber"], "stat": "damage", "modifier": [2, 2, 2, 2, 3], "cost": [20, 30, 45, 60, 75], "description": "Increased Damage"},
-	{"levels": 2, "name": ["Short Barrel", "Long Barrel"], "stat": "projectileRange", "modifier": [200, 300], "cost": [30, 45], "description": "Increased Range"},
+	#{"levels": 2, "name": ["Short Barrel", "Long Barrel"], "stat": "projectileRange", "modifier": [200, 300], "cost": [30, 45], "description": "Increased Range"},
 	{"levels": 3, "name": ["Hair Trigger", "Hardened Spring", "Heat Pipes"], "stat": "fireRate", "modifier": [-0.08, -0.06, -0.04], "cost": [30, 45, 60], "description": "Increased Fire Rate"},
 	{"levels": 2, "name": ["Reflex Sight", "Telescopic Sight"], "stat": "accuracy", "modifier": [-2, -2], "cost": [25, 35], "description": "Increased Accuracy"},
 	{"levels": 2, "name": ["Improved Propellant", "Advanced Propellant"], "stat": "projectileSpeed", "modifier": [200, 200], "cost": [30, 40], "description": "Increased Projectile Speed"},
 	{"levels": 2, "name": ["Armor Piercing", "Advanced Armor\nPiercing"], "stat": "penetration", "modifier": [1, 1], "cost": [40, 60], "description": "Increased Penetration"},
-	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-0.5, -0.5], "cost": [30, 45], "description": "Decreased Energy Use"}
+	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1.5, -1.5], "cost": [30, 45], "description": "Decreased Energy Use"}
 	]
 	
 	
@@ -34,7 +34,7 @@ var laserUpgrades = [
 	{"levels": 2, "name": ["Improved Capacitor\nCharging", "Exceptional Capacitor\nCharging"], "stat": "fireRate", "modifier": [-0.1, -0.1], "cost": [30, 45], "description": "Decreased Warm-Up Time"},
 	{"levels": 4, "name": ["Beam Expander", "Wide Beam\nExpander", "Advanced Beam\nExpander", "Maximal Beam\nExpander"], "stat": "projectileSize", "modifier": [1, 1, 1, 1], "cost": [30, 40, 55, 70], "description": "Widened Beam"},
 	#{"levels": 3, "name": ["Neutron Beam", "X-Ray Beam", "Gamma Ray Beam"], "stat": "penetration", "modifier": [1, 1, 1], "cost": [50, 65, 80], "description": "Increased Penetration"},
-	{"levels": 6, "name": ["Heat Recycling", "Gold Circuitry", "Silver Circuitry", "Graphene Circuitry", "Cryo-Circuitry", "Superconductor\nCircuitry"], "stat": "energyUse", "modifier": [-1, -1, -0.5, -0.5, -0.5, -0.5], "cost": [25, 35, 45, 55, 65, 75], "description": "Decreased Energy Use"}
+	{"levels": 6, "name": ["Heat Recycling", "Gold Circuitry", "Silver Circuitry", "Graphene Circuitry", "Cryo-Circuitry", "Superconductor\nCircuitry"], "stat": "energyUse", "modifier": [-1.5, -1.5, -1.5, -1.5, -1.5, -1.5], "cost": [25, 35, 45, 55, 65, 75], "description": "Decreased Energy Use"}
 	]
 
 
@@ -46,19 +46,19 @@ var plasmaUpgrades = [
 	{"levels": 3, "name": ["Tightened Funnel", "Improved Electrodes", "Advanced Electrodes"], "stat": "projectileSpeed", "modifier": [100, 100, 100], "cost": [30, 40, 50], "description": "Increased Projectile Speed"},
 	{"levels": 4, "name": ["Enlarged Plasma\nChamber", "Reinforced Plasma\nChamber", "High-Compression\nPlasma Chamber", "Maximal-Compression\nPlasma Chamber"], "stat": "projectileSize", "modifier": [0.8, 0.8, 0.8, 0.8], "cost": [25, 35, 50, 65], "description": "Increased Projectile Size"},
 	{"levels": 4, "name": ["Helium-Based\nPlasma", "Nitrogen-Based\nPlasma", "Oxygen-Based\nPlasma", "Argon-Based\nPlasma"], "stat": "penetration", "modifier": [1, 1, 1, 1], "cost": [30, 40, 50, 65], "description": "Increased Penetration"},
-	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [35, 55], "description": "Decreased Energy Use"}
+	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1.5, -1.5], "cost": [35, 55], "description": "Decreased Energy Use"}
 	]
 
 var hammerUpgrades = [
 	{"levels": 5, "name": ["5,000 Volts", "10,000 Volts", "20,000 Volts", "30,000 Volts", "40,000 Volts"], "stat": "damage", "modifier": [3, 3, 2, 2, 2], "cost": [25, 35, 45, 55, 65], "description": "Increased Damage"},
-	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [40, 55], "description": "Decreased Energy Use"},
+	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1.5, -1.5], "cost": [35, 50], "description": "Decreased Energy Use"},
 	{"levels": 3, "name": ["Improved Balancing", "Extended Reach", "Extended Tesla Coil"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [25, 35, 50], "description": "Increased Range"},
 	{"levels": 1, "name": ["Extended Hammerhead"], "stat": "swingAngle", "modifier": [20], "cost": [40], "description": "Increased Swing Angle"}
 	]
 
 var shieldUpgrades = [
 	{"levels": 5, "name": ["10,000 Degrees", "20,000 Degrees", "30,000 Degrees", "40,000 Degrees", "50,000 Degrees"], "stat": "damage", "modifier": [3, 3, 3, 3, 2], "cost": [20, 30, 40, 50, 60], "description": "Increased Damage"},
-	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1, -1], "cost": [40, 50], "description": "Decreased Energy Use"},
+	{"levels": 2, "name": ["Heat Recycling", "Kinetic Energy\nRecycling"], "stat": "energyUse", "modifier": [-1.5, -1.5], "cost": [35, 50], "description": "Decreased Energy Use"},
 	{"levels": 3, "name": ["Neodymium\nReinforcement", "Improved\nElectromagnet", "Advanced\nElectromagnet"], "stat": "swingRange", "modifier": [10, 10, 10], "cost": [30, 40, 50], "description": "Increased Range"},
 	{"levels": 1, "name": ["Extended Capacitor\nDischarge"], "stat": "swingSpeed", "modifier": [0.4], "cost": [40], "description": "Increased Shielding Time"}
 	]

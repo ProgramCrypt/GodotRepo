@@ -38,7 +38,7 @@ func _ready():
 
 func handleInput(_delta):
 	var moveDirection = Input.get_vector("left", "right", "up", "down")
-	velocity = moveDirection * playerStats.speed * 10
+	velocity = moveDirection * playerStats.speed * 11
 	
 	if Input.is_action_just_pressed("attack"):
 		if playerStats.currentEnergy != 0:
