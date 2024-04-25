@@ -16,6 +16,8 @@ var scenes = {}
 
 var difficulty: int = 4
 var level = "level1_1"
+var completedLevels = []
+var bossLevel = false
 
 
 func _ready():
@@ -29,12 +31,19 @@ func _ready():
 		saveScores(scores)
 
 
-func addScene(sceneAlias : String, scenePath : String) -> void:
-	scenes[sceneAlias] = scenePath
-
-
-func removeScene(sceneAlias : String) -> void:
-	scenes.erase(sceneAlias)
+func nextLevel():
+	if level == "level1_1":
+		if completedLevels.count("level1_1") == 2:
+			bossLevel = true
+			restartScene()
+		elif completedLevels.count("level1_1") > 2:
+			bossLevel = false
+			completedLevels = []
+			restartScene() #temporary while next level remains unimplemented
+		else:
+			bossLevel = false
+			restartScene()
+	get_tree().paused = false
 
 
 func switchScene(sceneAlias : String) -> void:
@@ -62,6 +71,7 @@ func saveGame():
 	var file = FileAccess.open(savePath, FileAccess.WRITE)
 	file.store_var(difficulty)
 	file.store_var(level)
+	file.store_var(completedLevels)
 	file.store_var(playerStats.playerType)
 	file.store_var(playerStats.weapon1)
 	file.store_var(playerStats.weapon2)
@@ -93,6 +103,7 @@ func loadGameData():
 		var file = FileAccess.open(savePath, FileAccess.READ)
 		difficulty = file.get_var()
 		level = file.get_var()
+		completedLevels = file.get_var()
 		playerStats.playerType = file.get_var()
 		playerStats.weapon1 = file.get_var()
 		playerStats.weapon2 = file.get_var()

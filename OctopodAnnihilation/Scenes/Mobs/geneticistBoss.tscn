@@ -1,0 +1,234 @@
+[gd_scene load_steps=21 format=3 uid="uid://b2io83iu0y577"]
+
+[ext_resource type="Script" path="res://Scenes/Mobs/geneticistBoss.gd" id="1_igiee"]
+[ext_resource type="Resource" uid="uid://dmdo1i7u70umm" path="res://Scenes/Mobs/geneticistBoss.tres" id="2_o3k6p"]
+[ext_resource type="PackedScene" uid="uid://cowxw1tti6gi" path="res://Scenes/Weapons/plasmaProjectile.tscn" id="3_4kign"]
+[ext_resource type="PackedScene" uid="uid://d1el5i2mxtjdg" path="res://Scenes/Weapons/octopodGrenade.tscn" id="4_36x16"]
+[ext_resource type="Resource" uid="uid://bq8e3m014dgsp" path="res://Scenes/Weapons/plasma.tres" id="5_31pqh"]
+[ext_resource type="PackedScene" uid="uid://m7mi7h7avpu1" path="res://Scenes/Utilities/scrap.tscn" id="5_i4pnh"]
+[ext_resource type="Texture2D" uid="uid://5a8cx83aprtg" path="res://Sprites/Enemies/spritesheet_geneticist.png" id="6_fca48"]
+[ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="7_djdur"]
+[ext_resource type="Script" path="res://Scenes/Mobs/geneticistBossWeaponArm.gd" id="7_nqls6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
+radius = 12.5
+height = 50.0
+
+[sub_resource type="Animation" id="Animation_tc16y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_r1cko"]
+resource_name = "faceDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_qfblj"]
+resource_name = "faceLeft"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_m0atf"]
+resource_name = "faceRight"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [27]
+}
+
+[sub_resource type="Animation" id="Animation_dqbt1"]
+resource_name = "faceUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dw68w"]
+resource_name = "walkDown"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [19, 20, 21, 22, 23, 24, 25, 26]
+}
+
+[sub_resource type="Animation" id="Animation_5namf"]
+resource_name = "walkLeft"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_tsqqm"]
+resource_name = "walkRight"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31, 32, 33, 34, 35]
+}
+
+[sub_resource type="Animation" id="Animation_b0dy8"]
+resource_name = "walkUp"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lvlvi"]
+_data = {
+"RESET": SubResource("Animation_tc16y"),
+"faceDown": SubResource("Animation_r1cko"),
+"faceLeft": SubResource("Animation_qfblj"),
+"faceRight": SubResource("Animation_m0atf"),
+"faceUp": SubResource("Animation_dqbt1"),
+"walkDown": SubResource("Animation_dw68w"),
+"walkLeft": SubResource("Animation_5namf"),
+"walkRight": SubResource("Animation_tsqqm"),
+"walkUp": SubResource("Animation_b0dy8")
+}
+
+[node name="geneticist" type="CharacterBody2D" groups=["enemy", "mobs", "projectileEnemies"]]
+y_sort_enabled = true
+collision_layer = 2
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_igiee")
+enemyType = ExtResource("2_o3k6p")
+plasmaProjectile = ExtResource("3_4kign")
+octopodGrenade = ExtResource("4_36x16")
+weaponType = ExtResource("5_31pqh")
+scrap = ExtResource("5_i4pnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0.5, 0)
+shape = SubResource("CapsuleShape2D_e6kdg")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 12.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("6_fca48")
+hframes = 9
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lvlvi")
+}
+
+[node name="Arm" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+texture = ExtResource("7_djdur")
+offset = Vector2(-16, -11)
+hframes = 4
+vframes = 8
+frame = 5
+script = ExtResource("7_nqls6")
+
+[node name="RayCast2D" type="RayCast2D" parent="Arm"]
+rotation = 1.5708
+target_position = Vector2(0, 500)
+
+[node name="launcher" type="Marker2D" parent="Arm"]
+position = Vector2(-20, 0)
+
+[node name="Muzzle" type="Marker2D" parent="Arm"]
+position = Vector2(-48, -6)
+
+[node name="lineOfSight" type="RayCast2D" parent="."]
+target_position = Vector2(800, 0)
+
+[node name="grenadeTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="grenadeTimer" to="." method="_on_grenade_timer_timeout"]

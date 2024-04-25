@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cariuddaj4sxl"]
+
+[ext_resource type="Script" path="res://Scenes/Props/forceField.gd" id="1_n4822"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyww1"]
+size = Vector2(90, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq42h"]
+size = Vector2(100, 100)
+
+[node name="forceField" type="StaticBody2D" groups=["forceField"]]
+script = ExtResource("1_n4822")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["forceField"]]
+shape = SubResource("RectangleShape2D_dyww1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_bq42h")

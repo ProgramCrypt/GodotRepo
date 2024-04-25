@@ -58,8 +58,11 @@ func _on_retry_pressed():
 		playerStats.initialize(playerStats.robot)
 	#playerStats.saveWeapon(playerStats.plasma, playerStats.weapon1)
 	#playerStats.saveWeapon(playerStats.shield, playerStats.weapon2)
-	$"/root/AudioManager/UI/selectButton".play(0)
 	
+	sceneManager.difficulty = 4
+	sceneManager.completedLevels = []
+	sceneManager.bossLevel = false
+	$"/root/AudioManager/UI/selectButton".play(0)
 	deleteSave()
 	get_tree().paused = false
 	sceneManager.switchScene("level1_1")
@@ -70,6 +73,8 @@ func _on_exit_pressed():
 	playerStats.playerScore = 0
 	playerStats.currentHealth = 1
 	sceneManager.difficulty = 4
+	sceneManager.completedLevels = []
+	sceneManager.bossLevel = false
 	$"/root/AudioManager/UI/selectButton".play(0)
 	deleteSave()
 	get_tree().paused = false

@@ -18,6 +18,8 @@ func _on_super_soldier_pressed():
 	playerStats.playerType = "superSoldier"
 	playerStats.saveWeapon(playerStats.ballistic, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.hammer, playerStats.weapon2)
+	sceneManager.completedLevels = []
+	sceneManager.bossLevel = false
 	sceneManager.switchScene("level1_1")
 	$"/root/AudioManager/UI/selectButton".play(0)
 
@@ -27,6 +29,8 @@ func _on_sniper_pressed():
 	playerStats.playerType = "sniper"
 	playerStats.saveWeapon(playerStats.ballistic, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.laser, playerStats.weapon2)
+	sceneManager.completedLevels = []
+	sceneManager.bossLevel = false
 	sceneManager.switchScene("level1_1")
 	$"/root/AudioManager/UI/selectButton".play(0)
 
@@ -36,6 +40,8 @@ func _on_tanker_pressed():
 	playerStats.playerType = "tanker"
 	playerStats.saveWeapon(playerStats.plasma, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.hammer, playerStats.weapon2)
+	sceneManager.completedLevels = []
+	sceneManager.bossLevel = false
 	sceneManager.switchScene("level1_1")
 	$"/root/AudioManager/UI/selectButton".play(0)
 
@@ -45,6 +51,8 @@ func _on_infiltrator_pressed():
 	playerStats.playerType = "infiltrator"
 	playerStats.saveWeapon(playerStats.plasma, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.shield, playerStats.weapon2)
+	sceneManager.completedLevels = []
+	sceneManager.bossLevel = false
 	sceneManager.switchScene("level1_1")
 	$"/root/AudioManager/UI/selectButton".play(0)
 
@@ -54,6 +62,8 @@ func _on_cyborg_pressed():
 	playerStats.playerType = "cyborg"
 	playerStats.saveWeapon(playerStats.plasma, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.laser, playerStats.weapon2)
+	sceneManager.completedLevels = []
+	sceneManager.bossLevel = false
 	sceneManager.switchScene("level1_1")
 	$"/root/AudioManager/UI/selectButton".play(0)
 
@@ -63,6 +73,8 @@ func _on_mutant_pressed():
 	playerStats.playerType = "mutant"
 	playerStats.saveWeapon(playerStats.ballistic, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.shield, playerStats.weapon2)
+	sceneManager.completedLevels = []
+	sceneManager.bossLevel = false
 	sceneManager.switchScene("level1_1")
 	$"/root/AudioManager/UI/selectButton".play(0)
 
@@ -72,5 +84,7 @@ func _on_robot_pressed():
 	playerStats.playerType = "robot"
 	playerStats.saveWeapon(playerStats.laser, playerStats.weapon1)
 	playerStats.saveWeapon(playerStats.shield, playerStats.weapon2)
+	sceneManager.completedLevels = []
+	sceneManager.bossLevel = false
 	sceneManager.switchScene("level1_1")
 	$"/root/AudioManager/UI/selectButton".play(0)

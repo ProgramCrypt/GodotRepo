@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var playerStats = get_node("/root/ActivePlayerStats")
+@onready var sceneManager = get_node("/root/SceneManager")
 
 @export var exitPortal: PackedScene
 
@@ -17,6 +18,7 @@ var cardinals = [0, 1, 2, 3]
 @export var derelictOctoVatRoom: PackedScene
 @export var serverRoom: PackedScene
 @export var serverRoom1: PackedScene
+@export var geneticistBossRoom : PackedScene
 
 var playerStartingPos = Vector2((gridLen/2),(gridLen/2)+100)
 
@@ -64,7 +66,11 @@ func _ready():
 			walker.x -= gridLen
 		
 		if walker not in hasRoom:
-			var room = roomArray[randi() % roomArray.size()]
+			var room
+			if totalRooms == 1 and sceneManager.bossLevel == true:
+				room = geneticistBossRoom
+			else:
+				room = roomArray[randi() % roomArray.size()]
 			r = room.instantiate()
 			add_child(r)
 			r.position = walker

@@ -192,7 +192,8 @@ func _on_continue_pressed():
 	if get_tree().get_nodes_in_group('player')[0].isActiveActive == true:
 		playerStats.manualActiveAbilityTimeout()
 	$"/root/AudioManager/UI/selectButton".play(0)
-	sceneManager.restartScene()
+	sceneManager.completedLevels.append(sceneManager.level)
+	sceneManager.nextLevel()
 
 
 func _on_weapon_1_upgrade_1_pressed():

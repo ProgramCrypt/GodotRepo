@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1gu71oytb20t"]
+
+[ext_resource type="Script" path="res://Scenes/Props/labVats/labChimeraGruntVat.gd" id="1_fhqe4"]
+[ext_resource type="PackedScene" uid="uid://pgfpr0pd30tt" path="res://Scenes/Mobs/chimeraLabGrunt.tscn" id="2_c5vwd"]
+[ext_resource type="Texture2D" uid="uid://xk81bkye7uwe" path="res://Sprites/Props/LabProps.png" id="2_ed6tm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htpbq"]
+size = Vector2(39, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4tx3"]
+size = Vector2(43, 82)
+
+[node name="labChimeraGruntVat" type="StaticBody2D"]
+collision_mask = 7
+script = ExtResource("1_fhqe4")
+chimeraGrunt = ExtResource("2_c5vwd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ed6tm")
+hframes = 8
+vframes = 8
+frame = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -5)
+shape = SubResource("RectangleShape2D_htpbq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -5)
+shape = SubResource("RectangleShape2D_x4tx3")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

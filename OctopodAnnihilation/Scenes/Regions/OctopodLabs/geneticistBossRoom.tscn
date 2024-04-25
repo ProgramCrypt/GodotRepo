@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=3 uid="uid://yjxd38axyet8"]
+
+[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_2r5ar"]
+[ext_resource type="Script" path="res://Scenes/Regions/OctopodLabs/geneticistBossRoom.gd" id="2_78anl"]
+[ext_resource type="PackedScene" uid="uid://cariuddaj4sxl" path="res://Scenes/Props/forceField.tscn" id="3_dxvqo"]
+[ext_resource type="PackedScene" uid="uid://d1gu71oytb20t" path="res://Scenes/Props/labVats/labChimeraGruntVat.tscn" id="4_1gtn8"]
+[ext_resource type="PackedScene" uid="uid://b2io83iu0y577" path="res://Scenes/Mobs/geneticistBoss.tscn" id="4_1oct2"]
+[ext_resource type="PackedScene" uid="uid://pgfpr0pd30tt" path="res://Scenes/Mobs/chimeraLabGrunt.tscn" id="5_0oaf0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axs4r"]
+size = Vector2(100, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydpdx"]
+size = Vector2(30, 100)
+
+[node name="geneticistBossRoom" type="TileMap"]
+y_sort_enabled = true
+tile_set = ExtResource("1_2r5ar")
+format = 2
+layer_0/name = "lowerLevel"
+layer_0/z_index = -5
+layer_0/tile_data = PackedInt32Array(1, 65536, 0, 2, 131072, 0, 3, 65536, 0, 4, 65536, 0, 5, 65536, 0, 6, 327680, 3, 8, 262144, 3, 9, 65536, 0, 10, 65536, 0, 11, 131072, 0, 12, 65536, 0, 13, 131072, 0, 65543, 65536, 1, 65545, 196608, 1, 65546, 65536, 1, 65547, 262144, 1, 65548, 65536, 1, 131085, 131072, 1, 196621, 65536, 1, 262157, 262144, 1, 393229, 65536, 1, 458765, 327680, 1, 524301, 131072, 1, 589837, 65536, 1, 655373, 196608, 1, 720909, 65536, 1, 851979, 65536, 1, 851978, 65536, 1, 851977, 65536, 1, 851976, 131072, 1, 851975, 65536, 1, 131083, 65536, 1, 196620, 65536, 1, 786443, 393216, 1, 196618, 65536, 1, 262155, 65536, 1, 655371, 65536, 1, 262151, 131072, 1, 262152, 65536, 1, 262154, 327680, 1, 327690, 131072, 1, 458762, 131072, 1, 524298, 131072, 1, 589834, 131072, 1, 655369, 131072, 1, 655368, 131072, 1, 655367, 262144, 1, 327688, 65536, 1, 393225, 131072, 1, 524297, 65536, 1, 589832, 65536, 1, 393223, 131072, 1, 393224, 131072, 1, 524296, 65536, 1, 524295, 327680, 1, 720901, 131072, 1, 720902, 262144, 1, 720904, 131072, 1, 720905, 131072, 1, 589827, 131072, 1, 589835, 65536, 1, 196614, 131072, 1, 196615, 196608, 1, 196616, 131072, 1, 196617, 65536, 1, 131084, 131072, 1, 786444, 65536, 1, 589831, 65536, 1, 327687, 131072, 1, 458761, 327680, 1, 786433, 131072, 1, 720897, 196608, 1, 655361, 65536, 1, 524289, 131072, 1, 458753, 327680, 1, 393217, 131072, 1, 327681, 65536, 1, 262145, 131072, 1, 196609, 65536, 1, 65537, 262144, 1, 131074, 131072, 1, 196610, 196608, 1, 720898, 65536, 1, 786434, 131072, 1, 851973, 131072, 1, 851972, 65536, 1, 851971, 131072, 1, 786435, 131072, 1, 655363, 327680, 1, 720900, 131072, 1, 655365, 131072, 1, 655366, 131072, 1, 589830, 131072, 1, 589828, 65536, 1, 524292, 131072, 1, 524294, 131072, 1, 458758, 131072, 1, 458757, 65536, 1, 458756, 393216, 1, 393220, 65536, 1, 393221, 131072, 1, 393222, 65536, 1, 327684, 131072, 1, 262150, 65536, 1, 262149, 327680, 1, 262148, 262144, 1, 262147, 65536, 1, 131075, 131072, 1, 65540, 65536, 1, 196612, 65536, 1, 65541, 65536, 1, 65542, 131072, 1, 851981, 131072, 1, 393216, 327680, 3, 393230, 262144, 3, 524291, 131072, 1, 458755, 131072, 1, 393219, 196608, 1, 327691, 65536, 1, 393227, 65536, 1, 458763, 65536, 1, 524299, 65536, 1, 589833, 65536, 1, 589829, 131072, 1, 458759, 65536, 1, 327689, 131072, 1, 327685, 65536, 1, 65538, 65536, 1, 720906, 393217, 2, 786436, 393216, 1, 655362, 131072, 1, 524290, 393216, 1, 393218, 131072, 1, 262146, 65536, 1, 131076, 65536, 1, 131078, 65536, 1, 131080, 65536, 1, 131082, 65536, 1, 262156, 65536, 1, 393228, 393216, 1, 524300, 131072, 1, 655372, 131072, 1, 786442, 65536, 1, 786440, 262144, 1, 786438, 131072, 1, 917511, 131072, 1, 458752, 65536, 1, 7, 65536, 1, 458766, 131072, 1)
+layer_1/name = "props"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -2
+layer_1/tile_data = PackedInt32Array(851969, 1, 6, 851970, 65537, 7, 786445, 65537, 6, 851980, 1, 7, 65549, 65537, 7, 65539, 65537, 6, 131073, 1, 7, 655364, 327681, 7, 327683, 327681, 6, 327686, 393217, 6, 393226, 327681, 6, 196613, 458753, 6, 262153, 458753, 6, 458760, 458753, 7, 524293, 458753, 7, 720903, 458753, 6, 655370, 327681, 7, 851974, 196609, 6, 589825, 262145, 6, 65544, 262145, 7, 327693, 196609, 7, 720908, 262145, 7, 327682, 393217, 2, 720899, 393217, 2, 589826, 393217, 2, 458754, 393217, 2, 196611, 393217, 2, 131077, 393217, 3, 131079, 393217, 2, 131081, 393217, 3, 196619, 393217, 2, 327692, 393217, 2, 458764, 393217, 2, 589836, 393217, 2, 720907, 393217, 2, 786441, 393217, 3, 786439, 393217, 2, 786437, 393217, 3)
+layer_2/name = "upperLevel"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 5
+layer_2/tile_data = PackedInt32Array(14, 458752, 0, 0, 0, 0, 65536, 0, 1, 131072, 0, 1, 196608, 0, 1, 262144, 0, 1, 327680, 0, 1, 524288, 0, 1, 589824, 0, 1, 655360, 0, 1, 720896, 0, 1, 786432, 0, 1, 851968, 0, 2, 851982, 458752, 2, 786446, 458752, 1, 720910, 458752, 1, 655374, 458752, 1, 589838, 458752, 1, 524302, 458752, 1, 327694, 458752, 1, 262158, 458752, 1, 196622, 458752, 1, 131086, 458752, 1, 65550, 458752, 1, 917504, 65536, 3, 917505, 65536, 3, 917506, 65536, 3, 917507, 65536, 3, 917508, 65536, 3, 917509, 65536, 3, 917510, 0, 1, 917512, 458752, 1, 917513, 65536, 3, 917514, 65536, 3, 917515, 65536, 3, 917516, 65536, 3, 917517, 65536, 3, 917518, 65536, 3, 851969, 65536, 2, 851970, 65536, 2, 851971, 65536, 2, 851972, 65536, 2, 851973, 65536, 2, 851977, 65536, 2, 851978, 65536, 2, 851979, 65536, 2, 851980, 65536, 2, 851981, 65536, 2, 851976, 262144, 2, 458766, 262144, 2, 851974, 327680, 2, 458752, 327680, 2)
+layer_3/name = "spawners"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = -10
+layer_3/tile_data = PackedInt32Array(458759, 458755, 0)
+layer_4/name = "passageFill"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = -10
+layer_4/tile_data = PackedInt32Array(917511, 65536, 3, 851975, 65536, 2, 458752, 0, 1, 393216, 0, 1, 458766, 458752, 1, 393230, 458752, 1, 7, 131072, 0, 917512, 65536, 3, 917510, 65536, 3, 851974, 65536, 2, 851976, 65536, 2)
+script = ExtResource("2_78anl")
+forceField = ExtResource("3_dxvqo")
+geneticist = ExtResource("4_1oct2")
+chimeraLabGrunt = ExtResource("5_0oaf0")
+
+[node name="labChimeraGruntVat" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(350, 1150)
+
+[node name="labChimeraGruntVat2" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(250, 950)
+
+[node name="labChimeraGruntVat3" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(250, 750)
+
+[node name="labChimeraGruntVat4" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(250, 550)
+
+[node name="labChimeraGruntVat5" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(350, 350)
+
+[node name="labChimeraGruntVat6" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(550, 250)
+
+[node name="labChimeraGruntVat7" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(750, 250)
+
+[node name="labChimeraGruntVat8" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(950, 250)
+
+[node name="labChimeraGruntVat9" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(1150, 350)
+
+[node name="labChimeraGruntVat10" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(1250, 550)
+
+[node name="labChimeraGruntVat11" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(1250, 750)
+
+[node name="labChimeraGruntVat12" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(1250, 950)
+
+[node name="labChimeraGruntVat13" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(1150, 1150)
+
+[node name="labChimeraGruntVat14" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(950, 1250)
+
+[node name="labChimeraGruntVat15" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(750, 1250)
+
+[node name="labChimeraGruntVat16" parent="." instance=ExtResource("4_1gtn8")]
+position = Vector2(550, 1250)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(750, 750)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 610)
+shape = SubResource("RectangleShape2D_axs4r")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -610)
+shape = SubResource("RectangleShape2D_axs4r")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(620, 0)
+shape = SubResource("RectangleShape2D_ydpdx")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-620, 0)
+shape = SubResource("RectangleShape2D_ydpdx")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6wakgckuw41q"]
+[gd_scene load_steps=23 format=3 uid="uid://b6wakgckuw41q"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level_1-1.gd" id="1_fdy0e"]
 [ext_resource type="Script" path="res://Scenes/Levels/Camera2D.gd" id="1_sq2ms"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dwr171cgvg22u" path="res://Scenes/Regions/OctopodLabs/derelictOctoVatRoom.tscn" id="6_0mefb"]
 [ext_resource type="PackedScene" uid="uid://drua3g16wla0a" path="res://Scenes/Regions/OctopodLabs/serverRoom.tscn" id="7_u7eod"]
 [ext_resource type="PackedScene" uid="uid://dqiaslsffj84c" path="res://Scenes/Regions/OctopodLabs/serverRoom1.tscn" id="8_13587"]
+[ext_resource type="PackedScene" uid="uid://yjxd38axyet8" path="res://Scenes/Regions/OctopodLabs/geneticistBossRoom.tscn" id="10_x31e6"]
 [ext_resource type="Texture2D" uid="uid://dxuckukhug4rb" path="res://Sprites/Utilities/spritesheet_utilities.png" id="12_mmmfs"]
 [ext_resource type="PackedScene" uid="uid://diib42gpn5ctv" path="res://Scenes/Utilities/miniMapLabs.tscn" id="13_gnlgj"]
 
@@ -42,7 +43,7 @@ bg_color = Color(0.258824, 1, 0.247059, 1)
 y_sort_enabled = true
 script = ExtResource("1_fdy0e")
 exitPortal = ExtResource("2_7pb71")
-totalRooms = 8
+totalRooms = 1
 spawnRoom = ExtResource("2_rhmof")
 vatRoom = ExtResource("3_l30t0")
 derelictVatRoom = ExtResource("4_s534a")
@@ -50,6 +51,7 @@ octoVatRoom = ExtResource("5_eyddh")
 derelictOctoVatRoom = ExtResource("6_0mefb")
 serverRoom = ExtResource("7_u7eod")
 serverRoom1 = ExtResource("8_13587")
+geneticistBossRoom = ExtResource("10_x31e6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(565, 350)
