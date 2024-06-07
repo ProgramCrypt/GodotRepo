@@ -70,22 +70,26 @@ func fillPassageways(directions):
 		var tile = get_cell_atlas_coords(3, cell)
 		
 		if "up" in directions:
-			if tile in [Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0)]:
-				set_cell(0, cell, 0, tile)
+			if tile in [Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(1, 3)]:
+				if cell.y <= 5:
+					set_cell(0, cell, 0, tile)
 		else:
 			erase_cell(3, cell)
 		if "down" in directions:
 			if tile in [Vector2i(1, 2), Vector2i(1, 3)]:
-				set_cell(2, cell, 0, tile)
+				if cell.y >= 9:
+					set_cell(2, cell, 0, tile)
 		else:
 			erase_cell(3, cell)
 		if "right" in directions:
-			if tile == Vector2i(7, 1):
-				set_cell(2, cell, 0, tile)
+			if tile in [Vector2i(7, 1), Vector2i(1, 3)]:
+				if cell.x >= 9:
+					set_cell(2, cell, 0, tile)
 		else:
 			erase_cell(3, cell)
 		if "left" in directions:
-			if tile == Vector2i(0, 1):
-				set_cell(2, cell, 0, tile)
+			if tile in [Vector2i(0, 1), Vector2i(1, 3)]:
+				if cell.x <= 5:
+					set_cell(2, cell, 0, tile)
 		else:
 			erase_cell(3, cell)

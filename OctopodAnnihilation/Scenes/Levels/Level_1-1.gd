@@ -53,16 +53,26 @@ func _ready():
 	var normalRooms = [vatRoom, octoVatRoom, serverRoom, serverRoom1]
 	var derelictRooms = [derelictVatRoom, derelictOctoVatRoom]
 	var instantiatedRooms = [r]
+	var dir = []
+	var dirWeight = 0
 	
 	while totalRooms > 0:
-		var dir = cardinals[randi() % cardinals.size()]
-		if dir == 0: #Up
+		dir.append(cardinals[randi() % cardinals.size()])
+		'if dir.size() > 1:
+			if dir[0] == dir[1]:
+				dirWeight += 1
+			else:
+				dirWeight = 0
+		if dirWeight >= 2:
+			dir.append(dir[-1])
+		dir = [dir[randi() % dir.size()]]' #makes world generation more stringy
+		if dir[-1] == 0: #Up
 			walker.y -= gridLen
-		if dir == 1: #Down
+		if dir[-1] == 1: #Down
 			walker.y += gridLen
-		if dir == 2: #Right
+		if dir[-1] == 2: #Right
 			walker.x += gridLen
-		if dir == 3: #Left
+		if dir[-1] == 3: #Left
 			walker.x -= gridLen
 		
 		if walker not in hasRoom:
@@ -99,6 +109,7 @@ func _ready():
 			directions.append("left")
 		fill.append([room, directions])
 	
+	#create level exit
 	var exitRoom = fill[-1]
 	var exitRoomIndex = fill.find(exitRoom)
 	var exitDirection = exitRoom[1][randi() % exitRoom[1].size()]
@@ -121,7 +132,10 @@ func _ready():
 		var index = hasRoom.find(room[0],0)
 		instantiatedRooms[index].fillPassageways(room[1])
 	
-	$HUD/Control/miniMap.setRoom(Vector2i(exitRoom[0].x/gridLen, exitRoom[0].y/gridLen), "exit")
+	if sceneManager.bossLevel == false:
+		$HUD/Control/miniMap.setRoom(Vector2i(exitRoom[0].x/gridLen, exitRoom[0].y/gridLen), "exit")
+	elif sceneManager.bossLevel == true:
+		$HUD/Control/miniMap.setRoom(Vector2i(exitRoom[0].x/gridLen, exitRoom[0].y/gridLen), "boss")
 	
 	#Set player location
 	get_tree().get_nodes_in_group('player')[0].position = playerStartingPos

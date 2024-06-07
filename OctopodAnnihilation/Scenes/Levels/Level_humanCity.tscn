@@ -1,0 +1,392 @@
+[gd_scene load_steps=19 format=3 uid="uid://b7kj5lqanm18a"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/Camera2D.gd" id="1_mikvy"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level_humanCity.gd" id="1_ondy1"]
+[ext_resource type="PackedScene" uid="uid://ccswn86ak6nuq" path="res://Scenes/PCs/player.tscn" id="2_00ywd"]
+[ext_resource type="PackedScene" uid="uid://cctjbeo8abnym" path="res://Scenes/Utilities/exitPortal.tscn" id="2_d3w58"]
+[ext_resource type="PackedScene" uid="uid://irhv2dppylff" path="res://Scenes/Regions/HumanCity/spawnRoomHC.tscn" id="3_mr15r"]
+[ext_resource type="PackedScene" uid="uid://xtey0m4gnml3" path="res://Scenes/Regions/HumanCity/drainageRoom1.tscn" id="4_22b6k"]
+[ext_resource type="Texture2D" uid="uid://dxuckukhug4rb" path="res://Sprites/Utilities/spritesheet_utilities.png" id="4_a62bv"]
+[ext_resource type="PackedScene" uid="uid://lk3mqok2ig2i" path="res://Scenes/Regions/HumanCity/businessDistrict1.tscn" id="4_rm186"]
+[ext_resource type="PackedScene" uid="uid://dd2w0b5f2gpsc" path="res://Scenes/Regions/HumanCity/businessDistrict2.tscn" id="5_aci8a"]
+[ext_resource type="PackedScene" uid="uid://diib42gpn5ctv" path="res://Scenes/Utilities/miniMapLabs.tscn" id="5_ppyhh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t5ho"]
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5cjg"]
+bg_color = Color(0.701961, 0.392157, 0.301961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muywj"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjguv"]
+bg_color = Color(0.164706, 0.623529, 0.74902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c10dx"]
+bg_color = Color(0.121569, 0.85098, 0.929412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lphek"]
+bg_color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yq858"]
+bg_color = Color(0.0666667, 0.839216, 0.364706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhbi5"]
+bg_color = Color(0.258824, 1, 0.247059, 1)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ondy1")
+exitPortal = ExtResource("2_d3w58")
+totalRooms = 1
+spawnRoom = ExtResource("3_mr15r")
+businessDistrict1 = ExtResource("4_rm186")
+businessDistrict2 = ExtResource("5_aci8a")
+drainageRoom1 = ExtResource("4_22b6k")
+amphibianBossRoom = ExtResource("4_22b6k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(565, 350)
+rotation = 3.14159
+scale = Vector2(71.7733, -143.641)
+zoom = Vector2(1.25, 1.25)
+script = ExtResource("1_mikvy")
+
+[node name="player" parent="." instance=ExtResource("2_00ywd")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="healthLabel" type="Label" parent="HUD"]
+z_index = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Health: 0"
+
+[node name="energyLabel" type="Label" parent="HUD"]
+z_index = 1
+offset_top = 29.0
+offset_right = 70.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Energy: 0"
+
+[node name="healthBar" type="ProgressBar" parent="HUD"]
+offset_right = 180.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5t5ho")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x5cjg")
+show_percentage = false
+
+[node name="dividers" type="MarginContainer" parent="HUD/healthBar"]
+visible = false
+layout_mode = 0
+offset_right = 178.0
+offset_bottom = 27.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/healthBar/dividers"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Panel" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel2" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel3" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel4" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel5" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel6" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel7" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel8" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel9" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel10" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel11" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel12" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel13" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel14" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel15" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel16" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel17" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel18" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel19" type="Panel" parent="HUD/healthBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="energyBar" type="ProgressBar" parent="HUD"]
+offset_top = 29.0
+offset_right = 180.0
+offset_bottom = 56.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5t5ho")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fjguv")
+show_percentage = false
+
+[node name="dividers" type="MarginContainer" parent="HUD/energyBar"]
+visible = false
+layout_mode = 0
+offset_right = 178.0
+offset_bottom = 27.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/energyBar/dividers"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Panel" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel2" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel3" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel4" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel5" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel6" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel7" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel8" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel9" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel10" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel11" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel12" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel13" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel14" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel15" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel16" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel17" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel18" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="Panel19" type="Panel" parent="HUD/energyBar/dividers/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.176471)
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muywj")
+
+[node name="scrapIcon" type="Sprite2D" parent="HUD"]
+position = Vector2(1150, 1150)
+scale = Vector2(4, 4)
+texture = ExtResource("4_a62bv")
+hframes = 5
+vframes = 5
+
+[node name="scrapLabel" type="Label" parent="HUD"]
+offset_left = 1130.0
+offset_top = 1110.0
+offset_right = 1170.0
+offset_bottom = 1136.0
+text = "100"
+horizontal_alignment = 1
+
+[node name="activeCooldownBar" type="ProgressBar" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+offset_right = 178.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_c10dx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lphek")
+show_percentage = false
+
+[node name="activeCooldownPanel" type="Panel" parent="HUD"]
+offset_top = 1173.0
+offset_right = 178.0
+offset_bottom = 1200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yq858")
+
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="miniMap" parent="HUD/Control" instance=ExtResource("5_ppyhh")]
+position = Vector2(100, 100)
+
+[node name="Panel" type="Panel" parent="HUD/Control"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 102.0
+offset_bottom = 102.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fhbi5")

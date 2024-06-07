@@ -4,7 +4,7 @@ extends RigidBody2D
 
 @export var effectArea : PackedScene
 
-var speed = 900
+#var speed = 900
 var distanceTraveled = 0
 var totalDistance = 400
 var triggerTimer = 0
@@ -37,6 +37,6 @@ func _process(delta):
 			detonate = true
 
 
-func setVelocity(angle):
+func setVelocity(angle, speed):
 	linear_velocity = Vector2.from_angle(angle)
 	linear_velocity *= speed

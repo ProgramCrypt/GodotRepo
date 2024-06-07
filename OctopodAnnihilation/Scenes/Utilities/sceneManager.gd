@@ -12,6 +12,7 @@ var scoreSavePath = "user://OctopodAnnihilationScoreSaveFile.save"
 @export var characterSelection : PackedScene
 @export var scoreboard : PackedScene
 @export var level1_1 : PackedScene
+@export var level_humanCity : PackedScene
 var scenes = {}
 
 var difficulty: int = 4
@@ -21,7 +22,7 @@ var bossLevel = false
 
 
 func _ready():
-	scenes = {"mainMenu": mainMenu, "options": options, "versionChangelog": versionChangelog, "characterSelection": characterSelection, "scoreboard": scoreboard, "level1_1": level1_1}
+	scenes = {"mainMenu": mainMenu, "options": options, "versionChangelog": versionChangelog, "characterSelection": characterSelection, "scoreboard": scoreboard, "level1_1": level1_1, "level_humanCity": level_humanCity}
 	#switchScene("mainMenu")
 	
 	var scores = loadScoreData()
@@ -39,10 +40,13 @@ func nextLevel():
 		elif completedLevels.count("level1_1") > 2:
 			bossLevel = false
 			completedLevels = []
-			restartScene() #temporary while next level remains unimplemented
+			switchScene("level_humanCity")
 		else:
 			bossLevel = false
 			restartScene()
+	if level == "level_humanCity":
+		bossLevel = false
+		restartScene()
 	get_tree().paused = false
 
 

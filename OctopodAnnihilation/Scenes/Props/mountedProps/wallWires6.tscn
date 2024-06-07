@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2yasvbq3j2nh"]
+
+[ext_resource type="Texture2D" uid="uid://eq0sj825m4ir" path="res://Sprites/Props/HumanCityProps.png" id="1_qut4t"]
+
+[node name="wires" type="Sprite2D"]
+z_index = -1
+z_as_relative = false
+texture = ExtResource("1_qut4t")
+hframes = 8
+vframes = 8
+frame = 59

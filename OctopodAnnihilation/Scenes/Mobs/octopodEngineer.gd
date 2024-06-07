@@ -197,7 +197,7 @@ func throwGrenade():
 				get_parent().get_parent().add_child(grenade)
 				grenade.global_position = $Arm/launcher.global_position
 				#get_parent().dropItem(octopodGrenade, $Arm.global_transform)
-				grenade.setVelocity(get_angle_to(player.global_position))
+				grenade.setVelocity(get_angle_to(player.global_position), 900)
 
 
 func _physics_process(delta: float) -> void:

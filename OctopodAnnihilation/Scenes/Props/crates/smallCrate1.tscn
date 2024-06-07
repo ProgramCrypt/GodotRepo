@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8y0327nu0o86"]
+
+[ext_resource type="Texture2D" uid="uid://eq0sj825m4ir" path="res://Sprites/Props/HumanCityProps.png" id="2_udc6s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htpbq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phd0i"]
+size = Vector2(24, 24)
+
+[node name="smallCrate" type="StaticBody2D"]
+collision_mask = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_udc6s")
+hframes = 8
+vframes = 8
+frame = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_htpbq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_phd0i")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

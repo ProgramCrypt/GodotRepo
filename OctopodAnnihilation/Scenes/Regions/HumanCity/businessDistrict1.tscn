@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://lk3mqok2ig2i"]
+
+[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_fawha"]
+[ext_resource type="Script" path="res://Scenes/Regions/HumanCity/humanCityRoomScript.gd" id="2_t4gf8"]
+[ext_resource type="PackedScene" uid="uid://d1dcxncvj4qb2" path="res://Scenes/Props/groundProps/grate1.tscn" id="3_1b5pv"]
+[ext_resource type="PackedScene" uid="uid://llvjwfglfvsp" path="res://Scenes/Mobs/chimeraSoldier.tscn" id="3_7m1mk"]
+[ext_resource type="PackedScene" uid="uid://bjgjfs37mkkuh" path="res://Scenes/Props/groundProps/manholeCover.tscn" id="4_ery52"]
+[ext_resource type="PackedScene" uid="uid://dslk4ereghgqr" path="res://Scenes/Mobs/octopodEngineer.tscn" id="4_xhvi4"]
+[ext_resource type="PackedScene" uid="uid://c5elkx0hbi4bn" path="res://Scenes/Props/mountedProps/neonSign1.tscn" id="5_rgsdm"]
+[ext_resource type="PackedScene" uid="uid://da6r3s35q5ft6" path="res://Scenes/Props/mountedProps/neonSign2.tscn" id="6_4tbc5"]
+[ext_resource type="PackedScene" uid="uid://cbij55svhtv7k" path="res://Scenes/Props/mountedProps/neonSign3.tscn" id="7_nyrvl"]
+[ext_resource type="PackedScene" uid="uid://dgeuo3ffsw74m" path="res://Scenes/Props/mountedProps/neonSign4.tscn" id="8_nlhuw"]
+[ext_resource type="PackedScene" uid="uid://2wial3e6rp4y" path="res://Scenes/Props/streetLights/streetLight1.tscn" id="9_oajgo"]
+[ext_resource type="PackedScene" uid="uid://cxquvdrwv3evg" path="res://Scenes/Props/streetLights/streetLight2.tscn" id="10_q8lmi"]
+
+[node name="drainageRoom1" type="TileMap"]
+y_sort_enabled = true
+tile_set = ExtResource("1_fawha")
+format = 2
+layer_0/name = "lowerLevel"
+layer_0/z_index = -5
+layer_0/tile_data = PackedInt32Array(458766, 65540, 5, 917511, 65540, 5, 458752, 196612, 5, 7, 131076, 5, 851975, 327684, 5, 786439, 196612, 5, 786438, 4, 5, 786437, 4, 5, 786436, 65540, 5, 786435, 131076, 5, 786434, 196612, 5, 786433, 4, 5, 720897, 4, 5, 720898, 262148, 5, 720899, 262148, 5, 720900, 65540, 5, 720901, 131076, 5, 720902, 131076, 5, 720903, 196612, 5, 720904, 262148, 5, 720905, 4, 5, 720906, 262148, 5, 720907, 4, 5, 720908, 131076, 5, 720909, 262148, 5, 786445, 131076, 5, 786444, 4, 5, 786443, 4, 5, 786442, 4, 5, 786441, 327684, 5, 786440, 131076, 5, 655367, 196612, 5, 589831, 65540, 5, 524295, 131076, 5, 458759, 262148, 5, 655361, 196612, 5, 589825, 131076, 5, 524289, 131076, 5, 458753, 327684, 5, 393217, 327684, 5, 327681, 327684, 5, 262145, 131076, 5, 196609, 65540, 5, 131073, 262148, 5, 131074, 262148, 5, 131075, 327684, 5, 131076, 65540, 5, 131077, 131076, 5, 131078, 196612, 5, 131079, 196612, 5, 131080, 327684, 5, 131081, 327684, 5, 131082, 65540, 5, 131083, 196612, 5, 131084, 4, 5, 131085, 327684, 5, 196621, 262148, 5, 262157, 65540, 5, 327693, 65540, 5, 393229, 196612, 5, 458765, 65540, 5, 524301, 65540, 5, 589837, 131076, 5, 655373, 196612, 5, 393223, 131076, 5, 327687, 65540, 5, 262151, 262148, 5, 196615, 131076, 5, 65543, 131076, 5, 196610, 262148, 5, 196611, 196612, 5, 196612, 196612, 5, 196613, 65540, 5, 196614, 196612, 5, 196616, 196612, 5, 196617, 4, 5, 196618, 4, 5, 196619, 327684, 5, 196620, 327684, 5, 458764, 262148, 5, 458763, 131076, 5, 458762, 131076, 5, 458761, 4, 5, 458760, 262148, 5, 458758, 327684, 5, 458757, 327684, 5, 458756, 196612, 5, 458755, 4, 5, 458754, 327684, 5, 65537, 262148, 3, 65538, 131076, 3, 65539, 196612, 3, 65540, 393220, 3, 65541, 327684, 3, 65542, 327684, 3, 65544, 196612, 3, 65545, 196612, 3, 65546, 458756, 3, 65547, 327684, 3, 65548, 4, 3, 65549, 196612, 3, 393228, 262148, 3, 393227, 327684, 4, 393226, 4, 4, 393225, 393220, 4, 393224, 393220, 4, 393222, 393220, 4, 393221, 524292, 4, 393220, 4, 4, 393219, 131076, 4, 393218, 327684, 3, 655362, 327684, 3, 655363, 131076, 4, 655364, 4, 4, 655365, 393220, 4, 655366, 524292, 4, 655368, 393220, 4, 655369, 589828, 4, 655370, 65540, 4, 655371, 131076, 4, 655372, 196612, 3, 393216, 262148, 3, 393230, 327684, 3)
+layer_1/name = "props"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -2
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "upperLevel"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 5
+layer_2/tile_data = PackedInt32Array(917504, 458756, 6, 917505, 458756, 6, 917506, 458756, 6, 917507, 458756, 6, 917508, 458756, 6, 917512, 524292, 6, 917513, 458756, 6, 917514, 458756, 6, 917515, 458756, 6, 917516, 458756, 6, 917517, 458756, 6, 917518, 458756, 6, 917510, 589828, 6, 917509, 458756, 6, 851976, 524292, 6, 720910, 524292, 6, 655374, 524292, 6, 589838, 524292, 6, 524302, 524292, 6, 327694, 524292, 6, 262158, 524292, 6, 196622, 524292, 6, 131086, 524292, 6, 65550, 524292, 6, 8, 524292, 6, 589832, 524292, 6, 524296, 524292, 6, 327688, 524292, 6, 262152, 524292, 6, 327682, 524292, 6, 262146, 524292, 6, 589826, 524292, 6, 524290, 524292, 6, 720896, 589828, 6, 655360, 589828, 6, 589824, 589828, 6, 524288, 589828, 6, 327680, 589828, 6, 262144, 589828, 6, 196608, 589828, 6, 131072, 589828, 6, 65536, 589828, 6, 6, 589828, 6, 262150, 589828, 6, 327686, 589828, 6, 524294, 589828, 6, 589830, 589828, 6, 589836, 589828, 6, 524300, 589828, 6, 851974, 589828, 6, 786446, 524292, 7, 786432, 589828, 7, 851973, 458756, 6, 851972, 458756, 6, 851971, 458756, 6, 851970, 458756, 6, 851969, 458756, 6, 851968, 458756, 6, 851977, 458756, 6, 851978, 458756, 6, 851979, 458756, 6, 851980, 458756, 6, 851981, 458756, 6, 851982, 458756, 6, 14, 458756, 6, 13, 458756, 6, 12, 458756, 6, 11, 458756, 6, 10, 458756, 6, 9, 458756, 6, 5, 458756, 6, 4, 458756, 6, 3, 458756, 6, 2, 458756, 6, 1, 458756, 6, 0, 458756, 6, 327683, 458756, 6, 327684, 458756, 6, 327685, 458756, 6, 262149, 458756, 6, 262148, 458756, 6, 262147, 458756, 6, 524291, 458756, 6, 589827, 458756, 6, 589828, 458756, 6, 589829, 458756, 6, 524293, 458756, 6, 524292, 458756, 6, 524297, 458756, 6, 589833, 458756, 6, 589834, 458756, 6, 524299, 458756, 6, 524298, 458756, 6, 589835, 458756, 6, 327691, 458756, 6, 327690, 458756, 6, 327689, 458756, 6, 262153, 458756, 6, 262154, 458756, 6, 262155, 458756, 6, 327692, 589828, 6, 262156, 589828, 6, 786433, 458756, 5, 786434, 458756, 5, 786435, 458756, 5, 786436, 458756, 5, 786437, 458756, 5, 786441, 458756, 5, 786442, 458756, 5, 786443, 458756, 5, 786444, 458756, 5, 786445, 458756, 5, 458755, 458756, 5, 458756, 458756, 5, 458757, 458756, 5, 196611, 458756, 5, 196612, 458756, 5, 196613, 458756, 5, 196617, 458756, 5, 196618, 458756, 5, 196619, 458756, 5, 458761, 458756, 5, 458762, 458756, 5, 458763, 458756, 5, 786440, 524292, 5, 458766, 524292, 5, 458760, 524292, 5, 196616, 524292, 5, 196610, 524292, 5, 458754, 524292, 5, 786438, 589828, 5, 458752, 589828, 5, 458758, 589828, 5, 196614, 589828, 5, 196620, 589828, 5, 458764, 589828, 5)
+layer_3/name = "spawners"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = -10
+layer_3/tile_data = PackedInt32Array(720898, 3, 2, 720908, 3, 2, 196620, 3, 2, 196610, 3, 2, 458757, 262147, 2, 458761, 262147, 2, 720901, 3, 2, 720905, 3, 2, 196613, 3, 2, 196617, 3, 2, 458755, 262147, 2, 458763, 262147, 2)
+layer_4/name = "passageFill"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = -10
+layer_4/tile_data = PackedInt32Array(458752, 589828, 6, 393216, 589828, 6, 458766, 524292, 6, 393230, 524292, 6, 65543, 65540, 2, 6, 458756, 6, 7, 458756, 6, 8, 458756, 6, 917510, 458756, 6, 917511, 458756, 6, 917512, 458756, 6, 851974, 458756, 6, 851975, 458756, 6, 851976, 458756, 6, 786438, 458756, 5, 786439, 458756, 5, 786440, 458756, 5)
+script = ExtResource("2_t4gf8")
+chimeraSoldier = ExtResource("3_7m1mk")
+octopodEngineer = ExtResource("4_xhvi4")
+
+[node name="manholeCover" parent="." instance=ExtResource("4_ery52")]
+position = Vector2(750, 750)
+
+[node name="grate" parent="." instance=ExtResource("3_1b5pv")]
+position = Vector2(150, 750)
+
+[node name="grate2" parent="." instance=ExtResource("3_1b5pv")]
+position = Vector2(1350, 750)
+
+[node name="grate3" parent="." instance=ExtResource("3_1b5pv")]
+position = Vector2(750, 350)
+
+[node name="grate4" parent="." instance=ExtResource("3_1b5pv")]
+position = Vector2(750, 1150)
+
+[node name="neonSign" parent="." instance=ExtResource("5_rgsdm")]
+position = Vector2(250, 650)
+
+[node name="neonSign2" parent="." instance=ExtResource("6_4tbc5")]
+position = Vector2(1250, 650)
+
+[node name="neonSign3" parent="." instance=ExtResource("7_nyrvl")]
+position = Vector2(250, 1050)
+
+[node name="neonSign4" parent="." instance=ExtResource("8_nlhuw")]
+position = Vector2(1250, 1050)
+
+[node name="streetLight" parent="." instance=ExtResource("9_oajgo")]
+position = Vector2(1350, 250)
+
+[node name="streetLight2" parent="." instance=ExtResource("9_oajgo")]
+position = Vector2(1350, 1250)
+
+[node name="streetLight3" parent="." instance=ExtResource("10_q8lmi")]
+position = Vector2(150, 1250)
+
+[node name="streetLight4" parent="." instance=ExtResource("10_q8lmi")]
+position = Vector2(150, 250)

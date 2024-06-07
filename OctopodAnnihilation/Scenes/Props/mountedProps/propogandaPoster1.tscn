@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba1dtjddjeoj6"]
+
+[ext_resource type="Texture2D" uid="uid://eq0sj825m4ir" path="res://Sprites/Props/HumanCityProps.png" id="1_din1v"]
+
+[node name="propogandaPoster" type="Sprite2D"]
+z_index = -1
+z_as_relative = false
+texture = ExtResource("1_din1v")
+hframes = 8
+vframes = 8
+frame = 32

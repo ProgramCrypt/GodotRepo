@@ -1,0 +1,182 @@
+[gd_scene load_steps=25 format=3 uid="uid://dd2w0b5f2gpsc"]
+
+[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_7cc72"]
+[ext_resource type="Script" path="res://Scenes/Regions/HumanCity/humanCityRoomScript.gd" id="2_t3n1n"]
+[ext_resource type="PackedScene" uid="uid://llvjwfglfvsp" path="res://Scenes/Mobs/chimeraSoldier.tscn" id="3_4t1rf"]
+[ext_resource type="PackedScene" uid="uid://bjgjfs37mkkuh" path="res://Scenes/Props/groundProps/manholeCover.tscn" id="3_df8eb"]
+[ext_resource type="PackedScene" uid="uid://ff0mvk761n5c" path="res://Scenes/Props/mountedProps/wallWires1.tscn" id="3_nrdna"]
+[ext_resource type="PackedScene" uid="uid://d1dcxncvj4qb2" path="res://Scenes/Props/groundProps/grate1.tscn" id="4_67h00"]
+[ext_resource type="PackedScene" uid="uid://dslk4ereghgqr" path="res://Scenes/Mobs/octopodEngineer.tscn" id="4_pu1hi"]
+[ext_resource type="PackedScene" uid="uid://d3j2ddm6xh1u0" path="res://Scenes/Props/mountedProps/wallWires2.tscn" id="4_xlwe4"]
+[ext_resource type="PackedScene" uid="uid://bbhbua7f5nvlu" path="res://Scenes/Props/mountedProps/wallWires3.tscn" id="5_waul7"]
+[ext_resource type="PackedScene" uid="uid://oscoq1q254u3" path="res://Scenes/Props/mountedProps/wallDuct.tscn" id="6_5vy64"]
+[ext_resource type="PackedScene" uid="uid://ba1dtjddjeoj6" path="res://Scenes/Props/mountedProps/propogandaPoster1.tscn" id="7_ofuy8"]
+[ext_resource type="PackedScene" uid="uid://csam63n5irfos" path="res://Scenes/Props/mountedProps/propogandaPoster2.tscn" id="8_603q7"]
+[ext_resource type="PackedScene" uid="uid://ev0vj6can04a" path="res://Scenes/Props/mountedProps/damagedPropogandaPoster1.tscn" id="9_di0j3"]
+[ext_resource type="PackedScene" uid="uid://byovhhpebqtcn" path="res://Scenes/Props/mountedProps/propogandaPoster3.tscn" id="10_s6qfb"]
+[ext_resource type="PackedScene" uid="uid://bjog74fvb2xge" path="res://Scenes/Props/signPosts/signPost1.tscn" id="11_6555j"]
+[ext_resource type="PackedScene" uid="uid://2wial3e6rp4y" path="res://Scenes/Props/streetLights/streetLight1.tscn" id="12_o6iet"]
+[ext_resource type="PackedScene" uid="uid://cxquvdrwv3evg" path="res://Scenes/Props/streetLights/streetLight2.tscn" id="13_d2gse"]
+[ext_resource type="PackedScene" uid="uid://bxkxvvy3swa5y" path="res://Scenes/Props/groundProps/brickDebris1.tscn" id="16_7b7vq"]
+[ext_resource type="PackedScene" uid="uid://b6nj7lqomvtc2" path="res://Scenes/Props/groundProps/brickDebris2.tscn" id="17_87mh0"]
+[ext_resource type="PackedScene" uid="uid://bcabi0caqav0w" path="res://Scenes/Props/groundProps/brickDebris3.tscn" id="18_3sq7o"]
+[ext_resource type="PackedScene" uid="uid://bdwdjr4r7vfrx" path="res://Scenes/Props/crates/largeCrate1.tscn" id="19_ojy7q"]
+[ext_resource type="PackedScene" uid="uid://cowkq1ehv2bl8" path="res://Scenes/Props/crates/largeCrate4.tscn" id="20_l02vs"]
+[ext_resource type="PackedScene" uid="uid://dahqr8mvwi10l" path="res://Scenes/Props/crates/mediumCrate1.tscn" id="21_mh5yq"]
+[ext_resource type="PackedScene" uid="uid://b8y0327nu0o86" path="res://Scenes/Props/crates/smallCrate1.tscn" id="22_73dek"]
+
+[node name="drainageRoom1" type="TileMap"]
+y_sort_enabled = true
+tile_set = ExtResource("1_7cc72")
+format = 2
+layer_0/name = "lowerLevel"
+layer_0/z_index = -5
+layer_0/tile_data = PackedInt32Array(458766, 262148, 5, 917511, 131076, 5, 458752, 327684, 5, 7, 327684, 5, 851975, 262148, 5, 786439, 131076, 5, 786438, 327684, 5, 786437, 262148, 5, 786436, 4, 5, 786435, 4, 5, 786434, 131076, 5, 720898, 327684, 5, 720899, 262148, 5, 720900, 327684, 5, 720901, 262148, 5, 720902, 196612, 5, 720903, 327684, 5, 720904, 196612, 5, 720905, 4, 5, 720906, 327684, 5, 720907, 65540, 5, 720908, 262148, 5, 786444, 131076, 5, 786443, 65540, 5, 786442, 262148, 5, 786441, 262148, 5, 786440, 4, 5, 458753, 327684, 5, 393217, 262148, 3, 131074, 196612, 5, 131075, 262148, 5, 131078, 327684, 5, 131079, 131076, 5, 131080, 262148, 5, 131081, 262148, 5, 131083, 196612, 5, 131084, 196612, 5, 393229, 196612, 3, 458765, 327684, 5, 262151, 4, 5, 196615, 131076, 5, 65543, 4, 5, 196611, 262148, 5, 196612, 196612, 5, 196613, 327684, 5, 196614, 4, 5, 196616, 4, 5, 196617, 262148, 5, 196618, 131076, 5, 196619, 196612, 5, 458764, 4, 5, 458763, 65540, 5, 458762, 131076, 5, 458756, 262148, 5, 458755, 262148, 5, 458754, 65540, 5, 65538, 327684, 3, 65539, 196612, 3, 65540, 196612, 3, 65541, 327684, 3, 65542, 327684, 3, 65544, 196612, 3, 65545, 196612, 3, 65546, 262148, 3, 65547, 196612, 3, 65548, 327684, 3, 393216, 262148, 3, 393230, 327684, 3, 655367, 65540, 5, 589829, 131076, 4, 589830, 4, 4, 589831, 196612, 3, 589832, 327684, 3, 589833, 393220, 3, 655366, 327684, 5, 655365, 131076, 5, 655364, 262148, 5, 655363, 131076, 5, 655368, 131076, 5, 655369, 262148, 5, 655370, 131076, 5, 655371, 4, 5, 589836, 131076, 5, 393228, 262148, 5, 262156, 131076, 5, 262155, 196612, 5, 327691, 196612, 5, 393227, 262148, 5, 524299, 327684, 5, 589835, 262148, 5, 589834, 327684, 5, 524298, 65540, 5, 393226, 262148, 5, 327690, 65540, 5, 262154, 262148, 5, 262152, 262148, 5, 262153, 65540, 5, 262150, 196612, 5, 262149, 4, 5, 262148, 196612, 5, 262147, 131076, 5, 262146, 4, 5, 327684, 262148, 5, 393220, 327684, 5, 524292, 4, 5, 589827, 196612, 5, 524291, 131076, 5, 393219, 65540, 5, 327683, 4, 5, 393218, 65540, 5, 589826, 4, 5)
+layer_1/name = "props"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -2
+layer_1/tile_data = PackedInt32Array(655362, 131077, 0, 589828, 196613, 0, 524290, 5, 0, 327682, 196613, 0, 196610, 131077, 0, 131076, 65541, 0, 131077, 262149, 0, 131082, 327685, 0, 196620, 65541, 0, 327692, 327685, 0, 524300, 196613, 0, 655372, 327685, 0)
+layer_2/name = "upperLevel"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 5
+layer_2/tile_data = PackedInt32Array(917504, 458756, 6, 917505, 458756, 6, 917506, 458756, 6, 917507, 458756, 6, 917508, 458756, 6, 917512, 524292, 6, 917513, 458756, 6, 917514, 458756, 6, 917515, 458756, 6, 917516, 458756, 6, 917517, 458756, 6, 917518, 458756, 6, 917510, 589828, 6, 917509, 458756, 6, 851976, 524292, 6, 720910, 458756, 6, 655374, 458756, 6, 589838, 458756, 6, 524302, 458756, 6, 327694, 458756, 6, 262158, 458756, 6, 196622, 458756, 6, 131086, 458756, 6, 65550, 458756, 6, 8, 524292, 6, 720896, 458756, 6, 655360, 458756, 6, 589824, 458756, 6, 524288, 458756, 6, 327680, 458756, 6, 262144, 458756, 6, 196608, 458756, 6, 131072, 458756, 6, 65536, 458756, 6, 6, 589828, 6, 851974, 589828, 6, 786446, 458756, 6, 786432, 458756, 6, 851973, 458756, 6, 851972, 458756, 6, 851971, 458756, 6, 851970, 458756, 6, 851969, 458756, 6, 851968, 458756, 6, 851977, 458756, 6, 851978, 458756, 6, 851979, 458756, 6, 851980, 458756, 6, 851981, 458756, 6, 851982, 458756, 6, 14, 458756, 6, 13, 458756, 6, 12, 458756, 6, 11, 458756, 6, 10, 458756, 6, 9, 458756, 6, 5, 458756, 6, 4, 458756, 6, 3, 458756, 6, 2, 458756, 6, 1, 458756, 6, 0, 458756, 6, 786433, 589828, 7, 786434, 458756, 5, 786435, 458756, 5, 786436, 458756, 5, 786437, 458756, 5, 786441, 458756, 5, 786442, 458756, 5, 786443, 458756, 5, 786444, 458756, 5, 786445, 524292, 7, 786440, 524292, 5, 458766, 458756, 5, 786438, 589828, 5, 458752, 458756, 5, 720897, 589828, 6, 655361, 589828, 6, 589825, 589828, 6, 524289, 589828, 6, 720909, 524292, 6, 655373, 524292, 6, 589837, 524292, 6, 524301, 524292, 6, 327693, 524292, 6, 262157, 524292, 6, 196621, 524292, 6, 131085, 524292, 6, 65549, 524292, 6, 65537, 589828, 6, 131073, 589828, 6, 196609, 589828, 6, 262145, 589828, 6, 327681, 589828, 6, 524297, 589828, 6, 458761, 589828, 6, 393225, 589828, 6, 327689, 589828, 6, 524293, 524292, 6, 458757, 524292, 6, 393221, 524292, 6, 327685, 524292, 6, 524294, 458756, 6, 458758, 458756, 6, 393222, 458756, 6, 327686, 458756, 6, 327687, 458756, 6, 327688, 458756, 6, 393224, 458756, 6, 458760, 458756, 6, 524296, 458756, 6, 524295, 458756, 6, 458759, 458756, 6, 393223, 458756, 6, 262150, 458756, 5, 262151, 458756, 5, 262152, 458756, 5, 262149, 524292, 5, 458765, 524292, 5, 262153, 589828, 5, 458753, 589828, 5)
+layer_3/name = "spawners"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = -10
+layer_3/tile_data = PackedInt32Array(720899, 3, 2, 720901, 3, 2, 720907, 3, 2, 720905, 3, 2, 196611, 3, 2, 196613, 3, 2, 196617, 3, 2, 196619, 3, 2, 458756, 262147, 2, 458762, 262147, 2)
+layer_4/name = "passageFill"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = -10
+layer_4/tile_data = PackedInt32Array(458752, 458756, 6, 393216, 458756, 6, 458766, 458756, 6, 393230, 458756, 6, 65543, 524292, 3, 6, 458756, 6, 7, 458756, 6, 8, 458756, 6, 917510, 458756, 6, 917511, 458756, 6, 917512, 458756, 6, 851974, 458756, 6, 851975, 458756, 6, 851976, 458756, 6, 786438, 458756, 5, 786439, 458756, 5, 786440, 458756, 5, 458765, 524292, 6, 393229, 524292, 6, 393217, 589828, 6, 458753, 589828, 6)
+script = ExtResource("2_t3n1n")
+chimeraSoldier = ExtResource("3_4t1rf")
+octopodEngineer = ExtResource("4_pu1hi")
+
+[node name="wires" parent="." instance=ExtResource("3_nrdna")]
+position = Vector2(250, 150)
+
+[node name="wires2" parent="." instance=ExtResource("4_xlwe4")]
+position = Vector2(350, 150)
+
+[node name="wires3" parent="." instance=ExtResource("5_waul7")]
+position = Vector2(450, 150)
+
+[node name="wires4" parent="." instance=ExtResource("3_nrdna")]
+position = Vector2(550, 150)
+
+[node name="wires5" parent="." instance=ExtResource("4_xlwe4")]
+position = Vector2(650, 150)
+
+[node name="wires6" parent="." instance=ExtResource("4_xlwe4")]
+position = Vector2(950, 150)
+
+[node name="wires7" parent="." instance=ExtResource("5_waul7")]
+position = Vector2(850, 150)
+
+[node name="wires8" parent="." instance=ExtResource("3_nrdna")]
+position = Vector2(1050, 150)
+
+[node name="wires9" parent="." instance=ExtResource("5_waul7")]
+position = Vector2(1150, 150)
+
+[node name="wires10" parent="." instance=ExtResource("3_nrdna")]
+position = Vector2(1250, 150)
+
+[node name="duct" parent="." instance=ExtResource("6_5vy64")]
+position = Vector2(850, 973)
+
+[node name="propogandaPoster" parent="." instance=ExtResource("7_ofuy8")]
+position = Vector2(174, 666)
+
+[node name="propogandaPoster2" parent="." instance=ExtResource("8_603q7")]
+position = Vector2(1343, 661)
+
+[node name="propogandaPoster3" parent="." instance=ExtResource("9_di0j3")]
+position = Vector2(774, 1024)
+
+[node name="propogandaPoster4" parent="." instance=ExtResource("10_s6qfb")]
+position = Vector2(738, 957)
+
+[node name="signPost" parent="." instance=ExtResource("11_6555j")]
+position = Vector2(477, 956)
+
+[node name="streetLight" parent="." instance=ExtResource("12_o6iet")]
+position = Vector2(1250, 850)
+
+[node name="streetLight2" parent="." instance=ExtResource("12_o6iet")]
+position = Vector2(1250, 1050)
+
+[node name="streetLight3" parent="." instance=ExtResource("12_o6iet")]
+position = Vector2(1250, 550)
+
+[node name="streetLight4" parent="." instance=ExtResource("12_o6iet")]
+position = Vector2(1250, 350)
+
+[node name="streetLight5" parent="." instance=ExtResource("13_d2gse")]
+position = Vector2(250, 850)
+
+[node name="streetLight6" parent="." instance=ExtResource("13_d2gse")]
+position = Vector2(250, 1050)
+
+[node name="streetLight7" parent="." instance=ExtResource("13_d2gse")]
+position = Vector2(250, 550)
+
+[node name="streetLight8" parent="." instance=ExtResource("13_d2gse")]
+position = Vector2(250, 350)
+
+[node name="grate" parent="." instance=ExtResource("4_67h00")]
+position = Vector2(350, 1150)
+
+[node name="grate2" parent="." instance=ExtResource("4_67h00")]
+position = Vector2(350, 350)
+
+[node name="grate3" parent="." instance=ExtResource("4_67h00")]
+position = Vector2(1150, 350)
+
+[node name="grate4" parent="." instance=ExtResource("4_67h00")]
+position = Vector2(1150, 1150)
+
+[node name="manholeCover" parent="." instance=ExtResource("3_df8eb")]
+position = Vector2(750, 350)
+
+[node name="manholeCover2" parent="." instance=ExtResource("3_df8eb")]
+position = Vector2(750, 1150)
+
+[node name="debris" parent="." instance=ExtResource("16_7b7vq")]
+position = Vector2(341, 1223)
+
+[node name="debris2" parent="." instance=ExtResource("16_7b7vq")]
+position = Vector2(1139, 264)
+
+[node name="debris3" parent="." instance=ExtResource("17_87mh0")]
+position = Vector2(1247, 243)
+
+[node name="debris4" parent="." instance=ExtResource("18_3sq7o")]
+position = Vector2(240, 272)
+
+[node name="debris5" parent="." instance=ExtResource("17_87mh0")]
+position = Vector2(1225, 1235)
+
+[node name="largeCrate" parent="." instance=ExtResource("19_ojy7q")]
+position = Vector2(473, 238)
+
+[node name="largeCrate2" parent="." instance=ExtResource("20_l02vs")]
+position = Vector2(523, 255)
+
+[node name="mediumCrate" parent="." instance=ExtResource("21_mh5yq")]
+position = Vector2(1059, 241)
+
+[node name="smallCrate" parent="." instance=ExtResource("22_73dek")]
+position = Vector2(1021, 256)

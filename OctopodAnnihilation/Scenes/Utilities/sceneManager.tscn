@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtbnoqh6de24q"]
+[gd_scene load_steps=9 format=3 uid="uid://dtbnoqh6de24q"]
 
 [ext_resource type="Script" path="res://Scenes/Utilities/sceneManager.gd" id="1_hojph"]
 [ext_resource type="PackedScene" uid="uid://qr5q2rtsd4nc" path="res://Scenes/Utilities/mainMenu.tscn" id="2_rstwb"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b6wakgckuw41q" path="res://Scenes/Levels/Level_1-1.tscn" id="3_wsauu"]
 [ext_resource type="PackedScene" uid="uid://dehj7e76tts13" path="res://Scenes/Utilities/versionChangelog.tscn" id="4_gbaku"]
 [ext_resource type="PackedScene" uid="uid://b4cabrig3ue5t" path="res://Scenes/Utilities/scoreboard.tscn" id="4_y1jmh"]
+[ext_resource type="PackedScene" uid="uid://b7kj5lqanm18a" path="res://Scenes/Levels/Level_humanCity.tscn" id="8_ib6rl"]
 
 [node name="sceneManager" type="Node2D"]
 script = ExtResource("1_hojph")
@@ -16,3 +17,4 @@ versionChangelog = ExtResource("4_gbaku")
 characterSelection = ExtResource("3_jod3k")
 scoreboard = ExtResource("4_y1jmh")
 level1_1 = ExtResource("3_wsauu")
+level_humanCity = ExtResource("8_ib6rl")

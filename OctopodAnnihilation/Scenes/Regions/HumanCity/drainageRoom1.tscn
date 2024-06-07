@@ -1,0 +1,158 @@
+[gd_scene load_steps=16 format=3 uid="uid://xtey0m4gnml3"]
+
+[ext_resource type="TileSet" uid="uid://dnsk5bx71mkhx" path="res://MapTiles/Labs.tres" id="1_xvanv"]
+[ext_resource type="Script" path="res://Scenes/Regions/HumanCity/humanCityRoomScript.gd" id="2_8pcy4"]
+[ext_resource type="PackedScene" uid="uid://llvjwfglfvsp" path="res://Scenes/Mobs/chimeraSoldier.tscn" id="3_y4p16"]
+[ext_resource type="PackedScene" uid="uid://d1dcxncvj4qb2" path="res://Scenes/Props/groundProps/grate1.tscn" id="4_0s43y"]
+[ext_resource type="PackedScene" uid="uid://dslk4ereghgqr" path="res://Scenes/Mobs/octopodEngineer.tscn" id="4_8kjox"]
+[ext_resource type="PackedScene" uid="uid://bxkxvvy3swa5y" path="res://Scenes/Props/groundProps/brickDebris1.tscn" id="5_5c2a1"]
+[ext_resource type="PackedScene" uid="uid://b6nj7lqomvtc2" path="res://Scenes/Props/groundProps/brickDebris2.tscn" id="6_3gqy7"]
+[ext_resource type="PackedScene" uid="uid://bcabi0caqav0w" path="res://Scenes/Props/groundProps/brickDebris3.tscn" id="7_qtaw0"]
+[ext_resource type="PackedScene" uid="uid://cjwgh1n53yk8s" path="res://Scenes/Props/crates/damagedLargeCrate1.tscn" id="7_v0mi1"]
+[ext_resource type="PackedScene" uid="uid://blhsldyqcvoi3" path="res://Scenes/Props/crates/damagedMediumCrate1.tscn" id="8_krrkf"]
+[ext_resource type="PackedScene" uid="uid://bjgjfs37mkkuh" path="res://Scenes/Props/groundProps/manholeCover.tscn" id="8_xr48g"]
+[ext_resource type="PackedScene" uid="uid://beqo23yvm46cs" path="res://Scenes/Props/crates/destroyedCrate1.tscn" id="9_mg6iv"]
+[ext_resource type="PackedScene" uid="uid://yjvhe1cfdod2" path="res://Scenes/Props/crates/damagedLargeCrate3.tscn" id="10_x37o3"]
+[ext_resource type="PackedScene" uid="uid://b8y0327nu0o86" path="res://Scenes/Props/crates/smallCrate1.tscn" id="11_1liwj"]
+[ext_resource type="PackedScene" uid="uid://447wkxm7vybh" path="res://Scenes/Props/crates/damagedMediumCrate2.tscn" id="12_lb0jr"]
+
+[node name="drainageRoom1" type="TileMap"]
+y_sort_enabled = true
+tile_set = ExtResource("1_xvanv")
+format = 2
+layer_0/name = "lowerLevel"
+layer_0/z_index = -5
+layer_0/tile_data = PackedInt32Array(65543, 327684, 5, 393229, 196612, 5, 458765, 131076, 5, 851975, 196612, 5, 131079, 196612, 5, 196618, 65540, 5, 458766, 65540, 5, 917511, 65540, 5, 458753, 196612, 5, 458752, 196612, 5, 393217, 262148, 5, 393218, 65540, 5, 196612, 262148, 5, 393216, 131076, 0, 393230, 4, 0, 7, 131076, 5, 458754, 262148, 5, 393228, 131076, 5, 458764, 196612, 5, 786439, 131076, 5, 458755, 262148, 5, 393219, 4, 5, 196613, 327684, 5, 196614, 4, 5, 720903, 4, 5, 196615, 131076, 5, 196616, 65540, 5, 196617, 4, 5, 458763, 196612, 5, 393227, 131076, 5, 786433, 4, 5, 720897, 4, 5, 655361, 262148, 5, 589825, 196612, 5, 524289, 262148, 5, 327681, 262148, 5, 262145, 327684, 5, 196609, 262148, 5, 131073, 131076, 5, 65537, 4, 5, 65539, 131076, 5, 65540, 196612, 5, 65541, 327684, 5, 65542, 65540, 5, 65544, 4, 5, 65545, 262148, 5, 65546, 262148, 5, 65547, 262148, 5, 65548, 196612, 5, 65549, 131076, 5, 131085, 65540, 5, 196621, 196612, 5, 262157, 196612, 5, 327693, 4, 5, 524301, 196612, 5, 589837, 327684, 5, 655373, 131076, 5, 720909, 262148, 5, 786445, 4, 5, 851981, 196612, 5, 851978, 327684, 5, 851977, 131076, 5, 851976, 196612, 5, 851974, 131076, 5, 851973, 196612, 5, 851972, 196612, 5, 851971, 65540, 5, 851970, 327684, 5, 786434, 262148, 5, 720898, 4, 5, 655362, 4, 5, 589826, 262148, 5, 524290, 65540, 5, 327682, 262148, 5, 262146, 4, 5, 196610, 196612, 5, 131074, 131076, 5, 131075, 4, 5, 131076, 4, 5, 131077, 4, 5, 131078, 131076, 5, 131080, 196612, 5, 131081, 262148, 5, 131082, 262148, 5, 131083, 262148, 5, 131084, 196612, 5, 196620, 327684, 5, 262156, 327684, 5, 327692, 131076, 5, 524300, 262148, 5, 589836, 196612, 5, 655372, 327684, 5, 720908, 196612, 5, 786444, 4, 5, 786443, 196612, 5, 786442, 131076, 5, 786441, 327684, 5, 786440, 327684, 5, 786438, 262148, 5, 786437, 131076, 5, 786436, 65540, 5, 786435, 4, 5, 720899, 4, 5, 655363, 131076, 5, 589827, 4, 5, 524291, 4, 5, 327683, 4, 5, 262147, 262148, 5, 196611, 4, 5, 196619, 262148, 5, 262155, 65540, 5, 327691, 262148, 5, 524299, 4, 5, 589835, 131076, 5, 655371, 262148, 5, 720907, 262148, 5, 720906, 4, 5, 720905, 131076, 5, 720904, 65540, 5, 720902, 327684, 5, 720901, 65540, 5, 720900, 196612, 5, 1, 65540, 0, 2, 65540, 0, 3, 131076, 0, 4, 393220, 0, 5, 327684, 0, 6, 196612, 0, 8, 131076, 0, 9, 196612, 0, 10, 393220, 0, 11, 262148, 0, 12, 131076, 0, 13, 196612, 0, 655364, 327684, 0, 655365, 4, 0, 655366, 4, 0, 655367, 393220, 0, 655368, 262148, 0, 655369, 65540, 0, 655370, 196612, 0)
+layer_1/name = "props"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -2
+layer_1/tile_data = PackedInt32Array(851969, 327685, 0, 851979, 262149, 0, 851980, 262149, 0, 65538, 65541, 0)
+layer_2/name = "upperLevel"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 5
+layer_2/tile_data = PackedInt32Array(917504, 458756, 6, 917505, 458756, 6, 917506, 458756, 6, 917507, 458756, 6, 917508, 458756, 6, 917512, 524292, 6, 917513, 458756, 6, 917514, 458756, 6, 917515, 458756, 6, 917516, 458756, 6, 917517, 458756, 6, 917518, 458756, 6, 917510, 589828, 6, 917509, 458756, 6, 786432, 589828, 6, 720896, 589828, 6, 655360, 589828, 6, 589824, 589828, 6, 524288, 589828, 6, 327680, 589828, 6, 262144, 589828, 6, 196608, 589828, 6, 131072, 589828, 6, 65536, 589828, 6, 0, 589828, 6, 589834, 589828, 6, 524298, 589828, 6, 458762, 589828, 6, 393226, 589828, 6, 327690, 589828, 6, 262154, 589828, 6, 786446, 524292, 6, 720910, 524292, 6, 655374, 524292, 6, 589838, 524292, 6, 524302, 524292, 6, 327694, 524292, 6, 262158, 524292, 6, 196622, 524292, 6, 131086, 524292, 6, 65550, 524292, 6, 14, 524292, 6, 589828, 524292, 6, 524292, 524292, 6, 458756, 524292, 6, 393220, 524292, 6, 327684, 524292, 6, 262148, 524292, 6, 589829, 458756, 6, 524293, 458756, 6, 458757, 458756, 6, 393221, 458756, 6, 327685, 458756, 6, 262149, 458756, 6, 262150, 458756, 6, 327686, 458756, 6, 393222, 458756, 6, 458758, 458756, 6, 524294, 458756, 6, 589830, 458756, 6, 589831, 458756, 6, 524295, 458756, 6, 458759, 458756, 6, 393223, 458756, 6, 327687, 458756, 6, 262151, 458756, 6, 262152, 458756, 6, 327688, 458756, 6, 393224, 458756, 6, 458760, 458756, 6, 524296, 458756, 6, 589832, 458756, 6, 589833, 458756, 6, 524297, 458756, 6, 458761, 458756, 6, 393225, 458756, 6, 327689, 458756, 6, 262153, 458756, 6, 851982, 524292, 7, 851968, 589828, 7, 851969, 458756, 5, 851970, 458756, 5, 851971, 458756, 5, 851972, 458756, 5, 851973, 458756, 5, 851977, 458756, 5, 851978, 458756, 5, 851979, 458756, 5, 851980, 458756, 5, 851981, 458756, 5, 196617, 458756, 5, 196616, 458756, 5, 196615, 458756, 5, 196614, 458756, 5, 196613, 458756, 5, 196612, 524292, 5, 458766, 524292, 5, 851976, 524292, 5, 851974, 589828, 5, 458752, 589828, 5, 196618, 589828, 5)
+layer_3/name = "spawners"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = -10
+layer_3/tile_data = PackedInt32Array(720900, 262147, 2, 655363, 262147, 2, 720906, 262147, 2, 655371, 262147, 2, 262147, 262147, 2, 196612, 262147, 2, 196618, 262147, 2, 262155, 262147, 2, 196615, 3, 2, 458755, 3, 2, 720903, 3, 2, 458763, 3, 2)
+layer_4/name = "passageFill"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = -10
+layer_4/tile_data = PackedInt32Array(917511, 458756, 6, 917510, 458756, 6, 917512, 458756, 6, 851974, 458756, 5, 851975, 458756, 5, 851976, 458756, 5, 458752, 589828, 6, 393216, 589828, 6, 458766, 524292, 6, 393230, 524292, 6, 7, 4, 0)
+script = ExtResource("2_8pcy4")
+chimeraSoldier = ExtResource("3_y4p16")
+octopodEngineer = ExtResource("4_8kjox")
+
+[node name="grate" parent="." instance=ExtResource("4_0s43y")]
+position = Vector2(255, 1252)
+
+[node name="grate2" parent="." instance=ExtResource("4_0s43y")]
+position = Vector2(1246, 1251)
+
+[node name="grate3" parent="." instance=ExtResource("4_0s43y")]
+position = Vector2(253, 245)
+
+[node name="grate4" parent="." instance=ExtResource("4_0s43y")]
+position = Vector2(1251, 252)
+
+[node name="manholeCover" parent="." instance=ExtResource("8_xr48g")]
+position = Vector2(249, 750)
+
+[node name="manholeCover2" parent="." instance=ExtResource("8_xr48g")]
+position = Vector2(747, 250)
+
+[node name="manholeCover3" parent="." instance=ExtResource("8_xr48g")]
+position = Vector2(1246, 745)
+
+[node name="manholeCover4" parent="." instance=ExtResource("8_xr48g")]
+position = Vector2(745, 1254)
+
+[node name="debris" parent="." instance=ExtResource("5_5c2a1")]
+position = Vector2(144, 1141)
+
+[node name="debris2" parent="." instance=ExtResource("5_5c2a1")]
+position = Vector2(344, 929)
+
+[node name="debris3" parent="." instance=ExtResource("5_5c2a1")]
+position = Vector2(239, 420)
+
+[node name="debris4" parent="." instance=ExtResource("5_5c2a1")]
+position = Vector2(945, 220)
+
+[node name="debris5" parent="." instance=ExtResource("5_5c2a1")]
+position = Vector2(1340, 524)
+
+[node name="debris6" parent="." instance=ExtResource("5_5c2a1")]
+position = Vector2(1192, 995)
+
+[node name="debris7" parent="." instance=ExtResource("5_5c2a1")]
+position = Vector2(1110, 1282)
+
+[node name="debris8" parent="." instance=ExtResource("6_3gqy7")]
+position = Vector2(158, 748)
+
+[node name="debris9" parent="." instance=ExtResource("6_3gqy7")]
+position = Vector2(142, 136)
+
+[node name="debris10" parent="." instance=ExtResource("6_3gqy7")]
+position = Vector2(1236, 166)
+
+[node name="debris11" parent="." instance=ExtResource("6_3gqy7")]
+position = Vector2(1217, 399)
+
+[node name="debris12" parent="." instance=ExtResource("6_3gqy7")]
+position = Vector2(1236, 1175)
+
+[node name="debris13" parent="." instance=ExtResource("6_3gqy7")]
+position = Vector2(678, 1143)
+
+[node name="debris14" parent="." instance=ExtResource("6_3gqy7")]
+position = Vector2(282, 1328)
+
+[node name="debris15" parent="." instance=ExtResource("7_qtaw0")]
+position = Vector2(425, 174)
+
+[node name="debris16" parent="." instance=ExtResource("7_qtaw0")]
+position = Vector2(540, 1363)
+
+[node name="debris17" parent="." instance=ExtResource("7_qtaw0")]
+position = Vector2(1354, 1354)
+
+[node name="debris18" parent="." instance=ExtResource("7_qtaw0")]
+position = Vector2(1133, 772)
+
+[node name="debris19" parent="." instance=ExtResource("7_qtaw0")]
+position = Vector2(702, 361)
+
+[node name="largeCrate" parent="." instance=ExtResource("7_v0mi1")]
+position = Vector2(231, 133)
+
+[node name="mediumCrate" parent="." instance=ExtResource("8_krrkf")]
+position = Vector2(282, 151)
+
+[node name="destroyedCrate1" parent="." instance=ExtResource("9_mg6iv")]
+position = Vector2(1346, 199)
+
+[node name="largeCrate2" parent="." instance=ExtResource("10_x37o3")]
+position = Vector2(1182, 1336)
+
+[node name="smallCrate" parent="." instance=ExtResource("11_1liwj")]
+position = Vector2(1143, 1363)
+
+[node name="mediumCrate2" parent="." instance=ExtResource("8_krrkf")]
+position = Vector2(1232, 1351)
+
+[node name="mediumCrate3" parent="." instance=ExtResource("12_lb0jr")]
+position = Vector2(145, 1349)

@@ -230,5 +230,8 @@ target_position = Vector2(800, 0)
 
 [node name="grenadeTimer" type="Timer" parent="."]
 
+[node name="sprintTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="grenadeTimer" to="." method="_on_grenade_timer_timeout"]
+[connection signal="timeout" from="sprintTimer" to="." method="_on_sprint_timer_timeout"]

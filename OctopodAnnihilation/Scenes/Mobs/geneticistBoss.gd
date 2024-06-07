@@ -34,6 +34,8 @@ var armSign = 1
 var relativePlayerPos = Vector2(100, 100)
 var playerAngle
 var knownPlayerPosition = null
+var sprinting = false
+var sprintTime = 0
 
 @export var plasmaProjectile: PackedScene
 @export var octopodGrenade : PackedScene
@@ -41,6 +43,7 @@ var shootTimer = 0
 var burstTimer = 0
 var currentBursts = 0
 var lineOfSight = false
+var initialLineOfSight = false
 
 var isPlayerCloaked = false
 var stunned = false
@@ -62,7 +65,8 @@ func _ready() -> void:
 	initialize(enemyType)
 	speed = speed * 8
 	
-	$grenadeTimer.start(5)
+	$grenadeTimer.start(3)
+	$sprintTimer.start(2)
 	
 	$Arm.initialize(weaponType)
 
@@ -171,14 +175,11 @@ func shoot():
 
 
 func throwGrenade():
-	if $Arm/RayCast2D.get_collider() != null:
-		if $Arm/RayCast2D.get_collider().is_in_group("player") == true:
-			if randf() <= 1:
-				var grenade = octopodGrenade.instantiate()
-				get_parent().get_parent().add_child(grenade)
-				grenade.global_position = $Arm/launcher.global_position
-				#get_parent().dropItem(octopodGrenade, $Arm.global_transform)
-				grenade.setVelocity(get_angle_to(player.global_position))
+	var grenade = octopodGrenade.instantiate()
+	get_parent().get_parent().add_child(grenade)
+	grenade.global_position = $Arm/launcher.global_position
+	#get_parent().dropItem(octopodGrenade, $Arm.global_transform)
+	grenade.setVelocity(get_angle_to(player.global_position), 700)
 
 
 func _physics_process(delta: float) -> void:
@@ -194,6 +195,13 @@ func _physics_process(delta: float) -> void:
 				mod = 0
 			'elif distance.length() < (2*stopDistance) and distance.length() > stopDistance:
 				mod = (distance.length() - stopDistance) / stopDistance'
+			
+			if sprinting == true:
+				mod = 2.5
+				sprintTime += delta
+			if sprintTime >= 1.2:
+				sprinting = false
+				sprintTime = 0
 			
 			$lineOfSight.look_at(player.global_position)
 			if playerDistance <= agroDistance and isPlayerCloaked == false:
@@ -228,6 +236,7 @@ func _physics_process(delta: float) -> void:
 		if $Arm/RayCast2D.get_collider() != null:
 			if $Arm/RayCast2D.get_collider().is_in_group("player") == true:
 				lineOfSight = true
+				initialLineOfSight = true
 		
 		if lineOfSight == true:
 			burstTimer -= delta
@@ -259,4 +268,10 @@ func playerCloaked(state):
 
 
 func _on_grenade_timer_timeout():
-	throwGrenade()
+	if randf() >= 0.5 and initialLineOfSight == true:
+		throwGrenade()
+
+
+func _on_sprint_timer_timeout():
+	if randf() >= 0.7:
+		sprinting = true
