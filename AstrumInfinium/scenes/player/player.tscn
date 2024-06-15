@@ -16,7 +16,6 @@ radius = 0.05
 height = 0.1
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_eba0o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -32,9 +31,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="look" type="Node3D" parent="neck/head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="neck/head/look"]
 mesh = SubResource("SphereMesh_g1qg6")
+
+[node name="Camera3D" type="Camera3D" parent="neck/head"]
 
 [node name="forward" type="Node3D" parent="neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)

@@ -1,0 +1,204 @@
+[gd_scene load_steps=12 format=3 uid="uid://bougamlu1fwlp"]
+
+[ext_resource type="Terrain3DStorage" uid="uid://ci0r0dfv6dpxf" path="res://terrain/craterLake.res" id="1_24iwa"]
+[ext_resource type="Terrain3DTextureList" uid="uid://c13jv80ab7btv" path="res://terrain/craterLake.tres" id="1_kl7g2"]
+[ext_resource type="PackedScene" uid="uid://fpy2x6pk33u4" path="res://scenes/player.tscn" id="3_wjw2m"]
+[ext_resource type="PackedScene" uid="uid://bx72j52ydccai" path="res://scenes/environmentObjects/trees/japaneseLarch.tscn" id="4_kyerl"]
+
+[sub_resource type="Gradient" id="Gradient_mixcu"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fuuyv"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bhvnu"]
+seamless = true
+color_ramp = SubResource("Gradient_mixcu")
+noise = SubResource("FastNoiseLite_fuuyv")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_fsrkc"]
+_shader_parameters = {
+"_mouse_layer": 2147483648,
+"auto_base_texture": 1,
+"auto_height_reduction": 0.1,
+"auto_overlay_texture": 0,
+"auto_slope": 1.0,
+"blend_sharpness": 0.715,
+"dual_scale_far": 170.0,
+"dual_scale_near": 100.0,
+"dual_scale_reduction": 0.3,
+"dual_scale_texture": 0,
+"height_blending": true,
+"macro_variation1": null,
+"macro_variation2": null,
+"noise1_angle": 0.1,
+"noise1_offset": Vector2(0.5, 0.5),
+"noise1_scale": 0.04,
+"noise2_scale": 0.074,
+"noise3_scale": 0.226,
+"noise_texture": SubResource("NoiseTexture2D_bhvnu"),
+"tri_scale_reduction": 0.3,
+"world_noise_blend_far": 1.0,
+"world_noise_blend_near": 0.71,
+"world_noise_height": 86.1,
+"world_noise_lod_distance": 7500.0,
+"world_noise_max_octaves": 4,
+"world_noise_min_octaves": 2,
+"world_noise_offset": null,
+"world_noise_scale": 2.6
+}
+world_background = 2
+auto_shader = true
+dual_scaling = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q7xs1"]
+top_radius = 400.0
+bottom_radius = 5.0
+height = 100.0
+
+[sub_resource type="Sky" id="Sky_5nf76"]
+
+[sub_resource type="Environment" id="Environment_o301j"]
+background_mode = 2
+sky = SubResource("Sky_5nf76")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.2
+tonemap_mode = 3
+fog_enabled = true
+fog_density = 0.0
+
+[node name="World" type="Node3D"]
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+storage = ExtResource("1_24iwa")
+material = SubResource("Terrain3DMaterial_fsrkc")
+texture_list = ExtResource("1_kl7g2")
+
+[node name="player" parent="." instance=ExtResource("3_wjw2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 1.2, -500)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, -30, -500)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CylinderMesh_q7xs1")
+
+[node name="environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="environment"]
+environment = SubResource("Environment_o301j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -500, 200, -500)
+shadow_enabled = true
+directional_shadow_max_distance = 256.0
+
+[node name="trees" type="Node3D" parent="."]
+
+[node name="Tree_Japanese-larch" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(0.990983, 0, 0.133986, 0, 1, 0, -0.133986, 0, 0.990983, -499.718, 0, -492.958)
+
+[node name="Tree_Japanese-larch2" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.985703, 0, 0.168489, 0, 1, 0, -0.168489, 0, -0.985703, -490.502, 0, -511.184)
+
+[node name="Tree_Japanese-larch3" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.97237, 0, -0.233445, 0, 1, 0, 0.233445, 0, -0.97237, -483.529, 0, -501.363)
+
+[node name="Tree_Japanese-larch4" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.97237, 0, 0.233445, 0, 1, 0, -0.233445, 0, -0.97237, -507.308, 0, -484.041)
+
+[node name="Tree_Japanese-larch5" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.663926, 0, -0.747798, 0, 1, 0, 0.747798, 0, -0.663926, -483.451, 0, -486.525)
+
+[node name="Tree_Japanese-larch6" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.99945, 0, -0.0331552, 0, 1, 0, 0.0331552, 0, -0.99945, -496.259, 0, -474.778)
+
+[node name="Tree_Japanese-larch7" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.800731, 0, -0.599024, 0, 1, 0, 0.599024, 0, -0.800731, -520.131, 0, -497.394)
+
+[node name="Tree_Japanese-larch8" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.97237, 0, -0.233445, 0, 1, 0, 0.233445, 0, -0.97237, -514.629, 0, -517.19)
+
+[node name="Tree_Japanese-larch9" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(0.964095, 0, 0.265556, 0, 1, 0, -0.265556, 0, 0.964095, -523.602, 0, -507.305)
+
+[node name="Tree_Japanese-larch10" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(0.919135, 0, -0.393942, 0, 1, 0, 0.393942, 0, 0.919135, -536.056, 0, -485.137)
+
+[node name="Tree_Japanese-larch11" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.83962, 0, -0.543175, 0, 1, 0, 0.543175, 0, -0.83962, -527.728, 0, -473.302)
+
+[node name="Tree_Japanese-larch12" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.0505929, 0, 0.998719, 0, 1, 0, -0.998719, 0, -0.0505929, -505.439, 0, -455.001)
+
+[node name="Tree_Japanese-larch13" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(0.688355, 0, 0.725374, 0, 1, 0, -0.725374, 0, 0.688355, -528.81, 0, -464.123)
+
+[node name="Tree_Japanese-larch14" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.95424, 0, -0.299041, 0, 1, 0, 0.299041, 0, -0.95424, -487.574, 0, -464.344)
+
+[node name="Tree_Japanese-larch15" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.439939, 0, 0.898028, 0, 1, 0, -0.898028, 0, -0.439939, -488.668, 0, -453.452)
+
+[node name="Tree_Japanese-larch16" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.183951, 0, -0.982935, 0, 1, 0, 0.982935, 0, -0.183951, -515.95, 0, -466.473)
+
+[node name="Tree_Japanese-larch17" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -472.122, 0, -480.29)
+
+[node name="Tree_Japanese-larch18" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -493.267, 0, -470.035)
+
+[node name="Tree_Japanese-larch19" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.83962, 0, -0.543175, 0, 1, 0, 0.543175, 0, -0.83962, -540.243, 0, -475.643)
+
+[node name="Tree_Japanese-larch20" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(0.96363, 0, -0.267238, 0, 1, 0, 0.267238, 0, 0.96363, -498.108, 0, -506.928)
+
+[node name="Tree_Japanese-larch21" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.663926, 0, -0.747798, 0, 1, 0, 0.747798, 0, -0.663926, -468.45, 0, -492.41)
+
+[node name="Tree_Japanese-larch22" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -486.172, 0, -518.936)
+
+[node name="Tree_Japanese-larch23" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.99945, 0, -0.0331552, 0, 1, 0, 0.0331552, 0, -0.99945, -540.641, 0, -496.415)
+
+[node name="Tree_Japanese-larch24" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(0.919135, 0, 0.393942, 0, 1, 0, -0.393942, 0, 0.919135, -493.029, 0, -487.435)
+
+[node name="Tree_Japanese-larch25" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -468.677, 0, -473.399)
+
+[node name="Tree_Japanese-larch26" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.994881, 0, 0.101056, 0, 1, 0, -0.101056, 0, -0.994881, -480.328, 0, -458.443)
+
+[node name="Tree_Japanese-larch27" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.71325, 0, 0.700909, 0, 1, 0, -0.700909, 0, -0.71325, -520.684, 0, -489.728)
+
+[node name="Tree_Japanese-larch28" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -530.145, 0, -511.535)
+
+[node name="Tree_Japanese-larch29" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(-0.183951, 0, -0.982935, 0, 1, 0, 0.982935, 0, -0.183951, -542.056, 0, -481.687)
+
+[node name="Tree_Japanese-larch30" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -511.767, 0, -460.553)
+
+[node name="Tree_Japanese-larch31" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -513.617, 0, -449.707)
+
+[node name="Tree_Japanese-larch32" parent="trees" instance=ExtResource("4_kyerl")]
+transform = Transform3D(0.346936, 0, -0.937889, 0, 1, 0, 0.937889, 0, 0.346936, -496.534, 0, -455.3)

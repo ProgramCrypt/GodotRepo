@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx72j52ydccai"]
+
+[ext_resource type="PackedScene" uid="uid://dqwv7ldys4x7d" path="res://scenes/environmentObjects/trees/Tree_Japanese-larch.glb" id="1_i6ihj"]
+[ext_resource type="Material" uid="uid://b38ir5plq7ice" path="res://scenes/environmentObjects/trees/japaneseLarchMaterial.tres" id="2_j0chr"]
+[ext_resource type="Material" uid="uid://beymyghhj0i4s" path="res://scenes/environmentObjects/trees/japaneseLarchNeedleMaterial.tres" id="3_1wdhq"]
+
+[node name="Tree_Japanese-larch" instance=ExtResource("1_i6ihj")]
+
+[node name="Tree_Japanese-larch_C" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_j0chr")
+surface_material_override/1 = ExtResource("3_1wdhq")
+
+[node name="Tree_Japanese-larch_A" parent="." index="1"]
+surface_material_override/0 = ExtResource("3_1wdhq")
+surface_material_override/1 = ExtResource("2_j0chr")
+
+[node name="Tree_Japanese-larch_B" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_j0chr")
+surface_material_override/1 = ExtResource("3_1wdhq")

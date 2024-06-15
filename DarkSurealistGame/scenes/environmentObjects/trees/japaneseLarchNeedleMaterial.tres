@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://beymyghhj0i4s"]
+
+[ext_resource type="Texture2D" uid="uid://ckotv26utf6xy" path="res://scenes/environmentObjects/trees/Tree_Japanese-larch_Leaf_Larix-keampferi_Diffuse.png" id="1_1w1of"]
+[ext_resource type="Texture2D" uid="uid://bsgx8pjbtqlww" path="res://scenes/environmentObjects/trees/Tree_Japanese-larch_Leaf_Larix-keampferi_Normal.png" id="2_edvp8"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_1w1of")
+normal_enabled = true
+normal_texture = ExtResource("2_edvp8")

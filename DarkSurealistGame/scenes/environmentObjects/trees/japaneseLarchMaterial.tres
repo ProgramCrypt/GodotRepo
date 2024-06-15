@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://b38ir5plq7ice"]
+
+[ext_resource type="Texture2D" uid="uid://duxbt30yilny6" path="res://scenes/environmentObjects/trees/Tree_Japanese-larch_Bark_Larix-keampferi_Diffuse.png" id="1_xrqlu"]
+[ext_resource type="Texture2D" uid="uid://c64681qpqt1k4" path="res://scenes/environmentObjects/trees/Tree_Japanese-larch_Bark_Larix-keampferi_Normal.png" id="2_okmf2"]
+
+[resource]
+albedo_texture = ExtResource("1_xrqlu")
+roughness = 0.85
+normal_enabled = true
+normal_scale = 0.8
+normal_texture = ExtResource("2_okmf2")
