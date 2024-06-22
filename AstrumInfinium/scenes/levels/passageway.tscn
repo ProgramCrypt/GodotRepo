@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://be0uqylsbp50a"]
+
+[ext_resource type="Texture2D" uid="uid://b26ouxpuy31ki" path="res://textures/flat/SheetMetal002_4K-JPG/SheetMetal002_4K-JPG_ColorOpacity.png" id="1_1j4yr"]
+[ext_resource type="Texture2D" uid="uid://cobiv5r6wnk43" path="res://textures/flat/SheetMetal002_4K-JPG/SheetMetal002_4K-JPG_Metalness.jpg" id="2_wibkv"]
+[ext_resource type="Texture2D" uid="uid://xl0h3vsplkm3" path="res://textures/flat/SheetMetal002_4K-JPG/SheetMetal002_4K-JPG_NormalDX.jpg" id="3_y3sui"]
+[ext_resource type="Texture2D" uid="uid://bri0yfwv4l3el" path="res://textures/flat/SheetMetal002_4K-JPG/SheetMetal002_4K-JPG_Roughness.jpg" id="4_7mac0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6trh1"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_1j4yr")
+metallic = 1.0
+metallic_texture = ExtResource("2_wibkv")
+roughness_texture = ExtResource("4_7mac0")
+normal_enabled = true
+normal_texture = ExtResource("3_y3sui")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u46j8"]
+material = SubResource("StandardMaterial3D_6trh1")
+size = Vector2(3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cqj60"]
+size = Vector3(3, 0.2, 3)
+
+[node name="passageway" type="Node3D"]
+
+[node name="YnWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="YnWall"]
+mesh = SubResource("PlaneMesh_u46j8")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YnWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_cqj60")
+
+[node name="YpWall" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="YpWall"]
+mesh = SubResource("PlaneMesh_u46j8")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YpWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_cqj60")
+
+[node name="XnWall" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XnWall"]
+mesh = SubResource("PlaneMesh_u46j8")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XnWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_cqj60")
+
+[node name="XpWall" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XpWall"]
+mesh = SubResource("PlaneMesh_u46j8")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XpWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_cqj60")

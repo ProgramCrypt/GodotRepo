@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @onready var physicsHandler = get_node("/root/PhysicsHandler")
 
+@export var interactHint : PackedScene
+
+
 var normalSpeed = 4.0
 var speed = normalSpeed
 const jumpVelocity = 3.5
@@ -25,6 +28,9 @@ var newRot
 var rotDifference
 var activeRot = false
 var rotTimer = 0
+
+var hintActive = false
+var hintTimer = 0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -64,6 +70,34 @@ func _physics_process(delta):
 		var newGravDir = $neck/head/look.global_position - $neck/head.global_position
 		physicsHandler.globalGravityDir = newGravDir
 	
+	# handle interaction
+	if Input.is_action_just_pressed("interact"):
+		var collider = $neck/head/RayCast3D.get_collider()
+		print(collider)
+		if collider != null:
+			if collider.is_in_group("gravShifter"):
+				print("gravShift")
+				collider.shiftGravity()
+	
+	if $neck/head/RayCast3D.get_collider() != null:
+		if $neck/head/RayCast3D.get_collider().is_in_group("gravShifter"):
+			hintTimer += delta
+			if hintTimer >= 0.2:
+				var hint = interactHint.instantiate()
+				get_tree().root.add_child(hint)
+		else:
+			hintTimer = 0
+			hintActive = false
+			var hintArray = get_tree().get_nodes_in_group("hint")
+			for hint in hintArray:
+				hint.queue_free()
+	else:
+		hintTimer = 0
+		hintActive = false
+		var hintArray = get_tree().get_nodes_in_group("hint")
+		for hint in hintArray:
+			hint.queue_free()
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity -= physicsHandler.globalGravityDir * jumpVelocity
@@ -80,40 +114,32 @@ func _physics_process(delta):
 	
 	# Get the input direction and handle the movement/deceleration.
 	var vy = velocity.normalized().dot(physicsHandler.globalGravityDir) * velocity.length() * physicsHandler.globalGravityDir
+	var vxz = velocity - vy
 	
 	velocity = Vector3(0, 0, 0)
 	
-	if Input.is_action_pressed("forward"):
+	if Input.is_action_pressed("forward") and is_on_floor():
 		forwardCheck = true
 		forward = $neck/forward.global_position - global_position
 		velocity += forward * speed
-	else:
-		forwardCheck = false
-		forward = Vector3(0, 0, 0)
 	
-	if Input.is_action_pressed("backward"):
+	if Input.is_action_pressed("backward") and is_on_floor():
 		backwardCheck = true
 		backward = $neck/backward.global_position - global_position
 		velocity += backward * speed
-	else:
-		backwardCheck = false
-		backward = Vector3(0, 0, 0)
 	
-	if Input.is_action_pressed("right"):
+	if Input.is_action_pressed("right") and is_on_floor():
 		rightCheck = true
 		right = $neck/right.global_position - global_position
 		velocity += right * speed
-	else:
-		rightCheck = false
-		right = Vector3(0, 0, 0)
 	
-	if Input.is_action_pressed("left"):
+	if Input.is_action_pressed("left") and is_on_floor():
 		leftCheck = true
 		left = $neck/left.global_position - global_position
 		velocity += left * speed
-	else:
-		leftCheck = false
-		left = Vector3(0, 0, 0)
+	
+	if is_on_floor() == false:
+		velocity += vxz
 	
 	velocity += vy
 	
