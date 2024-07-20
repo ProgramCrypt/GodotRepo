@@ -15,7 +15,7 @@ func initialize(stats):
 	damage = stats.damage
 	projectileRange = stats.projectileRange
 	fireRate = stats.fireRate
-	accuracy = stats.accuracy
+	accuracy = 4
 	projectileSpeed = stats.projectileSpeed
 	projectileSize = stats.projectileSize
 	penetration = stats.penetration

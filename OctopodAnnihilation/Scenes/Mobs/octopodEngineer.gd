@@ -169,8 +169,8 @@ func takeDamage(hit):
 	var tween: Tween = create_tween()
 	tween.tween_property(self, "modulate:v", 1, 0.1).from(15)
 	if currentHealth == 0:
-		get_parent().call_deferred("dropItem", scrap, global_transform)
-		get_parent().call_deferred("dropItem", scrap, global_transform)
+		for i in range(2):
+			get_parent().call_deferred("dropItem", scrap, global_transform)
 		playerStats.playerScore += 70
 		queue_free()
 

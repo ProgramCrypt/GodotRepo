@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5r7blx4aoo7g"]
+
+[ext_resource type="Texture2D" uid="uid://dyowphfpv25c8" path="res://textures/flat/Metal009_4K-JPG/Metal009_4K-JPG_Color.jpg" id="1_ih01w"]
+[ext_resource type="Texture2D" uid="uid://dilhgndtjgj1y" path="res://textures/flat/Metal009_4K-JPG/Metal009_4K-JPG_Metalness.jpg" id="2_6xcl5"]
+[ext_resource type="Texture2D" uid="uid://xbwr5wlx4imm" path="res://textures/flat/Metal009_4K-JPG/Metal009_4K-JPG_NormalDX.jpg" id="3_5qw1v"]
+[ext_resource type="Texture2D" uid="uid://daa4hsh1vb2uc" path="res://textures/flat/Metal009_4K-JPG/Metal009_4K-JPG_Roughness.jpg" id="4_ehyow"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocenv"]
+albedo_texture = ExtResource("1_ih01w")
+metallic = 1.0
+metallic_texture = ExtResource("2_6xcl5")
+roughness_texture = ExtResource("4_ehyow")
+normal_enabled = true
+normal_scale = 6.0
+normal_texture = ExtResource("3_5qw1v")
+heightmap_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_alfe6"]
+material = SubResource("StandardMaterial3D_ocenv")
+size = Vector2(3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ivf0v"]
+size = Vector3(3, 0.2, 3)
+
+[node name="ForceField" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_alfe6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_ivf0v")

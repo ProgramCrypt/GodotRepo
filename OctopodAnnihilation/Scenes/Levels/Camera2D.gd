@@ -8,7 +8,7 @@ var snipersVisionTimer = 0
 
 func _ready():
 	position = get_tree().get_nodes_in_group('player')[0].position
-	zoom = Vector2(1.25, 1.25)
+	zoom = Vector2(1.3, 1.3)
 	if playerStats.playerTypeDict[playerStats.playerType].passiveAbility == "snipersVision":
 		snipersVision = true
 		zoom = Vector2(0.9, 0.9)

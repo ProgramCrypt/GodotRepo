@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7kj5lqanm18a"]
+[gd_scene load_steps=20 format=3 uid="uid://b7kj5lqanm18a"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Camera2D.gd" id="1_mikvy"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level_humanCity.gd" id="1_ondy1"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://lk3mqok2ig2i" path="res://Scenes/Regions/HumanCity/businessDistrict1.tscn" id="4_rm186"]
 [ext_resource type="PackedScene" uid="uid://dd2w0b5f2gpsc" path="res://Scenes/Regions/HumanCity/businessDistrict2.tscn" id="5_aci8a"]
 [ext_resource type="PackedScene" uid="uid://diib42gpn5ctv" path="res://Scenes/Utilities/miniMapLabs.tscn" id="5_ppyhh"]
+[ext_resource type="PackedScene" uid="uid://diklcwyeye4h5" path="res://Scenes/Regions/HumanCity/drainageRoom2.tscn" id="7_q5bdv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t5ho"]
 bg_color = Color(0.301961, 0.301961, 0.301961, 1)
@@ -43,6 +44,7 @@ spawnRoom = ExtResource("3_mr15r")
 businessDistrict1 = ExtResource("4_rm186")
 businessDistrict2 = ExtResource("5_aci8a")
 drainageRoom1 = ExtResource("4_22b6k")
+drainageRoom2 = ExtResource("7_q5bdv")
 amphibianBossRoom = ExtResource("4_22b6k")
 
 [node name="Camera2D" type="Camera2D" parent="."]

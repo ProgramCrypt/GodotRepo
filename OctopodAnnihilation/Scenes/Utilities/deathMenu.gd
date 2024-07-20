@@ -14,7 +14,6 @@ func _ready():
 	var scoreList = sceneManager.loadScoreData()
 	scoreList.append(score)
 	scoreList.sort_custom(sortAscending)
-	print(scoreList)
 	scoreList.pop_back()
 	sceneManager.saveScores(scoreList)
 
@@ -66,7 +65,7 @@ func _on_retry_pressed():
 	deleteSave()
 	get_tree().paused = false
 	sceneManager.switchScene("level1_1")
-	queue_free()
+	call_deferred("queue_free")
 
 
 func _on_exit_pressed():
@@ -79,4 +78,4 @@ func _on_exit_pressed():
 	deleteSave()
 	get_tree().paused = false
 	sceneManager.switchScene("mainMenu")
-	queue_free()
+	call_deferred("queue_free")

@@ -15,6 +15,7 @@ var cardinals = [0, 1, 2, 3]
 @export var businessDistrict1: PackedScene
 @export var businessDistrict2: PackedScene
 @export var drainageRoom1: PackedScene
+@export var drainageRoom2: PackedScene
 @export var amphibianBossRoom: PackedScene
 
 var playerStartingPos = Vector2((gridLen/2),(gridLen/2)+100)
@@ -46,8 +47,8 @@ func _ready():
 	add_child(r)
 	r.position = walker
 	
-	var roomArray = [businessDistrict1, businessDistrict2, drainageRoom1]
-	var normalRooms = [businessDistrict1, businessDistrict2, drainageRoom1]
+	var roomArray = [businessDistrict1, businessDistrict2, drainageRoom1, drainageRoom2]
+	var normalRooms = [businessDistrict1, businessDistrict2, drainageRoom1, drainageRoom2]
 	var derelictRooms = []
 	var instantiatedRooms = [r]
 	var dir = []

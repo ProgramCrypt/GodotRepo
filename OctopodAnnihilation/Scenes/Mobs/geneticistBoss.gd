@@ -152,7 +152,7 @@ func takeDamage(hit):
 		for i in range(10):
 			get_parent().call_deferred("dropItem", scrap, global_transform)
 		get_parent().call_deferred("removeForceFields")
-		playerStats.playerScore += 200
+		playerStats.playerScore += 500
 		queue_free()
 
 

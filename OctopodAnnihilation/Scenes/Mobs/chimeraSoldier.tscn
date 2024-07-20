@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://Scenes/Mobs/chimeraSoldier.gd" id="1_xavks"]
 [ext_resource type="Resource" uid="uid://cm07aga4dvg5r" path="res://Scenes/Mobs/chimeraSoldier.tres" id="2_8qn6y"]
-[ext_resource type="Texture2D" uid="uid://srqbgr7fuqpa" path="res://Sprites/Enemies/spritesheet_chimeraGrunt.png" id="2_uwyh3"]
 [ext_resource type="PackedScene" uid="uid://cowxw1tti6gi" path="res://Scenes/Weapons/plasmaProjectile.tscn" id="3_ih7kv"]
 [ext_resource type="Script" path="res://Scenes/Mobs/chimeraSoldierWeaponArm.gd" id="4_siygh"]
 [ext_resource type="Resource" uid="uid://bq8e3m014dgsp" path="res://Scenes/Weapons/plasma.tres" id="5_spjgc"]
+[ext_resource type="Texture2D" uid="uid://c4hx76wv7mlo3" path="res://Sprites/Enemies/spritesheet_chimeraSoldier.png" id="6_mepqj"]
 [ext_resource type="PackedScene" uid="uid://m7mi7h7avpu1" path="res://Scenes/Utilities/scrap.tscn" id="6_yhqva"]
 [ext_resource type="Texture2D" uid="uid://b20pkldexhtj0" path="res://Sprites/Enemies/spritesheet_enemyGuns.png" id="8_usu5t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6kdg"]
-radius = 8.0
-height = 43.0
+radius = 9.0
+height = 38.0
 
 [sub_resource type="Animation" id="Animation_tc16y"]
 length = 0.001
@@ -183,8 +183,8 @@ scrap = ExtResource("6_yhqva")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
-position = Vector2(4, 3)
-rotation = 1.13446
+position = Vector2(0, 5)
+rotation = -1.13446
 shape = SubResource("CapsuleShape2D_e6kdg")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -197,7 +197,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_uwyh3")
+texture = ExtResource("6_mepqj")
 hframes = 9
 vframes = 4
 
@@ -207,13 +207,12 @@ libraries = {
 }
 
 [node name="Arm" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, 5)
+position = Vector2(3, 9)
 texture = ExtResource("8_usu5t")
-offset = Vector2(-16, -11)
+offset = Vector2(-16, -10)
 hframes = 4
 vframes = 8
-frame = 5
+frame = 9
 script = ExtResource("4_siygh")
 
 [node name="RayCast2D" type="RayCast2D" parent="Arm"]

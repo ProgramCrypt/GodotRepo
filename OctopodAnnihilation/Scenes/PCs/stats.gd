@@ -24,6 +24,7 @@ var playerType
 @export var shield : Resource
 var weapon1 = {}
 var weapon2 = {}
+var activeWeapon = "weapon1"
 #var startingWeapon1 = {}
 #var startingWeapon2 = {}
 
@@ -114,7 +115,7 @@ func takeDamage(hit):
 			emit_signal("healthDepleted")
 			var menu = deathMenu.instantiate()
 			get_tree().root.add_child(menu)
-		elif playerTypeDict[playerType].passiveAbility == "focus" and hit > 1:
+		elif playerTypeDict[playerType].passiveAbility == "focus" and hit > 1: #Infiltrator passive ability
 			Engine.time_scale = 0.5
 			$focusTimer.start(0.6)
 		
@@ -275,7 +276,7 @@ func manualActiveAbilityTimeout():
 		rateOfFire -= 10
 		gunAccuracy -= 10
 		ballisticResistance -= 20
-		laserResistance -- 20
+		laserResistance -= 20
 		plasmaResistance -= 20
 		bleedingResistance -= 20
 		fireResistance -= 20

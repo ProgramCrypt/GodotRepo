@@ -20,7 +20,10 @@ var swingRate : float #time between swings
 var swingSpeed : float #time that a swing takes
 
 func _ready():
-	changeWeapon(playerStats.weapon1)
+	if playerStats.activeWeapon == "weapon1":
+		changeWeapon(playerStats.weapon1)
+	elif playerStats.activeWeapon == "weapon2":
+		changeWeapon(playerStats.weapon2)
 
 'func initialize(stats : ProjectileWeaponStatList):
 	weaponType = stats.weaponType

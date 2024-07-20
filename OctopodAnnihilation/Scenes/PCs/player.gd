@@ -18,7 +18,6 @@ signal setActiveActive()
 var hasWeapon = true
 var laserActive = false
 var direction = "Down"
-var activeWeapon = "weapon1"
 var attackTimer = 0
 var isSwinging = false
 var totalSwingDistance = 0
@@ -81,12 +80,12 @@ func handleInput(_delta):
 			$Arm/Muzzle/laserProjectile.queue_free()
 			laserActive = false
 		
-		if activeWeapon == "weapon1":
+		if playerStats.activeWeapon == "weapon1":
 			$Arm.changeWeapon(playerStats.weapon2)
-			activeWeapon = "weapon2"
-		elif activeWeapon == "weapon2":
+			playerStats.activeWeapon = "weapon2"
+		elif playerStats.activeWeapon == "weapon2":
 			$Arm.changeWeapon(playerStats.weapon1)
-			activeWeapon = "weapon1"
+			playerStats.activeWeapon = "weapon1"
 	
 	if Input.is_action_just_pressed("escape"):
 		var menu = pauseMenu.instantiate()
@@ -158,6 +157,7 @@ func shoot():
 		for i in range(int($Arm.projectileSize)):
 			var projectile = laserProjectile.instantiate()
 			$Arm/Muzzle.add_child(projectile)
+			@warning_ignore("integer_division")
 			var offset = (int($Arm.projectileSize)/2) - 0.5
 			projectile.position.y += (i - offset) * 2
 			projectile.setShooter(get_groups(),{"damage": $Arm.damage, "penetration": $Arm.penetration, "effectsOnHit": $Arm.effectsOnHit})

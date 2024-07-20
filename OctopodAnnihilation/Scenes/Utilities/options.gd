@@ -25,8 +25,8 @@ func _on_back_pressed():
 	file.store_var(db_to_linear(AudioServer.get_bus_volume_db(1)))
 	file.store_var(db_to_linear(AudioServer.get_bus_volume_db(2)))
 	file.close()
-	sceneManager.switchScene("mainMenu")
 	$"/root/AudioManager/UI/selectButton".play(0)
+	sceneManager.switchScene("mainMenu")
 
 
 func _on_master_volume_slider_value_changed(value):

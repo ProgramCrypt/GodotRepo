@@ -4,5 +4,5 @@ extends Control
 
 
 func _on_button_pressed():
-	sceneManager.switchScene("mainMenu")
 	$"/root/AudioManager/UI/selectButton".play(0)
+	sceneManager.switchScene("mainMenu")

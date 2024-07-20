@@ -54,24 +54,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Version 1.1 alpha
 
--Added changelog
--Increased player speed
--Improved enemy AI
--Increased camera zoom
--Changed sniper passive
--Added melee warm-up time for enemies
--Added some sound effects and music
--Added options menu
--Increased player healing between levels
--Decreased upgrade costs
--Added ability descriptions (accessed by hovering mouse over ability)
--Energy-use increases with upgrades
--Removed ballistic gun range upgrades
--Decreased prop health
--Added basic enemy damage-taken animation
--Fixed super soldier active ability bug
--Fixed scoreboard bug
--Fixed weapon saving bug"
+-Added The Geneticist boss
+-Added Human City levels
+-Added Chimera Soldiers
+-Made active weapon saved
+-Fixed score saving bug"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

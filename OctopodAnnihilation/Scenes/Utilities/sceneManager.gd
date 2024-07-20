@@ -45,8 +45,16 @@ func nextLevel():
 			bossLevel = false
 			restartScene()
 	if level == "level_humanCity":
-		bossLevel = false
-		restartScene()
+		if completedLevels.count("level_humanCity") == 2:
+			bossLevel = true
+			restartScene()
+		elif completedLevels.count("level_humanCity") > 2:
+			bossLevel = false
+			completedLevels = []
+			switchScene("level1_1")
+		else:
+			bossLevel = false
+			restartScene()
 	get_tree().paused = false
 
 
@@ -79,6 +87,7 @@ func saveGame():
 	file.store_var(playerStats.playerType)
 	file.store_var(playerStats.weapon1)
 	file.store_var(playerStats.weapon2)
+	file.store_var(playerStats.activeWeapon)
 	file.store_var(playerStats.appliedWeapon1Upgrades)
 	file.store_var(playerStats.appliedWeapon2Upgrades)
 	file.store_var(playerStats.maxHealth)
@@ -98,6 +107,7 @@ func saveGame():
 	file.store_var(playerStats.slowResistance)
 	file.store_var(playerStats.stunResistance)
 	file.store_var(playerStats.currentScrap)
+	file.store_var(playerStats.playerScore)
 	file.store_var(playerStats.appliedArmorUpgrades)
 	file.close()
 
@@ -111,6 +121,7 @@ func loadGameData():
 		playerStats.playerType = file.get_var()
 		playerStats.weapon1 = file.get_var()
 		playerStats.weapon2 = file.get_var()
+		playerStats.activeWeapon = file.get_var()
 		playerStats.appliedWeapon1Upgrades = file.get_var()
 		playerStats.appliedWeapon2Upgrades = file.get_var()
 		playerStats.maxHealth = file.get_var()
@@ -130,6 +141,7 @@ func loadGameData():
 		playerStats.slowResistance = file.get_var()
 		playerStats.stunResistance = file.get_var()
 		playerStats.currentScrap = file.get_var()
+		playerStats.playerScore = file.get_var()
 		playerStats.appliedArmorUpgrades = file.get_var()
 		file.close()
 

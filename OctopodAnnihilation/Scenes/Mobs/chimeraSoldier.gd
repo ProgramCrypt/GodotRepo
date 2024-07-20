@@ -66,7 +66,7 @@ func _ready() -> void:
 	speed = speed * 8
 	
 	#$grenadeTimer.start(3)
-	$sprintTimer.start(2)
+	#$sprintTimer.start(2)
 	
 	$Arm.initialize(weaponType)
 
@@ -85,9 +85,10 @@ func updateAnimation(delta):
 			relativePlayerPos /= sqrt(relativePlayerPos.x*relativePlayerPos.x + relativePlayerPos.y*relativePlayerPos.y)
 			if relativePlayerPos.x >= -0.70 and relativePlayerPos.x <= 0.70 and relativePlayerPos.y < 0:
 				direction = "Up"
-				$CollisionShape2D.position = Vector2(1, 7)
+				$CollisionShape2D.position = Vector2(0, 5)
 				$CollisionShape2D.rotation = 0
 				get_node("Arm").set_z_index(-1)
+				$Arm.position = Vector2(3, 5)
 				if relativePlayerPos.x < 0:
 					get_node("Arm").scale.x = 1
 				if relativePlayerPos.x > 0:
@@ -95,9 +96,10 @@ func updateAnimation(delta):
 				
 			elif relativePlayerPos.x >= -0.70 and relativePlayerPos.x <= 0.70 and relativePlayerPos.y > 0:
 				direction = "Down"
-				$CollisionShape2D.position = Vector2(1, 7)
+				$CollisionShape2D.position = Vector2(0, 5)
 				$CollisionShape2D.rotation = 0
 				get_node("Arm").set_z_index(0)
+				$Arm.position = Vector2(-3, 9)
 				if relativePlayerPos.x < 0:
 					get_node("Arm").scale.x = 1
 				if relativePlayerPos.x > 0:
@@ -105,9 +107,10 @@ func updateAnimation(delta):
 				
 			elif relativePlayerPos.x < -0.70:
 				direction = "Left"
-				$CollisionShape2D.position = Vector2(-4, 3)
+				$CollisionShape2D.position = Vector2(2, 3)
 				$CollisionShape2D.rotation = 65
 				get_node("Arm").set_z_index(0)
+				$Arm.position = Vector2(-8, 8)
 				if relativePlayerPos.x < 0:
 					get_node("Arm").scale.x = 1
 				if relativePlayerPos.x > 0:
@@ -115,9 +118,10 @@ func updateAnimation(delta):
 				
 			elif relativePlayerPos.x > 0.70:
 				direction = "Right"
-				$CollisionShape2D.position = Vector2(4, 3)
+				$CollisionShape2D.position = Vector2(-2, 3)
 				$CollisionShape2D.rotation = -65
 				get_node("Arm").set_z_index(-1)
+				$Arm.position = Vector2(8, 8)
 				if relativePlayerPos.x < 0:
 					get_node("Arm").scale.x = 1
 				if relativePlayerPos.x > 0:
@@ -157,10 +161,9 @@ func takeDamage(hit):
 	var tween: Tween = create_tween()
 	tween.tween_property(self, "modulate:v", 1, 0.1).from(15)
 	if currentHealth == 0:
-		for i in range(10):
+		for i in range(3):
 			get_parent().call_deferred("dropItem", scrap, global_transform)
-		get_parent().call_deferred("removeForceFields")
-		playerStats.playerScore += 200
+		playerStats.playerScore += 80
 		queue_free()
 
 
@@ -252,8 +255,8 @@ func _physics_process(delta: float) -> void:
 				shoot()
 				burstTimer = 0.2
 				currentBursts += 1
-				if currentBursts >= 8:
-					shootTimer = 2
+				if currentBursts >= 3:
+					shootTimer = 3
 					currentBursts = 0
 					lineOfSight = false
 
@@ -280,6 +283,6 @@ func playerCloaked(state):
 		throwGrenade()'
 
 
-func _on_sprint_timer_timeout():
+'func _on_sprint_timer_timeout():
 	if randf() >= 0.7:
-		sprinting = true
+		sprinting = true'

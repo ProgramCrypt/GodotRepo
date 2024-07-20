@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://eq0sj825m4ir" path="res://Sprites/Props/HumanCityProps.png" id="1_pvody"]
 
 [node name="debris" type="Sprite2D"]
-z_index = -1
+z_index = -2
 z_as_relative = false
 texture = ExtResource("1_pvody")
 hframes = 8
