@@ -1,9 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://drseolqryq6qb"]
+[gd_scene load_steps=12 format=3 uid="uid://drseolqryq6qb"]
 
+[ext_resource type="Script" path="res://Scenes/levels/world.gd" id="1_absbj"]
 [ext_resource type="Texture2D" uid="uid://6u86pj1iakdk" path="res://textures/spherical/hiptyc_2020_16k_gal.jpg" id="3_dxgek"]
 [ext_resource type="PackedScene" uid="uid://cxn4ysicb4ufj" path="res://scenes/player/player.tscn" id="4_5r1mu"]
+[ext_resource type="Shader" path="res://shaders/playerVignette.gdshader" id="5_ml80f"]
+[ext_resource type="PackedScene" uid="uid://de58m5ldo2fjr" path="res://scenes/levels/level4.tscn" id="6_a2ngr"]
 [ext_resource type="PackedScene" uid="uid://gk38g4ucrpeu" path="res://scenes/objects/box.tscn" id="12_xskhi"]
-[ext_resource type="PackedScene" uid="uid://1evckdaryyuw" path="res://scenes/levels/level1.tscn" id="20_2mjpx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r16ff"]
+shader = ExtResource("5_ml80f")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/multiplier = 0.7
+shader_parameter/softness = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jbvp"]
 bg_color = Color(1, 1, 1, 1)
@@ -19,12 +27,13 @@ background_mode = 2
 sky = SubResource("Sky_ajjlg")
 
 [node name="world" type="Node3D"]
+script = ExtResource("1_absbj")
 
 [node name="box" parent="." instance=ExtResource("12_xskhi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 14.728, 0)
 
 [node name="Player" parent="." instance=ExtResource("4_5r1mu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -12)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0.848972, -0.528438, 0, 0.528438, 0.848972, 1, 3.71097e-08, -2.30988e-08, -8.96715, 19.7271, 0)
@@ -32,6 +41,15 @@ visible = false
 fov = 99.7
 
 [node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="vignette" type="ColorRect" parent="HUD"]
+material = SubResource("ShaderMaterial_r16ff")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="CenterContainer" type="CenterContainer" parent="HUD"]
 offset_right = 1920.0
@@ -56,4 +74,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6jbvp")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aeep0")
 
-[node name="Level1" parent="." instance=ExtResource("20_2mjpx")]
+[node name="Level1" parent="." instance=ExtResource("6_a2ngr")]

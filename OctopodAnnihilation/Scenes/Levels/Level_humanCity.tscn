@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dxuckukhug4rb" path="res://Sprites/Utilities/spritesheet_utilities.png" id="4_a62bv"]
 [ext_resource type="PackedScene" uid="uid://lk3mqok2ig2i" path="res://Scenes/Regions/HumanCity/businessDistrict1.tscn" id="4_rm186"]
 [ext_resource type="PackedScene" uid="uid://dd2w0b5f2gpsc" path="res://Scenes/Regions/HumanCity/businessDistrict2.tscn" id="5_aci8a"]
-[ext_resource type="PackedScene" uid="uid://diib42gpn5ctv" path="res://Scenes/Utilities/miniMapLabs.tscn" id="5_ppyhh"]
 [ext_resource type="PackedScene" uid="uid://diklcwyeye4h5" path="res://Scenes/Regions/HumanCity/drainageRoom2.tscn" id="7_q5bdv"]
+[ext_resource type="PackedScene" uid="uid://c3qaqm3ovuvuc" path="res://Scenes/Utilities/miniMapHumanCity.tscn" id="11_rcfmu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t5ho"]
 bg_color = Color(0.301961, 0.301961, 0.301961, 1)
@@ -382,7 +382,7 @@ offset_left = -200.0
 offset_bottom = 200.0
 grow_horizontal = 0
 
-[node name="miniMap" parent="HUD/Control" instance=ExtResource("5_ppyhh")]
+[node name="miniMap" parent="HUD/Control" instance=ExtResource("11_rcfmu")]
 position = Vector2(100, 100)
 
 [node name="Panel" type="Panel" parent="HUD/Control"]

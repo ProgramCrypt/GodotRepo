@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal healthChanged(health)
+
 @onready var physicsHandler = get_node("/root/PhysicsHandler")
 
 @export var interactHint : PackedScene
@@ -32,8 +34,16 @@ var rotTimer = 0
 var hintActive = false
 var hintTimer = 0
 
+var maxHealth = 10
+var currentHealth = maxHealth
+var regenRate = 5
+var noRegenActive = false
+var noRegenTimer = 0
+
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	call_deferred('emit_signal', 'healthChanged', currentHealth)
 
 
 func _input(event):
@@ -43,7 +53,32 @@ func _input(event):
 		$neck/head.rotation.x = clamp($neck/head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
 
+func changeHealth(value):
+	currentHealth += value
+	if value < 0:
+		noRegenActive = true
+	if currentHealth >= maxHealth:
+		currentHealth = maxHealth
+	elif currentHealth <= 0:
+		death()
+	emit_signal('healthChanged', currentHealth)
+	print(currentHealth)
+
+
+func death():
+	get_tree().reload_current_scene()
+
+
 func _physics_process(delta):
+	# regen health
+	if currentHealth < maxHealth and noRegenActive == false:
+		changeHealth(regenRate * delta)
+	else:
+		noRegenTimer += delta
+		if noRegenTimer >= 1:
+			noRegenActive = false
+			noRegenTimer = 0
+	
 	# Add the gravity.
 	#if not is_on_floor(): #turns off gravity if player is already on the floor
 	velocity += physicsHandler.globalGravity * physicsHandler.globalGravityDir * delta
@@ -68,17 +103,16 @@ func _physics_process(delta):
 	# handle changing gravity
 	if Input.is_action_just_pressed("rightClick"):
 		var newGravDir = $neck/head/look.global_position - $neck/head.global_position
-		physicsHandler.globalGravityDir = newGravDir
+		physicsHandler.gravShift(newGravDir)
 	
 	# handle interaction
 	if Input.is_action_just_pressed("interact"):
 		var collider = $neck/head/RayCast3D.get_collider()
-		print(collider)
 		if collider != null:
 			if collider.is_in_group("gravShifter"):
-				print("gravShift")
 				collider.shiftGravity()
 	
+	# show hints
 	if $neck/head/RayCast3D.get_collider() != null:
 		if $neck/head/RayCast3D.get_collider().is_in_group("gravShifter"):
 			hintTimer += delta
@@ -118,25 +152,43 @@ func _physics_process(delta):
 	
 	velocity = Vector3(0, 0, 0)
 	
-	if Input.is_action_pressed("forward") and is_on_floor():
-		forwardCheck = true
+	if Input.is_action_pressed("forward"):
 		forward = $neck/forward.global_position - global_position
-		velocity += forward * speed
+		if is_on_floor():
+			forwardCheck = true
+			velocity += forward * speed
+		else:
+			if ((forward * 0.1) + vxz).length() <= vxz.length():
+				vxz += forward * 4 * delta
 	
-	if Input.is_action_pressed("backward") and is_on_floor():
-		backwardCheck = true
+	if Input.is_action_pressed("backward"):
 		backward = $neck/backward.global_position - global_position
-		velocity += backward * speed
+		if is_on_floor():
+			backwardCheck = true
+			velocity += backward * speed
+		else:
+			if ((backward * 0.1) + vxz).length() <= vxz.length():
+				vxz += backward * 4 * delta
 	
-	if Input.is_action_pressed("right") and is_on_floor():
-		rightCheck = true
+	if Input.is_action_pressed("right"):
 		right = $neck/right.global_position - global_position
-		velocity += right * speed
+		if is_on_floor():
+			rightCheck = true
+			velocity += right * speed
+		else:
+			if ((right * 0.1) + vxz).length() <= vxz.length():
+				vxz += right * 4 * delta
 	
-	if Input.is_action_pressed("left") and is_on_floor():
-		leftCheck = true
+	if Input.is_action_pressed("left"):
 		left = $neck/left.global_position - global_position
-		velocity += left * speed
+		if is_on_floor():
+			leftCheck = true
+			velocity += left * speed
+		else:
+			if ((left * 0.1) + vxz).length() <= vxz.length():
+				vxz += left * 4 * delta
+	
+	# 
 	
 	if is_on_floor() == false:
 		velocity += vxz

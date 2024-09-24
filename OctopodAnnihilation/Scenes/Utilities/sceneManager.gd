@@ -33,24 +33,28 @@ func _ready():
 
 
 func nextLevel():
+	print("level: ", str(level), " completedLevels: ", str(completedLevels))
 	if level == "level1_1":
 		if completedLevels.count("level1_1") == 2:
 			bossLevel = true
 			restartScene()
 		elif completedLevels.count("level1_1") > 2:
+			print("switch to humanCity")
 			bossLevel = false
 			completedLevels = []
+			level = "level_humanCity"
 			switchScene("level_humanCity")
 		else:
 			bossLevel = false
 			restartScene()
-	if level == "level_humanCity":
+	elif level == "level_humanCity":
 		if completedLevels.count("level_humanCity") == 2:
 			bossLevel = true
 			restartScene()
 		elif completedLevels.count("level_humanCity") > 2:
 			bossLevel = false
 			completedLevels = []
+			level = "level1_1"
 			switchScene("level1_1")
 		else:
 			bossLevel = false

@@ -1,0 +1,71 @@
+[gd_scene load_steps=14 format=3 uid="uid://ha06ehbxew1x"]
+
+[ext_resource type="Script" path="res://scenes/environment/gravField.gd" id="1_kj6kr"]
+[ext_resource type="Shader" path="res://shaders/gravField.gdshader" id="2_jgdp6"]
+[ext_resource type="Texture2D" uid="uid://bxi86t4tslqer" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Displacement.jpg" id="3_bqcg6"]
+[ext_resource type="Texture2D" uid="uid://cv3vhy2yk0j5l" path="res://textures/flat/gravField/gravFieldUp.png" id="3_pn0c5"]
+[ext_resource type="Texture2D" uid="uid://3orkysspv63k" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_NormalDX.jpg" id="4_1tsjp"]
+[ext_resource type="Texture2D" uid="uid://cpu7l4l5wprpi" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Roughness.jpg" id="5_e5wor"]
+[ext_resource type="Texture2D" uid="uid://cf04738khmb08" path="res://textures/flat/MetalPlates017A_4K-JPG/MetalPlates017A_4K-JPG_Color.jpg" id="6_c5i3f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijbvw"]
+render_priority = 0
+shader = ExtResource("2_jgdp6")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/normal_scale = 6.0
+shader_parameter/heightmap_scale = 5.0
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_pn0c5")
+shader_parameter/texture_metallic = ExtResource("3_bqcg6")
+shader_parameter/texture_roughness = ExtResource("5_e5wor")
+shader_parameter/texture_normal = ExtResource("4_1tsjp")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iy8l4"]
+material = SubResource("ShaderMaterial_ijbvw")
+size = Vector2(3, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_alfe6"]
+material = SubResource("ShaderMaterial_ijbvw")
+size = Vector2(3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ivf0v"]
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dau8t"]
+albedo_texture = ExtResource("6_c5i3f")
+
+[sub_resource type="SphereMesh" id="SphereMesh_tipke"]
+material = SubResource("StandardMaterial3D_dau8t")
+
+[node name="ForceField" type="Area3D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_kj6kr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_iy8l4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.2, 0)
+mesh = SubResource("PlaneMesh_alfe6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_ivf0v")
+
+[node name="opacityReferenceObject" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+mesh = SubResource("SphereMesh_tipke")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -16,7 +16,7 @@ material = SubResource("StandardMaterial3D_el4th")
 radius = 0.05
 height = 0.1
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_eba0o")
 interactHint = ExtResource("2_624be")
 
