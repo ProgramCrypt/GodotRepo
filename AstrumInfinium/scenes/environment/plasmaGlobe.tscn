@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://caoi0wq00p405"]
+
+[ext_resource type="Texture2D" uid="uid://b7m65qg8fm46d" path="res://textures/flat/Facade005_4K-JPG/Facade005_4K-JPG_ColorTransparent.png" id="1_5m42k"]
+[ext_resource type="Script" path="res://scenes/environment/plasmaGlobe.gd" id="1_paqh4"]
+[ext_resource type="Texture2D" uid="uid://xktvc4j2okia" path="res://textures/flat/Facade005_4K-JPG/Facade005_4K-JPG_Metalness.jpg" id="2_070r5"]
+[ext_resource type="Texture2D" uid="uid://blustpstb7but" path="res://textures/flat/Facade005_4K-JPG/Facade005_4K-JPG_NormalDX.jpg" id="3_8oels"]
+[ext_resource type="Texture2D" uid="uid://copgvrucc7c4" path="res://textures/flat/Facade005_4K-JPG/Facade005_4K-JPG_Roughness.jpg" id="4_7jl23"]
+[ext_resource type="AudioStream" uid="uid://bjrvi5t44dpxm" path="res://audio/SFX/plasmaGlobe-001.wav" id="7_830qy"]
+[ext_resource type="PackedScene" uid="uid://d6tqe2cmgnfv" path="res://scenes/environment/arc.tscn" id="7_k1pen"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6ua42"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7u6jp"]
+transparency = 1
+albedo_texture = ExtResource("1_5m42k")
+metallic = 0.9
+metallic_texture = ExtResource("2_070r5")
+roughness_texture = ExtResource("4_7jl23")
+normal_enabled = true
+normal_texture = ExtResource("3_8oels")
+
+[sub_resource type="SphereMesh" id="SphereMesh_622fe"]
+material = SubResource("StandardMaterial3D_7u6jp")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6snf"]
+emission_enabled = true
+emission = Color(0.54902, 0, 1, 1)
+emission_energy_multiplier = 5.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_vbhoe"]
+material = SubResource("StandardMaterial3D_f6snf")
+radius = 0.15
+height = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dy621"]
+radius = 3.5
+
+[node name="plasmaGlobe" type="RigidBody3D"]
+mass = 20.0
+gravity_scale = 0.0
+script = ExtResource("1_paqh4")
+targetTimer = 1.6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_6ua42")
+
+[node name="glass" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_622fe")
+
+[node name="center" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_vbhoe")
+
+[node name="arc" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="arc2" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="arc3" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="arc4" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="arc5" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="arc6" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="arc7" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="arc8" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="arc9" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="arc10" parent="center" instance=ExtResource("7_k1pen")]
+updatePerTime = 0.1
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_dy621")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_830qy")
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+attenuation_filter_db = -80.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

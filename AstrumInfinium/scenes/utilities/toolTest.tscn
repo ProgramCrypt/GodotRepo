@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dikdou6iyj70v"]
+
+[ext_resource type="Texture2D" uid="uid://vry2fiequvhs" path="res://icon.svg" id="1_4wmg2"]
+[ext_resource type="Script" path="res://scenes/utilities/toolTest.gd" id="1_ynnn1"]
+
+[node name="toolTest" type="Node2D"]
+rotation = 347.454
+script = ExtResource("1_ynnn1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4wmg2")

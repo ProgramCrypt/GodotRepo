@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxn4ysicb4ufj"]
+[gd_scene load_steps=9 format=3 uid="uid://cxn4ysicb4ufj"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_eba0o"]
 [ext_resource type="PackedScene" uid="uid://befwobh0um1ov" path="res://scenes/utilities/interactHint.tscn" id="2_624be"]
 [ext_resource type="Texture2D" uid="uid://bj810tts2dxii" path="res://textures/flat/concreteWall/concrete_wall_001_diff_4k.jpg" id="2_o2ug0"]
+[ext_resource type="PackedScene" uid="uid://c65m1ue4yttei" path="res://scenes/utilities/inGameMenu.tscn" id="3_27w4b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5vw8e"]
 
@@ -19,6 +20,7 @@ height = 0.1
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_eba0o")
 interactHint = ExtResource("2_624be")
+pauseMenu = ExtResource("3_27w4b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_5vw8e")
@@ -54,3 +56,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="left" type="Node3D" parent="neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="crosshair" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="crosshair"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="crosshair/CenterContainer"]
+custom_minimum_size = Vector2(2, 20)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="crosshair/CenterContainer"]
+custom_minimum_size = Vector2(20, 2)
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="crosshair/CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2

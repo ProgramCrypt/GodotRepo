@@ -5,12 +5,14 @@ signal healthChanged(health)
 @onready var physicsHandler = get_node("/root/PhysicsHandler")
 
 @export var interactHint : PackedScene
+@export var pauseMenu : PackedScene
 
 
 var normalSpeed = 4.0
 var speed = normalSpeed
 const jumpVelocity = 3.5
 var direction
+var mass = 45
 
 const mouseSensitivity = 0.1
 
@@ -44,6 +46,8 @@ var noRegenTimer = 0
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	call_deferred('emit_signal', 'healthChanged', currentHealth)
+	
+	physicsHandler.initialPlayerTransform = transform
 
 
 func _input(event):
@@ -62,7 +66,6 @@ func changeHealth(value):
 	elif currentHealth <= 0:
 		death()
 	emit_signal('healthChanged', currentHealth)
-	print(currentHealth)
 
 
 func death():
@@ -114,23 +117,48 @@ func _physics_process(delta):
 	
 	# show hints
 	if $neck/head/RayCast3D.get_collider() != null:
-		if $neck/head/RayCast3D.get_collider().is_in_group("gravShifter"):
+		if $neck/head/RayCast3D.get_collider().is_in_group("interactable"):
 			hintTimer += delta
-			if hintTimer >= 0.2:
+			if hintTimer >= 1.0:
 				var hint = interactHint.instantiate()
 				get_tree().root.add_child(hint)
+				$crosshair/CenterContainer/ColorRect.visible = false
+				$crosshair/CenterContainer/ColorRect2.visible = false
+			if hintActive == false:
+				$crosshair/CenterContainer/ColorRect.color = Color(0.4, 0.9, 0.5, 1.0)
+				$crosshair/CenterContainer/ColorRect2.color = Color(0.4, 0.9, 0.5, 1.0)
+				$crosshair/CenterContainer/ColorRect.custom_minimum_size = Vector2(4, 30)
+				$crosshair/CenterContainer/ColorRect2.custom_minimum_size = Vector2(30, 4)
+				$crosshair/CenterContainer/ColorRect3.color = Color(0.4, 0.9, 0.5, 1.0)
+			hintActive = true
 		else:
 			hintTimer = 0
-			hintActive = false
 			var hintArray = get_tree().get_nodes_in_group("hint")
 			for hint in hintArray:
 				hint.queue_free()
+				$crosshair/CenterContainer/ColorRect.visible = true
+				$crosshair/CenterContainer/ColorRect2.visible = true
+			if hintActive == true:
+				$crosshair/CenterContainer/ColorRect.color = Color(1.0, 1.0, 1.0, 1.0)
+				$crosshair/CenterContainer/ColorRect2.color = Color(1.0, 1.0, 1.0, 1.0)
+				$crosshair/CenterContainer/ColorRect.custom_minimum_size = Vector2(2, 20)
+				$crosshair/CenterContainer/ColorRect2.custom_minimum_size = Vector2(20, 2)
+				$crosshair/CenterContainer/ColorRect3.color = Color(1.0, 1.0, 1.0, 1.0)
+			hintActive = false
 	else:
 		hintTimer = 0
-		hintActive = false
 		var hintArray = get_tree().get_nodes_in_group("hint")
 		for hint in hintArray:
 			hint.queue_free()
+			$crosshair/CenterContainer/ColorRect.visible = true
+			$crosshair/CenterContainer/ColorRect2.visible = true
+		if hintActive == true:
+			$crosshair/CenterContainer/ColorRect.color = Color(1.0, 1.0, 1.0, 1.0)
+			$crosshair/CenterContainer/ColorRect2.color = Color(1.0, 1.0, 1.0, 1.0)
+			$crosshair/CenterContainer/ColorRect.custom_minimum_size = Vector2(2, 20)
+			$crosshair/CenterContainer/ColorRect2.custom_minimum_size = Vector2(20, 2)
+			$crosshair/CenterContainer/ColorRect3.color = Color(1.0, 1.0, 1.0, 1.0)
+		hintActive = false
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -144,7 +172,8 @@ func _physics_process(delta):
 	
 	# handle game exit
 	if Input.is_action_just_pressed("escape"):
-		get_tree().quit()
+		var menu = pauseMenu.instantiate()
+		get_tree().root.call_deferred('add_child', menu)
 	
 	# Get the input direction and handle the movement/deceleration.
 	var vy = velocity.normalized().dot(physicsHandler.globalGravityDir) * velocity.length() * physicsHandler.globalGravityDir
@@ -158,8 +187,8 @@ func _physics_process(delta):
 			forwardCheck = true
 			velocity += forward * speed
 		else:
-			if ((forward * 0.1) + vxz).length() <= vxz.length():
-				vxz += forward * 4 * delta
+			if (vxz + (forward * 5 * delta)).dot(forward) < (forward * speed * 1.41).dot(forward):
+				vxz += forward * 5 * delta
 	
 	if Input.is_action_pressed("backward"):
 		backward = $neck/backward.global_position - global_position
@@ -167,8 +196,8 @@ func _physics_process(delta):
 			backwardCheck = true
 			velocity += backward * speed
 		else:
-			if ((backward * 0.1) + vxz).length() <= vxz.length():
-				vxz += backward * 4 * delta
+			if (vxz + (backward * 5 * delta)).dot(backward) < (backward * speed * 1.41).dot(backward):
+				vxz += backward * 5 * delta
 	
 	if Input.is_action_pressed("right"):
 		right = $neck/right.global_position - global_position
@@ -176,8 +205,8 @@ func _physics_process(delta):
 			rightCheck = true
 			velocity += right * speed
 		else:
-			if ((right * 0.1) + vxz).length() <= vxz.length():
-				vxz += right * 4 * delta
+			if (vxz + (right * 5 * delta)).dot(right) < (right * speed * 1.41).dot(right):
+				vxz += right * 5 * delta
 	
 	if Input.is_action_pressed("left"):
 		left = $neck/left.global_position - global_position
@@ -185,8 +214,8 @@ func _physics_process(delta):
 			leftCheck = true
 			velocity += left * speed
 		else:
-			if ((left * 0.1) + vxz).length() <= vxz.length():
-				vxz += left * 4 * delta
+			if (vxz + (left * 5 * delta)).dot(left) < (left * speed * 1.41).dot(left):
+				vxz += left * 5 * delta
 	
 	# 
 	
@@ -196,3 +225,9 @@ func _physics_process(delta):
 	velocity += vy
 	
 	move_and_slide()
+	
+	# handle RigidBody3D collisions
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody3D:
+			c.get_collider().apply_force(-c.get_normal() * mass)

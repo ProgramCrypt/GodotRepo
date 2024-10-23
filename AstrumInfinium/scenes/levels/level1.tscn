@@ -136,6 +136,8 @@ size = Vector2(3, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pckqn"]
 albedo_color = Color(0.3, 1, 0.3, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_l5380"]
 material = SubResource("StandardMaterial3D_pckqn")
@@ -146,6 +148,8 @@ size = Vector3(3, 0.2, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikapp"]
 albedo_color = Color(1, 0.3, 0.3, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_77uex"]
 material = SubResource("StandardMaterial3D_ikapp")
@@ -183,7 +187,7 @@ size = Vector2(20, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qkq7v"]
 size = Vector3(20, 0.1, 2)
 
-[node name="Level1" type="Node3D"]
+[node name="Level1" type="Node3D" groups=["level"]]
 
 [node name="roomWalls" type="Node3D" parent="."]
 
@@ -345,22 +349,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, -0.1, 5.75)
 shape = SubResource("BoxShape3D_hgufd")
 
 [node name="outsideMesh1" type="MeshInstance3D" parent="roomWalls/ZnWall"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -5.75, 0, 4.25)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -5.75, -0.2, 4.25)
 mesh = SubResource("PlaneMesh_ge5b1")
 skeleton = NodePath("../../../..")
 
 [node name="outsideMesh2" type="MeshInstance3D" parent="roomWalls/ZnWall"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 5.75, 0, -4.25)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 5.75, -0.2, -4.25)
 mesh = SubResource("PlaneMesh_2pap1")
 skeleton = NodePath("../../../..")
 
 [node name="outsideMesh3" type="MeshInstance3D" parent="roomWalls/ZnWall"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4.25, 0, -5.75)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4.25, -0.2, -5.75)
 mesh = SubResource("PlaneMesh_qxk6m")
 skeleton = NodePath("../../../..")
 
 [node name="outsideMesh4" type="MeshInstance3D" parent="roomWalls/ZnWall"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 4.25, 0, 5.75)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 4.25, -0.2, 5.75)
 mesh = SubResource("PlaneMesh_6yvha")
 skeleton = NodePath("../../../..")
 
@@ -551,7 +555,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 15, -5)
 [node name="gravShifterInsta" parent="." instance=ExtResource("18_1bkrj")]
 
 [node name="gravShifterInsta2" parent="." instance=ExtResource("18_1bkrj")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 20, 0)
+transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 20, 0)
 
 [node name="gravShifterInsta3" parent="." instance=ExtResource("18_1bkrj")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7, 10, 10)
@@ -560,7 +564,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7, 10
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 7, 10, -10)
 
 [node name="gravShifter3" parent="." instance=ExtResource("9_g1010")]
-transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 10, 10, 2)
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 10, 10, 2)
 
 [node name="gravShifter4" parent="." instance=ExtResource("9_g1010")]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -10, 10, -2)

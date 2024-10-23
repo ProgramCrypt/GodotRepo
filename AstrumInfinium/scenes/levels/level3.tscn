@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bv86btewn5qeo"]
+[gd_scene load_steps=78 format=3 uid="uid://bv86btewn5qeo"]
 
 [ext_resource type="Texture2D" uid="uid://b2wjvs83bq1j1" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Color.jpg" id="1_he3go"]
 [ext_resource type="Texture2D" uid="uid://d22ukslos34oa" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Metalness.jpg" id="2_rpamn"]
@@ -19,8 +19,8 @@
 [ext_resource type="Script" path="res://scenes/environment/forceField.gd" id="17_2mm7e"]
 [ext_resource type="PackedScene" uid="uid://u58c23kt2cmb" path="res://scenes/objects/sphereLight.tscn" id="17_6lo6d"]
 [ext_resource type="Shader" path="res://shaders/forceField.gdshader" id="17_tr0xx"]
-[ext_resource type="Texture2D" uid="uid://deybuyurium35" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Color.jpg" id="18_sl8o1"]
 [ext_resource type="PackedScene" uid="uid://bqatkj0avs8wa" path="res://scenes/objects/gravShifter.tscn" id="18_vnuhl"]
+[ext_resource type="Texture2D" uid="uid://b6wxkqb74nomq" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Color - Copy.jpg" id="19_n3fv0"]
 [ext_resource type="PackedScene" uid="uid://be0uqylsbp50a" path="res://scenes/levels/passageway.tscn" id="19_ulhcf"]
 [ext_resource type="Texture2D" uid="uid://bxi86t4tslqer" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Displacement.jpg" id="19_wartr"]
 [ext_resource type="Texture2D" uid="uid://3orkysspv63k" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_NormalDX.jpg" id="20_2nc4q"]
@@ -142,21 +142,25 @@ uv1_scale = Vector3(1, 0.1, 0.1)
 material = SubResource("StandardMaterial3D_hph47")
 size = Vector2(3, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pckqn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cahwa"]
 albedo_color = Color(0.3, 1, 0.3, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_l5380"]
-material = SubResource("StandardMaterial3D_pckqn")
+material = SubResource("StandardMaterial3D_cahwa")
 size = Vector2(3, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ux0c"]
 size = Vector3(3, 0.2, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikapp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ssk3p"]
 albedo_color = Color(1, 0.3, 0.3, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_77uex"]
-material = SubResource("StandardMaterial3D_ikapp")
+material = SubResource("StandardMaterial3D_ssk3p")
 size = Vector2(3, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcx74"]
@@ -195,6 +199,7 @@ size = Vector3(20, 0.1, 2)
 render_priority = 0
 shader = ExtResource("17_tr0xx")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission = 0.5
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = null
@@ -209,7 +214,7 @@ shader_parameter/uv1_scale = Vector3(10, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("18_sl8o1")
+shader_parameter/texture_albedo = ExtResource("19_n3fv0")
 shader_parameter/texture_metallic = ExtResource("19_wartr")
 shader_parameter/texture_roughness = ExtResource("21_mqljb")
 shader_parameter/texture_normal = ExtResource("20_2nc4q")
@@ -222,6 +227,7 @@ size = Vector2(20, 3)
 render_priority = 0
 shader = ExtResource("17_tr0xx")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission = 0.5
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = null
@@ -236,7 +242,7 @@ shader_parameter/uv1_scale = Vector3(10, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("18_sl8o1")
+shader_parameter/texture_albedo = ExtResource("19_n3fv0")
 shader_parameter/texture_metallic = ExtResource("19_wartr")
 shader_parameter/texture_roughness = ExtResource("21_mqljb")
 shader_parameter/texture_normal = ExtResource("20_2nc4q")
@@ -245,10 +251,14 @@ shader_parameter/texture_normal = ExtResource("20_2nc4q")
 material = SubResource("ShaderMaterial_djhqm")
 size = Vector2(20, 3)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_n3ttm"]
+size = Vector3(20, 0.1, 3)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pgo5f"]
 render_priority = 0
 shader = ExtResource("17_tr0xx")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission = 0.5
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = null
@@ -263,7 +273,7 @@ shader_parameter/uv1_scale = Vector3(10, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("18_sl8o1")
+shader_parameter/texture_albedo = ExtResource("19_n3fv0")
 shader_parameter/texture_metallic = ExtResource("19_wartr")
 shader_parameter/texture_roughness = ExtResource("21_mqljb")
 shader_parameter/texture_normal = ExtResource("20_2nc4q")
@@ -358,7 +368,7 @@ shader_parameter/texture_normal = ExtResource("20_2nc4q")
 material = SubResource("ShaderMaterial_3lw8u")
 size = Vector2(20, 8)
 
-[node name="Level3" type="Node3D"]
+[node name="Level3" type="Node3D" groups=["level"]]
 
 [node name="roomWalls" type="Node3D" parent="."]
 
@@ -520,22 +530,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, -0.1, 5.75)
 shape = SubResource("BoxShape3D_hgufd")
 
 [node name="outsideMesh1" type="MeshInstance3D" parent="roomWalls/ZnWall"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -5.75, 0, 4.25)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -5.75, -0.2, 4.25)
 mesh = SubResource("PlaneMesh_ge5b1")
 skeleton = NodePath("../../../..")
 
 [node name="outsideMesh2" type="MeshInstance3D" parent="roomWalls/ZnWall"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 5.75, 0, -4.25)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 5.75, -0.2, -4.25)
 mesh = SubResource("PlaneMesh_2pap1")
 skeleton = NodePath("../../../..")
 
 [node name="outsideMesh3" type="MeshInstance3D" parent="roomWalls/ZnWall"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4.25, 0, -5.75)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4.25, -0.2, -5.75)
 mesh = SubResource("PlaneMesh_qxk6m")
 skeleton = NodePath("../../../..")
 
 [node name="outsideMesh4" type="MeshInstance3D" parent="roomWalls/ZnWall"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 4.25, 0, 5.75)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 4.25, -0.2, 5.75)
 mesh = SubResource("PlaneMesh_6yvha")
 skeleton = NodePath("../../../..")
 
@@ -715,7 +725,7 @@ mesh = SubResource("PlaneMesh_8fdp2")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interiorGeometry/forceField"]
-shape = SubResource("BoxShape3D_orfj3")
+shape = SubResource("BoxShape3D_n3ttm")
 
 [node name="forceField2" type="StaticBody3D" parent="interiorGeometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 6.5)
@@ -947,7 +957,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 19, -9.9)
 
 [node name="gravShifter3" parent="." instance=ExtResource("18_vnuhl")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 20, -1)
+transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 20, -1)
 
 [node name="gravShifter4" parent="." instance=ExtResource("18_vnuhl")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 9.9)
@@ -962,7 +972,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0.2)
 
 [node name="gravShifter8" parent="." instance=ExtResource("18_vnuhl")]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 20, 5)
+transform = Transform3D(-1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 0, 0, 1, 0, 20, 5)
 
 [node name="gravShifter9" parent="." instance=ExtResource("18_vnuhl")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 19, 0.2)

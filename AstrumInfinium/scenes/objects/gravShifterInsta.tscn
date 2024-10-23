@@ -22,7 +22,6 @@ metallic_texture = ExtResource("3_smyj6")
 metallic_texture_channel = 2
 roughness_texture = ExtResource("3_smyj6")
 roughness_texture_channel = 1
-normal_enabled = true
 normal_texture = ExtResource("4_sne3j")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cdra"]
@@ -96,27 +95,31 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_usuck")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y3vk2"]
-radius = 0.43
-height = 1.8
+radius = 0.322
+height = 1.35
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4cknl"]
 albedo_texture = ExtResource("9_vb6mc")
 metallic = 0.8
 metallic_texture = ExtResource("10_whok0")
 roughness_texture = ExtResource("12_gxr4s")
+emission_enabled = true
+emission = Color(0.894118, 0.694118, 0.0313726, 1)
+emission_energy_multiplier = 0.1
 normal_enabled = true
 normal_texture = ExtResource("11_14gwf")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ktnft"]
 material = SubResource("StandardMaterial3D_4cknl")
-top_radius = 0.44
-bottom_radius = 0.44
-height = 0.05
+top_radius = 0.33
+bottom_radius = 0.33
+height = 0.038
 
-[node name="gravShifterInsta" type="StaticBody3D" groups=["gravShifter"]]
+[node name="gravShifterInsta" type="StaticBody3D" groups=["gravShifter", "interactable"]]
 script = ExtResource("1_td607")
 
 [node name="Tech-4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = SubResource("ArrayMesh_s0mj5")
 skeleton = NodePath("")
 
@@ -124,7 +127,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
 shape = SubResource("CapsuleShape3D_y3vk2")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
@@ -132,14 +135,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 stream = ExtResource("8_d0kuc")
 volume_db = -20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+[node name="ring1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825, 0)
 mesh = SubResource("CylinderMesh_ktnft")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="ring2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 mesh = SubResource("CylinderMesh_ktnft")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+[node name="ring3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
 mesh = SubResource("CylinderMesh_ktnft")

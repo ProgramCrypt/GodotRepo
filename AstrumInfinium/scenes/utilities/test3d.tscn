@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://6d1iap0ooafe"]
+
+[ext_resource type="Shader" path="res://shaders/glow.gdshader" id="1_rf8ad"]
+[ext_resource type="Texture2D" uid="uid://16y3qujwum88" path="res://textures/flat/transparentCyan.png" id="2_kt20d"]
+[ext_resource type="Shader" path="res://shaders/feather.gdshader" id="3_75h1h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svo0y"]
+render_priority = 0
+shader = ExtResource("1_rf8ad")
+shader_parameter/line_color = Color(0, 1, 1, 1)
+shader_parameter/glowSize = 15.0
+shader_parameter/glowDensity = 3
+shader_parameter/glowRadialCoverage = 4
+shader_parameter/glowAngle = 1.57
+shader_parameter/glowSharpness = 1.0
+shader_parameter/alphaThreshold = 0.8
+shader_parameter/sprite_texture = ExtResource("2_kt20d")
+
+[sub_resource type="SphereMesh" id="SphereMesh_awhig"]
+material = SubResource("ShaderMaterial_svo0y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8km7"]
+render_priority = 0
+shader = ExtResource("3_75h1h")
+shader_parameter/distortionView = 0.0
+shader_parameter/speedView = 0.5
+shader_parameter/tintColor = Color(0.572549, 0.270588, 1, 1)
+shader_parameter/fesnelAmount = 5.0
+shader_parameter/distortionVertex = 0.0
+shader_parameter/speedVertex = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_npmxe"]
+material = SubResource("ShaderMaterial_p8km7")
+top_radius = 0.1
+bottom_radius = 0.1
+
+[sub_resource type="Curve3D" id="Curve3D_47nps"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, -0.5, 1.5, -0.5, 0, 0, 0, 0, 0, 0, 0, 2, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_awhig")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_npmxe")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_47nps")
