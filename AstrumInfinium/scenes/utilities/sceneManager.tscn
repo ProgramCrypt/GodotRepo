@@ -1,0 +1,23 @@
+[gd_scene load_steps=9 format=3 uid="uid://cbpecb26oh5ea"]
+
+[ext_resource type="Script" path="res://scenes/utilities/sceneManager.gd" id="1_gnowm"]
+[ext_resource type="PackedScene" uid="uid://lhtreytxsret" path="res://scenes/utilities/mainMenu.tscn" id="2_v6ewo"]
+[ext_resource type="PackedScene" uid="uid://drseolqryq6qb" path="res://scenes/levels/world.tscn" id="3_qn0tc"]
+[ext_resource type="PackedScene" uid="uid://dwslvyic7r8s3" path="res://scenes/levels/tutorial.tscn" id="3_sx3n3"]
+[ext_resource type="PackedScene" uid="uid://1evckdaryyuw" path="res://scenes/levels/level1.tscn" id="4_3i1mt"]
+[ext_resource type="PackedScene" uid="uid://cu681r6b4nv2y" path="res://scenes/levels/level2.tscn" id="5_qfike"]
+[ext_resource type="PackedScene" uid="uid://bv86btewn5qeo" path="res://scenes/levels/level3.tscn" id="6_8seww"]
+[ext_resource type="PackedScene" uid="uid://de58m5ldo2fjr" path="res://scenes/levels/level4.tscn" id="7_y88o2"]
+
+[node name="SceneManager" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gnowm")
+mainMenu = ExtResource("2_v6ewo")
+world = ExtResource("3_qn0tc")
+lvlScenes = Array[PackedScene]([ExtResource("3_sx3n3"), ExtResource("4_3i1mt"), ExtResource("5_qfike"), ExtResource("6_8seww"), ExtResource("7_y88o2")])

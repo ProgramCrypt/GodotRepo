@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://de58m5ldo2fjr"]
+[gd_scene load_steps=49 format=3 uid="uid://de58m5ldo2fjr"]
 
 [ext_resource type="Texture2D" uid="uid://b2wjvs83bq1j1" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Color.jpg" id="1_s3j4g"]
 [ext_resource type="Texture2D" uid="uid://d22ukslos34oa" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Metalness.jpg" id="2_xi3fd"]
@@ -12,7 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://crmoqxr5yy4v7" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_Metalness.jpg" id="10_7p34a"]
 [ext_resource type="Texture2D" uid="uid://ln5nb7x1w2gn" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_NormalDX.jpg" id="11_17k3h"]
 [ext_resource type="Texture2D" uid="uid://wv8mo2y8gupi" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_Roughness.jpg" id="12_rxc75"]
+[ext_resource type="Script" path="res://scenes/environment/forceField.gd" id="13_4w3ij"]
+[ext_resource type="Shader" path="res://shaders/forceField.gdshader" id="13_vubfp"]
+[ext_resource type="Texture2D" uid="uid://b6wxkqb74nomq" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Color - Copy.jpg" id="15_sy617"]
+[ext_resource type="Texture2D" uid="uid://bxi86t4tslqer" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Displacement.jpg" id="16_hslrl"]
 [ext_resource type="PackedScene" uid="uid://u58c23kt2cmb" path="res://scenes/objects/sphereLight.tscn" id="17_3bqay"]
+[ext_resource type="Texture2D" uid="uid://3orkysspv63k" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_NormalDX.jpg" id="17_ujph7"]
+[ext_resource type="Texture2D" uid="uid://cpu7l4l5wprpi" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Roughness.jpg" id="18_mqn5f"]
+[ext_resource type="AudioStream" uid="uid://ckirg35wmutfa" path="res://audio/SFX/forceField-002.wav" id="19_kd4yr"]
 [ext_resource type="PackedScene" uid="uid://be0uqylsbp50a" path="res://scenes/levels/passageway.tscn" id="20_7f73d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgdcb"]
@@ -148,6 +155,37 @@ emission = Color(1, 0, 0, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_77uex"]
 material = SubResource("StandardMaterial3D_2cgj8")
 size = Vector2(3, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtxfe"]
+render_priority = 0
+shader = ExtResource("13_vubfp")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission = 0.5
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/heightmap_scale = null
+shader_parameter/heightmap_min_layers = null
+shader_parameter/heightmap_max_layers = null
+shader_parameter/heightmap_flip = null
+shader_parameter/uv1_scale = Vector3(10, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = null
+shader_parameter/texture_albedo = ExtResource("15_sy617")
+shader_parameter/texture_metallic = ExtResource("16_hslrl")
+shader_parameter/texture_roughness = ExtResource("18_mqn5f")
+shader_parameter/texture_normal = ExtResource("17_ujph7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_hq5ef"]
+material = SubResource("ShaderMaterial_dtxfe")
+size = Vector3(10, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c4q1f"]
+size = Vector3(10, 0.1, 2)
 
 [node name="Level4" type="Node3D" groups=["level"]]
 
@@ -367,6 +405,24 @@ mesh = SubResource("PlaneMesh_77uex")
 shape = SubResource("BoxShape3D_5ux0c")
 
 [node name="interiorGeometry" type="Node3D" parent="."]
+
+[node name="forceField" type="StaticBody3D" parent="interiorGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 6)
+script = ExtResource("13_4w3ij")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="interiorGeometry/forceField"]
+mesh = SubResource("BoxMesh_hq5ef")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interiorGeometry/forceField"]
+shape = SubResource("BoxShape3D_c4q1f")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="interiorGeometry/forceField"]
+stream = ExtResource("19_kd4yr")
+volume_db = -15.0
+unit_size = 2.0
+max_db = 2.0
+autoplay = true
+bus = &"SFX"
 
 [node name="lights" type="Node3D" parent="."]
 

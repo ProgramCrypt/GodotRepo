@@ -2,26 +2,26 @@
 
 shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : source_color;
+uniform vec4 albedo : source_color = vec4(1.0);
 uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
 uniform float emission : hint_range(0.0, 20.0) = 0.5;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128) = 1.0;
+uniform float roughness : hint_range(0,1) = 1.0;
 uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
 uniform vec4 metallic_texture_channel;
 uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
-uniform float specular;
-uniform float metallic;
+uniform float specular = 0.5;
+uniform float metallic = 1.0;
 uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
-uniform float normal_scale : hint_range(-16,16);
+uniform float normal_scale : hint_range(-16,16) = 1.0;
 uniform sampler2D texture_heightmap : hint_default_black,filter_linear_mipmap,repeat_enable;
 uniform float heightmap_scale;
 uniform int heightmap_min_layers;
 uniform int heightmap_max_layers;
 uniform vec2 heightmap_flip;
-uniform vec3 uv1_scale;
+uniform vec3 uv1_scale = vec3(1.0);
 uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
+uniform vec3 uv2_scale = vec3(1.0);
 uniform vec3 uv2_offset;
 
 

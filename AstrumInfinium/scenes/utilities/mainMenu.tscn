@@ -1,0 +1,426 @@
+[gd_scene load_steps=8 format=3 uid="uid://lhtreytxsret"]
+
+[ext_resource type="Theme" uid="uid://b1rx2nonbt2pj" path="res://utilities/themes/mainMenu.tres" id="1_r4cjs"]
+[ext_resource type="Script" path="res://scenes/utilities/mainMenu.gd" id="2_7iq2a"]
+[ext_resource type="Texture2D" uid="uid://buy0gsynvvv46" path="res://textures/flat/mainMenuStarBackground.jpg" id="2_qh106"]
+[ext_resource type="FontFile" uid="uid://bwb473dwjii4" path="res://utilities/fonts/AquireBold-8Ma60.otf" id="3_2ll18"]
+[ext_resource type="PackedScene" uid="uid://nu0cdx61nmg0" path="res://scenes/utilities/keybindingsMenu.tscn" id="3_bd7qc"]
+[ext_resource type="FontFile" uid="uid://6lmyrnhkhyxw" path="res://utilities/fonts/Xolonium-Bold.ttf" id="5_7nyu8"]
+
+[sub_resource type="FontVariation" id="FontVariation_6ijwv"]
+base_font = ExtResource("3_2ll18")
+spacing_glyph = 50
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r4cjs")
+script = ExtResource("2_7iq2a")
+keybindingsMenu = ExtResource("3_bd7qc")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_qh106")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="mainMenu" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="title" type="Label" parent="MarginContainer/mainMenu"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_6ijwv")
+text = "─ASTRUM INFINIUM─"
+horizontal_alignment = 1
+
+[node name="center" type="HBoxContainer" parent="MarginContainer/mainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="mainButtons" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="newGame" type="Button" parent="MarginContainer/mainMenu/center/mainButtons"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = " NEW GAME "
+alignment = 0
+
+[node name="loadGame" type="Button" parent="MarginContainer/mainMenu/center/mainButtons"]
+process_mode = 3
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = " LOAD GAME "
+alignment = 0
+
+[node name="options" type="Button" parent="MarginContainer/mainMenu/center/mainButtons"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = " OPTIONS"
+alignment = 0
+
+[node name="quit" type="Button" parent="MarginContainer/mainMenu/center/mainButtons"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = " QUIT"
+alignment = 0
+
+[node name="newGameButtons" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="overwriteSave" type="Label" parent="MarginContainer/mainMenu/center/newGameButtons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "OVERWRITE CURRENT SAVE?"
+
+[node name="yesOverwrite" type="Button" parent="MarginContainer/mainMenu/center/newGameButtons"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = " YES"
+alignment = 0
+
+[node name="noOverwrite" type="Button" parent="MarginContainer/mainMenu/center/newGameButtons"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = " NO"
+alignment = 0
+
+[node name="optionsVolume" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="masterVolume" type="Label" parent="MarginContainer/mainMenu/center/optionsVolume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "MASTER VOLUME"
+
+[node name="masterSlider" type="HSlider" parent="MarginContainer/mainMenu/center/optionsVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="musicVolume" type="Label" parent="MarginContainer/mainMenu/center/optionsVolume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "MUSIC VOLUME"
+
+[node name="musicSlider" type="HSlider" parent="MarginContainer/mainMenu/center/optionsVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="sfxVolume" type="Label" parent="MarginContainer/mainMenu/center/optionsVolume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "SFX VOLUME"
+
+[node name="sfxSlider" type="HSlider" parent="MarginContainer/mainMenu/center/optionsVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="voiceVolume" type="Label" parent="MarginContainer/mainMenu/center/optionsVolume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "VOICE VOLUME"
+
+[node name="voiceSlider" type="HSlider" parent="MarginContainer/mainMenu/center/optionsVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="back" type="Button" parent="MarginContainer/mainMenu/center/optionsVolume"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = " BACK"
+alignment = 0
+
+[node name="optionsOther" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="subtitles" type="CheckButton" parent="MarginContainer/mainMenu/center/optionsOther"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "SUBTITLES"
+
+[node name="screenType" type="CheckButton" parent="MarginContainer/mainMenu/center/optionsOther"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "FULLSCREEN"
+
+[node name="keyBindings" type="Button" parent="MarginContainer/mainMenu/center/optionsOther"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "KEY BINDINGS"
+alignment = 0
+
+[node name="mouseSensitivity" type="Label" parent="MarginContainer/mainMenu/center/optionsOther"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "MOUSE SENSITIVITY"
+
+[node name="sensitivitySlider" type="HSlider" parent="MarginContainer/mainMenu/center/optionsOther"]
+layout_mode = 2
+min_value = 0.6
+max_value = 1.4
+step = 0.05
+value = 0.6
+
+[node name="fov" type="Label" parent="MarginContainer/mainMenu/center/optionsOther"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "FIELD OF VIEW"
+
+[node name="fovSlider" type="HSlider" parent="MarginContainer/mainMenu/center/optionsOther"]
+layout_mode = 2
+min_value = 70.0
+value = 70.0
+
+[node name="creditsLeft" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="designer" type="Label" parent="MarginContainer/mainMenu/center/creditsLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 40
+text = "
+DESIGNER"
+
+[node name="designerName" type="Label" parent="MarginContainer/mainMenu/center/creditsLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "McKendree Springer
+ "
+
+[node name="programmer" type="Label" parent="MarginContainer/mainMenu/center/creditsLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 40
+text = "PROGRAMMER"
+
+[node name="programmerName" type="Label" parent="MarginContainer/mainMenu/center/creditsLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "McKendree Springer
+ "
+
+[node name="artist" type="Label" parent="MarginContainer/mainMenu/center/creditsLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 40
+text = "ARTIST"
+
+[node name="artistName" type="Label" parent="MarginContainer/mainMenu/center/creditsLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "McKendree Springer"
+
+[node name="creditsRight" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="music" type="Label" parent="MarginContainer/mainMenu/center/creditsRight"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 40
+text = "
+MUSIC"
+
+[node name="musicName" type="Label" parent="MarginContainer/mainMenu/center/creditsRight"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "McKendree Springer
+ "
+
+[node name="testers" type="Label" parent="MarginContainer/mainMenu/center/creditsRight"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 40
+text = "TESTERS"
+
+[node name="testerNames" type="Label" parent="MarginContainer/mainMenu/center/creditsRight"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "McKendree Springer
+ "
+
+[node name="voices" type="Label" parent="MarginContainer/mainMenu/center/creditsRight"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 40
+text = "VOICES"
+
+[node name="voiceNames" type="Label" parent="MarginContainer/mainMenu/center/creditsRight"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 45
+text = "McKendree Springer
+Bronsyn Foster"
+
+[node name="version" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
+visible = false
+layout_mode = 2
+
+[node name="version" type="Label" parent="MarginContainer/mainMenu/center/version"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 40
+text = "Alpha 1.0"
+
+[node name="description" type="Label" parent="MarginContainer/mainMenu/center/version"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("5_7nyu8")
+theme_override_font_sizes/font_size = 40
+text = "• Base mechanics and menu functionality
+• Placeholder introduction cutscene
+• First six levels
+• Limited music and sound
+• Basic keyboard and controller support"
+
+[node name="lowerButtons" type="HBoxContainer" parent="MarginContainer/mainMenu"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="credits" type="Button" parent="MarginContainer/mainMenu/lowerButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = " CREDITS "
+alignment = 0
+
+[node name="backLower" type="Button" parent="MarginContainer/mainMenu/lowerButtons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = " BACK "
+alignment = 0
+
+[node name="version" type="Button" parent="MarginContainer/mainMenu/lowerButtons"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = " VERSION:  Alpha 1.0 "
+alignment = 2
+
+[connection signal="pressed" from="MarginContainer/mainMenu/center/mainButtons/newGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/mainMenu/center/mainButtons/loadGame" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="MarginContainer/mainMenu/center/mainButtons/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/mainMenu/center/mainButtons/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/mainMenu/center/newGameButtons/yesOverwrite" to="." method="_on_yes_overwrite_pressed"]
+[connection signal="pressed" from="MarginContainer/mainMenu/center/newGameButtons/noOverwrite" to="." method="_on_no_overwrite_pressed"]
+[connection signal="value_changed" from="MarginContainer/mainMenu/center/optionsVolume/masterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/mainMenu/center/optionsVolume/musicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/mainMenu/center/optionsVolume/sfxSlider" to="." method="_on_environment_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/mainMenu/center/optionsVolume/voiceSlider" to="." method="_on_voice_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/mainMenu/center/optionsVolume/back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="MarginContainer/mainMenu/center/optionsOther/subtitles" to="." method="_on_subtitles_toggled"]
+[connection signal="toggled" from="MarginContainer/mainMenu/center/optionsOther/screenType" to="." method="_on_screen_type_toggled"]
+[connection signal="pressed" from="MarginContainer/mainMenu/center/optionsOther/keyBindings" to="." method="_on_key_bindings_pressed"]
+[connection signal="drag_ended" from="MarginContainer/mainMenu/center/optionsOther/sensitivitySlider" to="." method="_on_sensitivity_slider_drag_ended"]
+[connection signal="drag_ended" from="MarginContainer/mainMenu/center/optionsOther/fovSlider" to="." method="_on_fov_slider_drag_ended"]
+[connection signal="pressed" from="MarginContainer/mainMenu/lowerButtons/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MarginContainer/mainMenu/lowerButtons/backLower" to="." method="_on_back_lower_pressed"]
+[connection signal="pressed" from="MarginContainer/mainMenu/lowerButtons/version" to="." method="_on_version_pressed"]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://6u86pj1iakdk" path="res://textures/spherical/hiptyc_2020_16k_gal.jpg" id="3_dxgek"]
 [ext_resource type="PackedScene" uid="uid://cxn4ysicb4ufj" path="res://scenes/player/player.tscn" id="4_5r1mu"]
 [ext_resource type="Shader" path="res://shaders/playerVignette.gdshader" id="5_ml80f"]
-[ext_resource type="PackedScene" uid="uid://1evckdaryyuw" path="res://scenes/levels/level1.tscn" id="6_cilje"]
+[ext_resource type="PackedScene" uid="uid://de58m5ldo2fjr" path="res://scenes/levels/level4.tscn" id="6_j7epo"]
 [ext_resource type="PackedScene" uid="uid://gk38g4ucrpeu" path="res://scenes/objects/box.tscn" id="12_xskhi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r16ff"]
@@ -66,7 +66,7 @@ color = Color(1, 1, 1, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aeep0")
 
-[node name="Level1" parent="." instance=ExtResource("6_cilje")]
+[node name="Level4" parent="." instance=ExtResource("6_j7epo")]
 
 [node name="testOmniLight" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 15, 5)

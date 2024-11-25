@@ -1,108 +1,29 @@
-[gd_scene load_steps=19 format=3 uid="uid://c65m1ue4yttei"]
+[gd_scene load_steps=14 format=3 uid="uid://c65m1ue4yttei"]
 
 [ext_resource type="FontFile" uid="uid://6lmyrnhkhyxw" path="res://utilities/fonts/Xolonium-Bold.ttf" id="1_mtobp"]
-[ext_resource type="FontFile" uid="uid://bwb473dwjii4" path="res://utilities/fonts/AquireBold-8Ma60.otf" id="2_7gueh"]
+[ext_resource type="PackedScene" uid="uid://nu0cdx61nmg0" path="res://scenes/utilities/keybindingsMenu.tscn" id="2_nxyad"]
 [ext_resource type="PackedScene" uid="uid://1evckdaryyuw" path="res://scenes/levels/level1.tscn" id="2_to3n2"]
 [ext_resource type="Script" path="res://scenes/utilities/inGameMenu.gd" id="3_4862k"]
 [ext_resource type="PackedScene" uid="uid://cu681r6b4nv2y" path="res://scenes/levels/level2.tscn" id="3_f4wmh"]
 [ext_resource type="PackedScene" uid="uid://bv86btewn5qeo" path="res://scenes/levels/level3.tscn" id="4_6mtee"]
 [ext_resource type="PackedScene" uid="uid://de58m5ldo2fjr" path="res://scenes/levels/level4.tscn" id="5_yiqn6"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_774l7"]
-bg_color = Color(0.25, 0.25, 0.25, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irpok"]
-bg_color = Color(0.35, 0.35, 0.35, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3b3g"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo6d3"]
-bg_color = Color(0.45, 0.45, 0.45, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyuho"]
-content_margin_left = 4.0
-content_margin_top = 3.0
-content_margin_right = 4.0
-content_margin_bottom = 3.0
-bg_color = Color(0.45, 0.45, 0.45, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kknyv"]
-content_margin_left = 4.0
-content_margin_top = 3.0
-content_margin_right = 4.0
-content_margin_bottom = 3.0
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojxs0"]
-content_margin_left = 4.0
-content_margin_top = 3.0
-content_margin_right = 4.0
-content_margin_bottom = 3.0
-bg_color = Color(0.35, 0.35, 0.35, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tcah"]
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.7, 0.7, 0.7, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lq532"]
-bg_color = Color(0.88, 0.88, 0.88, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.65, 0.65, 0.65, 1)
-
-[sub_resource type="Theme" id="Theme_n36xo"]
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
-Button/colors/font_disabled_color = Color(0.65, 0.65, 0.65, 1)
-Button/colors/font_focus_color = Color(1, 1, 1, 1)
-Button/colors/font_hover_color = Color(1, 1, 1, 1)
-Button/colors/font_hover_pressed_color = Color(0.88, 0.88, 0.88, 1)
-Button/font_sizes/font_size = 45
-Button/fonts/font = ExtResource("1_mtobp")
-Button/styles/disabled = SubResource("StyleBoxFlat_774l7")
-Button/styles/focus = SubResource("StyleBoxFlat_irpok")
-Button/styles/hover = SubResource("StyleBoxFlat_g3b3g")
-Button/styles/normal = SubResource("StyleBoxFlat_vo6d3")
-Button/styles/pressed = SubResource("StyleBoxFlat_vo6d3")
-HBoxContainer/constants/separation = 40
-HSlider/styles/grabber_area = SubResource("StyleBoxFlat_xyuho")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_kknyv")
-HSlider/styles/slider = SubResource("StyleBoxFlat_ojxs0")
-Label/colors/font_color = Color(1, 1, 1, 1)
-Label/colors/font_shadow_color = Color(0, 0, 0, 0.666667)
-Label/constants/shadow_offset_x = 2
-Label/constants/shadow_offset_y = 2
-Label/font_sizes/font_size = 80
-Label/fonts/font = ExtResource("2_7gueh")
-Label/styles/normal = SubResource("StyleBoxFlat_8tcah")
-MarginContainer/constants/margin_bottom = 90
-MarginContainer/constants/margin_left = 160
-MarginContainer/constants/margin_right = 160
-MarginContainer/constants/margin_top = 90
-Panel/styles/panel = SubResource("StyleBoxFlat_lq532")
-VBoxContainer/constants/separation = 40
+[ext_resource type="Theme" uid="uid://c5qke2kfhachu" path="res://utilities/themes/inGameMenu.tres" id="6_p3h5r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in7nl"]
 bg_color = Color(0.88, 0.88, 0.88, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8yjw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i7g7w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3je6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncak7"]
+
 [node name="InGameMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("3_4862k")
+keybindingsMenu = ExtResource("2_nxyad")
 Lvl1 = ExtResource("2_to3n2")
 Lvl2 = ExtResource("3_f4wmh")
 Lvl3 = ExtResource("4_6mtee")
@@ -115,7 +36,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme = SubResource("Theme_n36xo")
+theme = ExtResource("6_p3h5r")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 process_mode = 3
@@ -170,6 +91,7 @@ layout_mode = 2
 text = "EXIT"
 
 [node name="levelMenu" type="MarginContainer" parent="Control/MarginContainer"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/levelMenu"]
@@ -327,11 +249,11 @@ text = "18
 "
 
 [node name="back" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 text = "BACK"
 
 [node name="optionsMenu" type="MarginContainer" parent="Control/MarginContainer"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/optionsMenu"]
@@ -345,62 +267,137 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="spacer" type="Panel" parent="Control/MarginContainer/optionsMenu/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_in7nl")
 
-[node name="volume" type="HBoxContainer" parent="Control/MarginContainer/optionsMenu/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/optionsMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 75
 alignment = 1
 
-[node name="labels" type="VBoxContainer" parent="Control/MarginContainer/optionsMenu/VBoxContainer/volume"]
+[node name="volume" type="VBoxContainer" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 18
 alignment = 1
 
-[node name="master" type="Label" parent="Control/MarginContainer/optionsMenu/VBoxContainer/volume/labels"]
+[node name="master" type="Label" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_fonts/font = ExtResource("1_mtobp")
 theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a8yjw")
 text = " MASTER VOLUME "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="music" type="Label" parent="Control/MarginContainer/optionsMenu/VBoxContainer/volume/labels"]
+[node name="masterSlider" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
 layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="music" type="Label" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_fonts/font = ExtResource("1_mtobp")
 theme_override_font_sizes/font_size = 45
-text = "MUSIC"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_i7g7w")
+text = "MUSIC VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="sfx" type="Label" parent="Control/MarginContainer/optionsMenu/VBoxContainer/volume/labels"]
+[node name="musicSlider" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
 layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="sfx" type="Label" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_fonts/font = ExtResource("1_mtobp")
 theme_override_font_sizes/font_size = 45
-text = "SFX"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t3je6")
+text = "SFX VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="sliders" type="VBoxContainer" parent="Control/MarginContainer/optionsMenu/VBoxContainer/volume"]
+[node name="sfxSlider" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="voice" type="Label" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("1_mtobp")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ncak7")
+text = "VOICE VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="voiceSlider" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="other" type="VBoxContainer" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-theme_override_constants/separation = 99
+theme_override_constants/separation = 18
 alignment = 1
 
-[node name="master" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/volume/sliders"]
+[node name="subtitles" type="CheckButton" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
+layout_mode = 2
+text = "SUBTITLES"
+
+[node name="fullscreen" type="CheckButton" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
+layout_mode = 2
+text = "FULLSCREEN"
+
+[node name="keybindings" type="Button" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "KEY BINDINGS"
+
+[node name="cameraSensitivity" type="Label" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("1_mtobp")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ncak7")
+text = "MOUSE SENSITIVITY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sensitivitySlider" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
 layout_mode = 2
 
-[node name="music" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/volume/sliders"]
+[node name="fov" type="Label" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
 layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("1_mtobp")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ncak7")
+text = "FIELD OF VIEW"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="sfx" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/volume/sliders"]
+[node name="fovSlider" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
 layout_mode = 2
 
 [node name="back" type="Button" parent="Control/MarginContainer/optionsMenu/VBoxContainer"]
@@ -430,7 +427,13 @@ text = "BACK"
 [connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/17" to="." method="_on_17_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/18" to="." method="_on_18_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/back" to="." method="_on_back_pressed"]
-[connection signal="value_changed" from="Control/MarginContainer/optionsMenu/VBoxContainer/volume/sliders/master" to="." method="_on_master_value_changed"]
-[connection signal="value_changed" from="Control/MarginContainer/optionsMenu/VBoxContainer/volume/sliders/music" to="." method="_on_music_value_changed"]
-[connection signal="value_changed" from="Control/MarginContainer/optionsMenu/VBoxContainer/volume/sliders/sfx" to="." method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/masterSlider" to="." method="_on_master_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/musicSlider" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/sfxSlider" to="." method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/voiceSlider" to="." method="_on_voice_value_changed"]
+[connection signal="toggled" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other/subtitles" to="." method="_on_subtitles_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other/fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other/keybindings" to="." method="_on_keybindings_pressed"]
+[connection signal="drag_ended" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other/sensitivitySlider" to="." method="_on_sensitivity_slider_drag_ended"]
+[connection signal="drag_ended" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other/fovSlider" to="." method="_on_fov_slider_drag_ended"]
 [connection signal="pressed" from="Control/MarginContainer/optionsMenu/VBoxContainer/back" to="." method="_on_back1_pressed"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv1yo562yfx6f"]
+
+[ext_resource type="AudioStream" uid="uid://bebtipojo0ala" path="res://audio/SFX/UI/blipSelect4.wav" id="1_2ddre"]
+[ext_resource type="AudioStream" uid="uid://b7he8o5kaaofo" path="res://audio/music/Uranus.wav" id="2_gvtxn"]
+
+[node name="AudioManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="Node" parent="."]
+
+[node name="pressButton" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("1_2ddre")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="music" type="Node" parent="."]
+
+[node name="Uranus" type="AudioStreamPlayer" parent="music"]
+process_mode = 3
+stream = ExtResource("2_gvtxn")
+volume_db = -5.0
+bus = &"Music"

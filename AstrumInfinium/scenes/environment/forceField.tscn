@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5r7blx4aoo7g"]
+[gd_scene load_steps=14 format=3 uid="uid://b5r7blx4aoo7g"]
 
 [ext_resource type="Script" path="res://scenes/environment/forceField.gd" id="1_mxk2x"]
 [ext_resource type="Shader" path="res://shaders/forceField.gdshader" id="2_ynnrs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://3orkysspv63k" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_NormalDX.jpg" id="4_bh75r"]
 [ext_resource type="Texture2D" uid="uid://cpu7l4l5wprpi" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Roughness.jpg" id="5_t6gjh"]
 [ext_resource type="Texture2D" uid="uid://cf04738khmb08" path="res://textures/flat/MetalPlates017A_4K-JPG/MetalPlates017A_4K-JPG_Color.jpg" id="6_5j8ns"]
+[ext_resource type="AudioStream" uid="uid://cvlyqxjbdwa0w" path="res://audio/SFX/forceField-001.wav" id="8_erwhq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ijbvw"]
 render_priority = 0
@@ -64,3 +65,8 @@ shape = SubResource("BoxShape3D_ivf0v")
 [node name="opacityReferenceObject" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 mesh = SubResource("SphereMesh_tipke")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_erwhq")
+autoplay = true
+bus = &"SFX"

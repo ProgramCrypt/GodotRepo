@@ -57,6 +57,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 [node name="left" type="Node3D" parent="neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
+[node name="up" type="Node3D" parent="neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [node name="crosshair" type="CanvasLayer" parent="."]
 
 [node name="CenterContainer" type="CenterContainer" parent="crosshair"]

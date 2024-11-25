@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://nu0cdx61nmg0"]
+
+[ext_resource type="Theme" uid="uid://c5qke2kfhachu" path="res://utilities/themes/inGameMenu.tres" id="1_yxnjl"]
+[ext_resource type="Script" path="res://scenes/utilities/keybindingsMenu.gd" id="2_lk4ya"]
+[ext_resource type="FontFile" uid="uid://6lmyrnhkhyxw" path="res://utilities/fonts/Xolonium-Bold.ttf" id="3_2ckfk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuvii"]
+
+[node name="KeybindingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yxnjl")
+script = ExtResource("2_lk4ya")
+
+[node name="window" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Panel" type="Panel" parent="window"]
+layout_mode = 2
+
+[node name="menu" type="MarginContainer" parent="window"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="window/menu"]
+layout_mode = 2
+
+[node name="keybindings" type="Label" parent="window/menu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Keybindings"
+horizontal_alignment = 1
+
+[node name="keys" type="HBoxContainer" parent="window/menu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="left" type="VBoxContainer" parent="window/menu/VBoxContainer/keys"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="window/menu/VBoxContainer/keys/left"]
+visible = false
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("3_2ckfk")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_yuvii")
+text = "FORWARD: 'W'"
+
+[node name="forwardButton" type="Button" parent="window/menu/VBoxContainer/keys/left"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="window/menu/VBoxContainer/keys/left/forwardButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="right" type="VBoxContainer" parent="window/menu/VBoxContainer/keys"]
+layout_mode = 2
+
+[node name="back" type="Button" parent="window/menu/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 10
+text = "BACK"
+
+[connection signal="pressed" from="window/menu/VBoxContainer/back" to="." method="_on_back_pressed"]
