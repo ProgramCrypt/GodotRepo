@@ -4,7 +4,8 @@ extends Control
 
 
 func _ready():
-	pass # Replace with function body.
+	if sceneManager.detectController == true:
+		$window/menu/VBoxContainer/back.grab_focus()
 
 
 func _on_back_pressed():

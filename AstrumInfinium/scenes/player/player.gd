@@ -3,6 +3,7 @@ extends CharacterBody3D
 signal healthChanged(health)
 
 @onready var physicsHandler = get_node("/root/PhysicsHandler")
+@onready var gameSettings = get_node("/root/GameSettings")
 
 @export var interactHint : PackedScene
 @export var pauseMenu : PackedScene
@@ -13,8 +14,6 @@ var speed = normalSpeed
 const jumpVelocity = 3.5
 var direction
 var mass = 45
-
-var cameraSensitivity = 1
 
 var knownGravity = Vector3(0, -1, 0)
 
@@ -50,8 +49,8 @@ func _ready() -> void:
 
 func _input(event):
 	if event is InputEventMouseMotion and activeRot == false:
-		rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-event.relative.x * 0.1 * cameraSensitivity)) # Handles left/right camera movement
-		$neck/head.rotate_x(deg_to_rad(-event.relative.y * 0.1 * cameraSensitivity)) # Handles up/down camera movement
+		rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-event.relative.x * 0.1 * gameSettings.cameraSensitivity)) # Handles left/right camera movement
+		$neck/head.rotate_x(deg_to_rad(-event.relative.y * 0.1 * gameSettings.cameraSensitivity)) # Handles up/down camera movement
 		$neck/head.rotation.x = clamp($neck/head.rotation.x, deg_to_rad(-85), deg_to_rad(85)) # Restricts up/down camera movement to within plus or minus 85 degrees 
 
 
@@ -173,7 +172,14 @@ func _physics_process(delta):
 		var menu = pauseMenu.instantiate()
 		get_tree().root.call_deferred('add_child', menu)
 	
-	# Get the input direction and handle the movement/deceleration.
+	# Handle camera movement from controller inputs
+	var joystickVector = Input.get_vector("cameraLeft", "cameraRight", "cameraDown", "cameraUp")
+	if joystickVector != Vector2(0, 0):
+		rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-joystickVector.x * 4 * gameSettings.cameraSensitivity)) # Handles left/right camera movement
+		$neck/head.rotate_x(deg_to_rad(joystickVector.y * 4 * gameSettings.cameraSensitivity)) # Handles up/down camera movement
+		$neck/head.rotation.x = clamp($neck/head.rotation.x, deg_to_rad(-85), deg_to_rad(85)) # Restricts up/down camera movement to within plus or minus 85 degrees 
+	
+	# Get the input direction and handle player movement/deceleration.
 	var vy = velocity.normalized().dot(physicsHandler.globalGravityDir) * velocity.length() * physicsHandler.globalGravityDir # Saves vertical component of velocity from previous frame
 	var vxz = velocity - vy # Saves horizontal component of velocity from previous frame to add to this frame's velocity if the player is falling
 	
@@ -182,7 +188,7 @@ func _physics_process(delta):
 	# Sets this frame's velocity to the current horizontal directional input
 	var inputVector = Input.get_vector("left", "right", "forward", "backward")
 	if inputVector != Vector2(0, 0):
-		inputVector = Vector3(inputVector.x, 0, inputVector.y).rotated($neck/up.global_position - global_position, rotation.y)
+		inputVector = Vector3(inputVector.x, 0, inputVector.y).rotated($neck/up.global_position - global_position, rotation.y) # This doesn't work if the gravity changes due to the axes becoming misaligned
 		if is_on_floor():
 			velocity += inputVector * speed
 		else: #  If player is falling, this lets them accelerate horizontally up to their max speed. The 5 integer just controls how fast they can accelerate
@@ -195,31 +201,7 @@ func _physics_process(delta):
 			velocity += forward * speed
 		else: # If player is falling, this lets them accelerate horizontally up to a maximum value
 			if (vxz + (forward * 5 * delta)).dot(forward) < (forward * speed * 1.41).dot(forward):
-				vxz += forward * 5 * delta
-	
-	if Input.is_action_pressed("backward"):
-		backward = $neck/backward.global_position - global_position
-		if is_on_floor():
-			velocity += backward * speed
-		else:
-			if (vxz + (backward * 5 * delta)).dot(backward) < (backward * speed * 1.41).dot(backward):
-				vxz += backward * 5 * delta
-	
-	if Input.is_action_pressed("right"):
-		right = $neck/right.global_position - global_position
-		if is_on_floor():
-			velocity += right * speed
-		else:
-			if (vxz + (right * 5 * delta)).dot(right) < (right * speed * 1.41).dot(right):
-				vxz += right * 5 * delta
-	
-	if Input.is_action_pressed("left"):
-		left = $neck/left.global_position - global_position
-		if is_on_floor():
-			velocity += left * speed
-		else:
-			if (vxz + (left * 5 * delta)).dot(left) < (left * speed * 1.41).dot(left):
-				vxz += left * 5 * delta'
+				vxz += forward * 5 * delta'
 	
 	# Adds horizontal velocity from previous physics frame if the player is falling so that they retain momentum
 	if is_on_floor() == false: 

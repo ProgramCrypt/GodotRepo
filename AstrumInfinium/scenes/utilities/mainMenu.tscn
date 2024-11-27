@@ -50,7 +50,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="mainButtons" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 2
 
@@ -112,6 +111,7 @@ text = " NO"
 alignment = 0
 
 [node name="optionsVolume" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 2
 
@@ -126,6 +126,8 @@ text = "MASTER VOLUME"
 
 [node name="masterSlider" type="HSlider" parent="MarginContainer/mainMenu/center/optionsVolume"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../back")
+focus_previous = NodePath("../back")
 max_value = 1.0
 step = 0.001
 
@@ -168,6 +170,8 @@ text = "VOICE VOLUME"
 
 [node name="voiceSlider" type="HSlider" parent="MarginContainer/mainMenu/center/optionsVolume"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../optionsOther/subtitles")
+focus_next = NodePath("../../optionsOther/subtitles")
 max_value = 1.0
 step = 0.001
 
@@ -175,16 +179,23 @@ step = 0.001
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+focus_neighbor_top = NodePath("../../optionsOther/fovSlider")
+focus_neighbor_bottom = NodePath("../masterSlider")
+focus_next = NodePath("../masterSlider")
+focus_previous = NodePath("../../optionsOther/fovSlider")
 text = " BACK"
 alignment = 0
 
 [node name="optionsOther" type="VBoxContainer" parent="MarginContainer/mainMenu/center"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 2
 
 [node name="subtitles" type="CheckButton" parent="MarginContainer/mainMenu/center/optionsOther"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../optionsVolume/voiceSlider")
+focus_previous = NodePath("../../optionsVolume/voiceSlider")
 text = "SUBTITLES"
 
 [node name="screenType" type="CheckButton" parent="MarginContainer/mainMenu/center/optionsOther"]
@@ -226,6 +237,8 @@ text = "FIELD OF VIEW"
 
 [node name="fovSlider" type="HSlider" parent="MarginContainer/mainMenu/center/optionsOther"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../optionsVolume/back")
+focus_next = NodePath("../../optionsVolume/back")
 min_value = 70.0
 value = 70.0
 

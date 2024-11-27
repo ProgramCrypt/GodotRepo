@@ -91,7 +91,6 @@ layout_mode = 2
 text = "EXIT"
 
 [node name="levelMenu" type="MarginContainer" parent="Control/MarginContainer"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/levelMenu"]
@@ -118,40 +117,46 @@ alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="1" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
+[node name="level1" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../back")
+focus_neighbor_top = NodePath("../../../back")
+focus_next = NodePath("../level2")
+focus_previous = NodePath("../../../back")
 text = "1
 "
 
-[node name="2" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
+[node name="level2" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 text = "2
 "
 
-[node name="3" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
+[node name="level3" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 text = "3
 "
 
-[node name="4" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
+[node name="level4" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 text = "4
 "
 
-[node name="5" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
+[node name="level5" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 disabled = true
 text = "5
 "
 
-[node name="6" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
+[node name="level6" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
+focus_neighbor_right = NodePath("../../HBoxContainer2/level7")
+focus_next = NodePath("../../HBoxContainer2/level7")
 disabled = true
 text = "6
 "
@@ -160,44 +165,48 @@ text = "6
 layout_mode = 2
 alignment = 1
 
-[node name="7" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
+[node name="level7" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../HBoxContainer/level6")
+focus_previous = NodePath("../../HBoxContainer/level6")
 disabled = true
 text = "7
 "
 
-[node name="8" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
+[node name="level8" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 disabled = true
 text = "8
 "
 
-[node name="9" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
+[node name="level9" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 disabled = true
 text = "9
 "
 
-[node name="10" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
+[node name="level10" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 disabled = true
 text = "10
 "
 
-[node name="11" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
+[node name="level11" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 disabled = true
 text = "11
 "
 
-[node name="12" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
+[node name="level12" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
+focus_neighbor_right = NodePath("../../HBoxContainer3/level13")
+focus_next = NodePath("../../HBoxContainer3/level13")
 disabled = true
 text = "12
 "
@@ -206,44 +215,49 @@ text = "12
 layout_mode = 2
 alignment = 1
 
-[node name="13" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
+[node name="level13" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../HBoxContainer2/level12")
+focus_previous = NodePath("../../HBoxContainer2/level12")
 disabled = true
 text = "13
 "
 
-[node name="14" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
+[node name="level14" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 disabled = true
 text = "14
 "
 
-[node name="15" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
+[node name="level15" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 disabled = true
 text = "15
 "
 
-[node name="16" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
+[node name="level16" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 disabled = true
 text = "16
 "
 
-[node name="17" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
+[node name="level17" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 disabled = true
 text = "17
 "
 
-[node name="18" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
+[node name="level18" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
+focus_neighbor_right = NodePath("../../../back")
+focus_neighbor_bottom = NodePath("../../../back")
+focus_next = NodePath("../../../back")
 disabled = true
 text = "18
 "
@@ -251,9 +265,16 @@ text = "18
 [node name="back" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
+focus_neighbor_left = NodePath("../levelSelect/HBoxContainer3/level18")
+focus_neighbor_top = NodePath("../levelSelect/HBoxContainer3/level18")
+focus_neighbor_right = NodePath("../levelSelect/HBoxContainer/level1")
+focus_neighbor_bottom = NodePath("../levelSelect/HBoxContainer/level1")
+focus_next = NodePath("../levelSelect/HBoxContainer/level1")
+focus_previous = NodePath("../levelSelect/HBoxContainer3/level18")
 text = "BACK"
 
 [node name="optionsMenu" type="MarginContainer" parent="Control/MarginContainer"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/optionsMenu"]
@@ -297,6 +318,8 @@ vertical_alignment = 1
 
 [node name="masterSlider" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../back")
+focus_previous = NodePath("../../../back")
 max_value = 1.0
 step = 0.001
 
@@ -348,6 +371,8 @@ vertical_alignment = 1
 
 [node name="voiceSlider" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../other/subtitles")
+focus_next = NodePath("../../other/subtitles")
 max_value = 1.0
 step = 0.001
 
@@ -359,6 +384,8 @@ alignment = 1
 
 [node name="subtitles" type="CheckButton" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../volume/voiceSlider")
+focus_previous = NodePath("../../volume/voiceSlider")
 text = "SUBTITLES"
 
 [node name="fullscreen" type="CheckButton" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
@@ -399,33 +426,39 @@ vertical_alignment = 1
 
 [node name="fovSlider" type="HSlider" parent="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../back")
+focus_next = NodePath("../../../back")
 
 [node name="back" type="Button" parent="Control/MarginContainer/optionsMenu/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../HBoxContainer/other/fovSlider")
+focus_neighbor_bottom = NodePath("../HBoxContainer/volume/masterSlider")
+focus_next = NodePath("../HBoxContainer/volume/masterSlider")
+focus_previous = NodePath("../HBoxContainer/other/fovSlider")
 text = "BACK"
 
 [connection signal="pressed" from="Control/MarginContainer/pauseMenu/VBoxContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/pauseMenu/VBoxContainer/VBoxContainer/levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/pauseMenu/VBoxContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/pauseMenu/VBoxContainer/exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/1" to="." method="_on_1_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/2" to="." method="_on_2_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/3" to="." method="_on_3_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/4" to="." method="_on_4_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/5" to="." method="_on_5_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/6" to="." method="_on_6_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/7" to="." method="_on_7_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/8" to="." method="_on_8_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/9" to="." method="_on_9_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/10" to="." method="_on_10_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/11" to="." method="_on_11_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/12" to="." method="_on_12_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/13" to="." method="_on_13_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/14" to="." method="_on_14_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/15" to="." method="_on_15_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/16" to="." method="_on_16_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/17" to="." method="_on_17_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/18" to="." method="_on_18_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/level1" to="." method="_on_1_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/level2" to="." method="_on_2_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/level3" to="." method="_on_3_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/level4" to="." method="_on_4_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/level5" to="." method="_on_5_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/level6" to="." method="_on_6_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/level7" to="." method="_on_7_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/level8" to="." method="_on_8_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/level9" to="." method="_on_9_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/level10" to="." method="_on_10_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/level11" to="." method="_on_11_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer2/level12" to="." method="_on_12_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/level13" to="." method="_on_13_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/level14" to="." method="_on_14_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/level15" to="." method="_on_15_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/level16" to="." method="_on_16_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/level17" to="." method="_on_17_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer3/level18" to="." method="_on_18_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/levelMenu/VBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="value_changed" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/masterSlider" to="." method="_on_master_value_changed"]
 [connection signal="value_changed" from="Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/musicSlider" to="." method="_on_music_value_changed"]

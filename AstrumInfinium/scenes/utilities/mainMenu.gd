@@ -32,12 +32,24 @@ func _ready():
 		$MarginContainer/mainMenu/center/mainButtons/loadGame.disabled = true
 	else:
 		$MarginContainer/mainMenu/center/mainButtons/loadGame.disabled = false
+	
+	if sceneManager.detectController == true:
+		$MarginContainer/mainMenu/center/mainButtons/newGame.grab_focus()
+
+
+func _input(event):
+	if event is InputEventJoypadButton or InputEventJoypadMotion:
+		if sceneManager.detectController == false:
+			sceneManager.detectController = true
+			$MarginContainer/mainMenu/center/mainButtons/newGame.grab_focus()
 
 
 func _on_new_game_pressed():
 	$"/root/AudioManager/UI/pressButton".play(0)
 	$MarginContainer/mainMenu/center/mainButtons.visible = false
 	$MarginContainer/mainMenu/center/newGameButtons.visible = true
+	if sceneManager.detectController == true:
+		$MarginContainer/mainMenu/center/newGameButtons/noOverwrite.grab_focus()
 
 
 func _on_load_game_pressed():
@@ -51,6 +63,21 @@ func _on_options_pressed():
 	$MarginContainer/mainMenu/center/optionsVolume.visible = true
 	$MarginContainer/mainMenu/center/optionsOther.visible = true
 	$MarginContainer/mainMenu/lowerButtons.visible = false
+	if sceneManager.detectController == true:
+		$MarginContainer/mainMenu/center/optionsVolume/masterSlider.grab_focus()
+		$MarginContainer/mainMenu/center/optionsVolume/masterSlider.step = 0.05
+		$MarginContainer/mainMenu/center/optionsVolume/musicSlider.step = 0.05
+		$MarginContainer/mainMenu/center/optionsVolume/sfxSlider.step = 0.05
+		$MarginContainer/mainMenu/center/optionsVolume/voiceSlider.step = 0.05
+		$MarginContainer/mainMenu/center/optionsOther/sensitivitySlider.step = 0.05
+		$MarginContainer/mainMenu/center/optionsOther/fovSlider.step = 2
+	else:
+		$MarginContainer/mainMenu/center/optionsVolume/masterSlider.step = 0.001
+		$MarginContainer/mainMenu/center/optionsVolume/musicSlider.step = 0.001
+		$MarginContainer/mainMenu/center/optionsVolume/sfxSlider.step = 0.001
+		$MarginContainer/mainMenu/center/optionsVolume/voiceSlider.step = 0.001
+		$MarginContainer/mainMenu/center/optionsOther/sensitivitySlider.step = 0.05
+		$MarginContainer/mainMenu/center/optionsOther/fovSlider.step = 1
 
 
 func _on_quit_pressed():
@@ -69,6 +96,8 @@ func _on_no_overwrite_pressed():
 	$"/root/AudioManager/UI/pressButton".play(0)
 	$MarginContainer/mainMenu/center/mainButtons.visible = true
 	$MarginContainer/mainMenu/center/newGameButtons.visible = false
+	if sceneManager.detectController == true:
+		$MarginContainer/mainMenu/center/mainButtons/newGame.grab_focus()
 
 
 func _on_master_slider_value_changed(value):
@@ -94,6 +123,8 @@ func _on_back_pressed():
 	$MarginContainer/mainMenu/center/optionsVolume.visible = false
 	$MarginContainer/mainMenu/center/optionsOther.visible = false
 	$MarginContainer/mainMenu/lowerButtons.visible = true
+	if sceneManager.detectController == true:
+		$MarginContainer/mainMenu/center/mainButtons/newGame.grab_focus()
 
 func _on_subtitles_toggled(toggled_on):
 	gameSettings.subtitles = toggled_on
@@ -133,6 +164,8 @@ func _on_credits_pressed():
 	$MarginContainer/mainMenu/lowerButtons/backLower.visible = true
 	$MarginContainer/mainMenu/center/creditsLeft.visible = true
 	$MarginContainer/mainMenu/center/creditsRight.visible = true
+	if sceneManager.detectController == true:
+		$MarginContainer/mainMenu/lowerButtons/backLower.grab_focus()
 
 
 func _on_version_pressed():
@@ -147,6 +180,8 @@ func _on_version_pressed():
 	$MarginContainer/mainMenu/lowerButtons/version.visible = false
 	$MarginContainer/mainMenu/lowerButtons/backLower.visible = true
 	$MarginContainer/mainMenu/center/version.visible = true
+	if sceneManager.detectController == true:
+		$MarginContainer/mainMenu/lowerButtons/backLower.grab_focus()
 
 
 func _on_back_lower_pressed():
@@ -158,3 +193,5 @@ func _on_back_lower_pressed():
 	$MarginContainer/mainMenu/center/creditsLeft.visible = false
 	$MarginContainer/mainMenu/center/creditsRight.visible = false
 	$MarginContainer/mainMenu/center/version.visible = false
+	if sceneManager.detectController == true:
+		$MarginContainer/mainMenu/center/mainButtons/newGame.grab_focus()

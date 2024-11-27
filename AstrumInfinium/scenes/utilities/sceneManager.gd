@@ -14,6 +14,8 @@ var saveSettingsPath = "user://AstrumInfiniumSettingsSaveFile.save"
 var maxLvl = 0
 var maxCheckpoint = 0
 
+var detectController = false
+
 
 func _ready():
 	if FileAccess.file_exists(saveProgressionPath):

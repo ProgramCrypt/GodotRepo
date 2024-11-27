@@ -26,6 +26,9 @@ func _ready():
 	$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/musicSlider.value = db_to_linear(AudioServer.get_bus_volume_db(1))
 	$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/sfxSlider.value = db_to_linear(AudioServer.get_bus_volume_db(2))
 	$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/voiceSlider.value = db_to_linear(AudioServer.get_bus_volume_db(3))
+	
+	if sceneManager.detectController == true:
+		$Control/MarginContainer/pauseMenu/VBoxContainer/VBoxContainer/resume.grab_focus()
 
 
 func _process(_delta):
@@ -50,6 +53,8 @@ func _on_levels_pressed():
 	$Control/MarginContainer/pauseMenu.visible = false
 	$Control/MarginContainer/levelMenu.visible = true
 	$Control/MarginContainer/optionsMenu.visible = false
+	if sceneManager.detectController == true:
+		$Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer/level1.grab_focus()
 
 
 func _on_options_pressed():
@@ -57,6 +62,21 @@ func _on_options_pressed():
 	$Control/MarginContainer/pauseMenu.visible = false
 	$Control/MarginContainer/levelMenu.visible = false
 	$Control/MarginContainer/optionsMenu.visible = true
+	if sceneManager.detectController == true:
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/masterSlider.grab_focus()
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/masterSlider.step = 0.05
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/musicSlider.step = 0.05
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/sfxSlider.step = 0.05
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/voiceSlider.step = 0.05
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other/sensitivitySlider.step = 0.05
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other/fovSlider.step = 2
+	else:
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/masterSlider.step = 0.001
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/musicSlider.step = 0.001
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/sfxSlider.step = 0.001
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/volume/voiceSlider.step = 0.001
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other/sensitivitySlider.step = 0.05
+		$Control/MarginContainer/optionsMenu/VBoxContainer/HBoxContainer/other/fovSlider.step = 1
 
 
 func _on_exit_pressed():
@@ -162,6 +182,8 @@ func _on_back_pressed():
 	$Control/MarginContainer/pauseMenu.visible = true
 	$Control/MarginContainer/levelMenu.visible = false
 	$Control/MarginContainer/optionsMenu.visible = false
+	if sceneManager.detectController == true:
+		$Control/MarginContainer/pauseMenu/VBoxContainer/VBoxContainer/resume.grab_focus()
 
 
 func _on_master_value_changed(value):
@@ -212,3 +234,5 @@ func _on_back1_pressed():
 	$Control/MarginContainer/pauseMenu.visible = true
 	$Control/MarginContainer/levelMenu.visible = false
 	$Control/MarginContainer/optionsMenu.visible = false
+	if sceneManager.detectController == true:
+		$Control/MarginContainer/pauseMenu/VBoxContainer/VBoxContainer/resume.grab_focus()
