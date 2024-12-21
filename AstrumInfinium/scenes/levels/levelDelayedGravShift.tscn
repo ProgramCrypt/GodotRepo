@@ -1,33 +1,34 @@
-[gd_scene load_steps=50 format=3 uid="uid://1evckdaryyuw"]
+[gd_scene load_steps=51 format=3 uid="uid://1evckdaryyuw"]
 
-[ext_resource type="Texture2D" uid="uid://b2wjvs83bq1j1" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Color.jpg" id="1_xt35n"]
-[ext_resource type="Texture2D" uid="uid://d22ukslos34oa" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Metalness.jpg" id="2_tadcl"]
-[ext_resource type="Texture2D" uid="uid://68538tcxj0pv" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_NormalDX.jpg" id="3_5irtj"]
-[ext_resource type="Texture2D" uid="uid://v7xgwwbhuick" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Roughness.jpg" id="4_hpx4v"]
-[ext_resource type="Texture2D" uid="uid://difxfe5d6ors7" path="res://textures/flat/MetalPlates008_4K-JPG/MetalPlates008_4K-JPG_Color.jpg" id="5_go05m"]
-[ext_resource type="Texture2D" uid="uid://behb5uqsjhrdt" path="res://textures/flat/MetalPlates008_4K-JPG/MetalPlates008_4K-JPG_Metalness.jpg" id="6_3n0n6"]
-[ext_resource type="Texture2D" uid="uid://dwk0f3thtpt8d" path="res://textures/flat/MetalPlates008_4K-JPG/MetalPlates008_4K-JPG_NormalDX.jpg" id="7_5fooe"]
-[ext_resource type="Texture2D" uid="uid://cb612s7vu5dca" path="res://textures/flat/MetalPlates008_4K-JPG/MetalPlates008_4K-JPG_Roughness.jpg" id="8_ljm50"]
-[ext_resource type="Texture2D" uid="uid://ck33mim3he8hh" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_Color.jpg" id="9_5xi67"]
-[ext_resource type="PackedScene" uid="uid://bqatkj0avs8wa" path="res://scenes/objects/gravShifter.tscn" id="9_g1010"]
-[ext_resource type="PackedScene" uid="uid://be0uqylsbp50a" path="res://scenes/levels/passageway.tscn" id="10_hlpuq"]
-[ext_resource type="Texture2D" uid="uid://crmoqxr5yy4v7" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_Metalness.jpg" id="10_w54hp"]
-[ext_resource type="Texture2D" uid="uid://ln5nb7x1w2gn" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_NormalDX.jpg" id="11_y6p4g"]
-[ext_resource type="Texture2D" uid="uid://wv8mo2y8gupi" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_Roughness.jpg" id="12_pa61p"]
-[ext_resource type="PackedScene" uid="uid://u58c23kt2cmb" path="res://scenes/objects/sphereLight.tscn" id="17_rmryo"]
-[ext_resource type="Texture2D" uid="uid://cjcpwgwjvnjp5" path="res://textures/flat/Metal006_4K-JPG/Metal006_4K-JPG_Color.jpg" id="17_tx6n2"]
-[ext_resource type="PackedScene" uid="uid://dcrai41a32b2l" path="res://scenes/objects/gravShifterInsta.tscn" id="18_1bkrj"]
-[ext_resource type="Texture2D" uid="uid://bq0bqpq21osmx" path="res://textures/flat/Metal006_4K-JPG/Metal006_4K-JPG_Metalness.jpg" id="18_ip8ok"]
-[ext_resource type="Texture2D" uid="uid://hsdlh62gux7v" path="res://textures/flat/Metal006_4K-JPG/Metal006_4K-JPG_NormalDX.jpg" id="19_vx4c7"]
-[ext_resource type="Texture2D" uid="uid://b7ut8vkb1x1x" path="res://textures/flat/Metal006_4K-JPG/Metal006_4K-JPG_Roughness.jpg" id="20_l32st"]
+[ext_resource type="Texture2D" uid="uid://b2wjvs83bq1j1" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Color.jpg" id="1_oc88u"]
+[ext_resource type="Texture2D" uid="uid://d22ukslos34oa" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Metalness.jpg" id="2_fr1qv"]
+[ext_resource type="Texture2D" uid="uid://68538tcxj0pv" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_NormalDX.jpg" id="3_7qcd2"]
+[ext_resource type="Texture2D" uid="uid://v7xgwwbhuick" path="res://textures/flat/MetalPlates006_4K-JPG/MetalPlates006_4K-JPG_Roughness.jpg" id="4_o7oi3"]
+[ext_resource type="Texture2D" uid="uid://difxfe5d6ors7" path="res://textures/flat/MetalPlates008_4K-JPG/MetalPlates008_4K-JPG_Color.jpg" id="5_1jdt2"]
+[ext_resource type="Texture2D" uid="uid://behb5uqsjhrdt" path="res://textures/flat/MetalPlates008_4K-JPG/MetalPlates008_4K-JPG_Metalness.jpg" id="6_lu08v"]
+[ext_resource type="Texture2D" uid="uid://dwk0f3thtpt8d" path="res://textures/flat/MetalPlates008_4K-JPG/MetalPlates008_4K-JPG_NormalDX.jpg" id="7_g4273"]
+[ext_resource type="Texture2D" uid="uid://cb612s7vu5dca" path="res://textures/flat/MetalPlates008_4K-JPG/MetalPlates008_4K-JPG_Roughness.jpg" id="8_100d8"]
+[ext_resource type="Texture2D" uid="uid://ck33mim3he8hh" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_Color.jpg" id="9_rq0mw"]
+[ext_resource type="Texture2D" uid="uid://crmoqxr5yy4v7" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_Metalness.jpg" id="10_y6csb"]
+[ext_resource type="Texture2D" uid="uid://ln5nb7x1w2gn" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_NormalDX.jpg" id="11_kx8t2"]
+[ext_resource type="Texture2D" uid="uid://wv8mo2y8gupi" path="res://textures/flat/Metal046B_4K-JPG/Metal046B_4K-JPG_Roughness.jpg" id="12_vcsds"]
+[ext_resource type="Texture2D" uid="uid://cjcpwgwjvnjp5" path="res://textures/flat/Metal006_4K-JPG/Metal006_4K-JPG_Color.jpg" id="13_27u7r"]
+[ext_resource type="Texture2D" uid="uid://bq0bqpq21osmx" path="res://textures/flat/Metal006_4K-JPG/Metal006_4K-JPG_Metalness.jpg" id="14_6l6y1"]
+[ext_resource type="Texture2D" uid="uid://hsdlh62gux7v" path="res://textures/flat/Metal006_4K-JPG/Metal006_4K-JPG_NormalDX.jpg" id="15_uevlg"]
+[ext_resource type="Texture2D" uid="uid://b7ut8vkb1x1x" path="res://textures/flat/Metal006_4K-JPG/Metal006_4K-JPG_Roughness.jpg" id="16_s25va"]
+[ext_resource type="PackedScene" uid="uid://u58c23kt2cmb" path="res://scenes/objects/sphereLight.tscn" id="17_k1jpo"]
+[ext_resource type="PackedScene" uid="uid://dcrai41a32b2l" path="res://scenes/objects/gravShifterInsta.tscn" id="18_5e5p8"]
+[ext_resource type="PackedScene" uid="uid://bqatkj0avs8wa" path="res://scenes/objects/gravShifter.tscn" id="19_pwopy"]
+[ext_resource type="PackedScene" uid="uid://be0uqylsbp50a" path="res://scenes/levels/passageway.tscn" id="20_spkvy"]
+[ext_resource type="PackedScene" uid="uid://dup8oxitch6yb" path="res://scenes/environment/exitPortal.tscn" id="21_kqjmi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgdcb"]
-albedo_texture = ExtResource("1_xt35n")
+albedo_texture = ExtResource("1_oc88u")
 metallic = 1.0
-metallic_texture = ExtResource("2_tadcl")
-roughness_texture = ExtResource("4_hpx4v")
+metallic_texture = ExtResource("2_fr1qv")
+roughness_texture = ExtResource("4_o7oi3")
 normal_enabled = true
-normal_texture = ExtResource("3_5irtj")
+normal_texture = ExtResource("3_7qcd2")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vmnlq"]
 material = SubResource("StandardMaterial3D_sgdcb")
@@ -37,36 +38,36 @@ size = Vector2(20, 20)
 size = Vector3(20, 0.2, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yy4oq"]
-albedo_texture = ExtResource("1_xt35n")
+albedo_texture = ExtResource("1_oc88u")
 metallic = 1.0
-metallic_texture = ExtResource("2_tadcl")
-roughness_texture = ExtResource("4_hpx4v")
+metallic_texture = ExtResource("2_fr1qv")
+roughness_texture = ExtResource("4_o7oi3")
 normal_enabled = true
-normal_texture = ExtResource("3_5irtj")
+normal_texture = ExtResource("3_7qcd2")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_eg8eo"]
 material = SubResource("StandardMaterial3D_yy4oq")
 size = Vector2(20, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3q0q"]
-albedo_texture = ExtResource("5_go05m")
+albedo_texture = ExtResource("5_1jdt2")
 metallic = 1.0
-metallic_texture = ExtResource("6_3n0n6")
-roughness_texture = ExtResource("8_ljm50")
+metallic_texture = ExtResource("6_lu08v")
+roughness_texture = ExtResource("8_100d8")
 normal_enabled = true
-normal_texture = ExtResource("7_5fooe")
+normal_texture = ExtResource("7_g4273")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wks7t"]
 material = SubResource("StandardMaterial3D_e3q0q")
 size = Vector2(20, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsiha"]
-albedo_texture = ExtResource("1_xt35n")
+albedo_texture = ExtResource("1_oc88u")
 metallic = 1.0
-metallic_texture = ExtResource("2_tadcl")
-roughness_texture = ExtResource("4_hpx4v")
+metallic_texture = ExtResource("2_fr1qv")
+roughness_texture = ExtResource("4_o7oi3")
 normal_enabled = true
-normal_texture = ExtResource("3_5irtj")
+normal_texture = ExtResource("3_7qcd2")
 uv1_scale = Vector3(0.425, 0.575, 0.575)
 uv1_offset = Vector3(0.575, 0.425, 0)
 
@@ -78,12 +79,12 @@ size = Vector2(8.5, 11.5)
 size = Vector3(8.5, 0.2, 11.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhd2q"]
-albedo_texture = ExtResource("1_xt35n")
+albedo_texture = ExtResource("1_oc88u")
 metallic = 1.0
-metallic_texture = ExtResource("2_tadcl")
-roughness_texture = ExtResource("4_hpx4v")
+metallic_texture = ExtResource("2_fr1qv")
+roughness_texture = ExtResource("4_o7oi3")
 normal_enabled = true
-normal_texture = ExtResource("3_5irtj")
+normal_texture = ExtResource("3_7qcd2")
 uv1_scale = Vector3(0.425, 0.575, 0.575)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2pap1"]
@@ -91,12 +92,12 @@ material = SubResource("StandardMaterial3D_dhd2q")
 size = Vector2(8.5, 11.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xarw4"]
-albedo_texture = ExtResource("1_xt35n")
+albedo_texture = ExtResource("1_oc88u")
 metallic = 1.0
-metallic_texture = ExtResource("2_tadcl")
-roughness_texture = ExtResource("4_hpx4v")
+metallic_texture = ExtResource("2_fr1qv")
+roughness_texture = ExtResource("4_o7oi3")
 normal_enabled = true
-normal_texture = ExtResource("3_5irtj")
+normal_texture = ExtResource("3_7qcd2")
 uv1_scale = Vector3(0.575, 0.425, 0.575)
 uv1_offset = Vector3(0.425, 0, 0)
 
@@ -108,12 +109,12 @@ size = Vector2(11.5, 8.5)
 size = Vector3(11.5, 0.2, 8.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7v4c"]
-albedo_texture = ExtResource("1_xt35n")
+albedo_texture = ExtResource("1_oc88u")
 metallic = 1.0
-metallic_texture = ExtResource("2_tadcl")
-roughness_texture = ExtResource("4_hpx4v")
+metallic_texture = ExtResource("2_fr1qv")
+roughness_texture = ExtResource("4_o7oi3")
 normal_enabled = true
-normal_texture = ExtResource("3_5irtj")
+normal_texture = ExtResource("3_7qcd2")
 uv1_scale = Vector3(0.575, 0.425, 0.575)
 uv1_offset = Vector3(0, 0.075, 0)
 
@@ -122,12 +123,12 @@ material = SubResource("StandardMaterial3D_d7v4c")
 size = Vector2(11.5, 8.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hph47"]
-albedo_texture = ExtResource("9_5xi67")
+albedo_texture = ExtResource("9_rq0mw")
 metallic = 1.0
-metallic_texture = ExtResource("10_w54hp")
-roughness_texture = ExtResource("12_pa61p")
+metallic_texture = ExtResource("10_y6csb")
+roughness_texture = ExtResource("12_vcsds")
 normal_enabled = true
-normal_texture = ExtResource("11_y6p4g")
+normal_texture = ExtResource("11_kx8t2")
 uv1_scale = Vector3(1, 0.1, 0.1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_o64am"]
@@ -155,33 +156,33 @@ emission = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_ikapp")
 size = Vector2(3, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c635f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aylaa"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("17_tx6n2")
+albedo_texture = ExtResource("13_27u7r")
 metallic = 1.0
-metallic_texture = ExtResource("18_ip8ok")
-roughness_texture = ExtResource("20_l32st")
+metallic_texture = ExtResource("14_6l6y1")
+roughness_texture = ExtResource("16_s25va")
 normal_enabled = true
-normal_texture = ExtResource("19_vx4c7")
+normal_texture = ExtResource("15_uevlg")
 uv1_scale = Vector3(10, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pkn7i"]
-material = SubResource("StandardMaterial3D_c635f")
+material = SubResource("StandardMaterial3D_aylaa")
 size = Vector2(20, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5od54"]
-albedo_texture = ExtResource("17_tx6n2")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryypa"]
+albedo_texture = ExtResource("13_27u7r")
 metallic = 1.0
-metallic_texture = ExtResource("18_ip8ok")
-roughness_texture = ExtResource("20_l32st")
+metallic_texture = ExtResource("14_6l6y1")
+roughness_texture = ExtResource("16_s25va")
 normal_enabled = true
-normal_texture = ExtResource("19_vx4c7")
+normal_texture = ExtResource("15_uevlg")
 uv1_scale = Vector3(5, 0.05, 0.05)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ca1yw"]
-material = SubResource("StandardMaterial3D_5od54")
+material = SubResource("StandardMaterial3D_ryypa")
 size = Vector2(20, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qkq7v"]
@@ -528,49 +529,52 @@ shape = SubResource("BoxShape3D_qkq7v")
 
 [node name="lights" type="Node3D" parent="."]
 
-[node name="light1" parent="lights" instance=ExtResource("17_rmryo")]
+[node name="light1" parent="lights" instance=ExtResource("17_k1jpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 5)
 
-[node name="light2" parent="lights" instance=ExtResource("17_rmryo")]
+[node name="light2" parent="lights" instance=ExtResource("17_k1jpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, 5)
 
-[node name="light3" parent="lights" instance=ExtResource("17_rmryo")]
+[node name="light3" parent="lights" instance=ExtResource("17_k1jpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -5)
 
-[node name="light4" parent="lights" instance=ExtResource("17_rmryo")]
+[node name="light4" parent="lights" instance=ExtResource("17_k1jpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, -5)
 
-[node name="light5" parent="lights" instance=ExtResource("17_rmryo")]
+[node name="light5" parent="lights" instance=ExtResource("17_k1jpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 15, 5)
 
-[node name="light6" parent="lights" instance=ExtResource("17_rmryo")]
+[node name="light6" parent="lights" instance=ExtResource("17_k1jpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 15, 5)
 
-[node name="light7" parent="lights" instance=ExtResource("17_rmryo")]
+[node name="light7" parent="lights" instance=ExtResource("17_k1jpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 15, -5)
 
-[node name="light8" parent="lights" instance=ExtResource("17_rmryo")]
+[node name="light8" parent="lights" instance=ExtResource("17_k1jpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 15, -5)
 
-[node name="gravShifterInsta" parent="." instance=ExtResource("18_1bkrj")]
+[node name="gravShifterInsta" parent="." instance=ExtResource("18_5e5p8")]
 
-[node name="gravShifterInsta2" parent="." instance=ExtResource("18_1bkrj")]
+[node name="gravShifterInsta2" parent="." instance=ExtResource("18_5e5p8")]
 transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 20, 0)
 
-[node name="gravShifterInsta3" parent="." instance=ExtResource("18_1bkrj")]
+[node name="gravShifterInsta3" parent="." instance=ExtResource("18_5e5p8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7, 10, 10)
 
-[node name="gravShifterInsta4" parent="." instance=ExtResource("18_1bkrj")]
+[node name="gravShifterInsta4" parent="." instance=ExtResource("18_5e5p8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 7, 10, -10)
 
-[node name="gravShifter3" parent="." instance=ExtResource("9_g1010")]
+[node name="gravShifter3" parent="." instance=ExtResource("19_pwopy")]
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 10, 10, 2)
 
-[node name="gravShifter4" parent="." instance=ExtResource("9_g1010")]
+[node name="gravShifter4" parent="." instance=ExtResource("19_pwopy")]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -10, 10, -2)
 
-[node name="passageway" parent="." instance=ExtResource("10_hlpuq")]
+[node name="passageway" parent="." instance=ExtResource("20_spkvy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 11.7)
 
-[node name="passageway2" parent="." instance=ExtResource("10_hlpuq")]
+[node name="passageway2" parent="." instance=ExtResource("20_spkvy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -11.7)
+
+[node name="ExitPortal" parent="." instance=ExtResource("21_kqjmi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 12.6)

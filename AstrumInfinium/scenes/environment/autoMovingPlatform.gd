@@ -3,6 +3,7 @@ extends Node3D
 @export var navigationPoints = [Vector3(0, 0, 0), Vector3(1, 0, 0)]
 @export var speed = 1.0
 @export var pauseDuration = 0.8
+@export var initialPause = false
 
 var nextPoint
 var pauseTimer = 0
@@ -11,7 +12,11 @@ var moving = true
 
 func _ready():
 	global_position = navigationPoints[0]
-	nextPoint = navigationPoints[1]
+	if initialPause == true:
+		nextPoint = navigationPoints[0]
+		moving = false
+	else:
+		nextPoint = navigationPoints[1]
 
 
 func _physics_process(delta):

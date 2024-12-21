@@ -16,6 +16,8 @@ var maxCheckpoint = 0
 
 var detectController = false
 
+var currentLvl = null
+
 
 func _ready():
 	if FileAccess.file_exists(saveProgressionPath):

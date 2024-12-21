@@ -21,9 +21,10 @@ func updateVignette(health):
 func changeLvl(level):
 	for lvl in get_tree().get_nodes_in_group('level'):
 		lvl.queue_free()
+	sceneManager.currentLvl = level
 	var instantiatedLevel = level.instantiate()
-	get_tree().root.get_node('world').call_deferred('add_child', instantiatedLevel)
-	get_tree().root.get_node('world').call_deferred('resetPlayer')
+	add_child(instantiatedLevel)
+	resetPlayer()
 
 
 func resetPlayer(playerPosition = Vector3(0, 10, -12)):

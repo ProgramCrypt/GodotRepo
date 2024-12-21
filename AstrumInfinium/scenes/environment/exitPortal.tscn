@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dup8oxitch6yb"]
+
+[ext_resource type="Script" path="res://scenes/environment/exitPortal.gd" id="1_0easr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6mk6l"]
+size = Vector3(3, 3, 0.2)
+
+[node name="ExitPortal" type="Area3D"]
+script = ExtResource("1_0easr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6mk6l")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

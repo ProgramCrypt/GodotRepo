@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv1yo562yfx6f"]
+[gd_scene load_steps=5 format=3 uid="uid://cv1yo562yfx6f"]
 
 [ext_resource type="AudioStream" uid="uid://bebtipojo0ala" path="res://audio/SFX/UI/blipSelect4.wav" id="1_2ddre"]
+[ext_resource type="Script" path="res://scenes/utilities/audioManager.gd" id="1_45733"]
 [ext_resource type="AudioStream" uid="uid://b7he8o5kaaofo" path="res://audio/music/Uranus.wav" id="2_gvtxn"]
+[ext_resource type="AudioStream" uid="uid://u1yetgrvojon" path="res://audio/music/Neptune.wav" id="4_p0wt1"]
 
 [node name="AudioManager" type="Control"]
 layout_mode = 3
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_45733")
 
 [node name="UI" type="Node" parent="."]
 
@@ -25,3 +28,16 @@ process_mode = 3
 stream = ExtResource("2_gvtxn")
 volume_db = -5.0
 bus = &"Music"
+
+[node name="Neptune" type="AudioStreamPlayer" parent="music"]
+process_mode = 3
+stream = ExtResource("4_p0wt1")
+volume_db = -5.0
+bus = &"Music"
+
+[node name="musicTimer" type="Timer" parent="music"]
+one_shot = true
+
+[connection signal="finished" from="music/Uranus" to="." method="_on_uranus_finished"]
+[connection signal="finished" from="music/Neptune" to="." method="_on_neptune_finished"]
+[connection signal="timeout" from="music/musicTimer" to="." method="_on_music_timer_timeout"]

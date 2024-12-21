@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbpecb26oh5ea"]
+[gd_scene load_steps=10 format=3 uid="uid://cbpecb26oh5ea"]
 
 [ext_resource type="Script" path="res://scenes/utilities/sceneManager.gd" id="1_gnowm"]
 [ext_resource type="PackedScene" uid="uid://lhtreytxsret" path="res://scenes/utilities/mainMenu.tscn" id="2_v6ewo"]
 [ext_resource type="PackedScene" uid="uid://drseolqryq6qb" path="res://scenes/levels/world.tscn" id="3_qn0tc"]
-[ext_resource type="PackedScene" uid="uid://dwslvyic7r8s3" path="res://scenes/levels/tutorial.tscn" id="3_sx3n3"]
-[ext_resource type="PackedScene" uid="uid://1evckdaryyuw" path="res://scenes/levels/level1.tscn" id="4_3i1mt"]
-[ext_resource type="PackedScene" uid="uid://cu681r6b4nv2y" path="res://scenes/levels/level2.tscn" id="5_qfike"]
-[ext_resource type="PackedScene" uid="uid://bv86btewn5qeo" path="res://scenes/levels/level3.tscn" id="6_8seww"]
-[ext_resource type="PackedScene" uid="uid://de58m5ldo2fjr" path="res://scenes/levels/level4.tscn" id="7_y88o2"]
+[ext_resource type="PackedScene" uid="uid://de58m5ldo2fjr" path="res://scenes/levels/levelGravShift.tscn" id="4_w3mi8"]
+[ext_resource type="PackedScene" uid="uid://1evckdaryyuw" path="res://scenes/levels/levelDelayedGravShift.tscn" id="5_wmccc"]
+[ext_resource type="PackedScene" uid="uid://cu681r6b4nv2y" path="res://scenes/levels/levelVirulentMatter.tscn" id="6_5a7h5"]
+[ext_resource type="PackedScene" uid="uid://bv86btewn5qeo" path="res://scenes/levels/levelCombiningFields.tscn" id="7_6df4c"]
+[ext_resource type="PackedScene" uid="uid://dcocv8fx1dbmu" path="res://scenes/levels/levelGravField.tscn" id="7_f5m6x"]
+[ext_resource type="PackedScene" uid="uid://q2o8x2pl1ohy" path="res://scenes/levels/levelForceField.tscn" id="8_6m6mv"]
 
 [node name="SceneManager" type="Control"]
 process_mode = 3
@@ -20,4 +21,4 @@ grow_vertical = 2
 script = ExtResource("1_gnowm")
 mainMenu = ExtResource("2_v6ewo")
 world = ExtResource("3_qn0tc")
-lvlScenes = Array[PackedScene]([ExtResource("3_sx3n3"), ExtResource("4_3i1mt"), ExtResource("5_qfike"), ExtResource("6_8seww"), ExtResource("7_y88o2")])
+lvlScenes = Array[PackedScene]([ExtResource("4_w3mi8"), ExtResource("5_wmccc"), ExtResource("6_5a7h5"), ExtResource("7_f5m6x"), ExtResource("8_6m6mv"), ExtResource("7_6df4c")])

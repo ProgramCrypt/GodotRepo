@@ -1,12 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c65m1ue4yttei"]
+[gd_scene load_steps=10 format=3 uid="uid://c65m1ue4yttei"]
 
 [ext_resource type="FontFile" uid="uid://6lmyrnhkhyxw" path="res://utilities/fonts/Xolonium-Bold.ttf" id="1_mtobp"]
 [ext_resource type="PackedScene" uid="uid://nu0cdx61nmg0" path="res://scenes/utilities/keybindingsMenu.tscn" id="2_nxyad"]
-[ext_resource type="PackedScene" uid="uid://1evckdaryyuw" path="res://scenes/levels/level1.tscn" id="2_to3n2"]
 [ext_resource type="Script" path="res://scenes/utilities/inGameMenu.gd" id="3_4862k"]
-[ext_resource type="PackedScene" uid="uid://cu681r6b4nv2y" path="res://scenes/levels/level2.tscn" id="3_f4wmh"]
-[ext_resource type="PackedScene" uid="uid://bv86btewn5qeo" path="res://scenes/levels/level3.tscn" id="4_6mtee"]
-[ext_resource type="PackedScene" uid="uid://de58m5ldo2fjr" path="res://scenes/levels/level4.tscn" id="5_yiqn6"]
 [ext_resource type="Theme" uid="uid://c5qke2kfhachu" path="res://utilities/themes/inGameMenu.tres" id="6_p3h5r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in7nl"]
@@ -24,10 +20,6 @@ bg_color = Color(0.88, 0.88, 0.88, 1)
 process_mode = 3
 script = ExtResource("3_4862k")
 keybindingsMenu = ExtResource("2_nxyad")
-Lvl1 = ExtResource("2_to3n2")
-Lvl2 = ExtResource("3_f4wmh")
-Lvl3 = ExtResource("4_6mtee")
-Lvl4 = ExtResource("5_yiqn6")
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -148,7 +140,6 @@ text = "4
 [node name="level5" type="Button" parent="Control/MarginContainer/levelMenu/VBoxContainer/levelSelect/HBoxContainer"]
 custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
-disabled = true
 text = "5
 "
 
@@ -157,7 +148,6 @@ custom_minimum_size = Vector2(90, 80)
 layout_mode = 2
 focus_neighbor_right = NodePath("../../HBoxContainer2/level7")
 focus_next = NodePath("../../HBoxContainer2/level7")
-disabled = true
 text = "6
 "
 

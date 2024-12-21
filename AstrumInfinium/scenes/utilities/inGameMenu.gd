@@ -87,94 +87,167 @@ func _on_exit_pressed():
 	queue_free()
 
 
-func levelReset(selectedLevel):
+
+func _on_1_pressed():
 	$"/root/AudioManager/UI/pressButton".play(0)
-	for lvl in get_tree().get_nodes_in_group('level'):
-		lvl.queue_free()
-	var level = selectedLevel.instantiate()
-	get_tree().root.get_node('world').call_deferred('add_child', level)
-	get_tree().root.get_node('world').call_deferred('resetPlayer')
-	
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[0])
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	queue_free()
 
 
-func _on_1_pressed():
-	$"/root/AudioManager/UI/pressButton".play(0)
-	levelReset(Lvl1)
-
-
 func _on_2_pressed():
 	$"/root/AudioManager/UI/pressButton".play(0)
-	levelReset(Lvl2)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[1])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_3_pressed():
 	$"/root/AudioManager/UI/pressButton".play(0)
-	levelReset(Lvl3)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[2])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_4_pressed():
 	$"/root/AudioManager/UI/pressButton".play(0)
-	levelReset(Lvl4)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[3])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_5_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[4])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_6_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[5])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_7_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[6])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_8_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[7])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_9_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[8])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_10_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[9])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_11_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[10])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_12_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[11])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_13_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[12])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_14_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[13])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_15_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[14])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_16_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[15])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_17_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[16])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_18_pressed():
-	pass # Replace with function body.
+	$"/root/AudioManager/UI/pressButton".play(0)
+	get_tree().root.get_node('world').changeLvl(sceneManager.lvlScenes[17])
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
 
 
 func _on_back_pressed():

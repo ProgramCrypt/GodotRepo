@@ -7,8 +7,6 @@ extends Control
 
 
 func _ready():
-	$"/root/AudioManager/music/Uranus".play(0)
-	
 	$MarginContainer/mainMenu/center/mainButtons.visible = true
 	$MarginContainer/mainMenu/center/newGameButtons.visible = false
 	$MarginContainer/mainMenu/center/optionsVolume.visible = false

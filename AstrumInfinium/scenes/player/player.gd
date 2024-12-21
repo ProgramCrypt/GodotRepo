@@ -113,35 +113,22 @@ func _physics_process(delta):
 				collider.shiftGravity()
 	
 	# show hints
-	if $neck/head/RayCast3D.get_collider() != null:
-		if $neck/head/RayCast3D.get_collider().is_in_group("interactable"):
-			hintTimer += delta
-			if hintTimer >= 1.0:
-				var hint = interactHint.instantiate()
-				get_tree().root.add_child(hint)
-				$crosshair/CenterContainer/ColorRect.visible = false
-				$crosshair/CenterContainer/ColorRect2.visible = false
-			if hintActive == false:
-				$crosshair/CenterContainer/ColorRect.color = Color(0.4, 0.9, 0.5, 1.0)
-				$crosshair/CenterContainer/ColorRect2.color = Color(0.4, 0.9, 0.5, 1.0)
-				$crosshair/CenterContainer/ColorRect.custom_minimum_size = Vector2(4, 30)
-				$crosshair/CenterContainer/ColorRect2.custom_minimum_size = Vector2(30, 4)
-				$crosshair/CenterContainer/ColorRect3.color = Color(0.4, 0.9, 0.5, 1.0)
-			hintActive = true
-		else:
-			hintTimer = 0
-			var hintArray = get_tree().get_nodes_in_group("hint")
-			for hint in hintArray:
-				hint.queue_free()
-				$crosshair/CenterContainer/ColorRect.visible = true
-				$crosshair/CenterContainer/ColorRect2.visible = true
-			if hintActive == true:
-				$crosshair/CenterContainer/ColorRect.color = Color(1.0, 1.0, 1.0, 1.0)
-				$crosshair/CenterContainer/ColorRect2.color = Color(1.0, 1.0, 1.0, 1.0)
-				$crosshair/CenterContainer/ColorRect.custom_minimum_size = Vector2(2, 20)
-				$crosshair/CenterContainer/ColorRect2.custom_minimum_size = Vector2(20, 2)
-				$crosshair/CenterContainer/ColorRect3.color = Color(1.0, 1.0, 1.0, 1.0)
-			hintActive = false
+	var collider = $neck/head/RayCast3D.get_collider()
+	if collider != null and collider.is_in_group("interactable"):
+		hintTimer += delta
+		if hintTimer >= 1.0:
+			var hint = interactHint.instantiate()
+			get_tree().root.add_child(hint)
+			$crosshair/CenterContainer/ColorRect.visible = false
+			$crosshair/CenterContainer/ColorRect2.visible = false
+		if hintActive == false:
+			$crosshair/CenterContainer/ColorRect.color = Color(0.4, 0.9, 0.5, 1.0)
+			$crosshair/CenterContainer/ColorRect2.color = Color(0.4, 0.9, 0.5, 1.0)
+			$crosshair/CenterContainer/ColorRect.custom_minimum_size = Vector2(4, 30)
+			$crosshair/CenterContainer/ColorRect2.custom_minimum_size = Vector2(30, 4)
+			$crosshair/CenterContainer/ColorRect3.color = Color(0.4, 0.9, 0.5, 1.0)
+		hintActive = true
+		collider.outline = true
 	else:
 		hintTimer = 0
 		var hintArray = get_tree().get_nodes_in_group("hint")
@@ -188,12 +175,12 @@ func _physics_process(delta):
 	# Sets this frame's velocity to the current horizontal directional input
 	var inputVector = Input.get_vector("left", "right", "forward", "backward")
 	if inputVector != Vector2(0, 0):
-		inputVector = Vector3(inputVector.x, 0, inputVector.y).rotated($neck/up.global_position - global_position, rotation.y) # This doesn't work if the gravity changes due to the axes becoming misaligned
+		inputVector = (($neck/right.global_position - global_position) * inputVector.x) + (($neck/backward.global_position - global_position) * inputVector.y)
 		if is_on_floor():
 			velocity += inputVector * speed
 		else: #  If player is falling, this lets them accelerate horizontally up to their max speed. The 5 integer just controls how fast they can accelerate
-			if (vxz + (inputVector * 5 * delta)).length() < speed:
-				vxz += inputVector * 5 * delta
+			if (vxz + (inputVector * 12 * delta)).length() < speed:
+				vxz += inputVector * 12 * delta
 	
 	'if Input.is_action_pressed("forward"):
 		forward = $neck/forward.global_position - global_position

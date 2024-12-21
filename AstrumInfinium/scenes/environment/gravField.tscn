@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ha06ehbxew1x"]
+[gd_scene load_steps=17 format=3 uid="uid://ha06ehbxew1x"]
 
 [ext_resource type="Script" path="res://scenes/environment/gravField.gd" id="1_kj6kr"]
 [ext_resource type="Shader" path="res://shaders/gravField.gdshader" id="2_jgdp6"]
@@ -7,6 +7,34 @@
 [ext_resource type="Texture2D" uid="uid://3orkysspv63k" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_NormalDX.jpg" id="4_1tsjp"]
 [ext_resource type="Texture2D" uid="uid://cpu7l4l5wprpi" path="res://textures/flat/Marble023_4K-JPG/Marble023_4K-JPG_Roughness.jpg" id="5_e5wor"]
 [ext_resource type="Texture2D" uid="uid://cf04738khmb08" path="res://textures/flat/MetalPlates017A_4K-JPG/MetalPlates017A_4K-JPG_Color.jpg" id="6_c5i3f"]
+[ext_resource type="AudioStream" uid="uid://cvlyqxjbdwa0w" path="res://audio/SFX/forceField-001.wav" id="8_b8p31"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bnvd5"]
+render_priority = 0
+shader = ExtResource("2_jgdp6")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/normal_scale = 6.0
+shader_parameter/heightmap_scale = 5.0
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = null
+shader_parameter/texture_albedo = ExtResource("3_pn0c5")
+shader_parameter/texture_metallic = ExtResource("3_bqcg6")
+shader_parameter/texture_roughness = ExtResource("5_e5wor")
+shader_parameter/texture_normal = ExtResource("4_1tsjp")
+
+[sub_resource type="BoxMesh" id="BoxMesh_aqn2j"]
+material = SubResource("ShaderMaterial_bnvd5")
+size = Vector3(3, 0.2, 3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ijbvw"]
 render_priority = 0
@@ -31,11 +59,11 @@ shader_parameter/texture_metallic = ExtResource("3_bqcg6")
 shader_parameter/texture_roughness = ExtResource("5_e5wor")
 shader_parameter/texture_normal = ExtResource("4_1tsjp")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_iy8l4"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_alfe6"]
 material = SubResource("ShaderMaterial_ijbvw")
 size = Vector2(3, 3)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_alfe6"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_iy8l4"]
 material = SubResource("ShaderMaterial_ijbvw")
 size = Vector2(3, 3)
 
@@ -48,24 +76,37 @@ albedo_texture = ExtResource("6_c5i3f")
 [sub_resource type="SphereMesh" id="SphereMesh_tipke"]
 material = SubResource("StandardMaterial3D_dau8t")
 
-[node name="ForceField" type="Area3D"]
+[node name="GravField" type="Area3D"]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_kj6kr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_iy8l4")
+mesh = SubResource("BoxMesh_aqn2j")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.2, 0)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.1, 0)
+visible = false
 mesh = SubResource("PlaneMesh_alfe6")
 
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+visible = false
+mesh = SubResource("PlaneMesh_iy8l4")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_ivf0v")
 
 [node name="opacityReferenceObject" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 mesh = SubResource("SphereMesh_tipke")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_b8p31")
+volume_db = -15.0
+unit_size = 2.0
+max_db = 2.0
+autoplay = true
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -18,6 +18,8 @@ radius = 0.05
 height = 0.1
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+floor_stop_on_slope = false
+floor_max_angle = 0.698132
 script = ExtResource("1_eba0o")
 interactHint = ExtResource("2_624be")
 pauseMenu = ExtResource("3_27w4b")
